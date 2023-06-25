@@ -1,6 +1,24 @@
-import { createApp } from "vue";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
+/**
+ * main.ts
+ *
+ * Bootstraps Vuetify and other plugins then mounts the App`
+ */
 
-createApp(App).use(router).use(store).use(router).mount("#app");
+// Components
+import App from './App.vue'
+
+// Composables
+import { createApp } from 'vue'
+
+// Plugins
+import { registerPlugins } from '@/plugins'
+
+//router
+import router from './router'
+
+const app = createApp(App)
+
+registerPlugins(app)
+
+app.use(router)
+app.mount('#app')
