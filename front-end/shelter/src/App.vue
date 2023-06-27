@@ -1,10 +1,12 @@
 <template>
   <v-app>
-    <AppHeader app></AppHeader>
+   
+    <AppHeader app ></AppHeader>
     <v-main>
       <router-view ></router-view>
     </v-main>
-    <AppFooter app></AppFooter>
+    <AppFooter app style="opacity: 0.8;"></AppFooter>
+   
   </v-app>
 </template>
 

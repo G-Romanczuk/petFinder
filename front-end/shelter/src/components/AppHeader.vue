@@ -1,5 +1,5 @@
 <template>
-    <v-app-bar :elevation="2" app  dark>
+    <v-app-bar :elevation="2" app  dark scroll-behavior="hide" >
         <div class="d-flex align-center">
             <a href="http://127.0.0.1:3000/">
         <img src="/homeIcon.png" alt="logo" class="shrink mr-2" transition="scale-transition" height="150">   
@@ -36,6 +36,7 @@
     font-weight: bolder;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
 
 </style>
   
