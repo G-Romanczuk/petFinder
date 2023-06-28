@@ -1,4 +1,5 @@
 <template>
+  
   <v-parallax src="@/assets/landing-pink-gradient.png"
     style="position: absolute; height: 80vh; width: 100vw; top: 0; "></v-parallax>
   <div class="d-flex align-center flex-column" style="width: 80vw; margin-left: auto; margin-right: auto">
@@ -19,9 +20,10 @@
             <v-img src="@/assets/pets.png" width="200px" style="border-radius: 50%;"></v-img>
             <v-divider :thickness="30" class="border-opacity-0"></v-divider>
             <div style="display: flex">
-              <v-btn elevation="8" class="d-flex align-center flex-column main-text main-text">Rejestracja</v-btn>
+              <v-btn elevation="8" class="d-flex align-center flex-column main-text " @click="$router.push('/register')">Rejestracja</v-btn>
               <v-divider vertical :thickness="20" class="border-opacity-0"></v-divider>
-              <v-btn elevation="8" class="d-flex align-center flex-column main-text main-text">Logowanie</v-btn>
+              <LoginPopup v-if="loggedUser == ''" />
+              <v-btn elevation="8" class="d-flex align-center flex-column main-text " target="_blank" v-else @click="loggedUser = ''">Logowanie</v-btn>
               <v-divider :thickness="20" class="border-opacity-0"></v-divider>
             </div>
           </v-container>
@@ -90,7 +92,7 @@
               </p>
             </div>
             <v-divider :thickness="20" class="border-opacity-0"></v-divider>
-            <v-btn elevation="8" class="d-flex align-center flex-column main-text main-text">Rejestracja</v-btn>
+            <v-btn elevation="8" class="d-flex align-center flex-column main-text main-text" @click="$router.push('/register')">Rejestracja</v-btn>
           </v-sheet>
         </v-sheet>
       </v-parallax>
@@ -198,7 +200,7 @@
               </h3>
               </p>
             </div>
-            <v-btn elevation="8" class="d-flex align-center flex-column main-text main-text">Rejestracja</v-btn>
+            <v-btn elevation="8" class="d-flex align-center flex-column main-text main-text" @click="$router.push('/register')">Rejestracja</v-btn>
           </v-sheet>
         </v-sheet>
       </v-parallax>
@@ -212,12 +214,26 @@
 </template>
 
 <script lang="ts">
-import { setgroups } from "process";
+import LoginPopup from '@/components/LoginPopup.vue';
+import { store } from '@/store/store';
+import { computed, ref } from 'vue';
 
 export default {
   name: "LandingView",
+  components: {
+    LoginPopup
+  },
 
   setup() {
+
+    var dialog = ref(false)
+
+
+    const loggedUser = computed({
+      get: () => store.state.user.loggedUser,
+      set: (value) => store.dispatch("ui/updateLoggedUser", value),
+    })
+
     function reveal() {
       var reveals = document.querySelectorAll(".reveal");
 
@@ -236,7 +252,7 @@ export default {
 
     window.addEventListener("scroll", reveal);
 
-    return { reveal, }
+    return { reveal, dialog, loggedUser }
   },
 };
 </script>

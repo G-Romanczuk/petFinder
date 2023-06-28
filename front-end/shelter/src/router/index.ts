@@ -7,6 +7,11 @@ const routes = [
     name: 'Home',
     component: () => import('@/views/LandingView.vue'),
   },
+  {
+    path: '/register',
+    name: 'Register',
+    component: () => import('@/views/RegisterView.vue'),
+  },
 ]
 
 const router = createRouter({
