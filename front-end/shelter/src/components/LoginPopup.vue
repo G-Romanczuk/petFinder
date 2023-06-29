@@ -1,105 +1,136 @@
 <template>
-  <v-dialog
-    v-model="dialog"
-    max-width="35vw"
-    max-height="50vh"
-  >
-    <template v-slot:activator="{ props }">
-      <v-btn elevation="8" class="d-flex align-center flex-column main-text main-text" v-bind="props" >Logowanie</v-btn>
-    </template>
-    <div class="LoginPopup">
-      <v-card>
-        <v-card-title class="text-center main-text">
-          <h2>Log in</h2>
-        </v-card-title>
+  <v-dialog v-model="dialog" max-width="30vw" max-height="48vh" >
+      <template v-slot:activator="{ props }">
+          <v-btn elevation="8" class="d-flex align-center flex-column main-text main-text" v-bind="props">Zaloguj
+              się</v-btn>
+      </template>
+      <div class="d-flex align-center flex-column" style="width: 100%; height: 48vh; margin-left: auto; margin-right: auto;">
 
-        <v-card-text class="text-center">
-          <div>
-            <form @submit.prevent="logIn">
-              <v-text-field
-                v-model="login"
-                :rules="[rules.required, rules.counter]"
-                label="Login"
-                counter
-                maxlength="20"
-                @keydown.enter.prevent="logIn"
-              ></v-text-field>
-              <v-text-field
-                v-model="password"
-                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                :rules="[rules.required, rules.min]"
-                :type="show1 ? 'text' : 'password'"
-                name="input-10-1"
-                label="Password"
-                hint="At least 6 characters"
-                counter
-                @click:append="show1 = !show1"
-                @keydown.enter.prevent="logIn"
-              ></v-text-field>
-            </form>
-          </div>
-          <!--div>-- or --</div>
-        <div>email and passwd</div>
-        <div>-- or --</div>
-        <div>ActiveDirectory</div-->
-        </v-card-text>
+          <div class="title" style="padding: 20px;">Logowanie</div>
 
-        <v-divider></v-divider>
 
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="dialog = false"> Cancel </v-btn>
-          <v-btn color="primary" text @click="logIn"> Log in</v-btn>
-        </v-card-actions>
-      </v-card>
-    </div>
+          <v-card class="scrollbar" width="100%" height="35vh" style="overflow-y: scroll; border-radius: 5%;">
+              <v-divider :thickness="20" class="border-opacity-0"></v-divider>
+
+             
+              <v-card-text style="width: 70%; margin: 0 auto;">
+                  <v-form v-model="isValid">
+                      
+                      <v-text-field label="E-mail" v-model="email" :rules="emailRules" required></v-text-field>
+                      <v-divider :thickness="20" class="border-opacity-0"></v-divider>
+                      <v-text-field label="Hasło" v-model="password1" type="password" :rules="passwordRules"
+                          required></v-text-field>
+                    
+
+                  </v-form>
+              </v-card-text>
+              <v-card-actions class="d-flex align-center flex-column">
+                  <v-divider :thickness="20" class="border-opacity-0"></v-divider>
+               
+                      <v-btn color="rgb(175, 126, 158)" :disabled="!isValid" class="little-title"
+                          @click="dialog = false">Zaloguj się</v-btn>
+               
+
+                  <v-divider :thickness="20" class="border-opacity-0"></v-divider>
+              </v-card-actions>
+
+              <h1>Count id {{ store.count }}</h1>
+              <h2>Double is {{ store.doubleCount }}</h2>
+              <button @click="store.increment(1)" > increment</button>
+              <button @click="store.waitAndAdd" > waitAndAdd</button>
+          </v-card>
+
+
+      </div>
   </v-dialog>
 </template>
 
-<script>
-import { useStore } from "vuex"
-const store = useStore()
-export default {
-  name: "LoginPopup",
-  data: () => ({
-    dialog: false,
-    show1: false,
-    password: "",
-    login: "",
-    rules: {
-      required: (value) => !!value || "Required.",
-      min: (v) => v.length >= 8 || "Min 8 characters",
-      emailMatch: () => `The email and password you entered don't match`,
-    },
-  }),
-  methods: {
-    logIn() {
-      this.$store
-        .dispatch("ui/login", {
-          login: this.login,
-          password: this.password,
-        })
-        .then(() => {
-          this.loggedUser = this.login
-          console.log("logged user " + this.login)
-        })
-    },
-  }, //methods
-  computed: {
-    loggedUser: {
-      get() {
-        return this.$store.state.ui.loggedUser
-      },
-      set(value) {
-        this.$store.dispatch("ui/updateLoggedUser", value)
-      },
-    },
-  }, //computed
-}
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useUserStore } from '@/store/user';
+
+const store = useUserStore();
+store.count++;
+store.increment(2);
+
+      const email = ref(null)
+      const password1 = ref(null)
+      const isValid = ref(true)
+      
+
+      const emailRules = [v => !!v || 'Wymagane',
+      v => /.+@.+/.test(v) || 'Nieprawidłowy E-mail'
+      ]
+      const passwordRules = [
+          v => !!v || 'Password is required',
+          v => (v && v.length >= 5) || 'Hasło musi mieć ponad 5 znaków',
+          v => /(?=.*[A-Z])/.test(v) || 'Hasło musi mieć 1 dużą literę',
+          v => /(?=.*\d)/.test(v) || 'Hasło musi mieć 1 liczbę',
+          v => /([!@$%.,<>?/~`^&*])/.test(v) || 'Hasło musi mieć 1 znak specjalny [!@$%.,<>?/~`^&*]'
+      ]
+
+      
+
+      var dialog = ref(false)
+
+
+
+
+
+
+  
+
+
 </script>
 
 <style lang="css">
-.v-card-title {
+.title {
+  font-family: cursive;
+  font-size: xxx-large;
+  font-weight: bolder;
+  font-stretch: wider;
+  color: white;
+  text-shadow: 5px 2px 4px #000000
+}
 
+.little-title {
+  font-family: cursive;
+  font-weight: bold;
+  font-size: medium;
+  color: rgb(175, 126, 158);
+  text-shadow: 1px 2px 2px #000000
+}
+
+
+.scrollbar::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 0px rgba(0, 0, 0, 0.3);
+  background-color: transparent;
+  border-radius: 10px;
+}
+
+.scrollbar::-webkit-scrollbar {
+  display: block;
+  width: 15px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-image: -webkit-gradient(linear,
+          left bottom,
+          left top,
+          color-stop(0.14, rgb(235, 196, 222)),
+          color-stop(0.24, rgb(221, 167, 202)),
+          color-stop(0.52, rgb(175, 126, 158)),
+          color-stop(0.86, rgb(131, 70, 109)));
+}
+
+.scrollbar::-webkit-scrollbar-track-piece:end {
+  background: transparent;
+  margin-bottom: 3vh;
+}
+
+.scrollbar::-webkit-scrollbar-track-piece:start {
+  background: transparent;
+  margin-top: 3vh;
 }
 </style>

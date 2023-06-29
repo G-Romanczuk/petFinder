@@ -14,7 +14,6 @@
 import AppHeader from "./components/AppHeader.vue";
 import AppFooter from "./components/AppFooter.vue";
 import { defineComponent } from "vue";
-import {store} from "./store/store"
 
 export default defineComponent({
   name: "App",

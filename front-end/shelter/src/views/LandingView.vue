@@ -20,10 +20,9 @@
             <v-img src="@/assets/pets.png" width="200px" style="border-radius: 50%;"></v-img>
             <v-divider :thickness="30" class="border-opacity-0"></v-divider>
             <div style="display: flex">
-              <v-btn elevation="8" class="d-flex align-center flex-column main-text " @click="$router.push('/register')">Rejestracja</v-btn>
+              <RegisterPopup />
               <v-divider vertical :thickness="20" class="border-opacity-0"></v-divider>
-              <LoginPopup v-if="loggedUser == ''" />
-              <v-btn elevation="8" class="d-flex align-center flex-column main-text " target="_blank" v-else @click="loggedUser = ''">Logowanie</v-btn>
+              <LoginPopup  />
               <v-divider :thickness="20" class="border-opacity-0"></v-divider>
             </div>
           </v-container>
@@ -215,24 +214,17 @@
 
 <script lang="ts">
 import LoginPopup from '@/components/LoginPopup.vue';
-import { store } from '@/store/store';
-import { computed, ref } from 'vue';
+import RegisterPopup from '@/components/RegisterPopup.vue';
 
 export default {
   name: "LandingView",
   components: {
-    LoginPopup
+    LoginPopup,
+    RegisterPopup
   },
 
   setup() {
 
-    var dialog = ref(false)
-
-
-    const loggedUser = computed({
-      get: () => store.state.user.loggedUser,
-      set: (value) => store.dispatch("ui/updateLoggedUser", value),
-    })
 
     function reveal() {
       var reveals = document.querySelectorAll(".reveal");
@@ -252,7 +244,7 @@ export default {
 
     window.addEventListener("scroll", reveal);
 
-    return { reveal, dialog, loggedUser }
+    return { reveal, }
   },
 };
 </script>

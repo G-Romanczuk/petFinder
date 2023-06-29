@@ -15,8 +15,10 @@ import { registerPlugins } from '@/plugins'
 
 //router
 import router from './router'
+
 //store
-import { store } from './store/store'
+import {createPinia} from 'pinia';
+const store = createPinia();
 
 const app = createApp(App)
 
