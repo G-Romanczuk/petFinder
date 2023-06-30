@@ -28,16 +28,15 @@
                   <v-divider :thickness="20" class="border-opacity-0"></v-divider>
                
                       <v-btn color="rgb(175, 126, 158)" :disabled="!isValid" class="little-title"
-                          @click="dialog = false">Zaloguj się</v-btn>
+                          @click="dialog = false, //@ts-ignore
+      store.loggedUser = email,
+      $router.push('/userMenu')">Zaloguj się</v-btn>
                
 
                   <v-divider :thickness="20" class="border-opacity-0"></v-divider>
               </v-card-actions>
 
-              <h1>Count id {{ store.count }}</h1>
-              <h2>Double is {{ store.doubleCount }}</h2>
-              <button @click="store.increment(1)" > increment</button>
-              <button @click="store.waitAndAdd" > waitAndAdd</button>
+             
           </v-card>
 
 
@@ -50,10 +49,10 @@ import { ref } from 'vue'
 import { useUserStore } from '@/store/user';
 
 const store = useUserStore();
-store.count++;
-store.increment(2);
+
 
       const email = ref(null)
+      
       const password1 = ref(null)
       const isValid = ref(true)
       
@@ -63,10 +62,10 @@ store.increment(2);
       ]
       const passwordRules = [
           v => !!v || 'Password is required',
-          v => (v && v.length >= 5) || 'Hasło musi mieć ponad 5 znaków',
-          v => /(?=.*[A-Z])/.test(v) || 'Hasło musi mieć 1 dużą literę',
-          v => /(?=.*\d)/.test(v) || 'Hasło musi mieć 1 liczbę',
-          v => /([!@$%.,<>?/~`^&*])/.test(v) || 'Hasło musi mieć 1 znak specjalny [!@$%.,<>?/~`^&*]'
+          v => (v && v.length >= 6) || 'Hasło musi mieć ponad 6 znaków',
+          // v => /(?=.*[A-Z])/.test(v) || 'Hasło musi mieć 1 dużą literę',
+          // v => /(?=.*\d)/.test(v) || 'Hasło musi mieć 1 liczbę',
+          // v => /([!@$%.,<>?/~`^&*])/.test(v) || 'Hasło musi mieć 1 znak specjalny [!@$%.,<>?/~`^&*]'
       ]
 
       

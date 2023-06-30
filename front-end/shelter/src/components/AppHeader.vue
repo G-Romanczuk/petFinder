@@ -3,12 +3,14 @@
         <div class="d-flex align-center">
             <a href="http://127.0.0.1:3000/">
         <img src="/homeIcon.png" style="height: 120px;" alt="logo" class="shrink mr-2" transition="scale-transition" height="150">   
-        </a>         
+        </a>  
+            
         </div>
         <v-app-bar-title style="position: relative; left: -1%; font-size: 40px;">
             <a href="http://127.0.0.1:3000/" class="link"> ShelterFinder</a>
-           
+              
         </v-app-bar-title>
+        <h1>{{ store.loggedUser }}</h1>
   <template v-slot:append>
     <v-btn icon="mdi-heart"></v-btn>
 
@@ -19,15 +21,10 @@
 </v-app-bar>
   </template>
   
-  <script lang="ts">
+  <script setup lang="ts">
+ import { useUserStore } from '@/store/user';
   
-  export default {
-    name: "AppHeader",
-  
-    components: {
-     
-    },
-  };
+  const store = useUserStore();
   </script>
 
   <style lang="css" scoped>

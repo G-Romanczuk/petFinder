@@ -18,8 +18,9 @@ import router from './router'
 
 //store
 import {createPinia} from 'pinia';
+import piniaPluginPersistedState from "pinia-plugin-persistedstate"
 const store = createPinia();
-
+store.use(piniaPluginPersistedState);
 const app = createApp(App)
 
 registerPlugins(app)

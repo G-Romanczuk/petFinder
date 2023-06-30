@@ -16,10 +16,11 @@
                     <LoginPopup />
                     <v-divider :thickness="20" class="border-opacity-0"></v-divider>
                 </div>
-                <v-form @submit="onSubmit" class="px-4">
+                <v-form @submit="onSubmit" :validation-schema="schema" @invalid-submit="onInvalidSubmit" class="px-4">
                     <v-card-text style="width: 70%; margin: 0 auto;">
 
-                        <v-text-field v-bind="name"  label="Name" />
+                        <v-text-field v-bind="name"  label="Name" type="Name" />
+                        <v-text-field v-bind="lname"  label="LName" type="LName" />
                         <v-text-field v-bind="email"  label="E-mail" type="email" />
 
                         <v-text-field v-bind="password" label="Hasło" type="password" />
@@ -27,9 +28,6 @@
 
                         <v-text-field label="Telefon kontaktowy"  v-bind="phone"  type="tel"
                             required></v-text-field>
-
-                        <v-select v-bind="userType"  :items="items" label="Typ użytkownika" persistent-hint return-object
-                            single-line required></v-select>
 
 
                         <v-checkbox label="Potwierdzam zapoznanie się z regulaminem i akceptację bababa" 
@@ -45,7 +43,7 @@
                                 @click="dialog = false">Zrezygnuj</v-btn>
                             <v-divider vertical :thickness="300" class="border-opacity-0"></v-divider>
                             <v-btn color="rgb(175, 126, 158)" :disabled="!isValid" class="little-title"
-                                @click="dialog = false" type="submit">Zarejestruj się</v-btn>
+                              @click="onSubmit"  type="submit" >Zarejestruj się</v-btn>
                         </div>
 
                         <v-divider :thickness="20" class="border-opacity-0"></v-divider>
@@ -63,10 +61,12 @@ import { ref } from 'vue'
 import LoginPopup from '@/components/LoginPopup.vue';
 import { useForm } from 'vee-validate';
 import * as yup from 'yup';
-
+import { useUserStore } from '@/store/user';
 
 const isValid = ref(true)
+var typeOfUser = ref();
 
+const store = useUserStore();
 
 
 
@@ -76,6 +76,7 @@ var dialog = ref(false)
 
 const schema = yup.object({
     name: yup.string().required().label('Name'),
+    lname: yup.string().required().label('LName'),
     email: yup.string().email().required().label('E-mail'),
     password: yup.string().min(6).required(),
     passwordConfirm: yup
@@ -88,7 +89,7 @@ const schema = yup.object({
         .required()
         .oneOf([true], 'You must agree to terms and conditions'),
     phone: yup.string().required().matches(/^[1-9]\d{8}$/, {message: "Please enter valid number.", excludeEmptyString: false}),
-    userType: yup.string().required().label('select'),
+   // userType: yup.string().required() .oneOf(["Schronisko", "Adoptujący"]).label('select'),
 });
 
 const { defineComponentBinds, handleSubmit, resetForm } = useForm({
@@ -104,18 +105,28 @@ const vuetifyConfig = (state) => ({
 });
 
 const name = defineComponentBinds('name', vuetifyConfig);
+const lname = defineComponentBinds('lname', vuetifyConfig);
 const email = defineComponentBinds('email', vuetifyConfig);
 const password = defineComponentBinds('password', vuetifyConfig);
 const passwordConfirm = defineComponentBinds('passwordConfirm', vuetifyConfig);
 const phone = defineComponentBinds('phone', vuetifyConfig);
 const terms = defineComponentBinds('terms', vuetifyConfig);
-const userType = defineComponentBinds('select', vuetifyConfig);
-const items = [ 'Schronisko', 'Adoptujący']
+//const userType = defineComponentBinds('select', vuetifyConfig);
+//const items = [ 'Schronisko', 'Adoptujący']
 
 
 const onSubmit = handleSubmit((values) => {
-    console.log('Submitted with', values);
+    alert(JSON.stringify(values, null, 2));
+
 });
+
+
+
+function onInvalidSubmit({ values, errors, results }) {
+  console.log(values); // current form values
+  console.log(errors); // a map of field names and their first error message
+  console.log(results); // a detailed map of field names and their validation results
+}
 
 </script>
 

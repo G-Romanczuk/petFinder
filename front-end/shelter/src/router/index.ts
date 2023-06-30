@@ -7,7 +7,16 @@ const routes = [
     name: 'Home',
     component: () => import('@/views/LandingView.vue'),
   },
-  
+  {
+    path: '/userData',
+    name: 'userData',
+    component: () => import('@/components/UserForm.vue'),
+  },
+  {
+    path: '/userMenu',
+    name: 'userMenu',
+    component: () => import('@/views/UserLandingView.vue'),
+  },
 ]
 
 const router = createRouter({

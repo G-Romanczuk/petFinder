@@ -1,22 +1,46 @@
 import { defineStore } from "pinia";
 
 export const useUserStore = defineStore("user", {
-    state: () => {
-        return {
-            count: 0,
-        }
-    },
-    actions: {
-        increment(val = 1) {
-            this.count += val;
-        },
-        async waitAndAdd() {
-            setTimeout(()=>{
-                this.count++;
-            }, 2000);
-        },
-    },
-    getters: {
-        doubleCount: (state) => state.count * 2,
-    },
+  state: () => {
+    return {
+      loggedUser: "",
+      userData: {
+        name: "",
+      lname: "",
+      email: "",
+      phone: "",
+      postCode: "",
+      town: "",
+      adress: "",
+      incomeSource: "",
+      lifestyle: "",
+      housingType: "",
+      houseOwner: "",
+      hoursAlone: "",
+      floor: "",
+      elevator: "",
+      walksNumber: "",
+      walksTime: "",
+      fence: "",
+      fenceHeight: "",
+      propertySize: "",
+      petPlace: "",
+      petPlaceAlone: "",
+      careAlone: "",
+      houseMates: "",
+      animals: "",
+      animalsBefore: "",
+      animalsBeforeText: "",
+      text: "",
+      }
+      
+    };
+  },
+  actions: {
+   
+  },
+  getters: {
+    userDataname: (state) => {return state.userData.name}
+  },
+  persist: true,
 });
