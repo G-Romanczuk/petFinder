@@ -8,7 +8,7 @@
         <v-col cols="6">
           <v-divider :thickness="20" class="border-opacity-0"></v-divider>
           <v-divider :thickness="20" class="border-opacity-0"></v-divider>
-          <v-container style="background-color: rgb(35, 125, 100); border-radius: 3%"
+          <v-container style="background-color: rgb(35, 125, 100, 0.7); border-radius: 3%"
             class="d-flex align-center flex-column">
             <div>
               <h1 style="color: white; text-shadow: 5px 2px 4px #000000" class="main-text">
@@ -119,7 +119,7 @@
         <v-col cols="6">
           <v-divider :thickness="20" class="border-opacity-0"></v-divider>
           <v-divider :thickness="20" class="border-opacity-0"></v-divider>
-          <v-container style="background-color: rgb(175, 126, 158); border-radius: 3%"
+          <v-container style="background-color: rgb(175, 126, 158, 0.7); border-radius: 3%"
             class="d-flex align-center flex-column">
             <v-divider :thickness="30" class="border-opacity-0"></v-divider>
             <div>
