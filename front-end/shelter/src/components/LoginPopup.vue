@@ -4,12 +4,12 @@
           <v-btn elevation="8" class="d-flex align-center flex-column main-text main-text" v-bind="props">Zaloguj
               się</v-btn>
       </template>
-      <div class="d-flex align-center flex-column" style="width: 100%; height: 48vh; margin-left: auto; margin-right: auto;">
+      <div class="d-flex align-center flex-column" style="width: 100%; height: 60vh; margin-left: auto; margin-right: auto;">
 
           <div class="title" style="padding: 20px;">Logowanie</div>
 
 
-          <v-card class="scrollbar" width="100%" height="35vh" style="overflow-y: scroll; border-radius: 5%;">
+          <v-card class="scrollbar" width="100%" height="55vh" style="overflow-y: scroll; border-radius: 5%;">
               <v-divider :thickness="20" class="border-opacity-0"></v-divider>
 
              
@@ -26,14 +26,18 @@
               </v-card-text>
               <v-card-actions class="d-flex align-center flex-column">
                   <v-divider :thickness="20" class="border-opacity-0"></v-divider>
-               
+              
                       <v-btn color="rgb(175, 126, 158)" :disabled="!isValid" class="little-title"
                           @click="dialog = false, //@ts-ignore
       store.loggedUser = email,
       $router.push('/userMenu')">Zaloguj się</v-btn>
-               
-
-                  <v-divider :thickness="20" class="border-opacity-0"></v-divider>
+                 <v-divider :thickness="10" class="border-opacity-0"></v-divider>
+                 <div style="width: 80%; height: 2px; background-color: rgb(175, 126, 158); opacity: 0.5;"></div>
+                 <v-divider :thickness="10" class="border-opacity-0"></v-divider>
+                <div class="little-title" style=" text-shadow: 0px 0px 0px #000000">Nie posiadam konta</div>
+                 <v-divider  :thickness="20" class="border-opacity-0"></v-divider>
+               <RegisterPopup />
+                  <v-divider color="rgb(175, 126, 158)" :thickness="20" class="border-opacity-0"></v-divider>
               </v-card-actions>
 
              
@@ -47,6 +51,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useUserStore } from '@/store/user';
+import RegisterPopup from './RegisterPopup.vue';
 
 const store = useUserStore();
 
@@ -97,7 +102,6 @@ const store = useUserStore();
   font-weight: bold;
   font-size: medium;
   color: rgb(175, 126, 158);
-  text-shadow: 1px 2px 2px #000000
 }
 
 

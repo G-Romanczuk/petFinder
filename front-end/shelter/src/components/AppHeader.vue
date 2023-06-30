@@ -10,21 +10,32 @@
             <a href="http://127.0.0.1:3000/" class="link"> ShelterFinder</a>
               
         </v-app-bar-title>
-        <h1>{{ store.loggedUser }}</h1>
+       
   <template v-slot:append>
-    <v-btn icon="mdi-heart"></v-btn>
-
-    <v-btn icon="mdi-magnify"></v-btn>
-
-    <v-btn icon="mdi-dots-vertical"></v-btn>
+    <h5>{{ store.loggedUser }}</h5>
+        <v-divider vertical :thickness="20" class="border-opacity-0"></v-divider>
+    <LoginPopup v-if="loggedUser == ''" />
+    <v-btn target="_blank" elevation="8" class="d-flex align-center flex-column main-text main-text" v-else @click="loggedUser = '', $router.push('/'), logout()"> Wyloguj się</v-btn>
   </template>
 </v-app-bar>
   </template>
   
   <script setup lang="ts">
  import { useUserStore } from '@/store/user';
-  
+ import LoginPopup from './LoginPopup.vue';
+import { ref, watch } from 'vue';
+import { storeToRefs } from 'pinia'
+
   const store = useUserStore();
+
+const {loggedUser} = storeToRefs(store)
+
+  function logout() {
+    store.$reset()
+  }
+  
+
+
   </script>
 
   <style lang="css" scoped>

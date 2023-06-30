@@ -37,10 +37,15 @@ export const useUserStore = defineStore("user", {
     };
   },
   actions: {
-   
+    login(email) {
+      this.loggedUser = email
+    },
+    logout() {
+      this.loggedUser = ''
+    },
   },
   getters: {
-    userDataname: (state) => {return state.userData.name}
+    getLoggedUser: (state) => {return state.loggedUser},
   },
   persist: true,
 });

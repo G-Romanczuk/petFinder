@@ -13,8 +13,13 @@
                 <v-divider :thickness="20" class="border-opacity-0"></v-divider>
 
                 <div class="d-flex align-center flex-column">
+                    
+                 
+                <div class="little-title" style=" text-shadow: 0px 0px 0px #000000">Mam już konto</div>
+                <v-divider :thickness="10" class="border-opacity-0"></v-divider>
                     <LoginPopup />
                     <v-divider :thickness="20" class="border-opacity-0"></v-divider>
+                    <div style="width: 80%; height: 2px; background-color: rgb(175, 126, 158); opacity: 0.5;"></div>
                 </div>
                 <v-form @submit="onSubmit" :validation-schema="schema" @invalid-submit="onInvalidSubmit" class="px-4">
                     <v-card-text style="width: 70%; margin: 0 auto;">

@@ -22,7 +22,7 @@
               ">
               <div>
                 <h1 style="color: white; text-shadow: 5px 2px 4px #000000" class="main-text">
-                  Witaj, {{ store.userData.name }}!
+                  Witaj {{ store.userData.name }}!
                 </h1>
               </div>
               <v-divider :thickness="20" class="border-opacity-0"></v-divider>
@@ -51,11 +51,11 @@
                 width: 58%;
                 border-radius: 10%;
                 background-color: rgb(252, 220, 240);
+                padding-bottom: 10px;
               ">
               <div>
-                <h1 style="color: black" class="main-text">Menu</h1>
+                <h1 style="color: black" class="main-text">Menu Adopcji</h1>
               </div>
-              <v-divider :thickness="20" class="border-opacity-0"></v-divider>
               <div style="padding: 10px">
                 <h3 style="color: black; font-size: medium" class="text">
                   <v-row style="width: 100%; margin: 0 auto">
@@ -70,9 +70,38 @@
                     <v-divider vertical :thickness="20" class="border-opacity-0"></v-divider>
                     <v-btn elevation="8" class="text"> <v-icon color="rgb(143, 83, 122)" icon="mdi-briefcase-variant-outline"></v-icon>Moje adopcje</v-btn>
                   </v-row>
+                  
                 </h3>
               </div>
             </v-sheet>
+
+            
+
+            <v-sheet style="
+                float: right;
+                width: 58%;
+                border-radius: 10%;
+                background-color: rgb(132, 171, 212);
+                padding-bottom: 10px;
+                position: relative;
+                top: 2vh;
+                height: 140vh;
+              ">
+              <div>
+                <h1 style="color: black" class="main-text"><v-icon color="rgb(143, 83, 122)" icon="mdi-filter-outline"></v-icon>Moje filtry</h1>
+              </div>
+              <div style="padding: 10px">
+                <h3 style="color: black; font-size: medium" class="text">
+                  TUTAJ DODAJ FILTRY
+                </h3>
+              </div>
+            </v-sheet>
+
+
+
+
+
+
           </div>
         </v-sheet>
       </v-sheet>

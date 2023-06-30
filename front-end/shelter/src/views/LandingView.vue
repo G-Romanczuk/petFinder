@@ -91,7 +91,7 @@
               </p>
             </div>
             <v-divider :thickness="20" class="border-opacity-0"></v-divider>
-            <v-btn elevation="8" class="d-flex align-center flex-column main-text main-text" @click="$router.push('/register')">Rejestracja</v-btn>
+            <RegisterPopup />
           </v-sheet>
         </v-sheet>
       </v-parallax>
@@ -199,7 +199,7 @@
               </h3>
               </p>
             </div>
-            <v-btn elevation="8" class="d-flex align-center flex-column main-text main-text" @click="$router.push('/register')">Rejestracja</v-btn>
+            <RegisterPopup />
           </v-sheet>
         </v-sheet>
       </v-parallax>
