@@ -12,10 +12,10 @@
         </v-app-bar-title>
        
   <template v-slot:append>
-    <h5>{{ store.loggedUser }}</h5>
+    <h5>{{ store.loggedUser + store.loggedShelter }}</h5>
         <v-divider vertical :thickness="20" class="border-opacity-0"></v-divider>
-    <LoginPopup v-if="loggedUser == ''" />
-    <v-btn target="_blank" elevation="8" class="d-flex align-center flex-column main-text main-text" v-else @click="loggedUser = '', $router.push('/'), logout()"> Wyloguj się</v-btn>
+    <LoginPopup v-if="loggedUser == '' && loggedShelter == ''" />
+    <v-btn target="_blank" elevation="8" class="d-flex align-center flex-column main-text main-text" v-else @click=" $router.push('/'), logout()"> Wyloguj się</v-btn>
   </template>
 </v-app-bar>
   </template>
@@ -29,6 +29,7 @@ import { storeToRefs } from 'pinia'
   const store = useUserStore();
 
 const {loggedUser} = storeToRefs(store)
+const {loggedShelter} = storeToRefs(store)
 
   function logout() {
     store.$reset()
@@ -42,7 +43,7 @@ const {loggedUser} = storeToRefs(store)
 .link{
     text-decoration: none;
     font-weight: bolder;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family:'Courier New', Courier, monospace;
 }
 
 

@@ -262,9 +262,7 @@
           </v-card-text>
           <v-card-actions class="d-flex align-center flex-column">
             <v-divider :thickness="20" class="border-opacity-0"></v-divider>
-            <v-btn color="outline" class="ml-4" >
-              Reset
-            </v-btn>
+           
             <div style="display: flex">
               <v-btn
                 color="rgb(175, 126, 158)"
@@ -399,7 +397,7 @@ function onInvalidSubmit({ values, errors, results }) {
 
 <style lang="css">
 .title {
-  font-family: cursive;
+  font-family: 'Courier New', Courier, monospace;
   font-size: xxx-large;
   font-weight: bolder;
   font-stretch: wider;
@@ -408,7 +406,7 @@ function onInvalidSubmit({ values, errors, results }) {
 }
 
 .p {
-  font-family: cursive;
+  font-family: 'Courier New', Courier, monospace;
   font-size: medium;
   color: rgb(175, 126, 158);
   text-align: center;

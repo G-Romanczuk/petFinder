@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "composite": true,
     "incremental": true,
     "target": "ESNext",
     "lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost"],
@@ -28,7 +27,7 @@
     "skipLibCheck": true,
    "isolatedModules": true
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/*.vue", "src/*.ts", "src/*.js", "src/**/*tsx", "src/**/*js"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/*.vue", "src/*.ts", "src/*.js", "src/**/*tsx", "src/**/*.js"],
   "references": [{ "path": "./tsconfig.node.json" }],
   "exclude": ["node_modules"]
 }

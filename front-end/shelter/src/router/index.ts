@@ -8,14 +8,24 @@ const routes = [
     component: () => import('@/views/LandingView.vue'),
   },
   {
-    path: '/userData',
-    name: 'userData',
-    component: () => import('@/components/UserForm.vue'),
-  },
-  {
     path: '/userMenu',
     name: 'userMenu',
     component: () => import('@/views/UserLandingView.vue'),
+  },
+  {
+    path: '/shelterMenu',
+    name: 'shelterMenu',
+    component: () => import('@/views/ShelterLandingView.vue'),
+  },
+  {
+    path: '/test',
+    name: 'test',
+    component: () => import('@/components/tes.vue'),
+  },
+  {
+    path: '/test1',
+    name: 'test1',
+    component: () => import('@/components/test.vue'),
   },
 ]
 

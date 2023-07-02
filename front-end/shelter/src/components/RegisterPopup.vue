@@ -137,7 +137,7 @@ function onInvalidSubmit({ values, errors, results }) {
 
 <style lang="css">
 .title {
-    font-family: cursive;
+    font-family: 'Courier New', Courier, monospace;
     font-size: xxx-large;
     font-weight: bolder;
     font-stretch: wider;
@@ -146,7 +146,7 @@ function onInvalidSubmit({ values, errors, results }) {
 }
 
 .little-title {
-    font-family: cursive;
+    font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     font-size: medium;
     color: rgb(175, 126, 158);

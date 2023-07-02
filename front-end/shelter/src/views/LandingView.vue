@@ -8,7 +8,7 @@
         <v-col cols="6">
           <v-divider :thickness="20" class="border-opacity-0"></v-divider>
           <v-divider :thickness="20" class="border-opacity-0"></v-divider>
-          <v-container style="background-color: rgb(35, 125, 100, 0.7); border-radius: 3%"
+          <v-container style="background-color: rgb(131, 84, 72); border-radius: 3%"
             class="d-flex align-center flex-column">
             <div>
               <h1 style="color: white; text-shadow: 5px 2px 4px #000000" class="main-text">
@@ -51,7 +51,7 @@
             <div class="hello-message" style="border-radius: 10%;">
               <v-sheet style="float: right; display: block; width: 33%; height: 180px; border-radius: 10%;"></v-sheet>
               <h2 class="main-text"
-                style="text-shadow: 2px 2px 2px; font-weight: bold; font-size: 22px; color: rgb(35, 125, 100);">
+                style="text-shadow: 1px 1px 1px; font-weight: bold; font-size: 22px; color:rgb(106, 68, 58);">
                 Nasza aplikacja jest tutaj, aby uczynić proces adopcji łatwiejszym i
                 bardziej emocjonującym niż kiedykolwiek wcześniej.
               </h2>
@@ -84,7 +84,7 @@
                 schronisk. Razem możemy tworzyć prawdziwie szczęśliwe zakończenia
                 dla tych wspaniałych istot. <br />
                 <br />
-              <h3 class="main-text" style="color: rgb(35, 125, 100);">
+              <h3 class="main-text" style="color:rgb(106, 68, 58);">
                 Nie czekaj dłużej - zarejestruj się już teraz i rozpocznij swoją
                 przygodę z adopcją zwierzaka!
               </h3>
@@ -119,7 +119,7 @@
         <v-col cols="6">
           <v-divider :thickness="20" class="border-opacity-0"></v-divider>
           <v-divider :thickness="20" class="border-opacity-0"></v-divider>
-          <v-container style="background-color: rgb(175, 126, 158, 0.7); border-radius: 3%"
+          <v-container style="background-color: rgb(175, 126, 158); border-radius: 3%"
             class="d-flex align-center flex-column">
             <v-divider :thickness="30" class="border-opacity-0"></v-divider>
             <div>
@@ -205,11 +205,9 @@
       </v-parallax>
     </v-sheet>
 
-    <div style="height: 30vh;"></div>
+    <div style="height: 10vh;"> IN PROGRESS</div>
 
   </div>
-  <v-parallax src="@/assets/landing-gradient-background.png"
-    style="position: absolute; height: 80vh; width: 100vw; bottom: 0; "></v-parallax>
 </template>
 
 <script lang="ts">

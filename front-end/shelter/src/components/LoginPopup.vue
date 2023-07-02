@@ -1,24 +1,29 @@
 <template>
-  <v-dialog v-model="dialog" max-width="30vw" max-height="48vh" >
+  <v-dialog v-model="dialog" max-width="60vw"  >
       <template v-slot:activator="{ props }">
           <v-btn elevation="8" class="d-flex align-center flex-column main-text main-text" v-bind="props">Zaloguj
               się</v-btn>
       </template>
-      <div class="d-flex align-center flex-column" style="width: 100%; height: 60vh; margin-left: auto; margin-right: auto;">
+      
+    
+      <div class="d-flex align-center flex-column" style="width: 100%; height: 64vh; margin-left: auto; margin-right: auto;">
 
           <div class="title" style="padding: 20px;">Logowanie</div>
 
-
-          <v-card class="scrollbar" width="100%" height="55vh" style="overflow-y: scroll; border-radius: 5%;">
+          
+          <v-card class="scrollbar" width="100%" height="58vh" style="overflow-y: scroll; border-radius: 5%;">
               <v-divider :thickness="20" class="border-opacity-0"></v-divider>
+              <v-row>
+             <v-col style="height: fit-content; margin: auto 0;">
+            
+              <v-card-text style="width: 70%; margin: auto; ">
 
-             
-              <v-card-text style="width: 70%; margin: 0 auto;">
+                <div class="little-title" style="padding-bottom: 20px; text-align: center; text-shadow: 0px 0px 0px #000000;">Schronisko</div>
                   <v-form v-model="isValid">
                       
-                      <v-text-field label="E-mail" v-model="email" :rules="emailRules" required></v-text-field>
+                      <v-text-field label="E-mail" v-model="emailShelter" :rules="emailRules" required></v-text-field>
                       <v-divider :thickness="20" class="border-opacity-0"></v-divider>
-                      <v-text-field label="Hasło" v-model="password1" type="password" :rules="passwordRules"
+                      <v-text-field label="Hasło" v-model="passwordShelter" type="password" :rules="passwordRules"
                           required></v-text-field>
                     
 
@@ -29,7 +34,35 @@
               
                       <v-btn color="rgb(175, 126, 158)" :disabled="!isValid" class="little-title"
                           @click="dialog = false, //@ts-ignore
-      store.loggedUser = email,
+      store.loggedShelter = emailShelter,
+      $router.push('/shelterMenu')">Zaloguj się</v-btn>
+                 <v-divider :thickness="10" class="border-opacity-0"></v-divider>
+               
+              </v-card-actions>
+         
+            </v-col>
+
+            <div style="width: 2px; height: 350px; background-color: rgb(175, 126, 158); opacity: 0.5; margin: auto 0"></div>
+
+            <v-col>
+              <v-card-text style="width: 70%; margin: 0 auto;">
+                <div class="little-title" style="padding-bottom: 20px; text-align: center; text-shadow: 0px 0px 0px #000000">Adoptujący</div>
+                  <v-form v-model="isValid">
+                      
+                      <v-text-field label="E-mail" v-model="emailUser" :rules="emailRules" required></v-text-field>
+                      <v-divider :thickness="20" class="border-opacity-0"></v-divider>
+                      <v-text-field label="Hasło" v-model="passwordUser" type="password" :rules="passwordRules"
+                          required></v-text-field>
+                    
+
+                  </v-form>
+              </v-card-text>
+              <v-card-actions class="d-flex align-center flex-column">
+                  <v-divider :thickness="20" class="border-opacity-0"></v-divider>
+              
+                      <v-btn color="rgb(175, 126, 158)" :disabled="!isValid" class="little-title"
+                          @click="dialog = false, //@ts-ignore
+      store.loggedUser = emailUser,
       $router.push('/userMenu')">Zaloguj się</v-btn>
                  <v-divider :thickness="10" class="border-opacity-0"></v-divider>
                  <div style="width: 80%; height: 2px; background-color: rgb(175, 126, 158); opacity: 0.5;"></div>
@@ -39,8 +72,9 @@
                <RegisterPopup />
                   <v-divider color="rgb(175, 126, 158)" :thickness="20" class="border-opacity-0"></v-divider>
               </v-card-actions>
+            </v-col>
 
-             
+            </v-row>
           </v-card>
 
 
@@ -56,9 +90,12 @@ import RegisterPopup from './RegisterPopup.vue';
 const store = useUserStore();
 
 
-      const email = ref(null)
-      
-      const password1 = ref(null)
+      const emailUser = ref(null)
+      const passwordUser = ref(null)
+
+      const emailShelter = ref(null)
+      const passwordShelter = ref(null)
+
       const isValid = ref(true)
       
 
@@ -89,7 +126,7 @@ const store = useUserStore();
 
 <style lang="css">
 .title {
-  font-family: cursive;
+  font-family:'Courier New', Courier, monospace;
   font-size: xxx-large;
   font-weight: bolder;
   font-stretch: wider;
@@ -98,7 +135,7 @@ const store = useUserStore();
 }
 
 .little-title {
-  font-family: cursive;
+  font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
   font-size: medium;
   color: rgb(175, 126, 158);

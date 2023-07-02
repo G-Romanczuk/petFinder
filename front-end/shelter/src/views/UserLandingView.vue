@@ -1,5 +1,5 @@
 <template>
-  <v-parallax src="@/assets/mainBackground.png" style="height: 180vh; width: 150vw;">
+  <v-parallax src="@/assets/landing-gradient-background.png" style="height: 180vh; width: 150vw;">
     <div class="d-flex align-center flex-column" style="width: 95vw; margin-left: auto; margin-right: auto">
       <div class="title" style="padding: 10px; margin: 0 auto">Adoptujący</div>
 
@@ -14,11 +14,11 @@
             border-radius: 5%;
           ">
           <div class="hello-message" style="border-radius: 10%; height: 100%; width: 100%">
-            <v-sheet style="
+            <v-sheet  style="
                 float: left;
                 width: 40%;
                 border-radius: 60px;
-                background-color: rgb(143, 83, 122);
+                background-color: rgb(149, 108, 98);
               ">
               <div>
                 <h1 style="color: white; text-shadow: 5px 2px 4px #000000" class="main-text">
@@ -58,9 +58,9 @@
               </div>
               <div style="padding: 10px">
                 <h3 style="color: black; font-size: medium" class="text">
-                  <v-row style="width: 100%; margin: 0 auto">
-                    <v-btn elevation="8" class="text">
-                      <v-icon color="rgb(143, 83, 122)" icon="mdi-paw"> </v-icon> Znajdź przyjaciela</v-btn>
+                  <v-row style="width: fit-content; margin: 0 auto; ">
+                   
+                      <FindPopup />
                     <v-divider vertical :thickness="20" class="border-opacity-0"></v-divider>
                     <v-btn elevation="8" class="text">
                       <v-icon color="rgb(143, 83, 122)" icon="mdi-heart"> </v-icon>
@@ -86,7 +86,7 @@
                 position: relative;
                 top: 4vh;
                 height: 140vh;
-                border-color:  rgb(143, 83, 122) ;
+                border-color:  rgb(149, 108, 98) ;
                 border-style: solid;
                 border-width: 2px;
               ">
@@ -134,7 +134,7 @@
             <v-sheet style="
                 float: left;
                 width: 40%;
-                background-color: rgba(233, 176, 224, 0.2);
+                background-color:rgb(149, 108, 98, 0.2);
                 padding-bottom: 10px;
                 position: relative;
                 top: 4vh;
@@ -155,6 +155,9 @@
 
           </div>
         </v-sheet>
+
+
+
       </v-sheet>
     </div>
   </v-parallax>
@@ -162,8 +165,15 @@
 
 <script setup lang="ts">
 import UserForm from "@/components/UserForm.vue";
+import FindPopup from "@/components/FindPopup.vue";
 import { useUserStore } from "@/store/user";
+import getPosts from '@/mocks/get-posts'
 const store = useUserStore();
+
+const props = defineProps({
+  post: Object,
+})
+
 
 function reveal() {
   var reveals = document.querySelectorAll(".reveal");
@@ -182,13 +192,15 @@ function reveal() {
 }
 
 window.addEventListener("scroll", reveal);
+
+
 </script>
 
 <script lang="js"></script>
 
 <style>
 .title {
-  font-family: cursive;
+  font-family: 'Courier New', Courier, monospace;
   font-size: xxx-large;
   font-weight: bolder;
   font-stretch: wider;
@@ -197,7 +209,7 @@ window.addEventListener("scroll", reveal);
 }
 
 .little-title {
-  font-family: cursive;
+  font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
   font-size: medium;
   color: rgb(175, 126, 158);

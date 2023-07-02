@@ -32,7 +32,40 @@ export const useUserStore = defineStore("user", {
       animalsBefore: "",
       animalsBeforeText: "",
       text: "",
+      },
+      loggedShelter: '',
+      shelterData : {
+      name: '',
+      email: "",
+      phone: "",
+      postCode: "",
+      town: "",
+      adress: "",
+      url: "",
+      questions: {
+        incomeSource: "",
+        lifestyle: "",
+        housingType: "",
+        houseOwner: "",
+        hoursAlone: "",
+        floor: "",
+        elevator: "",
+        walksNumber: "",
+        walksTime: "",
+        fence: "",
+        fenceHeight: "",
+        propertySize: "",
+        petPlace: "",
+        petPlaceAlone: "",
+        careAlone: "",
+        houseMates: "",
+        animals: "",
+        animalsBefore: "",
+        animalsBeforeText: "",
+        text: "",
       }
+      }
+
       
     };
   },
