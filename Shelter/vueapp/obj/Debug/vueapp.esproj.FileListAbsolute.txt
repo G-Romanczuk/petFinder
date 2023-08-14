@@ -1,2 +1,4 @@
 C:\repos\Shelter repo\Shelter\Shelter\vueapp\obj\Debug\vueapp.esproj.SuggestedBindingRedirects.cache
 C:\repos\Shelter repo\Shelter\Shelter\vueapp\obj\Debug\vueapp.esproj.CoreCompileInputs.cache
+C:\Users\mateusz.nosel\Source\Repos\Shelter\Shelter\vueapp\obj\Debug\vueapp.esproj.SuggestedBindingRedirects.cache
+C:\Users\mateusz.nosel\Source\Repos\Shelter\Shelter\vueapp\obj\Debug\vueapp.esproj.CoreCompileInputs.cache
