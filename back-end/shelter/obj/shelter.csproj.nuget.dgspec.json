@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mateusz.nosel\\source\\repos\\Shelter\\back-end\\shelter\\shelter.csproj": {}
+    "C:\\Users\\mateusz.nosel\\Source\\Repos\\Shelter\\back-end\\shelter\\shelter.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mateusz.nosel\\source\\repos\\Shelter\\back-end\\shelter\\shelter.csproj": {
+    "C:\\Users\\mateusz.nosel\\Source\\Repos\\Shelter\\back-end\\shelter\\shelter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mateusz.nosel\\source\\repos\\Shelter\\back-end\\shelter\\shelter.csproj",
+        "projectUniqueName": "C:\\Users\\mateusz.nosel\\Source\\Repos\\Shelter\\back-end\\shelter\\shelter.csproj",
         "projectName": "shelter",
-        "projectPath": "C:\\Users\\mateusz.nosel\\source\\repos\\Shelter\\back-end\\shelter\\shelter.csproj",
+        "projectPath": "C:\\Users\\mateusz.nosel\\Source\\Repos\\Shelter\\back-end\\shelter\\shelter.csproj",
         "packagesPath": "C:\\Users\\mateusz.nosel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mateusz.nosel\\source\\repos\\Shelter\\back-end\\shelter\\obj\\",
+        "outputPath": "C:\\Users\\mateusz.nosel\\Source\\Repos\\Shelter\\back-end\\shelter\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -45,6 +45,10 @@
           "targetAlias": "net7.0",
           "dependencies": {
             "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.10, )"
             },
