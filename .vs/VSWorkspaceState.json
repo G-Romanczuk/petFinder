@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\back-end",
-    "\\front-end",
-    "\\front-end\\shelter"
+    "\\back-end\\shelter",
+    "\\back-end\\shelter\\Controllers"
   ],
+  "SelectedNode": "\\back-end\\.gitignore",
   "PreviewInSolutionExplorer": false
 }
