@@ -725,3 +725,4 @@ obj/
 /.vs/Shelter/FileContentIndex/b82f844a-77db-4c24-a213-260c3392a41f.vsidx
 /.vs/slnx.sqlite
 /.vs/VSWorkspaceState.json
+/back-end/shelter/shelter.csproj
