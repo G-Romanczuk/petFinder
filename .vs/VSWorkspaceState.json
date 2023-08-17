@@ -3,8 +3,11 @@
     "",
     "\\back-end",
     "\\back-end\\shelter",
-    "\\back-end\\shelter\\Controllers"
+    "\\back-end\\shelter\\DataBaseContext",
+    "\\back-end\\shelter\\Models",
+    "\\back-end\\shelter\\Models\\PetModels",
+    "\\back-end\\shelter\\Models\\ShelterModels"
   ],
-  "SelectedNode": "\\back-end\\.gitignore",
+  "SelectedNode": "\\back-end\\shelter\\Models\\ShelterModels\\ShelterModel.cs",
   "PreviewInSolutionExplorer": false
 }
