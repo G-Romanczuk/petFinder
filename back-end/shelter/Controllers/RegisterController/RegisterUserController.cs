@@ -10,7 +10,7 @@ namespace shelter.Controllers.RegisterController
     public class RegisterUserController : ControllerBase
     {
         [HttpPost(Name ="CreateUser")]
-        public IActionResult RegisterUsers([FromBody] UserRegisterDto userRegisterDto)
+        public IActionResult RegisterUser([FromBody] UserRegisterDto userRegisterDto)
         {
             return Ok(userRegisterDto);
         }

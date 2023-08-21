@@ -2,7 +2,7 @@
 
 namespace shelter.UserDtos
 {
-    public class UserRegisterDto : UserModel
+    public class UserRegisterDto
     {
         public string Name { get; set; }
         public string LastName { get; set; }
