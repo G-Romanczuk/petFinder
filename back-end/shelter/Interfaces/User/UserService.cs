@@ -26,6 +26,20 @@ namespace shelter.Interfaces.User
                 passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
             }
         }
+        private bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)
+        {
+            using (var hmac = new HMACSHA512(storedSalt))
+            {
+                var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+                for (int i = 0; i < computedHash.Length; i++)
+                {
+                    if (computedHash[i] != storedHash[i])
+                        return false;
+                }
+            }
+            return true;
+        }
+
 
         public UserService
         (
@@ -51,7 +65,6 @@ namespace shelter.Interfaces.User
             newUser.PasswordHash = passwordHash;
             newUser.PasswordSalt = passwordSalt;
 
-
             try
             {
                 _userDbContext.Users.Add(newUser);
@@ -64,6 +77,18 @@ namespace shelter.Interfaces.User
             }
         }
 
-        
+        public async Task<UserModel> LoginUser(string email, string password)
+        {
+            var user = await _userDbContext.Users.FirstOrDefaultAsync(u => u.Email == email);
+
+            if (user == null)
+                return null;
+
+            if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+                return null;
+
+            return user;
+
+        }
     }
 }

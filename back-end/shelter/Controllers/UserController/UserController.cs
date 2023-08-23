@@ -8,7 +8,7 @@ using System.Text.Json;
 
 namespace shelter.Controllers.UserController
 {
-    [Route("/user/register")]
+    [Route("/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -25,7 +25,7 @@ namespace shelter.Controllers.UserController
             _userService = userService;
         }
 
-        [HttpPost(Name ="CreateUser")]
+        [HttpPost("register" , Name ="RegisterUser")]
         public async Task<IActionResult> RegisterUser([FromBody] UserRegisterDto userRegisterDto)
         {
             try
@@ -35,6 +35,31 @@ namespace shelter.Controllers.UserController
             }
             catch (Exception ex)
             {
+                return BadRequest($"Błąd: {ex.Message}");
+            }
+        }
+
+        [HttpPost("login", Name = "LoginUser")]
+        public async Task <IActionResult> LoginUser([FromBody] UserLoginDto userLoginDto)
+        {
+            try
+            {
+                var user = await _userService.LoginUser(userLoginDto.Email, userLoginDto.Password);
+                if (user != null)
+                {
+                    //Return JWT
+
+                    return Ok("Użytkownik zalogowany pomyślnie.");
+                }
+                else
+                {
+                    return Unauthorized("Nieprawidłowe dane logowania.");
+                }
+
+            }
+            catch (Exception ex)
+            {
+
                 return BadRequest($"Błąd: {ex.Message}");
             }
         }
