@@ -1,10 +1,10 @@
-﻿using shelter.UserDtos;
+﻿using shelter.Models.UserModels;
+using shelter.UserDtos;
 
 namespace shelter.Interfaces.User
 {
     public interface IUserService
     {
-        UserRegisterDto CreateUSer(UserRegisterDto userRegister);
-        UserDto GetUserById(int userId);
+        Task<bool> CreateUser(UserRegisterDto user);
     }
 }

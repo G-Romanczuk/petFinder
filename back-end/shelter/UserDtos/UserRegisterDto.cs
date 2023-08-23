@@ -10,5 +10,6 @@ namespace shelter.UserDtos
         public string Password { get; set; }
         public string PasswordConfirmation { get; set; }
         public string PhoneNumber { get; set; }
+        public bool terms { get; set; }
     }
 }

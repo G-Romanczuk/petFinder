@@ -10,6 +10,7 @@ namespace shelter.MapperProfile
         public AutoMapperProfile()
         {
             CreateMap<UserModel, UserRegisterDto>();
+            CreateMap<UserRegisterDto, UserModel>();
             CreateMap<JsonElement, UserModel>();
         }
     }

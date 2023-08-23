@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using shelter.DataBaseContext.PetDbContext;
 using shelter.DataBaseContext.ShelterDbContext;
 using shelter.DataBaseContext.UserDbContext;
+using shelter.Interfaces.User;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,6 +48,8 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod();
     });
 });
+
+builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 
