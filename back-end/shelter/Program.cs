@@ -14,6 +14,7 @@ var configuration = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json")
     .Build();
 
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddDbContext<UserDbContext>(options =>
 {
     var connectionString = configuration.GetConnectionString("UserDataConnection");
