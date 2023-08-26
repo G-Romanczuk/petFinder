@@ -5,7 +5,8 @@ namespace shelter.Interfaces.User
 {
     public interface IUserService
     {
+        Task<bool> RegisterUser(UserRegisterDto user);
         Task<bool> CreateUser(UserRegisterDto user);
-        Task<UserModel> LoginUser(string email, string password);
+        Task<bool> LoginUser(UserLoginDto user);
     }
 }

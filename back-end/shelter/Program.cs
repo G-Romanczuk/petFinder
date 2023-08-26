@@ -1,4 +1,5 @@
 
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using shelter.DataBaseContext.PetDbContext;
 using shelter.DataBaseContext.ShelterDbContext;
@@ -33,6 +34,11 @@ builder.Services.AddDbContext<ShelterDbContext>(options =>
     var connectionString = configuration.GetConnectionString("ShelterDataConnection");
     options.UseSqlServer(connectionString);
 });
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+{
+    options.Password.RequiredLength = 8;
+}).AddEntityFrameworkStores<UserDbContext>().AddDefaultTokenProviders();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

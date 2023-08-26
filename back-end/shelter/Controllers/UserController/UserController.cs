@@ -25,43 +25,30 @@ namespace shelter.Controllers.UserController
             _userService = userService;
         }
 
-        [HttpPost("register" , Name ="RegisterUser")]
-        public async Task<IActionResult> RegisterUser([FromBody] UserRegisterDto userRegisterDto)
+        [HttpPost("Register",Name ="RegisterUser")]
+        public async Task<IActionResult> RegisterUser ([FromBody]UserRegisterDto user)
         {
-            try
+            if (await _userService.RegisterUser(user))
             {
-                bool created = await _userService.CreateUser(userRegisterDto);
-                return Ok($"{created}");
+                await _userService.CreateUser(user);
+                return Ok("Your account has been created succesfully");
             }
-            catch (Exception ex)
-            {
-                return BadRequest($"Błąd: {ex.Message}");
-            }
+
+            return BadRequest();
+            
+            
         }
 
-        [HttpPost("login", Name = "LoginUser")]
-        public async Task <IActionResult> LoginUser([FromBody] UserLoginDto userLoginDto)
+        [HttpPost("Login", Name ="LoginUser")]
+        public async Task<IActionResult> Login(UserLoginDto user)
         {
-            try
-            {
-                var user = await _userService.LoginUser(userLoginDto.Email, userLoginDto.Password);
-                if (user != null)
-                {
-                    //Return JWT
+            if (!ModelState.IsValid) return BadRequest();
 
-                    return Ok("Użytkownik zalogowany pomyślnie.");
-                }
-                else
-                {
-                    return Unauthorized("Nieprawidłowe dane logowania.");
-                }
+            if (await _userService.LoginUser(user)) return Ok("You are logged in");
 
-            }
-            catch (Exception ex)
-            {
-
-                return BadRequest($"Błąd: {ex.Message}");
-            }
+            return BadRequest();
+            
         }
+
     }
 }
