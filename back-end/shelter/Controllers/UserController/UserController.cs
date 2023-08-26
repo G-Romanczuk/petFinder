@@ -44,8 +44,11 @@ namespace shelter.Controllers.UserController
         {
             if (!ModelState.IsValid) return BadRequest();
 
-            if (await _userService.LoginUser(user)) return Ok("You are logged in");
-
+            if (await _userService.LoginUser(user))
+            {
+                var JwtToken = _userService.GenerateTokenString(user);
+                return Ok(JwtToken);
+            }
             return BadRequest();
             
         }

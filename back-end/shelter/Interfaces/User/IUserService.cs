@@ -8,5 +8,6 @@ namespace shelter.Interfaces.User
         Task<bool> RegisterUser(UserRegisterDto user);
         Task<bool> CreateUser(UserRegisterDto user);
         Task<bool> LoginUser(UserLoginDto user);
+        string GenerateTokenString(UserLoginDto user);
     }
 }
