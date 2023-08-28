@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using shelter.Dtos.UserDtos;
 using shelter.Interfaces.User;
 using shelter.Models.UserModels;
-using shelter.UserDtos;
 using System.Text.Json;
 
 namespace shelter.Controllers.UserController

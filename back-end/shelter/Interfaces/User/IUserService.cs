@@ -1,5 +1,5 @@
-﻿using shelter.Models.UserModels;
-using shelter.UserDtos;
+﻿using shelter.Dtos.UserDtos;
+using shelter.Models.UserModels;
 
 namespace shelter.Interfaces.User
 {

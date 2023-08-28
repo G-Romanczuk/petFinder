@@ -1,4 +1,4 @@
-﻿namespace shelter.UserDtos
+﻿namespace shelter.Dtos.UserDtos
 {
     public class UserDto
     {

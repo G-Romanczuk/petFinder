@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using shelter.Dtos.UserDtos;
 using shelter.Models.UserModels;
-using shelter.UserDtos;
 using System.Text.Json;
 
 namespace shelter.MapperProfile

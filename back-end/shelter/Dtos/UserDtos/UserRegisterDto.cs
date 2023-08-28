@@ -1,6 +1,6 @@
 ﻿using shelter.Models.UserModels;
 
-namespace shelter.UserDtos
+namespace shelter.Dtos.UserDtos
 {
     public class UserRegisterDto
     {
