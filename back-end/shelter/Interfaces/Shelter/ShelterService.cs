@@ -1,9 +1,15 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using shelter.DataBaseContext.ShelterDbContext;
 using shelter.Dtos.ShelterDtos;
+using shelter.Dtos.UserDtos;
 using shelter.Models.ShelterModels;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace shelter.Interfaces.Shelter
 { 
@@ -12,37 +18,56 @@ namespace shelter.Interfaces.Shelter
         private readonly ShelterDbContext _shelterDbContext;
         private readonly UserManager<IdentityUser> _userManagerShelter;
         private readonly IMapper _mapper;
+        private readonly IConfiguration _configuration;
 
         public ShelterService
         (
             ShelterDbContext shelterDbContext,
             UserManager<IdentityUser> userManagerShelter,
-            IMapper mapper
+            IMapper mapper,
+            IConfiguration configuration
 
         )
         {
             _shelterDbContext = shelterDbContext;
             _userManagerShelter = userManagerShelter;
             _mapper = mapper;
+            _configuration = configuration;
+        }
+
+        public async Task<bool> LoginUser(ShelterLoginDto shelter)
+        {
+            var identityShelterUser = await _userManagerShelter.FindByEmailAsync( shelter.email );
+            if ( identityShelterUser == null )
+            {
+                return false;
+            }
+
+            return await _userManagerShelter.CheckPasswordAsync(identityShelterUser, shelter.password);
         }
 
         public async Task<bool> CreateUserShelter(string email)
         {
-            var ShelterUserToCreate = new ShelterModel
-            {
-                Email = email,
-            };
+            var emailAlreadyExist = _shelterDbContext.Shelters.Any(shelter => shelter.Email == email );
 
-            try
-            {
-                _shelterDbContext.Shelters.Add( ShelterUserToCreate );
-                await _shelterDbContext.SaveChangesAsync();
-                return true;
-            }
-            catch (Exception)
+            if ( emailAlreadyExist )
             {
                 return false;
             }
+            else
+            {
+                var ShelterUserToCreate = new ShelterModel
+                {
+                    Email = email,
+                };
+
+
+                _shelterDbContext.Shelters.Add(ShelterUserToCreate);
+                await _shelterDbContext.SaveChangesAsync();
+                return true;
+            }
+            
+           
         }
 
         public async Task<ShelterLoginDto> CreateAccount(string email)
@@ -99,6 +124,32 @@ namespace shelter.Interfaces.Shelter
 
                 return new string(chars);
             }
+        }
+
+        public string GenerateTokenString(ShelterLoginDto shelter)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Email , shelter.email),
+                new Claim(ClaimTypes.Role, "Admin"),
+            };
+
+
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("Jwt:Key").Value));
+
+            SigningCredentials signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha512Signature);
+
+            JwtSecurityToken securityToken = new JwtSecurityToken(
+            claims: claims,
+                expires: DateTime.Now.AddMinutes(60),
+                issuer: _configuration.GetSection("Jwt:Issuer").Value,
+                audience: _configuration.GetSection("Jwt:Audience").Value,
+                signingCredentials: signingCredentials
+                );
+
+            string token = new JwtSecurityTokenHandler().WriteToken(securityToken);
+
+            return token;
         }
     }
 }

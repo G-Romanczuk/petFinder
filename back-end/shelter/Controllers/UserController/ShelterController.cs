@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using shelter.DataBaseContext.ShelterDbContext;
 using shelter.Dtos.ShelterDtos;
 using shelter.Interfaces.Shelter;
 
@@ -32,6 +33,19 @@ namespace shelter.Controllers.UserController
             {
                 return StatusCode(500, ex.Message);
             }
+        }
+
+        [HttpPost("Login", Name = "LoginShelterUser")]
+        public async Task<IActionResult> Login(ShelterLoginDto shelter)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+
+            if(await _shelterService.LoginUser(shelter)) 
+            {
+                var jwtToken = _shelterService.GenerateTokenString(shelter);
+                return Ok(jwtToken);
+            }
+            return BadRequest();
         }
 
     }
