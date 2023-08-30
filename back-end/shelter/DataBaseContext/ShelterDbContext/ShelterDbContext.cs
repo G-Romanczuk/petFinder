@@ -5,7 +5,7 @@ using shelter.Models.UserModels;
 
 namespace shelter.DataBaseContext.ShelterDbContext
 {
-    public class ShelterDbContext : IdentityDbContext
+    public class ShelterDbContext : DbContext
     {
         public ShelterDbContext(DbContextOptions<ShelterDbContext> options) : base (options)
         {

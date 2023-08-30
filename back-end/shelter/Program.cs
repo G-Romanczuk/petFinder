@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using shelter.DataBaseContext.PetDbContext;
 using shelter.DataBaseContext.ShelterDbContext;
@@ -43,7 +44,12 @@ builder.Services.AddDbContext<ShelterDbContext>(options =>
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 {
     options.Password.RequiredLength = 8;
-}).AddEntityFrameworkStores<UserDbContext>().AddDefaultTokenProviders();
+})
+.AddEntityFrameworkStores<UserDbContext>()
+.AddDefaultTokenProviders();
+
+
+
 
 builder.Services.AddAuthentication(options =>
 {

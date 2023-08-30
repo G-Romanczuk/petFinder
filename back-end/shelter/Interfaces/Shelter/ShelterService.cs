@@ -1,27 +1,52 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using shelter.DataBaseContext.ShelterDbContext;
 using shelter.Dtos.ShelterDtos;
+using shelter.Models.ShelterModels;
 using System.Security.Cryptography;
 
 namespace shelter.Interfaces.Shelter
-{
+{ 
     public class ShelterService : IShelterService
     {
         private readonly ShelterDbContext _shelterDbContext;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<IdentityUser> _userManagerShelter;
+        private readonly IMapper _mapper;
+
         public ShelterService
         (
             ShelterDbContext shelterDbContext,
-            UserManager<IdentityUser> userManager
+            UserManager<IdentityUser> userManagerShelter,
+            IMapper mapper
+
         )
         {
             _shelterDbContext = shelterDbContext;
-            _userManager = userManager;
+            _userManagerShelter = userManagerShelter;
+            _mapper = mapper;
         }
+
+        public async Task<bool> CreateUserShelter(string email)
+        {
+            var ShelterUserToCreate = new ShelterModel
+            {
+                Email = email,
+            };
+
+            try
+            {
+                _shelterDbContext.Shelters.Add( ShelterUserToCreate );
+                await _shelterDbContext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public async Task<ShelterLoginDto> CreateAccount(string email)
         {
-            
-
             try
             {
                 string generatedPassword = GenerateRandomPassword(9);
@@ -31,7 +56,8 @@ namespace shelter.Interfaces.Shelter
                     Email = email,
                 };
 
-                var res = await _userManager.CreateAsync(identityShelter, "zaq1@WSX");
+                var res = await _userManagerShelter.CreateAsync(identityShelter, generatedPassword);
+
                 if (res.Succeeded)
                 {
                     var shelterCredentials = new ShelterLoginDto
@@ -41,13 +67,11 @@ namespace shelter.Interfaces.Shelter
                     };
 
                     return shelterCredentials;
-                }else
+                }
+                else
                 {
                     return null;
                 }
-                
-
-               
             }
             catch (Exception)
             {

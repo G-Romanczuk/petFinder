@@ -25,6 +25,7 @@ namespace shelter.Controllers.UserController
             try
             {
                 var shelterCredentials = await _shelterService.CreateAccount(email);
+                await _shelterService.CreateUserShelter(email);
                 return Ok(shelterCredentials);
             }
             catch (Exception ex)
