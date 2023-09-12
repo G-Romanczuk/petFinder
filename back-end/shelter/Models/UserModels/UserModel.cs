@@ -23,11 +23,11 @@
         public int IsResidenceFenced { get; set; }
         public int FenceHeightInCentimeters { get; set; }
         public int YardOrGardenAreaInSquareMeters { get; set; }
-        public List<string> DogWhereaboutsThroughoutDay { get; set; }
+        public string DogWhereaboutsThroughoutDay { get; set; }
         public string DogLocationDuringOwnerAndOthersAbsence { get; set; }
         public bool CanProvideSubstituteCareDuringExtendedAbsence { get; set; }
         public string HouseholdResidents { get; set; }
-        public List<string> OtherAnimalsInResidence { get; set; }
+        public string OtherAnimalsInResidence { get; set; }
         public string TimeWhenOwnedDog { get; set; }
         public string PastDogsHistory { get; set; }
         public string UserStoryLine { get; set; }
