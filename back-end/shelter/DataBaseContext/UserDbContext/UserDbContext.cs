@@ -12,7 +12,9 @@ namespace shelter.DataBaseContext.UserDbContext
                 
         }
         public DbSet<UserModel> Users { get; set; }
-        public DbSet<UserResidence> Residences { get; set; }
+        public DbSet<UserResidenceModel> Residences { get; set; }
+        public DbSet<UserHabbitsModel> Habbits { get; set; }
+        public DbSet<UsersDogDetailsModel> usersDogDetails { get; set; }
 
        /* protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

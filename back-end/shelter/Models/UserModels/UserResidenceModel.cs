@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace shelter.Models.UserModels
 {
-    public class UserResidence
+    public class UserResidenceModel
     {
         [Key]
         public int Id { get; set; }

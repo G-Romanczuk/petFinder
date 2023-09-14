@@ -15,18 +15,10 @@ namespace shelter.Models.UserModels
         public string City { get; set; }
         public string Address { get; set; }
         public string IncomeSource { get; set; }
-        public string Lifestyle { get; set; }
-        public int MaxHoursAway { get; set; }
-        public int  WalksPerDay { get; set; }
-        public int LongestWalkDurationMinutes { get; set; }
-        public string DogWhereaboutsThroughoutDay { get; set; }
-        public string DogLocationDuringOwnerAndOthersAbsence { get; set; }
-        public bool CanProvideSubstituteCareDuringExtendedAbsence { get; set; }
-        public string TimeWhenOwnedDog { get; set; }
-        public string PastDogsHistory { get; set; }
-        public string UserStoryLine { get; set; }
 
-        public List<UserResidence> UserResidence { get; set; }
+        public List<UserResidenceModel> UserResidence { get; set; }
+        public List<UsersDogDetailsModel> usersDogDetails { get; set; }
+        public List<UserHabbitsModel> UserHabbits { get; set;}
 
 
 
