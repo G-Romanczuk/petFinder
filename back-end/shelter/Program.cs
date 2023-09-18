@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using shelter.DataBaseContext.PetDbContext;
 using shelter.DataBaseContext.ShelterDbContext;
 using shelter.DataBaseContext.UserDbContext;
+using shelter.Interfaces.Pet;
 using shelter.Interfaces.Shelter;
 using shelter.Interfaces.User;
 using System.Text;
@@ -87,6 +88,7 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IShelterService, ShelterService>();
+builder.Services.AddScoped<IPetService, PetService>();
 
 var app = builder.Build();
 
