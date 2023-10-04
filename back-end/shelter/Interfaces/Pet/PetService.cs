@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using shelter.DataBaseContext.PetDbContext;
+using shelter.Dtos.PetsDtos;
 using shelter.Models.PetModels;
 
 namespace shelter.Interfaces.Pet
@@ -8,13 +9,18 @@ namespace shelter.Interfaces.Pet
     {
         private readonly PetDbContext _petDbContext;
         private readonly IMapper _mapper;
-        public PetService()
+        public PetService
+        (
+            PetDbContext petDbContext,
+            IMapper mapper
+        )
         {
-                
+            _petDbContext = petDbContext;
+            _mapper = mapper;
         }
-        public async Task<bool> AddPet(PetModel pet)
+        public async Task<bool> AddPet(PetDto pet)
         {
-            var petToAdd = _mapper.Map<PetModel>(pet);
+             var petToAdd = _mapper.Map<PetModel>(pet);
 
             try
             {

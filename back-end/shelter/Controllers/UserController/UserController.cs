@@ -13,7 +13,6 @@ namespace shelter.Controllers.UserController
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
-        private readonly IMapper _mapper;
 
         public UserController
         (
@@ -21,7 +20,6 @@ namespace shelter.Controllers.UserController
             IUserService userService
         )
         {
-            _mapper = mapper;
             _userService = userService;
         }
 

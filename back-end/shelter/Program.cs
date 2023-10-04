@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using shelter.DataBaseContext.PetDbContext;
 using shelter.DataBaseContext.ShelterDbContext;
@@ -48,9 +49,6 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 })
 .AddEntityFrameworkStores<UserDbContext>()
 .AddDefaultTokenProviders();
-
-
-
 
 builder.Services.AddAuthentication(options =>
 {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using shelter.Dtos.PetsDtos;
 using shelter.Interfaces.Pet;
 using shelter.Interfaces.User;
 using shelter.Models.PetModels;
@@ -18,7 +19,7 @@ namespace shelter.Controllers.PetController
         }
 
         [HttpPost("Add", Name ="AddPet")]
-        public async Task<IActionResult> AddPet([FromBody] PetModel pet)
+        public async Task<IActionResult> AddPet([FromBody] PetDto pet)
         {
             if(await _petService.AddPet(pet))
             {
