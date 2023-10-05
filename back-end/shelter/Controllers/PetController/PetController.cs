@@ -21,7 +21,7 @@ namespace shelter.Controllers.PetController
         [HttpPost("Add", Name ="AddPet")]
         public async Task<IActionResult> AddPet([FromBody] PetDto pet)
         {
-            if(await _petService.AddPet(pet))
+            if(true)
             {
                 await _petService.AddPet(pet);
                 return Ok("Pet was added to the database");
