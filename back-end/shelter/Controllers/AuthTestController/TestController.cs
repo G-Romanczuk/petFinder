@@ -6,13 +6,21 @@ namespace shelter.Controllers.AuthTestController
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    
     public class TestController : ControllerBase
     {
+        [Authorize]
         [HttpGet]
         public string Get()
         {
             return "U reached me";
         }
+        [HttpGet]
+        public string Pass(string test) 
+        {
+            return test;
+        }
     }
+
+    
 }
