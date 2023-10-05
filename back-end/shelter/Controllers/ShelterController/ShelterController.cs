@@ -4,7 +4,7 @@ using shelter.DataBaseContext.ShelterDbContext;
 using shelter.Dtos.ShelterDtos;
 using shelter.Interfaces.Shelter;
 
-namespace shelter.Controllers.UserController
+namespace shelter.Controllers.ShelterController
 {
     [Route("/[controller]")]
     [ApiController]
@@ -17,7 +17,7 @@ namespace shelter.Controllers.UserController
             IShelterService shelterService
         )
         {
-               _shelterService = shelterService;
+            _shelterService = shelterService;
         }
 
         [HttpPost("Create", Name = "CreateShelterCredentials")]
@@ -26,7 +26,7 @@ namespace shelter.Controllers.UserController
             try
             {
                 var shelterCredentials = await _shelterService.CreateAccount(email);
-                 await _shelterService.CreateUserShelter(email);
+                await _shelterService.CreateUserShelter(email);
                 return Ok(shelterCredentials);
             }
             catch (Exception ex)
@@ -40,7 +40,7 @@ namespace shelter.Controllers.UserController
         {
             if (!ModelState.IsValid) return BadRequest();
 
-            if(await _shelterService.LoginUser(shelter)) 
+            if (await _shelterService.LoginUser(shelter))
             {
                 var jwtToken = _shelterService.GenerateTokenString(shelter);
                 return Ok(jwtToken);

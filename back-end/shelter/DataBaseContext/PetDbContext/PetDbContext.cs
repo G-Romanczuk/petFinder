@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using shelter.Dtos.PetsDtos;
 using shelter.Models.PetModels;
 using shelter.Models.ShelterModels;
 

@@ -1,8 +1,8 @@
-﻿namespace shelter.Models.PetModels
+﻿namespace shelter.Dtos.PetsDtos
 {
-    public class PetModel
+    public class PetDto
     {
-        public int Id { get; set; }
+
         public string Name { get; set; }
         public string Type { get; set; }
         public string sex { get; set; }
@@ -19,6 +19,5 @@
         public bool IsItLikeAttention { get; set; }
         public string Temperament { get; set; }
         public string ShortDescription { get; set; }
-
     }
 }
