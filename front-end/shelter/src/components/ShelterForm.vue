@@ -270,7 +270,7 @@
                 >Zapisz</v-btn
               >
             </div>
-
+            <v-btn @click="shelterFormTest() "> TEST shelterform</v-btn>
             <v-divider :thickness="20" class="border-opacity-0"></v-divider>
           </v-card-actions>
         </v-form>
@@ -361,6 +361,44 @@ var dialog = ref(false)
 function Submit(shelterData) {
     store.shelterData = shelterData;
     console.log(store.shelterData)
+}
+
+async function shelterFormTest() {
+
+
+  var shelterForm = {
+    name: name.value,
+    email: email.value,
+    phone: phone.value,
+    postCode: postCode.value,
+    town: town.value,
+    adress: adress.value,
+    url: url.value,
+    questions: {
+        incomeSource: incomeSource.value,
+        lifestyle: lifestyle.value,
+        housingType: housingType.value,
+        houseOwner: houseOwner.value,
+        hoursAlone: hoursAlone.value,
+        floor: floor.value,
+        elevator: elevator.value,
+        walksNumber: walksNumber.value,
+        walksTime: walksTime.value,
+        fence: fence.value,
+        fenceHeight: fenceHeight.value,
+        propertySize: propertySize.value,
+        petPlace: petPlace.value,
+        petPlaceAlone: petPlaceAlone.value,
+        careAlone: careAlone.value,
+        houseMates: houseMates.value,
+        animals: animals.value,
+        animalsBefore: animalsBefore.value,
+        animalsBeforeText: animalsBeforeText.value,
+        text: text.value
+    }
+  }
+
+store.postShelterForm(shelterForm)
 }
 </script>
 

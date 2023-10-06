@@ -36,6 +36,7 @@
                           @click="dialog = false, //@ts-ignore
       store.loggedShelter = emailShelter,
       $router.push('/shelterMenu')">Zaloguj się</v-btn>
+      <v-btn @click="shelterTest()">TEST SHELTER</v-btn>
                  <v-divider :thickness="10" class="border-opacity-0"></v-divider>
                
               </v-card-actions>
@@ -64,6 +65,7 @@
                           @click="dialog = false, //@ts-ignore
       store.loggedUser = emailUser,
       $router.push('/userMenu')">Zaloguj się</v-btn>
+      <v-btn @click="userTest()">TEST User</v-btn>
                  <v-divider :thickness="10" class="border-opacity-0"></v-divider>
                  <div style="width: 80%; height: 2px; background-color: rgb(175, 126, 158); opacity: 0.5;"></div>
                  <v-divider :thickness="10" class="border-opacity-0"></v-divider>
@@ -93,8 +95,13 @@ const store = useUserStore();
       const emailUser = ref(null)
       const passwordUser = ref(null)
 
+      
+
       const emailShelter = ref(null)
       const passwordShelter = ref(null)
+
+      
+
 
       const isValid = ref(true)
       
@@ -115,7 +122,23 @@ const store = useUserStore();
       var dialog = ref(false)
 
 
+  async function shelterTest() {
 
+    var shelterLogin = {
+      emailShelter : emailShelter.value,
+      passwordShelter: passwordShelter.value
+    }
+    store.postShelterLogin(shelterLogin)
+  }
+
+    async function userTest() {
+
+var userLogin = {
+  emailShelter : emailUser.value,
+  passwordUser: passwordUser.value
+}
+    store.postUserLogin(userLogin)
+  }
 
 
 

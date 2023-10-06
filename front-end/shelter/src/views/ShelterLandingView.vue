@@ -59,7 +59,7 @@
                       <v-divider vertical :thickness="20" class="border-opacity-0"></v-divider>
                       <v-btn elevation="8" class="text">
                         <v-icon color="rgb(143, 83, 122)" icon="mdi-heart"> </v-icon>
-                        Polubienia</v-btn>
+                        Podopieczni</v-btn>
                       <v-divider vertical :thickness="20" class="border-opacity-0"></v-divider>
                       <ShelterForm />
                       <v-divider vertical :thickness="20" class="border-opacity-0"></v-divider>

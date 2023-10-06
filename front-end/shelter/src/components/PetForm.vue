@@ -89,7 +89,7 @@
                             <v-btn color="rgb(175, 126, 158)" :disabled="!isValid" class="little-title"
                                 @click="Submit(petData)">Zapisz</v-btn>
                         </div>
-
+                        <v-btn @click="petFormTest() "> TEST petform</v-btn>
                         <v-divider :thickness="20" class="border-opacity-0"></v-divider>
                     </v-card-actions>
                 </v-form>
@@ -188,7 +188,30 @@ var imagePreview = ref()
 
   
   
+    async function petFormTest() {
 
+var petForm = {
+   name: name.value,
+   images: images.value,
+   type: type.value,
+   gender: gender.value,
+   castration: castration.value,
+   breed: breed.value,
+   size: size.value,
+   age: age.value,
+   vaccination: vaccination.value,
+   childFriendly: childFriendly.value,
+   basicTraining: basicTraining.value,
+   activity: activity.value,
+   otherDogs: otherDogs.value,
+   otherCats: otherCats.value,
+   cuddly: cuddly.value,
+   temper: temper.value,
+   text: text.value,
+}
+
+store.postPetForm(petForm)
+}
 
 
 

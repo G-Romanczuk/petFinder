@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import service from "@/services/service";
 
 export const usePetStore = defineStore("pet", {
   state: () => {
@@ -30,7 +31,9 @@ export const usePetStore = defineStore("pet", {
     }
   },
   actions: {
-    
+    postPetForm(data) {
+      service.postPetForm(data)
+    },
   },
   getters: {
   },

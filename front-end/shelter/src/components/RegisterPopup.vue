@@ -24,19 +24,19 @@
                 <v-form @submit="onSubmit" :validation-schema="schema" @invalid-submit="onInvalidSubmit" class="px-4">
                     <v-card-text style="width: 70%; margin: 0 auto;">
 
-                        <v-text-field v-bind="name"  label="Name" type="Name" />
-                        <v-text-field v-bind="lname"  label="LName" type="LName" />
-                        <v-text-field v-bind="email"  label="E-mail" type="email" />
+                        <v-text-field v-bind="name" v-model="nameValue" label="Name" type="Name" />
+                        <v-text-field v-bind="lname" v-model="lnameValue" label="LName" type="LName" />
+                        <v-text-field v-bind="email" v-model="emailValue" label="E-mail" type="email" />
 
-                        <v-text-field v-bind="password" label="Hasło" type="password" />
-                        <v-text-field v-bind="passwordConfirm" label="Potwierdź hasło" type="password" />
+                        <v-text-field v-bind="password" v-model="passwordValue" label="Hasło" type="password" />
+                        <v-text-field v-bind="passwordConfirm" v-model="passwordConfirmValue" label="Potwierdź hasło" type="password" />
 
-                        <v-text-field label="Telefon kontaktowy"  v-bind="phone"  type="tel"
+                        <v-text-field label="Telefon kontaktowy"  v-bind="phone" v-model="phoneValue"  type="tel"
                             required></v-text-field>
 
 
                         <v-checkbox label="Potwierdzam zapoznanie się z regulaminem i akceptację bababa" 
-                            required v-bind="terms"></v-checkbox>
+                            required v-bind="terms" v-model="termsValue"></v-checkbox>
                         <v-checkbox label="Zgoda na przetwarzanie informacji" required
                             v-bind="terms"></v-checkbox>
                     </v-card-text>
@@ -49,8 +49,9 @@
                             <v-divider vertical :thickness="300" class="border-opacity-0"></v-divider>
                             <v-btn color="rgb(175, 126, 158)" :disabled="!isValid" class="little-title"
                               @click="onSubmit"  type="submit" >Zarejestruj się</v-btn>
+                              
                         </div>
-
+                        <v-btn @click="registerUserTest() "> TEST REGISTER</v-btn>
                         <v-divider :thickness="20" class="border-opacity-0"></v-divider>
                     </v-card-actions>
                 </v-form>
@@ -109,6 +110,14 @@ const vuetifyConfig = (state) => ({
     },
 });
 
+var nameValue = ref()
+var lnameValue = ref()
+var emailValue = ref()
+var passwordValue = ref()
+var passwordConfirmValue = ref()
+var phoneValue = ref()
+var termsValue = ref()
+
 const name = defineComponentBinds('name', vuetifyConfig);
 const lname = defineComponentBinds('lname', vuetifyConfig);
 const email = defineComponentBinds('email', vuetifyConfig);
@@ -132,6 +141,25 @@ function onInvalidSubmit({ values, errors, results }) {
   console.log(errors); // a map of field names and their first error message
   console.log(results); // a detailed map of field names and their validation results
 }
+
+async function registerUserTest() {
+
+var register = {
+    name: nameValue.value,
+    lname: lnameValue.value,
+    email: emailValue.value,
+    password: passwordValue.value,
+    passwordConfirm: passwordConfirmValue.value,
+    phone: phoneValue.value,
+    terms:termsValue.value
+}
+
+store.postRegister(register)
+}
+
+
+
+
 
 </script>
 

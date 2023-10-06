@@ -284,7 +284,8 @@
                 >Zapisz</v-btn
               >
             </div>
-
+            
+            <v-btn @click="userFormTest() "> TEST userform</v-btn>
             <v-divider :thickness="20" class="border-opacity-0"></v-divider>
           </v-card-actions>
         </v-form>
@@ -385,7 +386,40 @@ function Submit (userData) {
   console.log(store.userData)
 }
 
+async function userFormTest() {
 
+var userForm = {
+  name: name.value,
+    lname: lname.value,
+    email: email.value,
+    phone: phone.value,
+    postCode: postCode.value,
+    town: town.value,
+    adress: adress.value,
+    incomeSource: incomeSource.value,
+    lifestyle: lifestyle.value,
+    housingType: housingType.value,
+    houseOwner: houseOwner.value,
+    hoursAlone: hoursAlone.value,
+    floor: floor.value,
+    elevator: elevator.value,
+    walksNumber: walksNumber.value,
+    walksTime: walksTime.value,
+    fence: fence.value,
+    fenceHeight: fenceHeight.value,
+    propertySize: propertySize.value,
+    petPlace: petPlace.value,
+    petPlaceAlone: petPlaceAlone.value,
+    careAlone: careAlone.value,
+    houseMates: houseMates.value,
+    animals: animals.value,
+    animalsBefore: animalsBefore.value,
+    animalsBeforeText: animalsBeforeText.value,
+    text: text.value
+}
+
+store.postUserForm(userForm)
+}
 
 
 function onInvalidSubmit({ values, errors, results }) {
@@ -393,6 +427,8 @@ function onInvalidSubmit({ values, errors, results }) {
   console.log(errors); // a map of field names and their first error message
   console.log(results); // a detailed map of field names and their validation results
 }
+
+
 </script>
 
 <style lang="css">

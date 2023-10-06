@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-
+import service from "@/services/service";
 export const useUserStore = defineStore("user", {
   state: () => {
     return {
@@ -75,6 +75,21 @@ export const useUserStore = defineStore("user", {
     },
     logout() {
       this.loggedUser = ''
+    },
+    postShelterLogin(data) {
+      service.postShelterLogin(data)
+    },
+    postUserLogin(data) {
+      service.postUserLogin(data)
+    },
+    postRegister(data) {
+      service.postRegister(data)
+    },
+    postUserForm(data) {
+      service.postUserForm(data)
+    },
+    postShelterForm(data) {
+      service.postShelterForm(data)
     },
   },
   getters: {
