@@ -51,7 +51,7 @@
 
 
       <!-- 2 -->
-      <v-parallax src="@/assets/cat.jpg" style="height: 100vh; width: 100vw; " class="reveal swing-in">
+      <v-parallax src="@/assets/cat.jpg" style="height: 100vh; width: 100vw; " >
           <v-sheet height="100vh" style="width: 100vw; background: rgb(255, 255, 255,0) ">
               <v-row>
                   <v-col style="height: 90vh; margin-top: 3vh; width: 45vw; " class="reveal fade-left">
