@@ -121,10 +121,10 @@ var image = ref()
 const isValid = ref(true)
 const store = usePetStore();
 var show = ref(false)
+var urls = []
 
 var name = ref(store.petData.name)
 var images = ref(store.img)
-var urls = []
 var type = ref(store.petData.type)
 var gender = ref(store.petData.gender)
 var castration = ref(store.petData.castration)
@@ -141,14 +141,9 @@ var cuddly = ref(store.petData.cuddly)
 var temper = ref(store.petData.temper)
 var text = ref(store.petData.text)
 
-
-
-
-
 var petData = {
     name: name,
     images: images,
-    urls: urls,
     type: type,
     gender: gender,
     castration: castration,
@@ -166,16 +161,13 @@ var petData = {
     text: text,
 }
 
-
 var dialog = ref(false)
 
 
 
 function Submit(petData) {
     store.petData = petData;
-    store.petData.images = images[0]
-    console.log()
-    console.log(store.petData.urls)
+   
 }
 
 const onFileChange = (e) => {
@@ -206,7 +198,6 @@ async function petFormTest() {
     var petForm = {
         name: name.value,
         images: images.value,
-        urls:urls,
         type: type.value,
         gender: gender.value,
         castration: castration.value,
