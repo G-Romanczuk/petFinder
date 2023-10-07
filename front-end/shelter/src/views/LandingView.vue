@@ -1,5 +1,5 @@
 <template>
-  
+
   <v-parallax src="@/assets/landing-pink-gradient.png"
     style="position: absolute; height: 80vh; width: 100vw; top: 0; "></v-parallax>
   <div class="d-flex align-center flex-column" style="width: 80vw; margin-left: auto; margin-right: auto">
@@ -210,18 +210,13 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import LoginPopup from '@/components/LoginPopup.vue';
 import RegisterPopup from '@/components/RegisterPopup.vue';
+import { shallowEqual } from '@babel/types';
+import { onMounted, ref } from 'vue';
 
-export default {
-  name: "LandingView",
-  components: {
-    LoginPopup,
-    RegisterPopup
-  },
 
-  setup() {
 
 
     function reveal() {
@@ -242,9 +237,10 @@ export default {
 
     window.addEventListener("scroll", reveal);
 
-    return { reveal, }
-  },
-};
+
+    
+
+
 </script>
 
 <script lang="js">
@@ -326,4 +322,5 @@ export default {
     transform: translateX(0);
     opacity: 1;
   }
-}</style>
+}
+</style>
