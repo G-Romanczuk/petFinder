@@ -1,6 +1,6 @@
 <template>
     <v-dialog transition="dialog-bottom-transition" overlay-color="black" overlay-opacity="1" v-model="dialog"
-        max-width="80vw" >
+        max-width="80vw">
         <template v-slot:activator="{ props }">
             <v-btn elevation="8" class="text" v-bind="props">
                 <v-icon color="rgb(143, 83, 122)" icon="mdi-paw"> </v-icon> Dodaj
@@ -21,15 +21,28 @@
 
                         <p class="p">Zdjęcia (max 5)</p>
 
-                        <v-file-input label="Zdjęcia" v-model="image" prepend-icon="mdi-camera" accept=".jpg,.png" chips
-                            multiple show-size counter
-                            :rules="[(v) => v.length <= 5 || 'Maksymalnie 5 plików']"  @change="selectImage()"></v-file-input>
+                        <v-file-input type="file" @change="onFileChange" :rules="[(v) => v.length <= 5 || 'Maksymalnie 5 plików']"  prepend-icon="mdi-camera" accept=".jpg,.png" chips
+                            multiple show-size counter  />
+                        <div style=" display: flexbox;" v-if="show">
+                            <v-row>
+                                <v-col>
+      <v-img lazy-src="https://geekflare.com/wp-content/uploads/2023/03/img-placeholder.png" :src="urls[0]"   alt="..."/>
+    </v-col>
+    <v-col>
+    <v-img lazy-src="https://geekflare.com/wp-content/uploads/2023/03/img-placeholder.png" :src="urls[1]"   alt="..."/>
+</v-col>
+<v-col>
+     <v-img lazy-src="https://geekflare.com/wp-content/uploads/2023/03/img-placeholder.png" :src="urls[2]"   alt="..."/>
+    </v-col>
+    <v-col>
+      <v-img lazy-src="https://geekflare.com/wp-content/uploads/2023/03/img-placeholder.png" :src="urls[3]"   alt="..."/>
+    </v-col>
+    <v-col>
+      <v-img lazy-src="https://geekflare.com/wp-content/uploads/2023/03/img-placeholder.png" :src="urls[4]"   alt="..."/>
+    </v-col>
+    </v-row>
+    </div>
 
-                            <v-img
-        :src="image ? imagePreview : 'https://picsum.photos/id/11/500/300'"
-        lazy-src="https://picsum.photos/id/11/10/6"
-        height="30vh"
-      ></v-img>
                         <p class="p">Typ zwierzęcia</p>
                         <v-select v-model="type" label="typ" :items="['Pies', 'Kot', 'Gryzoń']"></v-select>
 
@@ -89,7 +102,7 @@
                             <v-btn color="rgb(175, 126, 158)" :disabled="!isValid" class="little-title"
                                 @click="Submit(petData)">Zapisz</v-btn>
                         </div>
-                        <v-btn @click="petFormTest() "> TEST petform</v-btn>
+                        <v-btn @click="petFormTest()"> TEST petform</v-btn>
                         <v-divider :thickness="20" class="border-opacity-0"></v-divider>
                     </v-card-actions>
                 </v-form>
@@ -100,20 +113,18 @@
 
 <script setup lang="js">
 import { ref } from 'vue'
-
-
-
 import { usePetStore } from '@/store/pet';
+var image = ref()
 
 
 
-// @ts-ignore
-// @ts-ignore
 const isValid = ref(true)
 const store = usePetStore();
+var show = ref(false)
 
 var name = ref(store.petData.name)
-var images = ref(store.petData.images)
+var images = ref(store.img)
+var urls = []
 var type = ref(store.petData.type)
 var gender = ref(store.petData.gender)
 var castration = ref(store.petData.castration)
@@ -131,24 +142,28 @@ var temper = ref(store.petData.temper)
 var text = ref(store.petData.text)
 
 
+
+
+
 var petData = {
-   name: name,
-   images: images,
-   type: type,
-   gender: gender,
-   castration: castration,
-   breed: breed,
-   size: size,
-   age: age,
-   vaccination: vaccination,
-   childFriendly: childFriendly,
-   basicTraining: basicTraining,
-   activity: activity,
-   otherDogs: otherDogs,
-   otherCats: otherCats,
-   cuddly: cuddly,
-   temper: temper,
-   text: text,
+    name: name,
+    images: images,
+    urls: urls,
+    type: type,
+    gender: gender,
+    castration: castration,
+    breed: breed,
+    size: size,
+    age: age,
+    vaccination: vaccination,
+    childFriendly: childFriendly,
+    basicTraining: basicTraining,
+    activity: activity,
+    otherDogs: otherDogs,
+    otherCats: otherCats,
+    cuddly: cuddly,
+    temper: temper,
+    text: text,
 }
 
 
@@ -157,67 +172,60 @@ var dialog = ref(false)
 
 
 function Submit(petData) {
-
     store.petData = petData;
+    store.petData.images = images[0]
+    console.log()
+    console.log(store.petData.urls)
 }
 
-// @ts-ignore
-// @ts-ignore
-function Show() {
-    console.log(images)
-}
+const onFileChange = (e) => {
+    for(var i = 0; i < e.target.files.length; i++){
+        images[i] = e.target.files[i];
+        urls[i] = URL.createObjectURL(images[i])
+    }
+    show.value = true
+    console.log(urls)
+    };
 
-var image = ref()
-var imagePreview = ref()
 
- async function selectImage(e) {
-      const file = e;
-      console.log(file)
-      if (!file) return;
 
-      const readData = (f) =>
-        new Promise((resolve) => {
-          const reader = new FileReader();
-          reader.onloadend = () => resolve(reader.result);
-          reader.readAsDataURL(f);
-        });
-        const data = await readData(file);
-        console.log(data)
-      imagePreview = data;
+
+
+
+
+
+
+
+
+
+
+
+//for tests
+async function petFormTest() {
+
+    var petForm = {
+        name: name.value,
+        images: images.value,
+        urls:urls,
+        type: type.value,
+        gender: gender.value,
+        castration: castration.value,
+        breed: breed.value,
+        size: size.value,
+        age: age.value,
+        vaccination: vaccination.value,
+        childFriendly: childFriendly.value,
+        basicTraining: basicTraining.value,
+        activity: activity.value,
+        otherDogs: otherDogs.value,
+        otherCats: otherCats.value,
+        cuddly: cuddly.value,
+        temper: temper.value,
+        text: text.value,
     }
 
-  
-  
-    async function petFormTest() {
-
-var petForm = {
-   name: name.value,
-   images: images.value,
-   type: type.value,
-   gender: gender.value,
-   castration: castration.value,
-   breed: breed.value,
-   size: size.value,
-   age: age.value,
-   vaccination: vaccination.value,
-   childFriendly: childFriendly.value,
-   basicTraining: basicTraining.value,
-   activity: activity.value,
-   otherDogs: otherDogs.value,
-   otherCats: otherCats.value,
-   cuddly: cuddly.value,
-   temper: temper.value,
-   text: text.value,
+    store.postPetForm(petForm)
 }
-
-store.postPetForm(petForm)
-}
-
-
-
-
-
-
 
 
 </script>

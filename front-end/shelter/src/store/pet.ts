@@ -5,9 +5,11 @@ export const usePetStore = defineStore("pet", {
   state: () => {
     return {
        id: '',
+       img: null,
        petData: {
         name: '',
-        images: '',
+        images: {},
+        urls: [],
         type: '',
         gender: '',
         castration: '',
