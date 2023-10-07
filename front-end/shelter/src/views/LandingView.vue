@@ -1,211 +1,329 @@
 <template>
+  <div class="d-flex align-center flex-column" style=" margin: 0 auto; overflow: visible;">
+      <!-- 1 -->
+      <v-parallax src="@/assets/spaniel.jpg" style="height: 100vh; width: 100vw; ">
+          <v-sheet height="100vh" style=" background: rgb(255, 255, 255, 0) ">
+              <v-col style="height: 80vh; margin-top: 15vh; ">
 
-  <v-parallax src="@/assets/landing-pink-gradient.png"
-    style="position: absolute; height: 80vh; width: 100vw; top: 0; "></v-parallax>
-  <div class="d-flex align-center flex-column" style="width: 80vw; margin-left: auto; margin-right: auto">
-    <v-sheet style="position: relative; z-index: 1">
-      <v-row no-gutters style="height: 0vh">
-        <v-col cols="6">
-          <v-divider :thickness="20" class="border-opacity-0"></v-divider>
-          <v-divider :thickness="20" class="border-opacity-0"></v-divider>
-          <v-container style="background-color: rgb(131, 84, 72); border-radius: 3%"
-            class="d-flex align-center flex-column">
-            <div>
-              <h1 style="color: white; text-shadow: 5px 2px 4px #000000" class="main-text">
-                Czy marzysz o przygarnięciu uroczego zwierzaka ze schroniska i
-                ofiarowania mu kochającego domu?
+                  <v-row style=" width: 40%; ">
+                      <v-divider :thickness="40" class="border-opacity-0"></v-divider>
+                      <div style=" border-radius: 3%;  width: 90%; margin: 3vh auto ; "
+                          class="d-flex align-center flex-column">
+                          <div style=" ">
+                              <h1 style="color: rgb(91, 30, 133); text-align: center; " class="main">
+                                  Marzysz o przygarnięciu uroczego zwierzaka ze schroniska i
+                                  ofiarowania mu kochającego domu ?
+                              </h1>
+                          </div>
+                          <v-divider :thickness="40" class="border-opacity-0"></v-divider>
+                          <div style="background-color: #000000; width: 80%; height: 1px;"></div>
+                          <v-divider :thickness="40" class="border-opacity-0"></v-divider>
+                          <div style="display: flex; width: 30vw; ">
+                              <div class="scale" style="margin: auto;">
+                                  <RegisterPopup />
+                              </div>
+
+                          </div>
+                          <v-divider :thickness="40" class="border-opacity-0"></v-divider>
+                          <div style="background-color: #000000; width: 80%; height: 1px;"></div>
+                          <v-divider :thickness="40" class="border-opacity-0"></v-divider>
+                          <div style=" ">
+                              <h1 style="color: rgb(91, 30, 133); text-align: center; " class="main">
+                                  Nasza aplikacja jest tutaj, aby uczynić proces adopcji łatwiejszym i
+                                  bardziej emocjonującym niż kiedykolwiek wcześniej !
+                              </h1>
+                          </div>
+
+                      </div>
+                  </v-row>
+                  <v-row>
+
+                  </v-row>
+
+
+              </v-col>
+          </v-sheet>
+      </v-parallax>
+
+
+
+
+
+
+      <!-- 2 -->
+      <v-parallax src="@/assets/cat.jpg" style="height: 100vh; width: 100vw; " class="reveal swing-in">
+          <v-sheet height="100vh" style="width: 100vw; background: rgb(255, 255, 255,0) ">
+              <v-row>
+                  <v-col style="height: 90vh; margin-top: 3vh; width: 45vw; " class="reveal fade-left">
+
+                      <v-row>
+                          <v-divider :thickness="40" class="border-opacity-0"></v-divider>
+                          <div style=" border-radius: 3%;  width: 90%; margin: 1vh auto auto 3vh ; "
+                              class="d-flex align-center flex-column">
+                              <div style=" ">
+                                  <p class=" main" style="font-size: 25px; font-weight: 800;">
+                                      Dzięki naszej innowacyjnej platformie, możesz przeglądać profile
+                                      różnorodnych zwierząt, które poszukują nowego domu. Czy to pies,
+                                      kot, królik czy chomik, u nas znajdziesz szeroki wybór zwierzaków
+                                      gotowych na nową przygodę. Możesz przeglądać zdjęcia, opisy i
+                                      dowiedzieć się więcej o unikalnych cechach każdego zwierzęcia,
+                                      takich jak wiek, rasa czy osobowość. <br />
+
+
+
+                                  </p>
+                              </div>
+                          </div>
+                      </v-row>
+                      <v-row>
+
+                      </v-row>
+
+
+                  </v-col>
+
+                  <v-col style="height: 90vh; margin-top: 3vh; width: 45vw;  " class="reveal fade-right">
+                      <v-row style="height: 50vh;"></v-row>
+                      <v-row style="">
+                          <v-divider :thickness="40" class="border-opacity-0"></v-divider>
+                          <div style=" border-radius: 3%;  width: 90%;   " class="d-flex align-center flex-column">
+                              <div style=" ">
+                                  <p class=" main" style="font-size: 25px; font-weight: 800; color: beige;">
+
+
+                                      Nasza aplikacja oferuje nie tylko możliwość przeglądania profili,
+                                      ale także umożliwia bezpośredni kontakt z opiekunami
+                                      schroniskowymi. Możesz zadawać pytania, dowiedzieć się więcej o
+                                      zwierzęciu i ustalić spotkanie adopcyjne. Ponadto, nasza
+                                      funkcjonalność przesyłania dokumentów adopcyjnych pozwoli Ci
+                                      załatwić wszystkie formalności szybko i bez zbędnych trudności.
+                                      <br />
+                                  </p>
+                              </div>
+                          </div>
+                      </v-row>
+                      <v-row>
+
+                      </v-row>
+
+
+                  </v-col>
+              </v-row>
+          </v-sheet>
+      </v-parallax>
+
+
+
+
+      <v-parallax src="@/assets/pigs.jpg" style="height: 110vh; width: 100vw; ">
+          <v-sheet height="100vh" style="width: 100vw; background: rgb(255, 255, 255,0) ">
+
+              <v-col style="height: 90vh; margin-top: 10vh; width: 80vw; margin-left:  auto; margin-right: auto;  " class="reveal fade-bottom">
+
+                  <v-row>
+                      <v-divider :thickness="40" class="border-opacity-0"></v-divider>
+                      <div style=" border-radius: 3%;  width: 90%; margin: 1vh auto auto 3vh ; "
+                          class="d-flex align-center flex-column">
+                          <div style="font-size: 25px; font-weight: 800; text-align: center; " class="main">
+                              Wierzymy, że każde zwierzę zasługuje na kochający dom i
+                              troskliwego opiekuna. Dlatego stworzyliśmy tę aplikację, aby
+                              połączyć ludzi, którzy szukają zwierzaka do adopcji, z tymi,
+                              którzy starają się znaleźć bezpieczne i kochające środowisko dla
+                              swoich podopiecznych. <br />
+
+                              Dołącz do naszej społeczności i spraw, by Twoje serce zostało
+                              skradzione przez urocze zwierzaki! Zostań częścią naszego ruchu
+                              adopcyjnego i pomóż nam zwiększyć liczbę adopcji zwierząt ze
+                              schronisk. Razem możemy tworzyć prawdziwie szczęśliwe zakończenia
+                              dla tych wspaniałych istot. <br />
+                              <br />
+                              <h3 class="main" style="color:rgb(106, 68, 58); font-weight:900; ">
+                                  Nie czekaj dłużej - zarejestruj się już teraz i rozpocznij swoją
+                                  przygodę z adopcją zwierzaka!
+                              </h3>
+                          </div>
+                      </div>
+                      <v-divider :thickness="20" class="border-opacity-0"></v-divider>
+                      <div class="scale" style="margin: auto;">
+
+                          <RegisterPopup />
+
+                      </div>
+                  </v-row>
+                  <v-row>
+
+                  </v-row>
+
+
+              </v-col>
+
+
+          </v-sheet>
+      </v-parallax>
+
+
+
+
+
+<!--
+
+      <v-parallax src="@/assets/catdog.jpg" style="height: 12-vh; width: 100vw; ">
+          <v-sheet style="background-color: rgb(255, 255, 255, 0);">
+              <div style="height: 35vh;"></div>
+              <v-row style="width: 60vw; margin: auto;">
+
+                  <v-img cover src="@/assets/dogs-bars.jpg" class="reveal fade-left"
+                      style="  margin: auto 0; border-radius: 5%;width: 15vw; height: 15vw;"></v-img>
+                  <v-img cover src="@/assets/paw.png" class="reveal fade-back"
+                      style="width: 15vw; height: 18vw; margin: auto 0; border-radius: 5%;"></v-img>
+                  <v-img cover src="@/assets/cats-bars.png" class="reveal fade-right"
+                      style="width: 15vw; height: 15vw; margin: auto 0; border-radius: 5%;"></v-img>
+              </v-row>
+              <h1 style="color: bisque; width: 80%; margin: auto; text-align: center; font-size: 30px; font-weight: 900;"
+                  class="main">
+                  W schroniskach dla zwierząt często znajdują się różnorodne gatunki zwierząt, które zostały
+                  uratowane lub
+                  porzucone. Warunki życia w schroniskach mogą być trudne, zwłaszcza ze względu na
+                  ograniczenia
+                  przestrzenne, brak zasobów i nadmiar populacji zwierząt. Oto ogólny opis zwierząt w
+                  schronisku i trudnych
+                  warunków, z jakimi mogą się borykać:
               </h1>
-            </div>
-            <v-divider :thickness="20" class="border-opacity-0"></v-divider>
-            <v-img src="@/assets/pets.png" width="200px" style="border-radius: 50%;"></v-img>
-            <v-divider :thickness="30" class="border-opacity-0"></v-divider>
-            <div style="display: flex">
-              <RegisterPopup />
-              <v-divider vertical :thickness="20" class="border-opacity-0"></v-divider>
-              <LoginPopup  />
-              <v-divider :thickness="20" class="border-opacity-0"></v-divider>
-            </div>
-          </v-container>
-        </v-col>
 
-        <v-col>
-          <div>
-            <img src="@/assets/dog.png" style="position: relative; top: 5vh; left: 5vw; height: 690px;" />
-          </div>
-        </v-col>
-      </v-row>
-    </v-sheet>
-    <div style="height: 38vh;"></div>
-    <v-sheet class="d-flex align-center flex-column" width="90vw" height="90vh">
-      <v-parallax src="@/assets/landing-gradient-background.png">
-        <v-sheet class="d-flex align-center flex-column" style="
-            position: relative;
-            height: 70%;
-            top: 15vh;
-            width: 80%;
-            margin-left: auto;
-            margin-right: auto;
-            border-radius: 10%;
-          ">
-          <v-sheet class="d-flex align-center flex-column" style="border-radius: 10%;">
-            <div class="hello-message" style="border-radius: 10%;">
-              <v-sheet style="float: right; display: block; width: 33%; height: 180px; border-radius: 10%;"></v-sheet>
-              <h2 class="main-text"
-                style="text-shadow: 1px 1px 1px; font-weight: bold; font-size: 22px; color:rgb(106, 68, 58);">
-                Nasza aplikacja jest tutaj, aby uczynić proces adopcji łatwiejszym i
-                bardziej emocjonującym niż kiedykolwiek wcześniej.
-              </h2>
-              <br><br>
-              <p class="text">
-                Dzięki naszej innowacyjnej platformie, możesz przeglądać profile
-                różnorodnych zwierząt, które poszukują nowego domu. Czy to pies,
-                kot, królik czy chomik, u nas znajdziesz szeroki wybór zwierzaków
-                gotowych na nową przygodę. Możesz przeglądać zdjęcia, opisy i
-                dowiedzieć się więcej o unikalnych cechach każdego zwierzęcia,
-                takich jak wiek, rasa czy osobowość. <br />
 
-                Nasza aplikacja oferuje nie tylko możliwość przeglądania profili,
-                ale także umożliwia bezpośredni kontakt z opiekunami
-                schroniskowymi. Możesz zadawać pytania, dowiedzieć się więcej o
-                zwierzęciu i ustalić spotkanie adopcyjne. Ponadto, nasza
-                funkcjonalność przesyłania dokumentów adopcyjnych pozwoli Ci
-                załatwić wszystkie formalności szybko i bez zbędnych trudności.
-                <br />
 
-                Wierzymy, że każde zwierzę zasługuje na kochający dom i
-                troskliwego opiekuna. Dlatego stworzyliśmy tę aplikację, aby
-                połączyć ludzi, którzy szukają zwierzaka do adopcji, z tymi,
-                którzy starają się znaleźć bezpieczne i kochające środowisko dla
-                swoich podopiecznych. <br />
+          </v-sheet>
+      </v-parallax>
 
-                Dołącz do naszej społeczności i spraw, by Twoje serce zostało
-                skradzione przez urocze zwierzaki! Zostań częścią naszego ruchu
-                adopcyjnego i pomóż nam zwiększyć liczbę adopcji zwierząt ze
-                schronisk. Razem możemy tworzyć prawdziwie szczęśliwe zakończenia
-                dla tych wspaniałych istot. <br />
-                <br />
-              <h3 class="main-text" style="color:rgb(106, 68, 58);">
-                Nie czekaj dłużej - zarejestruj się już teraz i rozpocznij swoją
-                przygodę z adopcją zwierzaka!
+-->
+
+      <v-carousel cycle show-arrows="hover" hide-delimiters style="height: 100vh; width: 100vw;">
+          <v-carousel-item cover>
+              <v-parallax src="@/assets/golden.jpg" style="height: 100vh; width: 100vw; ">
+                  <div style="height: 80vh; width: 70vw; margin: auto; margin-top: 10vh; ">
+                      <h2 class="main"
+                          style="text-shadow: 2px 2px 2px; font-weight: bold; font-size: 35px; text-align: center;">
+                          Psy
+                      </h2>
+                      <v-divider :thickness="40" class="border-opacity-0"></v-divider>
+                      <p class="main" style="font-size: 30px; font-weight: 900;">
+                          Psy są najczęściej spotykanymi zwierzętami w schroniskach. Są różnych ras, wielkości i
+                          wieku. W
+                          schroniskach może brakować miejsca, a psy mogą być umieszczone w małych klatkach lub
+                          boksach. Brak
+                          odpowiedniej ilości personelu może ograniczać czas spędzany na spacerach i interakcji z
+                          człowiekiem.
+
+
+                      </p>
+                  </div>
+              </v-parallax>
+          </v-carousel-item>
+
+          <v-carousel-item cover>
+              <v-parallax src="@/assets/cat-cream.jpg" style="height: 100vh; width: 100vw; ">
+                  <div style="height: 80vh; width: 70vw; margin: auto; margin-top: 10vh; ">
+                      <h2 class="main"
+                          style="text-shadow: 2px 2px 2px; font-weight: bold; font-size: 35px; text-align: center;">
+                          Koty
+                      </h2> <v-divider :thickness="40" class="border-opacity-0"></v-divider>
+                      <p class="main" style="font-size: 30px; font-weight: 900;">
+                          Koty również są często obecne w schroniskach. Mogą być dzikie, bezdomne lub opuszczone. Koty są
+                          bardziej
+                          niezależne niż psy, ale nadal wymagają odpowiedniej opieki. Brak wystarczających środków może
+                          prowadzić do
+                          przeludnienia i trudności w utrzymaniu czystości.
+
+                      </p>
+                  </div>
+              </v-parallax>
+
+          </v-carousel-item>
+
+          <v-carousel-item cover>
+              <v-parallax src="@/assets/parrot.jpg" style="height: 100vh; width: 100vw; ">
+                  <div style="height: 80vh; width: 70vw; margin: auto; margin-top: 10vh; ">
+                      <h2 class="main"
+                          style="text-shadow: 2px 2px 2px; font-weight: bold; font-size: 35px; text-align: center;">
+                          Ptaki
+                      </h2> <v-divider :thickness="40" class="border-opacity-0"></v-divider>
+                      <p class="main" style="font-size: 30px; font-weight: 900;">
+
+                          Schroniska mogą również przyjmować porzucone ptaki, takie jak papugi, kanarki czy gołębie. Ptaki
+                          potrzebują
+                          odpowiedniego miejsca do lotu, a także regularnego karmienia i opieki. Często są umieszczane w
+                          dużych
+                          klatkach, ale brak interakcji i swobody może być dla nich trudnym doświadczeniem.
+
+                      </p>
+                  </div>
+              </v-parallax>
+
+          </v-carousel-item>
+
+          <v-carousel-item cover>
+              <v-parallax src="@/assets/hamster.jpg" style="height: 100vh; width: 100vw; ">
+                  <div style="height: 80vh; width: 70vw; margin: auto; margin-top: 10vh; ">
+                      <h2 class="main"
+                          style="text-shadow: 2px 2px 2px; font-weight: bold; font-size: 35px; text-align: center;">
+                          Gryzonie
+                      </h2> <v-divider :thickness="40" class="border-opacity-0"></v-divider>
+                      <v-divider :thickness="20" class="border-opacity-0"></v-divider>
+                      <p class="main" style="font-size: 30px; font-weight: 900;">
+                          Często można spotkać króliki, chomiki, świnki morskie i inne gryzonie. Te zwierzęta potrzebują
+                          odpowiednich
+                          klatek, miejsca do aktywności i regularnej opieki weterynaryjnej. Brak odpowiedniej diety i brak
+                          środków
+                          może wpływać na ich zdrowie i dobre samopoczucie.
+
+
+                      </p>
+                  </div>
+
+              </v-parallax>
+          </v-carousel-item>
+      </v-carousel>
+
+
+
+
+
+
+      <v-img src="@/assets/lineup.jpg" style="height: 100vh; width: 100vw; ">
+
+          <div style=" width: 60%; margin: auto; margin-top: 15vh;">
+
+              <p class="main reveal fade-bottom" style="text-align: center; font-size: 25px; font-weight: 900;" >
+
+
+
+
+                  Wszystkie zwierzęta w schroniskach często borykają się z ograniczeniem przestrzeni, brakiem
+                  odpowiedniej
+                  opieki weterynaryjnej, niedostatecznymi środkami finansowymi i brakiem stałych domów. Schroniska
+                  stawiają
+                  sobie za cel zapewnienie tym zwierzętom schronienia, opieki i możliwości adopcji przez
+                  odpowiedzialnych
+                  opiekunów. Jednakże, warunki życia w schroniskach mogą być trudne dla zwierząt i podkreślają
+                  potrzebę
+                  świadomości społecznej i wsparcia dla adopcji zwierząt ze schronisk oraz działań mających na
+                  celu
+                  zapobieganie porzucaniu i nadmiernemu rozmnażaniu się zwierząt. <br>
+                  <v-divider :thickness="80" class="border-opacity-0"></v-divider>
+              <h3 class="main" style="color:rgb(175, 126, 158); font-size: 30px; font-weight: 900;">
+                  Nie czekaj dłużej - zarejestruj się już teraz i rozpocznij swoją
+                  przygodę z adopcją zwierzaka!
               </h3>
               </p>
-            </div>
-            <v-divider :thickness="20" class="border-opacity-0"></v-divider>
-            <RegisterPopup />
-          </v-sheet>
-        </v-sheet>
-      </v-parallax>
-    </v-sheet>
-    <v-divider :thickness="50" class="border-opacity-0"></v-divider>
-    <v-sheet>
-      <v-row>
-        <v-img cover src="@/assets/dogs-bars.jpg" class="reveal fade-left"
-          style=" width: 25vw; height: 25vh; margin: auto 0; border-radius: 5%;"></v-img>
-        <v-img cover src="@/assets/paw.png" class="reveal fade-back" style="width: 30vw; margin: auto 0"></v-img>
-        <v-img cover src="@/assets/cats-bars.png" class="reveal fade-right"
-          style=" width: 25vw; height: 25vh; margin: auto 0; border-radius: 5%;"></v-img>
-      </v-row>
-    </v-sheet>
-    <v-divider :thickness="50" class="border-opacity-0"></v-divider>
-    <v-sheet style="position: relative; z-index: 2">
-      <v-row no-gutters style="height: 0vh">
+              <v-divider :thickness="80" class="border-opacity-0"></v-divider>
+              <div class="scale reveal fade-bottom">
+                  <RegisterPopup />
+              </div>
+              
 
-        <v-col>
-          <div>
-            <img src="@/assets/cat.png" style="position: relative;   height: 690px;" />
           </div>
-        </v-col>
 
-        <v-col cols="6">
-          <v-divider :thickness="20" class="border-opacity-0"></v-divider>
-          <v-divider :thickness="20" class="border-opacity-0"></v-divider>
-          <v-container style="background-color: rgb(175, 126, 158); border-radius: 3%"
-            class="d-flex align-center flex-column">
-            <v-divider :thickness="30" class="border-opacity-0"></v-divider>
-            <div>
-              <h1 style="color: white; text-shadow: 5px 2px 4px #000000" class="main-text">
-                W schroniskach dla zwierząt często znajdują się różnorodne gatunki zwierząt, które zostały uratowane lub
-                porzucone. Warunki życia w schroniskach mogą być trudne, zwłaszcza ze względu na ograniczenia
-                przestrzenne, brak zasobów i nadmiar populacji zwierząt. Oto ogólny opis zwierząt w schronisku i trudnych
-                warunków, z jakimi mogą się borykać:
-              </h1>
-            </div>
-
-            <v-divider :thickness="30" class="border-opacity-0"></v-divider>
-
-          </v-container>
-        </v-col>
-      </v-row>
-    </v-sheet>
-    <div style="height: 38vh;"></div>
-    <v-sheet class="d-flex align-center flex-column" width="90vw" height="110vh" style="z-index: 1;">
-      <v-parallax src="@/assets/landing-pink-gradient.png">
-        <v-sheet class="d-flex align-center flex-column" style="
-            position: relative;
-            height: 70%;
-            top: 15vh;
-            width: 80%;
-            margin-left: auto;
-            margin-right: auto;
-            border-radius: 10%;
-          ">
-          <v-sheet class="d-flex align-center flex-column" style="border-radius: 10%;">
-            <div class="hello-message" style="border-radius: 10%;">
-              <v-sheet style="float: left; display: block; width: 33%; height: 180px; border-radius: 10%;"></v-sheet>
-              <h2 class="main-text"
-                style="text-shadow: 2px 2px 2px; font-weight: bold; font-size: 22px; color: rgb(175, 126, 158);">
-                Psy
-              </h2>
-              <p class="text">
-                Psy są najczęściej spotykanymi zwierzętami w schroniskach. Są różnych ras, wielkości i wieku. W
-                schroniskach może brakować miejsca, a psy mogą być umieszczone w małych klatkach lub boksach. Brak
-                odpowiedniej ilości personelu może ograniczać czas spędzany na spacerach i interakcji z człowiekiem. <br>
-              <h2 class="main-text"
-                style="text-shadow: 2px 2px 2px; font-weight: bold; font-size: 22px; color: rgb(175, 126, 158);">
-                Koty
-              </h2>
-              Koty również są często obecne w schroniskach. Mogą być dzikie, bezdomne lub opuszczone. Koty są bardziej
-              niezależne niż psy, ale nadal wymagają odpowiedniej opieki. Brak wystarczających środków może prowadzić do
-              przeludnienia i trudności w utrzymaniu czystości.<br>
-              <h2 class="main-text"
-                style="text-shadow: 2px 2px 2px; font-weight: bold; font-size: 22px; color: rgb(175, 126, 158);">
-                Ptaki
-              </h2>
-              Schroniska mogą również przyjmować porzucone ptaki, takie jak papugi, kanarki czy gołębie. Ptaki potrzebują
-              odpowiedniego miejsca do lotu, a także regularnego karmienia i opieki. Często są umieszczane w dużych
-              klatkach, ale brak interakcji i swobody może być dla nich trudnym doświadczeniem.<br>
-              <h2 class="main-text"
-                style="text-shadow: 2px 2px 2px; font-weight: bold; font-size: 22px; color: rgb(175, 126, 158);">
-                Gryzonie
-              </h2>
-              Często można spotkać króliki, chomiki, świnki morskie i inne gryzonie. Te zwierzęta potrzebują odpowiednich
-              klatek, miejsca do aktywności i regularnej opieki weterynaryjnej. Brak odpowiedniej diety i brak środków
-              może wpływać na ich zdrowie i dobre samopoczucie.<br>
-
-              Zwierzęta gospodarskie: W niektórych schroniskach znajdują się również zwierzęta gospodarskie, takie jak
-              kozy, świnie czy konie, które zostały uratowane z trudnych warunków hodowlanych. Te zwierzęta wymagają
-              specjalistycznej opieki, odpowiedniego żywienia i warunków do życia.<br><br>
-
-              Wszystkie zwierzęta w schroniskach często borykają się z ograniczeniem przestrzeni, brakiem odpowiedniej
-              opieki weterynaryjnej, niedostatecznymi środkami finansowymi i brakiem stałych domów. Schroniska stawiają
-              sobie za cel zapewnienie tym zwierzętom schronienia, opieki i możliwości adopcji przez odpowiedzialnych
-              opiekunów. Jednakże, warunki życia w schroniskach mogą być trudne dla zwierząt i podkreślają potrzebę
-              świadomości społecznej i wsparcia dla adopcji zwierząt ze schronisk oraz działań mających na celu
-              zapobieganie porzucaniu i nadmiernemu rozmnażaniu się zwierząt. <br>
-
-              <h3 class="main-text" style="color:rgb(175, 126, 158);">
-                Nie czekaj dłużej - zarejestruj się już teraz i rozpocznij swoją
-                przygodę z adopcją zwierzaka!
-              </h3>
-              </p>
-            </div>
-            <RegisterPopup />
-          </v-sheet>
-        </v-sheet>
-      </v-parallax>
-    </v-sheet>
-
-    <div style="height: 10vh;"> IN PROGRESS</div>
+      </v-img>
 
   </div>
 </template>
@@ -219,26 +337,25 @@ import { onMounted, ref } from 'vue';
 
 
 
-    function reveal() {
-      var reveals = document.querySelectorAll(".reveal");
+function reveal() {
+  var reveals = document.querySelectorAll(".reveal");
 
-      for (var i = 0; i < reveals.length; i++) {
-        var windowHeight = window.innerHeight;
-        var elementTop = reveals[i].getBoundingClientRect().top;
-        var elementVisible = 150;
+  for (var i = 0; i < reveals.length; i++) {
+      var windowHeight = window.innerHeight;
+      var elementTop = reveals[i].getBoundingClientRect().top;
+      var elementVisible = 150;
 
-        if (elementTop < windowHeight - elementVisible) {
+      if (elementTop < windowHeight - elementVisible) {
           reveals[i].classList.add("active");
-        } else {
+      } else {
           reveals[i].classList.remove("active");
-        }
       }
-    }
+  }
+}
 
-    window.addEventListener("scroll", reveal);
+window.addEventListener("scroll", reveal);
 
 
-    
 
 
 </script>
@@ -249,6 +366,18 @@ import { onMounted, ref } from 'vue';
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
+
+
+.main {
+  font-family: 'Gruppo', sans-serif;
+}
+
+.scale :hover {
+  transform: scale(1.45);
+}
+
+
 .hello-message {
   text-align: center;
   padding-left: 20px;
@@ -265,6 +394,7 @@ import { onMounted, ref } from 'vue';
 .text {
   text-align: justify;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
 }
 
 .reveal {
@@ -288,39 +418,92 @@ import { onMounted, ref } from 'vue';
   animation: fade-back 2s ease-in;
 }
 
+.active.fade-bottom {
+  animation: fade-bottom 2s ease-in;
+}
+
+.active.swing-in{
+  animation: swing-in 1.5s ease-in 0s 1 normal forwards;
+}
+
+.active.swing-out{
+  animation: swing-out 1.5s ease-in 0s 1 normal forwards;
+}
+
+@keyframes swing-in {
+0% {
+  opacity: 0;
+  transform: rotateY(-70deg);
+  transform-origin: left;
+}
+
+100% {
+  opacity: 1;
+  transform: rotateY(0);
+  transform-origin: left;
+}
+}
+
+@keyframes swing-out {
+0% {
+  opacity: 1;
+  transform: rotateY(0);
+  transform-origin: left;
+}
+
+100% {
+  opacity: 0;
+  transform: rotateY(-70deg);
+  transform-origin: left;
+}
+}
+
 @keyframes fade-left {
   0% {
-    transform: translateX(-100px);
-    opacity: 0;
+      transform: translateX(-100px);
+      opacity: 0;
   }
 
   100% {
-    transform: translateX(0);
-    opacity: 1;
+      transform: translateX(0);
+      opacity: 1;
   }
 }
 
 @keyframes fade-right {
   0% {
-    transform: translateX(100px);
-    opacity: 0;
+      transform: translateX(100px);
+      opacity: 0;
   }
 
   100% {
-    transform: translateX(0);
-    opacity: 1;
+      transform: translateX(0);
+      opacity: 1;
   }
 }
 
 @keyframes fade-back {
   0% {
-    transform: translateZ(-100px);
-    opacity: 0;
+      transform: translateZ(-100px);
+      opacity: 0;
   }
 
   100% {
-    transform: translateX(0);
-    opacity: 1;
+      transform: translateX(0);
+      opacity: 1;
+  }
+}
+
+
+@keyframes fade-bottom {
+  0% {
+      transform: translateY(200px);
+      opacity: 0;
+  }
+
+  100% {
+      transform: translateX(0);
+      opacity: 1;
   }
 }
 </style>

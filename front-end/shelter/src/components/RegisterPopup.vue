@@ -1,8 +1,8 @@
 <template>
     <v-dialog v-model="dialog" max-width="50vw">
         <template v-slot:activator="{ props }">
-            <v-btn elevation="8" class="d-flex align-center flex-column main-text main-text" v-bind="props">Zarejestruj
-                się</v-btn>
+            <div class="d-flex align-center flex-column  main" size="x-large" v-bind="props" style="margin: auto; color:  rgb(91, 30, 133); font-size: 40px;">Zarejestruj
+                się</div>
         </template>
         <div class="d-flex align-center flex-column" style="width: 100%; margin-left: auto; margin-right: auto;">
 
@@ -164,6 +164,14 @@ store.postRegister(register)
 </script>
 
 <style lang="css">
+
+
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
+
+  .main{
+    font-family: 'Major Mono Display', monospace;
+  }
+
 .title {
     font-family: 'Courier New', Courier, monospace;
     font-size: xxx-large;
