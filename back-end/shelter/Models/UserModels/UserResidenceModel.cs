@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace shelter.Models.UserModels
 {
     public class UserResidenceModel
     {
+        [JsonIgnore]
         [Key]
         public int Id { get; set; }
         public int UserModelId { get; set; }

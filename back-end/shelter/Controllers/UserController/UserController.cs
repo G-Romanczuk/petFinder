@@ -55,7 +55,13 @@ namespace shelter.Controllers.UserController
         [HttpPost("DetailsForm", Name = "AddUserDetailsForm")]
         public async Task<IActionResult> AddUserDetailsForm([FromBody] UserForm userForm)
         {
-            return Ok(userForm);
+            if (!ModelState.IsValid) return BadRequest();
+
+            if (await _userService.AddUserDetailsForm(userForm))
+            {
+                return Ok();
+            }
+            return BadRequest(new { message = "Wrong Data" });
         }
 
     }

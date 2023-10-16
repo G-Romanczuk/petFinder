@@ -36,7 +36,97 @@ namespace shelter.Interfaces.User
         }
         public async Task<bool> AddUserDetailsForm(UserForm userForm)
         {
-            throw new NotImplementedException();
+            var userModel = _mapper.Map<UserModel>( userForm );
+            var userHabbitsModel = _mapper.Map<UserHabbitsModel>( userForm );
+            var userResidenceModel = _mapper.Map<UserResidenceModel>( userForm );
+            var userDogDetailsModel = _mapper.Map<UsersDogDetailsModel>( userForm );
+
+            try
+            {
+               
+                var userModelToUpdate = await _userDbContext.Users.FirstOrDefaultAsync(um => um.Email == userModel.Email);
+                if ( userModelToUpdate == null )
+                {
+                    return false;
+                }
+
+                var userModelToUpdateId = userModelToUpdate.Id;
+
+              
+                userModelToUpdate.Id = userModelToUpdateId;
+                userModelToUpdate.Name = userModel.Name;
+                userModelToUpdate.Lname = userModel.Lname;
+                userModelToUpdate.Email = userModel.Email;
+                userModelToUpdate.Phone = userModel.Phone;
+                userModelToUpdate.PostCode = userModel.PostCode;
+                userModelToUpdate.Town = userModel.Town;
+                userModelToUpdate.Adress = userModel.Adress;
+                userModelToUpdate.IncomeSource = userModel.IncomeSource;
+                await _userDbContext.SaveChangesAsync();
+
+                var userHabbitsModelToUpdate = await _userDbContext.Habbits.FirstOrDefaultAsync(uid => uid.UserModelId == userModelToUpdateId);
+                if (userHabbitsModelToUpdate == null)
+                {
+                    userHabbitsModel.UserModelId = userModelToUpdateId;
+                    _userDbContext.Habbits.Add(userHabbitsModel);
+                    await _userDbContext.SaveChangesAsync();
+                }
+                else
+                {
+                    userHabbitsModelToUpdate.Lifestyle = userHabbitsModel.Lifestyle;
+                    userHabbitsModelToUpdate.HoursAlone = userHabbitsModel.HoursAlone;
+                    userHabbitsModelToUpdate.WalksNumber = userHabbitsModel.WalksNumber;
+                    userHabbitsModelToUpdate.WalksTime = userHabbitsModel.WalksTime;
+                    userHabbitsModelToUpdate.Text = userHabbitsModel.Text;
+                    await _userDbContext.SaveChangesAsync();
+                }
+
+                var userResidenceModelToUpdate = await _userDbContext.Residences.FirstOrDefaultAsync(uid => uid.UserModelId == userModelToUpdateId);
+                if (userResidenceModelToUpdate == null)
+                {
+                    userResidenceModel.UserModelId = userModelToUpdateId;
+                    _userDbContext.Residences.Add(userResidenceModel);
+                    await _userDbContext.SaveChangesAsync();
+                }
+                else
+                {
+                    userResidenceModelToUpdate.HousingType = userResidenceModel.HousingType;
+                    userResidenceModelToUpdate.HouseOwner = userResidenceModel.HouseOwner;
+                    userResidenceModelToUpdate.Floor = userResidenceModel.Floor;
+                    userResidenceModelToUpdate.Elevator = userResidenceModel.Elevator;
+                    userResidenceModelToUpdate.Fence = userResidenceModel.Fence;
+                    userResidenceModelToUpdate.FenceHeight = userResidenceModel.FenceHeight;
+                    userResidenceModelToUpdate.PropertySize = userResidenceModel.PropertySize;
+                    userResidenceModelToUpdate.HouseMates = userResidenceModel.HouseMates;
+                    userResidenceModelToUpdate.Animals = userResidenceModel.Animals;
+                    await _userDbContext.SaveChangesAsync();
+                }
+
+                var userDogDetailsModelToUpdate = await _userDbContext.usersDogDetails.FirstOrDefaultAsync(uid => uid.UserModelId == userModelToUpdateId);
+                if (userDogDetailsModelToUpdate == null)
+                {
+                    userDogDetailsModel.UserModelId = userModelToUpdateId;
+                    _userDbContext.Add(userDogDetailsModel);
+                    await _userDbContext.SaveChangesAsync();
+                }
+                else
+                {
+                    userDogDetailsModelToUpdate.PetPlace = userDogDetailsModel.PetPlace;
+                    userDogDetailsModelToUpdate.PetPlaceAlone = userDogDetailsModel.PetPlaceAlone;
+                    userDogDetailsModelToUpdate.CareAlone = userDogDetailsModel.CareAlone;
+                    userDogDetailsModelToUpdate.AnimalsBefore = userDogDetailsModel.AnimalsBefore;
+                    userDogDetailsModelToUpdate.AnimalsBeforeText = userDogDetailsModel.AnimalsBeforeText;
+                    await _userDbContext.SaveChangesAsync();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            
         }
 
         public async Task<bool> CreateUser(UserRegisterDto user)

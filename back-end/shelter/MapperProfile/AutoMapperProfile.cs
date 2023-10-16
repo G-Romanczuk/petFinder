@@ -16,6 +16,11 @@ namespace shelter.MapperProfile
             CreateMap<UserRegisterDto, UserModel>();
             CreateMap<JsonElement, UserModel>();
             CreateMap<UserModel, UserModel>();
+
+            CreateMap<UserForm, UserModel>();
+            CreateMap<UserForm, UserHabbitsModel>();
+            CreateMap<UserForm, UserResidenceModel>();
+            CreateMap<UserForm, UsersDogDetailsModel>();
         }
     }
     

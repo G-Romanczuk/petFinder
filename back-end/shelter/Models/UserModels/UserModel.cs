@@ -13,7 +13,7 @@ namespace shelter.Models.UserModels
         public bool Terms { get; set; }
         public string PostCode { get; set; }
         public string Town { get; set; }
-        public string Address { get; set; }
+        public string Adress { get; set; }
         public string IncomeSource { get; set; }
 
         public List<UserResidenceModel> UserResidence { get; set; }

@@ -1,9 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace shelter.Models.UserModels
 {
     public class UserHabbitsModel
     {
+        [Key]
+        [JsonIgnore]
         public int Id { get; set; }
         public int UserModelId { get; set; }
         [ForeignKey("UserModelId")]
