@@ -285,7 +285,7 @@
               >
             </div>
             
-            <v-btn @click="userFormTest() "> TEST userform</v-btn>
+            <v-btn @click="userFormTest(userData) "> TEST userform</v-btn>
             <v-divider :thickness="20" class="border-opacity-0"></v-divider>
           </v-card-actions>
         </v-form>

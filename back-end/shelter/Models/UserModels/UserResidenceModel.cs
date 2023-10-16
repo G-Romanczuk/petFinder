@@ -10,14 +10,14 @@ namespace shelter.Models.UserModels
         public int UserModelId { get; set; }
         [ForeignKey("UserModelId")]
         public UserModel UserModel { get; set; }
-        public string TypeOfResidence { get; set; }
-        public string OwnerOfResidence { get; set; }
-        public int FloorNumber { get; set; }
+        public string HousingType { get; set; }
+        public string HouseOwner { get; set; }
+        public int Floor { get; set; }
         public bool IsElevator { get; set; }
-        public int IsResidenceFenced { get; set; }
-        public int FenceHeightInCentimeters { get; set; }
-        public int YardOrGardenAreaInSquareMeters { get; set; }
-        public string HouseholdResidents { get; set; }
-        public string OtherAnimalsInResidence { get; set; }
+        public int IsFence { get; set; }
+        public int FenceHeight { get; set; }
+        public int PropertySize { get; set; }
+        public string HouseMates { get; set; }
+        public string Animals { get; set; }
     }
 }
