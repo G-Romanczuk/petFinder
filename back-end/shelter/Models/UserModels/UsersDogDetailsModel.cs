@@ -8,10 +8,10 @@ namespace shelter.Models.UserModels
         public int UserModelId { get; set; }
         [ForeignKey("UserModelId")]
         public UserModel UserModel { get; set; }
-        public string PetPlace { get; set; }
-        public string PetPlaceAlone { get; set; }
-        public bool CareAlone { get; set; }
-        public string AnimalsBefore { get; set; }
-        public string AnimalsBeforeText { get; set; }
+        public string DogLocationThroughoutDay { get; set; }
+        public string DogLocationDuringOwnerAndOthersAbsence { get; set; }
+        public bool CanProvideSubstituteCareDuringExtendedAbsence { get; set; }
+        public string TimeWhenOwnedDog { get; set; }
+        public string PastDogsHistory { get; set; }
     }
 }
