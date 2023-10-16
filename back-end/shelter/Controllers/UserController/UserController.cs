@@ -48,8 +48,8 @@ namespace shelter.Controllers.UserController
                 var JwtToken = _userService.GenerateTokenString(user);
                 return Ok(JwtToken);
             }
-            return BadRequest();
-            
+            return BadRequest(new { message = "Email or password is incorrect" });
+
         }
 
     }
