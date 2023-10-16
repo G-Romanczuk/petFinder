@@ -1,4 +1,4 @@
-﻿namespace shelter.Dtos.PetsDtos
+﻿namespace shelter.Dtos.PetDtos
 {
     public class PetDto
     {
