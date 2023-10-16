@@ -32,9 +32,10 @@ namespace shelter.Controllers.UserController
                 return Ok("Your account has been created succesfully");
             }
 
-            return BadRequest();
-            
-            
+            return BadRequest(new { message = "User already exist" }); 
+
+
+
         }
 
         [HttpPost("Login", Name ="LoginUser")]
