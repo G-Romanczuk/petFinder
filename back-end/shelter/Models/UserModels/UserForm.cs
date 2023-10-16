@@ -13,11 +13,11 @@
         public string lifeStyle { get; set; }
         public string housingType { get; set; }
         public string houseOwner { get; set; }
-        public string hoursAlone { get; set; }
+        public int hoursAlone { get; set; }
         public string floor { get; set; }
         public string elevator { get; set; }
-        public string walksNumber { get; set; }
-        public string walksTime { get; set; }
+        public int walksNumber { get; set; }
+        public int walksTime { get; set; }
         public string fence { get; set; }
         public string fenceHeight { get; set; }
         public string propertySize { get; set; }

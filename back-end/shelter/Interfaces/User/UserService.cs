@@ -34,6 +34,10 @@ namespace shelter.Interfaces.User
             _configuration = configuration;
 
         }
+        public async Task<bool> AddUserDetailsForm(UserForm userForm)
+        {
+            throw new NotImplementedException();
+        }
 
         public async Task<bool> CreateUser(UserRegisterDto user)
         {
@@ -109,5 +113,7 @@ namespace shelter.Interfaces.User
 
             return token;
         }
+
+        
     }
 }

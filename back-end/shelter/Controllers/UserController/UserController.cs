@@ -52,5 +52,11 @@ namespace shelter.Controllers.UserController
 
         }
 
+        [HttpPost("DetailsForm", Name = "AddUserDetailsForm")]
+        public async Task<IActionResult> AddUserDetailsForm([FromBody] UserForm userForm)
+        {
+            return Ok(userForm);
+        }
+
     }
 }

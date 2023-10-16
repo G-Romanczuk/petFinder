@@ -10,7 +10,7 @@ namespace shelter.Models.UserModels
         public UserModel UserModel { get; set; }
         public string PetPlace { get; set; }
         public string PetPlaceAlone { get; set; }
-        public bool CareAlone { get; set; }
+        public string CareAlone { get; set; }
         public string AnimalsBefore { get; set; }
         public string AnimalsBeforeText { get; set; }
     }

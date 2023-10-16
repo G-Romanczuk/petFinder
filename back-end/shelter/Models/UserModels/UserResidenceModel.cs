@@ -12,11 +12,11 @@ namespace shelter.Models.UserModels
         public UserModel UserModel { get; set; }
         public string HousingType { get; set; }
         public string HouseOwner { get; set; }
-        public int Floor { get; set; }
-        public bool IsElevator { get; set; }
-        public int IsFence { get; set; }
-        public int FenceHeight { get; set; }
-        public int PropertySize { get; set; }
+        public string Floor { get; set; }
+        public string Elevator { get; set; }
+        public string Fence { get; set; }
+        public string FenceHeight { get; set; }
+        public string PropertySize { get; set; }
         public string HouseMates { get; set; }
         public string Animals { get; set; }
     }
