@@ -11,7 +11,7 @@ namespace shelter.Models.UserModels
         public string Email { get; set; }
         public string Phone { get; set; }
         public bool Terms { get; set; }
-        public string PostalCode { get; set; }
+        public string PostCode { get; set; }
         public string Town { get; set; }
         public string Address { get; set; }
         public string IncomeSource { get; set; }
