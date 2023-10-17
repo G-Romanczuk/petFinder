@@ -171,17 +171,17 @@ namespace shelter.Interfaces.User
 
         public async Task<bool> LoginUser(UserLoginDto user)
         {
-            var identityUser = await _userManager.FindByEmailAsync(user.Email);
+            var identityUser = await _userManager.FindByEmailAsync(user.EmailUser);
             if (identityUser == null) return false;
 
-           return await _userManager.CheckPasswordAsync(identityUser, user.Password);
+           return await _userManager.CheckPasswordAsync(identityUser, user.PasswordUser);
         }
 
         public string GenerateTokenString(UserLoginDto user)
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Email , user.Email),
+                new Claim(ClaimTypes.Email , user.EmailUser),
                 new Claim(ClaimTypes.Role, "Admin"),
             };
 

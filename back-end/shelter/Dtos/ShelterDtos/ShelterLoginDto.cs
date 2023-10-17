@@ -2,7 +2,7 @@
 {
     public class ShelterLoginDto
     {
-        public string email { get; set; }
-        public string password { get; set; }
+        public string EmailShelter { get; set; }
+        public string PasswordShelter { get; set; }
     }
 }

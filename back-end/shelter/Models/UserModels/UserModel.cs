@@ -15,6 +15,7 @@ namespace shelter.Models.UserModels
         public string Town { get; set; }
         public string Adress { get; set; }
         public string IncomeSource { get; set; }
+        
 
         public List<UserResidenceModel> UserResidence { get; set; }
         public List<UsersDogDetailsModel> usersDogDetails { get; set; }

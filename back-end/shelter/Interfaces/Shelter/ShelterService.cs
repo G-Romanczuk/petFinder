@@ -37,13 +37,13 @@ namespace shelter.Interfaces.Shelter
 
         public async Task<bool> LoginUser(ShelterLoginDto shelter)
         {
-            var identityShelterUser = await _userManagerShelter.FindByEmailAsync( shelter.email );
+            var identityShelterUser = await _userManagerShelter.FindByEmailAsync( shelter.EmailShelter );
             if ( identityShelterUser == null )
             {
                 return false;
             }
 
-            return await _userManagerShelter.CheckPasswordAsync(identityShelterUser, shelter.password);
+            return await _userManagerShelter.CheckPasswordAsync(identityShelterUser, shelter.PasswordShelter);
         }
 
         public async Task<bool> CreateUserShelter(string email)
@@ -87,8 +87,8 @@ namespace shelter.Interfaces.Shelter
                 {
                     var shelterCredentials = new ShelterLoginDto
                     {
-                        email = email,
-                        password = generatedPassword,
+                        EmailShelter = email,
+                        PasswordShelter = generatedPassword,
                     };
 
                     return shelterCredentials;
@@ -130,7 +130,7 @@ namespace shelter.Interfaces.Shelter
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Email , shelter.email),
+                new Claim(ClaimTypes.Email , shelter.EmailShelter),
                 new Claim(ClaimTypes.Role, "Admin"),
             };
 
