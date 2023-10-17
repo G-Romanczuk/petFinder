@@ -34,6 +34,22 @@ namespace shelter.Interfaces.Shelter
             _mapper = mapper;
             _configuration = configuration;
         }
+        public async Task<bool> AddShelterDetailsForm(ShelterForm shelterForm)
+        {
+            var shelterModel = _mapper.Map<ShelterModel>( shelterForm );
+            var shelterHabbitsModel = _mapper.Map<ShelterHabbitsModel>( shelterForm );
+            var shelterResidenceModel = _mapper.Map<ShelterResidenceModel>( shelterForm );
+            var shrelterPetDetailsModel = _mapper.Map<ShelterPetDetailsModel>( shelterForm );
+            try
+            {
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
 
         public async Task<bool> LoginUser(ShelterLoginDto shelter)
         {
@@ -48,7 +64,7 @@ namespace shelter.Interfaces.Shelter
 
         public async Task<bool> CreateUserShelter(string email)
         {
-            var emailAlreadyExist = _shelterDbContext.Shelters.Any(shelter => shelter.EmailShelter == email );
+            var emailAlreadyExist = _shelterDbContext.Shelters.Any(shelter => shelter.Email == email );
 
             if ( emailAlreadyExist )
             {
@@ -58,7 +74,7 @@ namespace shelter.Interfaces.Shelter
             {
                 var ShelterUserToCreate = new ShelterModel
                 {
-                    EmailShelter = email,
+                    Email = email,
                 };
 
 
@@ -151,5 +167,7 @@ namespace shelter.Interfaces.Shelter
 
             return token;
         }
+
+       
     }
 }

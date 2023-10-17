@@ -1,4 +1,5 @@
 ﻿using shelter.Dtos.ShelterDtos;
+using shelter.Models.ShelterModels;
 
 namespace shelter.Interfaces.Shelter
 {
@@ -8,5 +9,6 @@ namespace shelter.Interfaces.Shelter
         Task<bool> CreateUserShelter(string email);
         string GenerateTokenString(ShelterLoginDto shelter);
         Task<bool> LoginUser(ShelterLoginDto shelter);
+        Task<bool> AddShelterDetailsForm(ShelterForm shelterForm);
     }
 }

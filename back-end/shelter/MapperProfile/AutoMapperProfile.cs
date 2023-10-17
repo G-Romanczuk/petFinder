@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using shelter.Dtos.UserDtos;
+using shelter.Models.ShelterModels;
 using shelter.Models.UserModels;
 using System.Text.Json;
 
@@ -18,6 +19,11 @@ namespace shelter.MapperProfile
             CreateMap<UserForm, UserHabbitsModel>();
             CreateMap<UserForm, UserResidenceModel>();
             CreateMap<UserForm, UsersDogDetailsModel>();
+
+            CreateMap<ShelterForm, ShelterModel>();
+            CreateMap<ShelterForm, ShelterHabbitsModel>();
+            CreateMap<ShelterForm, ShelterResidenceModel>();
+            CreateMap<ShelterForm, ShelterPetDetailsModel>();
         }
     }
     
