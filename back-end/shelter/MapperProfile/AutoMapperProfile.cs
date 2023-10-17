@@ -11,7 +11,6 @@ namespace shelter.MapperProfile
     {
         public AutoMapperProfile()
         {
-            CreateMap<PetDto, PetModel>(); // Dodaj mapowanie dla PetDto -> PetModel
             CreateMap<UserModel, UserRegisterDto>();
             CreateMap<UserRegisterDto, UserModel>();
             CreateMap<JsonElement, UserModel>();

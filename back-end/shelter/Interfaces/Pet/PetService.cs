@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http.HttpResults;
 using shelter.DataBaseContext.PetDbContext;
 using shelter.Dtos.PetDtos;
 using shelter.Models.PetModels;
@@ -18,22 +19,19 @@ namespace shelter.Interfaces.Pet
             _petDbContext = petDbContext;
             _mapper = mapper;
         }
-        public async Task<bool> AddPet(PetDto pet)
-        {
-             var petToAdd = _mapper.Map<PetModel>(pet);
 
+        public async Task<bool> AddPetForm(PetForm pet)
+        {
+       
             try
             {
-                _petDbContext.Pets.Add(petToAdd);
-                await _petDbContext.SaveChangesAsync();
                 return true;
             }
             catch (Exception)
             {
+
                 return false;
             }
         }
-
-       
     }
 }

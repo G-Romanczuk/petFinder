@@ -19,15 +19,18 @@ namespace shelter.Controllers.PetController
         }
 
         [HttpPost("Add", Name ="AddPet")]
-        public async Task<IActionResult> AddPet([FromBody] PetDto pet)
+        public async Task<IActionResult> AddPet([FromBody] PetForm pet)
         {
-            if(true)
+            if (!ModelState.IsValid) return BadRequest();
+
+            if (await _petService.AddPetForm(pet))
             {
-                await _petService.AddPet(pet);
                 return Ok("Pet was added to the database");
             }
-
+            
             return BadRequest();
+                
+
         }
     }
 }
