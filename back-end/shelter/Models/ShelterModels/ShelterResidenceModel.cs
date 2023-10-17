@@ -12,14 +12,14 @@ namespace shelter.Models.ShelterModels
         public int ShelterModelId { get; set; }
         [ForeignKey("ShelterModelId")]
         public ShelterModel ShelterModel { get; set; }
-        public string HousingType { get; set; }
-        public string HouseOwner { get; set; }
-        public string Floor { get; set; }
-        public string Elevator { get; set; }
-        public string Fence { get; set; }
-        public string FenceHeight { get; set; }
-        public string PropertySize { get; set; }
-        public string HouseMates { get; set; }
-        public string Animals { get; set; }
+        public bool HousingType { get; set; }
+        public bool HouseOwner { get; set; }
+        public bool Floor { get; set; }
+        public bool Elevator { get; set; }
+        public bool Fence { get; set; }
+        public bool FenceHeight { get; set; }
+        public bool PropertySize { get; set; }
+        public bool HouseMates { get; set; }
+        public bool Animals { get; set; }
     }
 }

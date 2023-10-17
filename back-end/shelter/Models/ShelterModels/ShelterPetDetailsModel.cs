@@ -12,10 +12,10 @@ namespace shelter.Models.ShelterModels
         public int ShelterModelId { get; set; }
         [ForeignKey("ShelterModelId")]
         public ShelterModel ShelterModel { get; set; }
-        public string PetPlace { get; set; }
-        public string PetPlaceAlone { get; set; }
-        public string CareAlone { get; set; }
-        public string AnimalsBefore { get; set; }
-        public string AnimalsBeforeText { get; set; }
+        public bool PetPlace { get; set; }
+        public bool PetPlaceAlone { get; set; }
+        public bool CareAlone { get; set; }
+        public bool AnimalsBefore { get; set; }
+        public bool AnimalsBeforeText { get; set; }
     }
 }
