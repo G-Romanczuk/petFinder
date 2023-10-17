@@ -1,5 +1,4 @@
-﻿using shelter.Dtos.PetDtos;
-using shelter.Models.PetModels;
+﻿using shelter.Models.PetModels;
 
 namespace shelter.Interfaces.Pet
 {

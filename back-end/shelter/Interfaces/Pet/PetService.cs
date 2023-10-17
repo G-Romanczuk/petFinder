@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http.HttpResults;
 using shelter.DataBaseContext.PetDbContext;
-using shelter.Dtos.PetDtos;
 using shelter.Models.PetModels;
 
 namespace shelter.Interfaces.Pet

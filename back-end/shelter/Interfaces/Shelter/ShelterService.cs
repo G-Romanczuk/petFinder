@@ -48,7 +48,7 @@ namespace shelter.Interfaces.Shelter
 
         public async Task<bool> CreateUserShelter(string email)
         {
-            var emailAlreadyExist = _shelterDbContext.Shelters.Any(shelter => shelter.Email == email );
+            var emailAlreadyExist = _shelterDbContext.Shelters.Any(shelter => shelter.EmailShelter == email );
 
             if ( emailAlreadyExist )
             {
@@ -58,7 +58,7 @@ namespace shelter.Interfaces.Shelter
             {
                 var ShelterUserToCreate = new ShelterModel
                 {
-                    Email = email,
+                    EmailShelter = email,
                 };
 
 

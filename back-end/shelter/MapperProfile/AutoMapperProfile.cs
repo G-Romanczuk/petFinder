@@ -2,8 +2,6 @@
 using shelter.Dtos.UserDtos;
 using shelter.Models.UserModels;
 using System.Text.Json;
-using shelter.Models.PetModels;
-using shelter.Dtos.PetDtos;
 
 namespace shelter.MapperProfile
 {

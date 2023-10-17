@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using shelter.Dtos.PetDtos;
 using shelter.Interfaces.Pet;
 using shelter.Interfaces.User;
 using shelter.Models.PetModels;

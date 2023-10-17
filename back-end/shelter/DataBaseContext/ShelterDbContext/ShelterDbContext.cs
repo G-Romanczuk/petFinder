@@ -12,5 +12,8 @@ namespace shelter.DataBaseContext.ShelterDbContext
                 
         }
         public DbSet<ShelterModel> Shelters { get; set;}
+        public DbSet<ShelterResidenceModel> ShelterQuestionsResidence { get; set; }
+        public DbSet<ShelterHabbitsModel> ShelterQuestionsHabbits { get; set; }
+        public DbSet<ShelterPetDetailsModel> ShelterQuestionsPetDetails { get; set; }
     }
 }
