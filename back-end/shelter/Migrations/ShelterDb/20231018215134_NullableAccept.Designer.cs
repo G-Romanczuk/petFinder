@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using shelter.DataBaseContext.ShelterDbContext;
 
@@ -10,9 +11,11 @@ using shelter.DataBaseContext.ShelterDbContext;
 namespace shelter.Migrations.ShelterDb
 {
     [DbContext(typeof(ShelterDbContext))]
-    partial class ShelterDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231018215134_NullableAccept")]
+    partial class NullableAccept
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -151,9 +154,6 @@ namespace shelter.Migrations.ShelterDb
                         .HasColumnType("bit");
 
                     b.Property<bool>("HousingType")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IncomeSource")
                         .HasColumnType("bit");
 
                     b.Property<bool>("PropertySize")

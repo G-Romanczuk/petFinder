@@ -45,7 +45,11 @@ builder.Services.AddDbContext<ShelterDbContext>(options =>
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 {
+    options.Password.RequireDigit = true;
     options.Password.RequiredLength = 8;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireLowercase = true;
 })
 .AddEntityFrameworkStores<UserDbContext>()
 .AddDefaultTokenProviders();

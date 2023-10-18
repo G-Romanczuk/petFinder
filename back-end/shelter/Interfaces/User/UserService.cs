@@ -121,9 +121,8 @@ namespace shelter.Interfaces.User
 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine(ex.Message);
                 return false;
             }
             

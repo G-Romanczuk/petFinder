@@ -12,6 +12,7 @@ namespace shelter.Models.ShelterModels
         public int ShelterModelId { get; set; }
         [ForeignKey("ShelterModelId")]
         public ShelterModel ShelterModel { get; set; }
+        public bool IncomeSource { get; set; }
         public bool HousingType { get; set; }
         public bool HouseOwner { get; set; }
         public bool Floor { get; set; }
