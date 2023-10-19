@@ -403,8 +403,10 @@ store.postShelterForm(shelterForm)
 </script>
 
 <style lang="css">
+@import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
+
 .title {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Gruppo', sans-serif;
   font-size: xxx-large;
   font-weight: bolder;
   font-stretch: wider;
@@ -413,7 +415,7 @@ store.postShelterForm(shelterForm)
 }
 
 .p {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Gruppo', sans-serif;
   font-size: medium;
   color: rgb(145, 87, 124);
   text-align: center;

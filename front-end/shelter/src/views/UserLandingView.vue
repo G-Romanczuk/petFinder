@@ -56,18 +56,18 @@
                 <h1 style="color: black" class="main-text">Menu Adopcji</h1>
                 <div style="height: 2px; width: 80%; background-color: rgb(143, 83, 122) ; margin: 0 auto; opacity: 0.5;"></div>
               </div>
-              <div style="padding: 10px">
+              <div style="padding: 5px">
                 <h3 style="color: black; font-size: medium" class="text">
                   <v-row style="width: fit-content; margin: 0 auto; ">
                    
                       <FindPopup />
-                    <v-divider vertical :thickness="20" class="border-opacity-0"></v-divider>
+                    <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
                     <v-btn elevation="8" class="text">
                       <v-icon color="rgb(143, 83, 122)" icon="mdi-heart"> </v-icon>
                       Polubione</v-btn>
-                    <v-divider vertical :thickness="20" class="border-opacity-0"></v-divider>
+                    <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
                     <UserForm />
-                    <v-divider vertical :thickness="20" class="border-opacity-0"></v-divider>
+                    <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
                     <v-btn elevation="8" class="text"> <v-icon color="rgb(143, 83, 122)" icon="mdi-briefcase-variant-outline"></v-icon>Moje adopcje</v-btn>
                   </v-row>
                   
@@ -118,11 +118,11 @@
                   <v-row style="width: fit-content; margin: 0 auto">
                     <v-btn elevation="8" class="text">
                       <v-icon color="rgb(143, 83, 122)" icon="mdi-paw"> </v-icon> Zmień hasło</v-btn>
-                    <v-divider vertical :thickness="20" class="border-opacity-0"></v-divider>
+                    <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
                     <v-btn elevation="8" class="text">
                       <v-icon color="rgb(143, 83, 122)" icon="mdi-heart"> </v-icon>
                       Zmień Język</v-btn>
-                    <v-divider vertical :thickness="20" class="border-opacity-0"></v-divider>
+                    <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
                     <v-btn elevation="8" class="text"> <v-icon color="rgb(143, 83, 122)" icon="mdi-briefcase-variant-outline"></v-icon>Usuń konto</v-btn>
                   </v-row>
                   
@@ -199,8 +199,10 @@ window.addEventListener("scroll", reveal);
 <script lang="js"></script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
+
 .title {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Gruppo', sans-serif;
   font-size: xxx-large;
   font-weight: bolder;
   font-stretch: wider;
@@ -209,7 +211,7 @@ window.addEventListener("scroll", reveal);
 }
 
 .little-title {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Gruppo', sans-serif;
   font-weight: bold;
   font-size: medium;
   color: rgb(175, 126, 158);
@@ -231,7 +233,7 @@ window.addEventListener("scroll", reveal);
 
 .text {
   text-align: justify;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: 'Gruppo', sans-serif;
 }
 
 .reveal {

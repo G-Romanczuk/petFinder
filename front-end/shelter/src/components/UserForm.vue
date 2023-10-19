@@ -432,8 +432,10 @@ function onInvalidSubmit({ values, errors, results }) {
 </script>
 
 <style lang="css">
+@import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
+
 .title {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Gruppo', sans-serif;
   font-size: xxx-large;
   font-weight: bolder;
   font-stretch: wider;
@@ -442,7 +444,7 @@ function onInvalidSubmit({ values, errors, results }) {
 }
 
 .p {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Gruppo', sans-serif;
   font-size: medium;
   color: rgb(175, 126, 158);
   text-align: center;

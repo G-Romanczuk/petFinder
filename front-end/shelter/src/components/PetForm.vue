@@ -124,7 +124,7 @@ var show = ref(false)
 var urls = []
 
 var name = ref(store.petData.name)
-var images = ref(store.img)
+var images = ref(store.petData.images)
 var type = ref(store.petData.type)
 var gender = ref(store.petData.gender)
 var castration = ref(store.petData.castration)
@@ -181,23 +181,12 @@ const onFileChange = (e) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 //for tests
 async function petFormTest() {
 
     var petForm = {
         name: name.value,
-        images: images.value,
+        images: images,
         type: type.value,
         gender: gender.value,
         castration: castration.value,
@@ -222,8 +211,10 @@ async function petFormTest() {
 </script>
 
 <style lang="css">
+@import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
+
 .title {
-    font-family: "Courier New", Courier, monospace;
+    font-family: 'Gruppo', sans-serif;
     font-size: xxx-large;
     font-weight: bolder;
     font-stretch: wider;
@@ -232,7 +223,7 @@ async function petFormTest() {
 }
 
 .p {
-    font-family: "Courier New", Courier, monospace;
+    font-family: 'Gruppo', sans-serif;
     font-size: medium;
     color: rgb(175, 126, 158);
     text-align: center;
