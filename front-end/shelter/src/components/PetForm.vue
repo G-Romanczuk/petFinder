@@ -114,17 +114,17 @@
 <script setup lang="js">
 import { ref } from 'vue'
 import { usePetStore } from '@/store/pet';
-var image = ref()
-
+import { useUserStore } from '@/store/user';
 
 
 const isValid = ref(true)
 const store = usePetStore();
+const userStore = useUserStore();
 var show = ref(false)
 var urls = []
 
 var name = ref(store.petData.name)
-var images = ref(store.img)
+var images = ref(store.petData.images)
 var type = ref(store.petData.type)
 var gender = ref(store.petData.gender)
 var castration = ref(store.petData.castration)
@@ -140,8 +140,9 @@ var otherCats = ref(store.petData.otherCats)
 var cuddly = ref(store.petData.cuddly)
 var temper = ref(store.petData.temper)
 var text = ref(store.petData.text)
-
+var shelterEmail = ref(userStore.loggedShelter)
 var petData = {
+    shelter: shelterEmail,
     name: name,
     images: images,
     type: type,
@@ -171,33 +172,29 @@ function Submit(petData) {
 }
 
 const onFileChange = (e) => {
+    show.value = false
+    urls = []
+    images = []
+     images = e.target.files;
+    console.log(e.target.files)
     for(var i = 0; i < e.target.files.length; i++){
-        images[i] = e.target.files[i];
+       
         urls[i] = URL.createObjectURL(images[i])
     }
     show.value = true
-    console.log(urls)
     };
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 //for tests
 async function petFormTest() {
 
+    console.log(images)
+
     var petForm = {
+        shelter: shelterEmail.value,
         name: name.value,
-        images: images.value,
+        images: images,
         type: type.value,
         gender: gender.value,
         castration: castration.value,
@@ -214,7 +211,8 @@ async function petFormTest() {
         temper: temper.value,
         text: text.value,
     }
-
+ 
+    console.log(petForm)
     store.postPetForm(petForm)
 }
 
@@ -222,8 +220,10 @@ async function petFormTest() {
 </script>
 
 <style lang="css">
+@import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
+
 .title {
-    font-family: "Courier New", Courier, monospace;
+    font-family: 'Gruppo', sans-serif;
     font-size: xxx-large;
     font-weight: bolder;
     font-stretch: wider;
@@ -232,7 +232,7 @@ async function petFormTest() {
 }
 
 .p {
-    font-family: "Courier New", Courier, monospace;
+    font-family: 'Gruppo', sans-serif;
     font-size: medium;
     color: rgb(175, 126, 158);
     text-align: center;
