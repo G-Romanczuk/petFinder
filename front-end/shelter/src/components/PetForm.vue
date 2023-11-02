@@ -21,8 +21,8 @@
 
                         <p class="p">Zdjęcia (max 5)</p>
 
-                        <v-file-input type="file" @change="onFileChange" :rules="[(v) => v.length <= 5 || 'Maksymalnie 5 plików']"  prepend-icon="mdi-camera" accept=".jpg,.png" chips
-                            multiple show-size counter  />
+                        <v-file-input type="file" name ="images" @change="onFileChange" :rules="[(v) => v.length <= 5 || 'Maksymalnie 5 plików']"  prepend-icon="mdi-camera" accept=".jpg,.png" chips
+                            multiple show-size counter />
                         <div style=" display: flexbox;" v-if="show">
                             <v-row>
                                 <v-col>
@@ -114,17 +114,17 @@
 <script setup lang="js">
 import { ref } from 'vue'
 import { usePetStore } from '@/store/pet';
-var image = ref()
-
+import { useUserStore } from '@/store/user';
 
 
 const isValid = ref(true)
 const store = usePetStore();
+const userStore = useUserStore();
 var show = ref(false)
 var urls = []
 
 var name = ref(store.petData.name)
-var images = ref(store.img)
+var images = store.petData.images
 var type = ref(store.petData.type)
 var gender = ref(store.petData.gender)
 var castration = ref(store.petData.castration)
@@ -140,8 +140,9 @@ var otherCats = ref(store.petData.otherCats)
 var cuddly = ref(store.petData.cuddly)
 var temper = ref(store.petData.temper)
 var text = ref(store.petData.text)
-
+var shelterEmail = ref(userStore.loggedShelter)
 var petData = {
+    shelter: shelterEmail,
     name: name,
     images: images,
     type: type,
@@ -169,35 +170,42 @@ function Submit(petData) {
     store.petData = petData;
    
 }
-
+    
 const onFileChange = (e) => {
+    show.value = false
+    urls = []
+    images = []
+    console.log(images.length)
     for(var i = 0; i < e.target.files.length; i++){
-        images[i] = e.target.files[i];
+        images[i] = e.target.files[i]
         urls[i] = URL.createObjectURL(images[i])
     }
     show.value = true
-    console.log(urls)
+    console.log(images)
     };
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 //for tests
 async function petFormTest() {
+   const formData = new FormData();
+// //   formData.append("shelter", shelterEmail.value);
 
-    var petForm = {
+//   formData.append("images", images[0]);
+//   formData.append("images", images[1]);
+//   formData.append("images", images[2]);
+//   formData.append("images", images[3]);
+//   formData.append("images", images[4]);
+
+for(let i=0 ; i<images.length;i++)
+{
+    formData.append("images", images[i])
+}
+
+  var petForm = {
+        shelter: shelterEmail.value,
+        images:images,
         name: name.value,
-        images: images.value,
         type: type.value,
         gender: gender.value,
         castration: castration.value,
@@ -215,6 +223,9 @@ async function petFormTest() {
         text: text.value,
     }
 
+    console.log(petForm)
+    
+    console.log()
     store.postPetForm(petForm)
 }
 
@@ -222,8 +233,10 @@ async function petFormTest() {
 </script>
 
 <style lang="css">
+@import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
+
 .title {
-    font-family: "Courier New", Courier, monospace;
+    font-family: 'Gruppo', sans-serif;
     font-size: xxx-large;
     font-weight: bolder;
     font-stretch: wider;
@@ -232,7 +245,7 @@ async function petFormTest() {
 }
 
 .p {
-    font-family: "Courier New", Courier, monospace;
+    font-family: 'Gruppo', sans-serif;
     font-size: medium;
     color: rgb(175, 126, 158);
     text-align: center;

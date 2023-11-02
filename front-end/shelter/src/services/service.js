@@ -120,6 +120,16 @@ export default {
     //    temper: temper.value,
     //    text: text.value,
     // }
-    return await axios.post(baseURL + "/api/test", data);
+    //const newData = Array.from(data);
+
+    return await axios
+      .post(baseURL + "/Shelter/TestImg", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      });
   },
 };

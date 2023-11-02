@@ -87,6 +87,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IShelterService, ShelterService>();
 builder.Services.AddScoped<IPetService, PetService>();
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 

@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using shelter.DataBaseContext.ShelterDbContext;
 using shelter.Dtos.ShelterDtos;
 using shelter.Interfaces.Shelter;
+using shelter.Models.PetModels;
+using shelter.Models.ShelterModels;
+using System.Net.Mime;
 
 namespace shelter.Controllers.ShelterController
 {
@@ -18,6 +21,16 @@ namespace shelter.Controllers.ShelterController
         )
         {
             _shelterService = shelterService;
+        }
+
+        [HttpPost("DetailsForm", Name ="AddShelterDetailsForm")]
+        public async Task <IActionResult> AddShelterDetailsForm([FromBody] ShelterForm shelterForm)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+
+            if(await _shelterService.AddShelterDetailsForm(shelterForm)) return Ok();
+
+            return BadRequest();
         }
 
         [HttpPost("Create", Name = "CreateShelterCredentials")]
@@ -47,6 +60,11 @@ namespace shelter.Controllers.ShelterController
             }
             return BadRequest();
         }
-
+        [HttpPost("TestImg", Name ="To jest test")]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> img([FromForm] PetForm petForm)
+        {
+            return Ok(petForm);
+        }
     }
 }
