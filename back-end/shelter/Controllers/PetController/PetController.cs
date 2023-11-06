@@ -21,9 +21,13 @@ namespace shelter.Controllers.PetController
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> AddPet([FromForm] PetForm pet)
         {
-            return Ok(pet);
-                
+            if (!ModelState.IsValid) return BadRequest();
+            if (await _petService.AddPetForm(pet))
+            {
+                return Ok();
+            }
 
+            return BadRequest( new {message = "Wrong Data"});
         }
     }
 }

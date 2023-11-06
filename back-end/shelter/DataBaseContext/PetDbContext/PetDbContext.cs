@@ -11,6 +11,7 @@ namespace shelter.DataBaseContext.PetDbContext
 
         }
         public DbSet<PetModel> Pets { get; set; }
+        public DbSet<PetImg> PetImgs { get; set; }
        
     }
 }

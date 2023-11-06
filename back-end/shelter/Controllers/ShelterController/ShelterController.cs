@@ -4,6 +4,7 @@ using shelter.DataBaseContext.ShelterDbContext;
 using shelter.Dtos.ShelterDtos;
 using shelter.Interfaces.Shelter;
 using shelter.Models.ShelterModels;
+using System.Net.Mime;
 
 namespace shelter.Controllers.ShelterController
 {
@@ -19,16 +20,6 @@ namespace shelter.Controllers.ShelterController
         )
         {
             _shelterService = shelterService;
-        }
-
-        [HttpPost("DetailsForm", Name ="AddShelterDetailsForm")]
-        public async Task <IActionResult> AddShelterDetailsForm([FromBody] ShelterForm shelterForm)
-        {
-            if (!ModelState.IsValid) return BadRequest();
-
-            if(await _shelterService.AddShelterDetailsForm(shelterForm)) return Ok();
-
-            return BadRequest();
         }
 
         [HttpPost("Create", Name = "CreateShelterCredentials")]
@@ -59,6 +50,5 @@ namespace shelter.Controllers.ShelterController
             return BadRequest();
         }
         
-
     }
 }
