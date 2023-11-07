@@ -97,7 +97,7 @@ export default {
     //         text: text.value
     //     }
     //   }
-    return await axios.post(baseURL + "/api/test", data);
+    return await axios.post(baseURL + "/Shelter/DetailsForm", data);
   },
   async postPetForm(data) {
     console.log(data);

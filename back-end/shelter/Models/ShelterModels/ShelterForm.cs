@@ -14,25 +14,25 @@
 
     public class Questions
     {
-        public bool IncomeSource { get; set; }
-        public bool Lifestyle { get; set; }
-        public bool HousingType { get; set; }
-        public bool HouseOwner { get; set; }
-        public bool HoursAlone { get; set; }
-        public bool Floor { get; set; }
-        public bool Elevator { get; set; }
-        public bool WalksNumber { get; set; }
-        public bool WalksTime { get; set; }
-        public bool Fence { get; set; }
-        public bool FenceHeight { get; set; }
-        public bool PropertySize { get; set; }
-        public bool PetPlace { get; set; }
-        public bool PetPlaceAlone { get; set; }
-        public bool CareAlone { get; set; }
-        public bool HouseMates { get; set; }
-        public bool Animals { get; set; }
-        public bool AnimalsBefore { get; set; }
-        public bool AnimalsBeforeText { get; set; }
-        public bool Text { get; set; }
+        public bool? IncomeSource { get; set; }
+        public bool? Lifestyle { get; set; }
+        public bool? HousingType { get; set; }
+        public bool? HouseOwner { get; set; }
+        public bool? HoursAlone { get; set; }
+        public bool? Floor { get; set; }
+        public bool? Elevator { get; set; }
+        public bool? WalksNumber { get; set; }
+        public bool? WalksTime { get; set; }
+        public bool? Fence { get; set; }
+        public bool? FenceHeight { get; set; }
+        public bool? PropertySize { get; set; }
+        public bool? PetPlace { get; set; }
+        public bool? PetPlaceAlone { get; set; }
+        public bool? CareAlone { get; set; }
+        public bool? HouseMates { get; set; }
+        public bool? Animals { get; set; }
+        public bool? AnimalsBefore { get; set; }
+        public bool? AnimalsBeforeText { get; set; }
+        public bool? Text { get; set; }
     }
 }
