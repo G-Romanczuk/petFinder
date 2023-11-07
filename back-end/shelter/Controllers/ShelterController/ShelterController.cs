@@ -22,6 +22,16 @@ namespace shelter.Controllers.ShelterController
             _shelterService = shelterService;
         }
 
+        [HttpPost("DetailsForm", Name = "AddShelterDetailsForm")]
+        public async Task<IActionResult> AddShelterDetailsForm([FromBody] ShelterForm shelterForm)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+
+            if (await _shelterService.AddShelterDetailsForm(shelterForm)) return Ok();
+
+            return BadRequest();
+        }
+
         [HttpPost("Create", Name = "CreateShelterCredentials")]
         public async Task<IActionResult> CreateShelterCredentials([FromBody] string email)
         {
