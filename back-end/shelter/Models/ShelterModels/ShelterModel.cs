@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using shelter.Models.PetModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace shelter.Models.ShelterModels
 {
@@ -17,6 +18,7 @@ namespace shelter.Models.ShelterModels
         public List<ShelterResidenceModel> ShelterResidence { get; set; }
         public List<ShelterPetDetailsModel> ShelterPetDetails { get; set; }
         public List<ShelterHabbitsModel> ShelterHabbits { get; set; }
+        public List<PetModel> Pets { get; set; }
 
     }
 }

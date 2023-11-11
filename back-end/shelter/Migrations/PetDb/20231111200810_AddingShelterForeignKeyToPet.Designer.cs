@@ -2,17 +2,20 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using shelter.DataBaseContext.ShelterDbContext;
+using shelter.DataBaseContext.PetDbContext;
 
 #nullable disable
 
-namespace shelter.Migrations.ShelterDb
+namespace shelter.Migrations.PetDb
 {
-    [DbContext(typeof(ShelterDbContext))]
-    partial class ShelterDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(PetDbContext))]
+    [Migration("20231111200810_AddingShelterForeignKeyToPet")]
+    partial class AddingShelterForeignKeyToPet
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,7 +43,7 @@ namespace shelter.Migrations.ShelterDb
 
                     b.HasIndex("PetModelId");
 
-                    b.ToTable("PetImg");
+                    b.ToTable("PetImgs");
                 });
 
             modelBuilder.Entity("shelter.Models.PetModels.PetModel", b =>
@@ -106,7 +109,7 @@ namespace shelter.Migrations.ShelterDb
 
                     b.HasIndex("ShelterModelId");
 
-                    b.ToTable("PetModel");
+                    b.ToTable("Pets");
                 });
 
             modelBuilder.Entity("shelter.Models.ShelterModels.ShelterHabbitsModel", b =>
@@ -139,7 +142,7 @@ namespace shelter.Migrations.ShelterDb
 
                     b.HasIndex("ShelterModelId");
 
-                    b.ToTable("ShelterQuestionsHabbits");
+                    b.ToTable("ShelterHabbitsModel");
                 });
 
             modelBuilder.Entity("shelter.Models.ShelterModels.ShelterModel", b =>
@@ -173,7 +176,7 @@ namespace shelter.Migrations.ShelterDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("Shelters");
+                    b.ToTable("ShelterModel");
                 });
 
             modelBuilder.Entity("shelter.Models.ShelterModels.ShelterPetDetailsModel", b =>
@@ -206,7 +209,7 @@ namespace shelter.Migrations.ShelterDb
 
                     b.HasIndex("ShelterModelId");
 
-                    b.ToTable("ShelterQuestionsPetDetails");
+                    b.ToTable("ShelterPetDetailsModel");
                 });
 
             modelBuilder.Entity("shelter.Models.ShelterModels.ShelterResidenceModel", b =>
@@ -254,7 +257,7 @@ namespace shelter.Migrations.ShelterDb
 
                     b.HasIndex("ShelterModelId");
 
-                    b.ToTable("ShelterQuestionsResidence");
+                    b.ToTable("ShelterResidenceModel");
                 });
 
             modelBuilder.Entity("shelter.Models.PetModels.PetImg", b =>

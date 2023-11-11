@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using shelter.Models.ShelterModels;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace shelter.Models.PetModels
 {
@@ -6,6 +8,9 @@ namespace shelter.Models.PetModels
     {
         [Key]
         public int Id { get; set; }
+        public int ShelterModelId { get; set; }
+        [ForeignKey("ShelterModelId")]
+        public ShelterModel ShelterModel { get; set; }
         public string? Name { get; set; }
         public string? Type { get; set; }
         public string? Gender { get; set; }
