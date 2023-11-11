@@ -37,7 +37,7 @@ namespace shelter.Interfaces.Pet
 
                 var shelterId = _shelterDbContext.Shelters
                     .Where(shEmail=>shEmail.Email == pet.ShelterEmail)
-                    .Select(shEmail => shEmail.Id)
+                    .Select(shId => shId.Id)
                     .FirstOrDefault();
 
                 newPetModel.ShelterModelId = shelterId;
