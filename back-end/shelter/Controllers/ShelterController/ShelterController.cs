@@ -59,6 +59,27 @@ namespace shelter.Controllers.ShelterController
             }
             return BadRequest();
         }
-        
+
+        public async Task<IActionResult> GetAllPetsBelongsToShelter ( string shelterEmail)
+        {
+            try
+            {
+                var pets = await _shelterService.GetAllPetBelongsToShelter(shelterEmail);
+
+                if (pets.Count>0)
+                {
+                    return Ok(pets);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception)
+            {
+
+                return BadRequest();
+            }
+        }
     }
 }

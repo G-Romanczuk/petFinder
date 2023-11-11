@@ -4,10 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using shelter.DataBaseContext.PetDbContext;
 using shelter.DataBaseContext.ShelterDbContext;
 using shelter.DataBaseContext.UserDbContext;
 using shelter.Dtos.ShelterDtos;
 using shelter.Dtos.UserDtos;
+using shelter.Models.PetModels;
 using shelter.Models.ShelterModels;
 using shelter.Models.UserModels;
 using System.IdentityModel.Tokens.Jwt;
@@ -20,6 +22,7 @@ namespace shelter.Interfaces.Shelter
     public class ShelterService : IShelterService
     {
         private readonly ShelterDbContext _shelterDbContext;
+        private readonly PetDbContext _petDbContext;
         private readonly UserManager<IdentityUser> _userManagerShelter;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
@@ -28,6 +31,7 @@ namespace shelter.Interfaces.Shelter
         public ShelterService
         (
             ShelterDbContext shelterDbContext,
+            PetDbContext petDbContext,
             UserManager<IdentityUser> userManagerShelter,
             IMapper mapper,
             IConfiguration configuration,
@@ -36,6 +40,7 @@ namespace shelter.Interfaces.Shelter
         )
         {
             _shelterDbContext = shelterDbContext;
+            _petDbContext = petDbContext;
             _userManagerShelter = userManagerShelter;
             _mapper = mapper;
             _configuration = configuration;
@@ -200,8 +205,26 @@ namespace shelter.Interfaces.Shelter
                 return null;
             }
         }
-       
-       
+
+        public async Task<List<PetModel>> GetAllPetsBelongsToShelter(string shelterEmail)
+        {
+            var shelterId = await _shelterDbContext.Shelters
+                .Where(shEmail => shEmail.Email == shelterEmail)
+                .Select(shId => shId.Id)
+                .FirstOrDefaultAsync();
+
+            if (shelterId != 0)
+            {
+                return await _petDbContext.Pets
+                    .Where(shId => shId.ShelterModelId == shelterId)
+                    .ToListAsync();
+            }
+            else
+            {
+                return new List<PetModel>();
+            }
+        }
+
         public string GeneratePassword(string password)
         {
             var passwordHasher = new PasswordHasher<IdentityUser>(_passwordHasherOptions);

@@ -1,4 +1,5 @@
 ﻿using shelter.Dtos.ShelterDtos;
+using shelter.Models.PetModels;
 using shelter.Models.ShelterModels;
 
 namespace shelter.Interfaces.Shelter
@@ -10,5 +11,6 @@ namespace shelter.Interfaces.Shelter
         string GenerateTokenString(ShelterLoginDto shelter);
         Task<bool> LoginUser(ShelterLoginDto shelter);
         Task<bool> AddShelterDetailsForm(ShelterForm shelterForm);
+        Task<List<PetModel>> GetAllPetBelongsToShelter(string shelterEmail);
     }
 }
