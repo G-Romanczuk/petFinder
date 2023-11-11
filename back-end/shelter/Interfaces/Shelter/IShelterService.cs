@@ -11,6 +11,6 @@ namespace shelter.Interfaces.Shelter
         string GenerateTokenString(ShelterLoginDto shelter);
         Task<bool> LoginUser(ShelterLoginDto shelter);
         Task<bool> AddShelterDetailsForm(ShelterForm shelterForm);
-        Task<List<PetModel>> GetAllPetBelongsToShelter(string shelterEmail);
+        Task<List<PetModel>> GetAllPetsBelongsToShelter(string shelterEmail);
     }
 }
