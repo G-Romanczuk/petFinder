@@ -64,7 +64,7 @@ namespace shelter.Controllers.ShelterController
         {
             try
             {
-                var pets = await _shelterService.GetAllPetBelongsToShelter(shelterEmail);
+                var pets = await _shelterService.GetAllPetsBelongsToShelter(shelterEmail);
 
                 if (pets.Count>0)
                 {
