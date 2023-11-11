@@ -60,6 +60,7 @@ namespace shelter.Controllers.ShelterController
             return BadRequest();
         }
 
+        [HttpGet("GetPets", Name ="GetAllPetsBelongsToShelter")]
         public async Task<IActionResult> GetAllPetsBelongsToShelter ( string shelterEmail)
         {
             try
