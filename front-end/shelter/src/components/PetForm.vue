@@ -124,7 +124,7 @@ var show = ref(false)
 var urls = []
 
 var name = ref(store.petData.name)
-var images = store.petData.images
+var images = ref(store.petData.images)
 var type = ref(store.petData.type)
 var gender = ref(store.petData.gender)
 var castration = ref(store.petData.castration)
@@ -174,14 +174,14 @@ function Submit(petData) {
 const onFileChange = (e) => {
     show.value = false
     urls = []
-    images = [, , , , ,]
-    console.log(images.length)
+    images = []
+     images = e.target.files;
+    console.log(e.target.files)
     for(var i = 0; i < e.target.files.length; i++){
-        images[i] = e.target.files[i]
+       
         urls[i] = URL.createObjectURL(images[i])
     }
     show.value = true
-    console.log(images)
     };
 
 
@@ -212,18 +212,8 @@ async function petFormTest() {
         text: text.value,
     }
  
-    const formData = new FormData();
-//   formData.append("shelter", shelterEmail.value);
-  formData.append("name", name.value);
-  formData.append("images0", images[0]);
-  formData.append("images1", images[1]);
-  formData.append("images2", images[2]);
-  formData.append("images3", images[3]);
-  formData.append("images4", images[4]);
-
-
     console.log(petForm)
-    store.postPetForm(formData)
+    store.postPetForm(petForm)
 }
 
 
