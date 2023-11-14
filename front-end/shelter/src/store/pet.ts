@@ -8,7 +8,7 @@ export const usePetStore = defineStore("pet", {
        img: null,
        petData: {
         name: '',
-        images: {},
+        images: [],
         type: '',
         gender: '',
         castration: '',

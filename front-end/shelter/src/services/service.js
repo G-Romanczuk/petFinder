@@ -97,11 +97,12 @@ export default {
         //         text: text.value
         //     }
         //   }
-        return await axios.post(baseURL + '/api/test', data);
+        return await axios.post(baseURL + '/api/test', data, );
     },
     async postPetForm(data) {
         //data
         // {
+        //    shelter: shelterEmail.value,                                                                   
         //    name: name.value,
         //    images: images.value,
         //    type: type.value,
@@ -120,6 +121,12 @@ export default {
         //    temper: temper.value,
         //    text: text.value,
         // }
-        return await axios.post(baseURL + '/api/test', data);
+    
+
+        return await axios.post(baseURL + '/api/test', data,  {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+          });
     },
 }

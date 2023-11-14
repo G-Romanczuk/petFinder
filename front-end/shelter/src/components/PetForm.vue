@@ -114,17 +114,17 @@
 <script setup lang="js">
 import { ref } from 'vue'
 import { usePetStore } from '@/store/pet';
-var image = ref()
-
+import { useUserStore } from '@/store/user';
 
 
 const isValid = ref(true)
 const store = usePetStore();
+const userStore = useUserStore();
 var show = ref(false)
 var urls = []
 
 var name = ref(store.petData.name)
-var images = ref(store.petData.images)
+var images = store.petData.images
 var type = ref(store.petData.type)
 var gender = ref(store.petData.gender)
 var castration = ref(store.petData.castration)
@@ -140,8 +140,9 @@ var otherCats = ref(store.petData.otherCats)
 var cuddly = ref(store.petData.cuddly)
 var temper = ref(store.petData.temper)
 var text = ref(store.petData.text)
-
+var shelterEmail = ref(userStore.loggedShelter)
 var petData = {
+    shelter: shelterEmail,
     name: name,
     images: images,
     type: type,
@@ -171,12 +172,16 @@ function Submit(petData) {
 }
 
 const onFileChange = (e) => {
+    show.value = false
+    urls = []
+    images = [, , , , ,]
+    console.log(images.length)
     for(var i = 0; i < e.target.files.length; i++){
-        images[i] = e.target.files[i];
+        images[i] = e.target.files[i]
         urls[i] = URL.createObjectURL(images[i])
     }
     show.value = true
-    console.log(urls)
+    console.log(images)
     };
 
 
@@ -184,7 +189,10 @@ const onFileChange = (e) => {
 //for tests
 async function petFormTest() {
 
+    console.log(images)
+
     var petForm = {
+        shelter: shelterEmail.value,
         name: name.value,
         images: images,
         type: type.value,
@@ -203,8 +211,19 @@ async function petFormTest() {
         temper: temper.value,
         text: text.value,
     }
+ 
+    const formData = new FormData();
+//   formData.append("shelter", shelterEmail.value);
+  formData.append("name", name.value);
+  formData.append("images0", images[0]);
+  formData.append("images1", images[1]);
+  formData.append("images2", images[2]);
+  formData.append("images3", images[3]);
+  formData.append("images4", images[4]);
 
-    store.postPetForm(petForm)
+
+    console.log(petForm)
+    store.postPetForm(formData)
 }
 
 

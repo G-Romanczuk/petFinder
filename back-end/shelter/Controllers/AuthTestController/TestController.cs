@@ -15,19 +15,19 @@ namespace shelter.Controllers.AuthTestController
     
     public class TestController : ControllerBase
     {
-       // [Authorize]
+        // [Authorize]
         //[HttpGet]
         //public string Get()
         //{
         //    return "U reached me";
         //}
         [HttpPost]
-        public string Pass(Klasa test) 
+        public async Task<IActionResult> img(IFormFile formFile)
         {
-            var x = "true";
-                return x;
+            return Ok(formFile);
         }
     }
+}
 
     
-}
+
