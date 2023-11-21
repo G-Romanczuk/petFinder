@@ -73,5 +73,28 @@ namespace shelter.Interfaces.Pet
                 return false;
             }
         }
+
+        public async Task<bool> UpdatePet(PetForm pet)
+        {
+            try
+            {
+                var newPetModel = _mapper.Map<PetModel>(pet);
+
+                var petToUpdate = _petDbContext.Pets.FirstOrDefaultAsync(petId=>petId.Id == pet.Id);  
+                if (petToUpdate == null) 
+                {
+                    return false;
+                }
+
+               var updatedPet = await _mapper.Map(newPetModel, petToUpdate);
+                _petDbContext.Pets.Update(updatedPet);
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
     }
 }

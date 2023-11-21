@@ -5,5 +5,6 @@ namespace shelter.Interfaces.Pet
     public interface IPetService
     {
         Task<bool> AddPetForm(PetForm pet);
+        Task<bool> UpdatePet(PetForm pet);
     }
 }

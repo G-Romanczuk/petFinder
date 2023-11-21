@@ -29,5 +29,19 @@ namespace shelter.Controllers.PetController
 
             return BadRequest( new {message = "Wrong Data"});
         }
+        [HttpPost("Update", Name = "UpdatePet")]
+        public async Task<IActionResult> UpdatePet([FromForm] PetForm pet)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+            if (await _petService.UpdatePet(pet))
+            {
+                return Ok();
+            }
+            return BadRequest(new { message = "Wrong Data" });
+            
+
+            
+        }
+
     }
 }
