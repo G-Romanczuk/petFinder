@@ -4,9 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using shelter.DataBaseContext.PetDbContext;
-using shelter.DataBaseContext.ShelterDbContext;
-using shelter.DataBaseContext.UserDbContext;
+using shelter.DataBaseContext.ShelterPetFinderDbContext;
 using shelter.Dtos.ShelterDtos;
 using shelter.Dtos.UserDtos;
 using shelter.Models.PetModels;
@@ -21,8 +19,7 @@ namespace shelter.Interfaces.Shelter
 { 
     public class ShelterService : IShelterService
     {
-        private readonly ShelterDbContext _shelterDbContext;
-        private readonly PetDbContext _petDbContext;
+        private readonly ShelterPetFinderDbContext _shelterPetFinderDbContext;
         private readonly UserManager<IdentityUser> _userManagerShelter;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
@@ -30,8 +27,7 @@ namespace shelter.Interfaces.Shelter
 
         public ShelterService
         (
-            ShelterDbContext shelterDbContext,
-            PetDbContext petDbContext,
+            ShelterPetFinderDbContext shelterPetFinderDbContext,
             UserManager<IdentityUser> userManagerShelter,
             IMapper mapper,
             IConfiguration configuration,
@@ -39,8 +35,7 @@ namespace shelter.Interfaces.Shelter
 
         )
         {
-            _shelterDbContext = shelterDbContext;
-            _petDbContext = petDbContext;
+            _shelterPetFinderDbContext = shelterPetFinderDbContext;
             _userManagerShelter = userManagerShelter;
             _mapper = mapper;
             _configuration = configuration;
@@ -54,7 +49,7 @@ namespace shelter.Interfaces.Shelter
             var shelterPetDetailsModel = _mapper.Map<ShelterPetDetailsModel>( shelterForm.Questions );
             try
             {
-                var shelterModelToUpdate = await _shelterDbContext.Shelters.FirstOrDefaultAsync(se=>se.Email == shelterModel.Email);
+                var shelterModelToUpdate = await _shelterPetFinderDbContext.Shelters.FirstOrDefaultAsync(se=>se.Email == shelterModel.Email);
                 if (shelterModelToUpdate == null)
                 {
                     return false;
@@ -68,14 +63,14 @@ namespace shelter.Interfaces.Shelter
                 shelterModelToUpdate.Town = shelterModel.Town;
                 shelterModelToUpdate.Adress = shelterModel.Adress;
                 shelterModelToUpdate.Url = shelterModel.Url;
-                await _shelterDbContext.SaveChangesAsync();
+                await _shelterPetFinderDbContext.SaveChangesAsync();
 
-                var shelterHabbitsModelToUpdate = await _shelterDbContext.ShelterQuestionsHabbits.FirstOrDefaultAsync(sid=>sid.ShelterModelId == shelterModelToUpdate.Id);
+                var shelterHabbitsModelToUpdate = await _shelterPetFinderDbContext.ShelterQuestionsHabbits.FirstOrDefaultAsync(sid=>sid.ShelterModelId == shelterModelToUpdate.Id);
                 if (shelterHabbitsModelToUpdate == null)
                 {
                     shelterHabbitsModel.ShelterModelId = shelterModelToUpdate.Id;
-                    _shelterDbContext.ShelterQuestionsHabbits.Add(shelterHabbitsModel);
-                    await _shelterDbContext.SaveChangesAsync();
+                    _shelterPetFinderDbContext.ShelterQuestionsHabbits.Add(shelterHabbitsModel);
+                    await _shelterPetFinderDbContext.SaveChangesAsync();
                 }
                 else
                 {
@@ -84,15 +79,15 @@ namespace shelter.Interfaces.Shelter
                     shelterHabbitsModelToUpdate.WalksNumber = shelterHabbitsModel.WalksNumber;
                     shelterHabbitsModelToUpdate.WalksTime = shelterHabbitsModel.WalksTime;
                     shelterHabbitsModelToUpdate.Text = shelterHabbitsModel.Text;
-                    await _shelterDbContext.SaveChangesAsync();
+                    await _shelterPetFinderDbContext.SaveChangesAsync();
                 }
 
-                var shelterResidenceModelToUpdate = await _shelterDbContext.ShelterQuestionsResidence.FirstOrDefaultAsync(sid => sid.ShelterModelId == shelterModelToUpdate.Id);
+                var shelterResidenceModelToUpdate = await _shelterPetFinderDbContext.ShelterQuestionsResidence.FirstOrDefaultAsync(sid => sid.ShelterModelId == shelterModelToUpdate.Id);
                 if (shelterResidenceModelToUpdate == null)
                 {
                     shelterResidenceModel.ShelterModelId = shelterModelToUpdate.Id;
-                    _shelterDbContext.ShelterQuestionsResidence.Add(shelterResidenceModel);
-                    await _shelterDbContext.SaveChangesAsync();
+                    _shelterPetFinderDbContext.ShelterQuestionsResidence.Add(shelterResidenceModel);
+                    await _shelterPetFinderDbContext.SaveChangesAsync();
                 }
                 else
                 {
@@ -106,15 +101,15 @@ namespace shelter.Interfaces.Shelter
                     shelterResidenceModelToUpdate.PropertySize = shelterResidenceModel.PropertySize;
                     shelterResidenceModelToUpdate.HouseMates = shelterResidenceModel.HouseMates;
                     shelterResidenceModelToUpdate.Animals = shelterResidenceModel.Animals;
-                    await _shelterDbContext.SaveChangesAsync();
+                    await _shelterPetFinderDbContext.SaveChangesAsync();
                 }
 
-                var shelterPetDetailsModelToUpdate = await _shelterDbContext.ShelterQuestionsPetDetails.FirstOrDefaultAsync(sid => sid.ShelterModelId == shelterModelToUpdate.Id);
+                var shelterPetDetailsModelToUpdate = await _shelterPetFinderDbContext.ShelterQuestionsPetDetails.FirstOrDefaultAsync(sid => sid.ShelterModelId == shelterModelToUpdate.Id);
                 if (shelterPetDetailsModelToUpdate == null)
                 {
                     shelterPetDetailsModel.ShelterModelId = shelterModelToUpdate.Id;
-                    _shelterDbContext.Add(shelterPetDetailsModel);
-                    await _shelterDbContext.SaveChangesAsync();
+                    _shelterPetFinderDbContext.Add(shelterPetDetailsModel);
+                    await _shelterPetFinderDbContext.SaveChangesAsync();
                 }
                 else
                 {
@@ -123,7 +118,7 @@ namespace shelter.Interfaces.Shelter
                     shelterPetDetailsModelToUpdate.CareAlone = shelterPetDetailsModel.CareAlone;
                     shelterPetDetailsModelToUpdate.AnimalsBefore = shelterPetDetailsModel.AnimalsBefore;
                     shelterPetDetailsModelToUpdate.AnimalsBeforeText = shelterPetDetailsModel.AnimalsBeforeText;
-                    await _shelterDbContext.SaveChangesAsync();
+                    await _shelterPetFinderDbContext.SaveChangesAsync();
                 }
 
                 return true;
@@ -148,7 +143,7 @@ namespace shelter.Interfaces.Shelter
 
         public async Task<bool> CreateUserShelter(string email)
         {
-            var emailAlreadyExist = _shelterDbContext.Shelters.Any(shelter => shelter.Email == email );
+            var emailAlreadyExist = _shelterPetFinderDbContext.Shelters.Any(shelter => shelter.Email == email );
 
             if ( emailAlreadyExist )
             {
@@ -163,8 +158,8 @@ namespace shelter.Interfaces.Shelter
 
                 var shelterUserToCreate = _mapper.Map<ShelterModel>(shelterRegisterForm);
 
-                _shelterDbContext.Shelters.Add(shelterUserToCreate);
-                await _shelterDbContext.SaveChangesAsync();
+                _shelterPetFinderDbContext.Shelters.Add(shelterUserToCreate);
+                await _shelterPetFinderDbContext.SaveChangesAsync();
                 return true;
             }
             
@@ -208,14 +203,14 @@ namespace shelter.Interfaces.Shelter
 
         public async Task<List<PetModel>> GetAllPetsBelongsToShelter(string shelterEmail)
         {
-            var shelterId = await _shelterDbContext.Shelters
+            var shelterId = await _shelterPetFinderDbContext.Shelters
                 .Where(shEmail => shEmail.Email == shelterEmail)
                 .Select(shId => shId.Id)
                 .FirstOrDefaultAsync();
 
             if (shelterId != 0)
             {
-                return await _petDbContext.Pets
+                return await _shelterPetFinderDbContext.Pets
                     .Where(shId => shId.ShelterModelId == shelterId)
                     .ToListAsync();
             }

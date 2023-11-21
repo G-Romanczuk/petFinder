@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using shelter.DataBaseContext.UserDbContext;
+using shelter.DataBaseContext.ShelterPetFinderDbContext;
 using shelter.Dtos.UserDtos;
 using shelter.Models.UserModels;
 using System.IdentityModel.Tokens.Jwt;
@@ -15,7 +15,7 @@ namespace shelter.Interfaces.User
 {
     public class UserService : IUserService
     {
-        private readonly UserDbContext _userDbContext;
+        private readonly ShelterPetFinderDbContext _shelterPetFinderDbContext;
         private readonly IMapper _mapper;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IConfiguration _configuration;
@@ -23,12 +23,12 @@ namespace shelter.Interfaces.User
         public UserService
         (
             UserManager<IdentityUser> userManager,
-            UserDbContext userDbContext,
+            ShelterPetFinderDbContext shelterPetFinderDbContext,
             IMapper mapper,
             IConfiguration configuration
         )
         {
-            _userDbContext = userDbContext;
+            _shelterPetFinderDbContext = shelterPetFinderDbContext;
             _mapper = mapper;
             _userManager = userManager;
             _configuration = configuration;
@@ -44,7 +44,7 @@ namespace shelter.Interfaces.User
             try
             {
                
-                var userModelToUpdate = await _userDbContext.Users.FirstOrDefaultAsync(um => um.Email == userModel.Email);
+                var userModelToUpdate = await _shelterPetFinderDbContext.RegisteredUsers.FirstOrDefaultAsync(um => um.Email == userModel.Email);
                 if ( userModelToUpdate == null )
                 {
                     return false;
@@ -62,14 +62,14 @@ namespace shelter.Interfaces.User
                 userModelToUpdate.Town = userModel.Town;
                 userModelToUpdate.Adress = userModel.Adress;
                 userModelToUpdate.IncomeSource = userModel.IncomeSource;
-                await _userDbContext.SaveChangesAsync();
+                await _shelterPetFinderDbContext.SaveChangesAsync();
 
-                var userHabbitsModelToUpdate = await _userDbContext.Habbits.FirstOrDefaultAsync(uid => uid.UserModelId == userModelToUpdateId);
+                var userHabbitsModelToUpdate = await _shelterPetFinderDbContext.Habbits.FirstOrDefaultAsync(uid => uid.UserModelId == userModelToUpdateId);
                 if (userHabbitsModelToUpdate == null)
                 {
                     userHabbitsModel.UserModelId = userModelToUpdateId;
-                    _userDbContext.Habbits.Add(userHabbitsModel);
-                    await _userDbContext.SaveChangesAsync();
+                    _shelterPetFinderDbContext.Habbits.Add(userHabbitsModel);
+                    await _shelterPetFinderDbContext.SaveChangesAsync();
                 }
                 else
                 {
@@ -78,15 +78,15 @@ namespace shelter.Interfaces.User
                     userHabbitsModelToUpdate.WalksNumber = userHabbitsModel.WalksNumber;
                     userHabbitsModelToUpdate.WalksTime = userHabbitsModel.WalksTime;
                     userHabbitsModelToUpdate.Text = userHabbitsModel.Text;
-                    await _userDbContext.SaveChangesAsync();
+                    await _shelterPetFinderDbContext.SaveChangesAsync();
                 }
 
-                var userResidenceModelToUpdate = await _userDbContext.Residences.FirstOrDefaultAsync(uid => uid.UserModelId == userModelToUpdateId);
+                var userResidenceModelToUpdate = await _shelterPetFinderDbContext.Residences.FirstOrDefaultAsync(uid => uid.UserModelId == userModelToUpdateId);
                 if (userResidenceModelToUpdate == null)
                 {
                     userResidenceModel.UserModelId = userModelToUpdateId;
-                    _userDbContext.Residences.Add(userResidenceModel);
-                    await _userDbContext.SaveChangesAsync();
+                    _shelterPetFinderDbContext.Residences.Add(userResidenceModel);
+                    await _shelterPetFinderDbContext.SaveChangesAsync();
                 }
                 else
                 {
@@ -99,15 +99,15 @@ namespace shelter.Interfaces.User
                     userResidenceModelToUpdate.PropertySize = userResidenceModel.PropertySize;
                     userResidenceModelToUpdate.HouseMates = userResidenceModel.HouseMates;
                     userResidenceModelToUpdate.Animals = userResidenceModel.Animals;
-                    await _userDbContext.SaveChangesAsync();
+                    await _shelterPetFinderDbContext.SaveChangesAsync();
                 }
 
-                var userDogDetailsModelToUpdate = await _userDbContext.usersDogDetails.FirstOrDefaultAsync(uid => uid.UserModelId == userModelToUpdateId);
+                var userDogDetailsModelToUpdate = await _shelterPetFinderDbContext.usersDogDetails.FirstOrDefaultAsync(uid => uid.UserModelId == userModelToUpdateId);
                 if (userDogDetailsModelToUpdate == null)
                 {
                     userDogDetailsModel.UserModelId = userModelToUpdateId;
-                    _userDbContext.Add(userDogDetailsModel);
-                    await _userDbContext.SaveChangesAsync();
+                    _shelterPetFinderDbContext.Add(userDogDetailsModel);
+                    await _shelterPetFinderDbContext.SaveChangesAsync();
                 }
                 else
                 {
@@ -116,7 +116,7 @@ namespace shelter.Interfaces.User
                     userDogDetailsModelToUpdate.CareAlone = userDogDetailsModel.CareAlone;
                     userDogDetailsModelToUpdate.AnimalsBefore = userDogDetailsModel.AnimalsBefore;
                     userDogDetailsModelToUpdate.AnimalsBeforeText = userDogDetailsModel.AnimalsBeforeText;
-                    await _userDbContext.SaveChangesAsync();
+                    await _shelterPetFinderDbContext.SaveChangesAsync();
                 }
 
                 return true;
@@ -135,8 +135,8 @@ namespace shelter.Interfaces.User
 
             try
             {
-               _userDbContext.Users.Add(userToCreate);
-                await _userDbContext.SaveChangesAsync();
+                _shelterPetFinderDbContext.RegisteredUsers.Add(userToCreate);
+                await _shelterPetFinderDbContext.SaveChangesAsync();
                 return true;
             }
             catch (Exception)

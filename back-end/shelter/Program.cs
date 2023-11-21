@@ -6,9 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using shelter.DataBaseContext.PetDbContext;
-using shelter.DataBaseContext.ShelterDbContext;
-using shelter.DataBaseContext.UserDbContext;
+
+using shelter.DataBaseContext.ShelterPetFinderDbContext;
+using shelter.Interfaces.Pet;
 using shelter.Interfaces.Pet;
 using shelter.Interfaces.Shelter;
 using shelter.Interfaces.User;
@@ -25,23 +25,12 @@ var configuration = new ConfigurationBuilder()
     .Build();
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
-builder.Services.AddDbContext<UserDbContext>(options =>
+builder.Services.AddDbContext<ShelterPetFinderDbContext>(options =>
 {
-    var connectionString = configuration.GetConnectionString("UserDataConnection");
+    var connectionString = configuration.GetConnectionString("ShelterPetFinderDbContext");
     options.UseSqlServer(connectionString);
 });
 
-builder.Services.AddDbContext<PetDbContext>(options =>
-{
-    var connectionString = configuration.GetConnectionString("PetDataConnection");
-    options.UseSqlServer(connectionString);
-});
-
-builder.Services.AddDbContext<ShelterDbContext>(options =>
-{
-    var connectionString = configuration.GetConnectionString("ShelterDataConnection");
-    options.UseSqlServer(connectionString);
-});
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 {
@@ -51,7 +40,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
     options.Password.RequireUppercase = true;
     options.Password.RequireLowercase = true;
 })
-.AddEntityFrameworkStores<UserDbContext>()
+.AddEntityFrameworkStores<ShelterPetFinderDbContext>()
 .AddDefaultTokenProviders();
 
 builder.Services.AddAuthentication(options =>

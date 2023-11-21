@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using shelter.DataBaseContext.ShelterDbContext;
 using shelter.Dtos.ShelterDtos;
 using shelter.Interfaces.Shelter;
 using shelter.Models.ShelterModels;

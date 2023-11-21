@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
-using shelter.DataBaseContext.PetDbContext;
-using shelter.DataBaseContext.ShelterDbContext;
+using shelter.DataBaseContext.ShelterPetFinderDbContext;
 using shelter.Models.PetModels;
 using System.Reflection.Metadata;
 using System.Text;
@@ -11,21 +10,18 @@ namespace shelter.Interfaces.Pet
 {
     public class PetService : IPetService
     {
-        private readonly PetDbContext _petDbContext;
-        private readonly ShelterDbContext _shelterDbContext;
+        private readonly ShelterPetFinderDbContext _shelterPetFinderDbContext;
         private readonly IMapper _mapper;
         private  MemoryStream _imagesStream;
         public PetService
         (
-            PetDbContext petDbContext,
-            ShelterDbContext shelterDbContext,
+            ShelterPetFinderDbContext shelterPetFinderDbContext,
             IMapper mapper
            
 
         )
         {
-            _petDbContext = petDbContext;
-            _shelterDbContext = shelterDbContext;
+            _shelterPetFinderDbContext = shelterPetFinderDbContext;
             _mapper = mapper;
         }
 
@@ -35,14 +31,14 @@ namespace shelter.Interfaces.Pet
             {
                 var newPetModel = _mapper.Map<PetModel>(pet);
 
-                var shelterId = _shelterDbContext.Shelters
+                var shelterId = _shelterPetFinderDbContext.Shelters
                     .Where(shEmail=>shEmail.Email == pet.ShelterEmail)
                     .Select(shId => shId.Id)
                     .FirstOrDefault();
 
                 newPetModel.ShelterModelId = shelterId;
-                _petDbContext.Pets.Add(newPetModel);
-                await _petDbContext.SaveChangesAsync();
+                _shelterPetFinderDbContext.Pets.Add(newPetModel);
+                await _shelterPetFinderDbContext.SaveChangesAsync();
 
                 string blob;
                 foreach (var img in pet.Images)
@@ -60,8 +56,8 @@ namespace shelter.Interfaces.Pet
                             Images = Encoding.UTF8.GetBytes(blob),
                             PetModelId = newPetModel.Id
                         };
-                        _petDbContext.PetImgs.Add(newPetImgs);
-                        await _petDbContext.SaveChangesAsync();
+                        _shelterPetFinderDbContext.PetImgs.Add(newPetImgs);
+                        await _shelterPetFinderDbContext.SaveChangesAsync();
                     }
                     
                 }
@@ -80,14 +76,14 @@ namespace shelter.Interfaces.Pet
             {
                 var newPetModel = _mapper.Map<PetModel>(pet);
 
-                var petToUpdate = _petDbContext.Pets.FirstOrDefaultAsync(petId=>petId.Id == pet.Id);  
+                var petToUpdate = _shelterPetFinderDbContext.Pets.FirstOrDefaultAsync(petId=>petId.Id == pet.Id);  
                 if (petToUpdate == null) 
                 {
                     return false;
                 }
 
                var updatedPet = await _mapper.Map(newPetModel, petToUpdate);
-                _petDbContext.Pets.Update(updatedPet);
+                _shelterPetFinderDbContext.Pets.Update(updatedPet);
                 return true;
             }
             catch (Exception)
