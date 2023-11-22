@@ -12,13 +12,10 @@ namespace shelter.Interfaces.Pet
     {
         private readonly ShelterPetFinderDbContext _shelterPetFinderDbContext;
         private readonly IMapper _mapper;
-        private  MemoryStream _imagesStream;
         public PetService
         (
             ShelterPetFinderDbContext shelterPetFinderDbContext,
             IMapper mapper
-           
-
         )
         {
             _shelterPetFinderDbContext = shelterPetFinderDbContext;
@@ -70,20 +67,25 @@ namespace shelter.Interfaces.Pet
             }
         }
 
-        public async Task<bool> UpdatePet(PetForm pet)
+        public async  Task<bool> UpdatePet(PetForm pet)
         {
             try
             {
                 var newPetModel = _mapper.Map<PetModel>(pet);
+                var shelter =  await _shelterPetFinderDbContext.Shelters.FirstOrDefaultAsync(shEmail => shEmail.Email == pet.ShelterEmail);
 
-                var petToUpdate = _shelterPetFinderDbContext.Pets.FirstOrDefaultAsync(petId=>petId.Id == pet.Id);  
+                newPetModel.ShelterModelId = shelter.Id;
+                var petToUpdate =  await _shelterPetFinderDbContext.Pets.FirstOrDefaultAsync(petId=>petId.Id == pet.Id);  
                 if (petToUpdate == null) 
                 {
                     return false;
                 }
 
-               var updatedPet = await _mapper.Map(newPetModel, petToUpdate);
-                _shelterPetFinderDbContext.Pets.Update(updatedPet);
+               var updatedPet =  _mapper.Map(newPetModel, petToUpdate);
+                //_shelterPetFinderDbContext.Entry().State = EntityState.Detached;
+                _shelterPetFinderDbContext.Entry(petToUpdate).State = EntityState.Detached;
+               _shelterPetFinderDbContext.Pets.Update(updatedPet);
+               await _shelterPetFinderDbContext.SaveChangesAsync();
                 return true;
             }
             catch (Exception)

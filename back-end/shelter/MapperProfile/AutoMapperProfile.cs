@@ -30,6 +30,7 @@ namespace shelter.MapperProfile
 
             CreateMap<PetForm, PetModel>();
             CreateMap<PetModel, PetForm>();
+            CreateMap<PetModel,Task<PetModel>>();
         }
     }
     

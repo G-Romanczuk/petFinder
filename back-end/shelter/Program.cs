@@ -80,6 +80,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IShelterService, ShelterService>();
 builder.Services.AddScoped<IPetService, PetService>();
+builder.Services.AddScoped<DbContext, ShelterPetFinderDbContext>();
 
 var app = builder.Build();
 
