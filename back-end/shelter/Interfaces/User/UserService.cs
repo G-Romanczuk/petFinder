@@ -9,6 +9,7 @@ using shelter.Models.UserModels;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using System.Security.Policy;
 using System.Text;
 
 namespace shelter.Interfaces.User
@@ -203,6 +204,46 @@ namespace shelter.Interfaces.User
             return token;
         }
 
-        
+        public async Task<string> ResetPassowrdToken(ResetPasswordModel email)
+        {
+            var user = await GetUserFromUserManager(email.Email);
+
+            if (user == null)
+            {
+                return "Podany uzytkownik o danym Email nie istnieje";
+            }
+            return await _userManager.GeneratePasswordResetTokenAsync(user);
+
+        }
+
+        public async Task<bool> ResetPassword(ResetPasswordModel resetPassword)
+        {
+            var user = await GetUserFromUserManager(resetPassword.Email);
+
+            if (user != null)
+            {
+                var res = await _userManager.ResetPasswordAsync(user, resetPassword.Token, resetPassword.NewPassword);
+
+                if (res.Succeeded)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public async Task<IdentityUser?> GetUserFromUserManager(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            return user;
+        }
+
     }
 }

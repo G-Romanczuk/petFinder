@@ -64,5 +64,27 @@ namespace shelter.Controllers.UserController
             return BadRequest(new { message = "Wrong Data" });
         }
 
+        [HttpPost("ResetPassword", Name = "ResetUserPassword")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordModel resetPasswordModel)
+        {
+            var resetTokenResult = await _userService.ResetPassowrdToken(resetPasswordModel);
+
+            if (resetTokenResult.StartsWith("Podany uzytkownik o danym Email nie istnieje"))
+            {
+                return NotFound(new { Message = "Użytkownik o podanym adresie Email nie istnieje" });
+            }
+
+            var resetResult = await _userService.ResetPassword(resetPasswordModel);
+
+            if (resetResult)
+            {
+                return Ok(new { Message = "Hasło zostało zresetowane pomyślnie." });
+            }
+            else
+            {
+                return BadRequest(new { Message = "Nie udało się zresetować hasła." });
+            }
+        }
+
     }
 }
