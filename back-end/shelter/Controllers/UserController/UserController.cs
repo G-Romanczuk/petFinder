@@ -64,5 +64,37 @@ namespace shelter.Controllers.UserController
             return BadRequest(new { message = "Wrong Data" });
         }
 
+        [HttpPost("ResetPasswordRequest", Name = "ResetPasswordReq")]
+        public async Task<IActionResult> ResetPasswordReq([FromBody] ResetPasswordReqModel resetPasswordReq)
+        {
+            var token = await _userService.ResetPasswordReq(resetPasswordReq);
+
+            if (!ModelState.IsValid) return BadRequest();
+
+            if (token == null)
+            {
+                return NotFound("Bład przy generowaniu tokena zmiany hasła");
+            }
+
+            return Ok(token);
+
+        }
+
+        [HttpPost("ResetPassword", Name = "ResetUserPassword")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordModel resetPassword)
+        {
+            var success = await _userService.ResetPassword(resetPassword);
+
+            if (success)
+            {
+                return Ok("Hasło zostało zresetowane pomyślnie");
+            }
+            else
+            {
+                return BadRequest("Nie udało się zresetować hasła");
+            }
+        }
+        
+
     }
 }
