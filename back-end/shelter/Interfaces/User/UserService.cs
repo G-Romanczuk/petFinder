@@ -204,46 +204,38 @@ namespace shelter.Interfaces.User
             return token;
         }
 
-        public async Task<string> ResetPassowrdToken(ResetPasswordModel email)
-        {
-            var user = await GetUserFromUserManager(email.Email);
-
-            if (user == null)
-            {
-                return "Podany uzytkownik o danym Email nie istnieje";
-            }
-            return await _userManager.GeneratePasswordResetTokenAsync(user);
-
-        }
-
-        public async Task<bool> ResetPassword(ResetPasswordModel resetPassword)
-        {
-            var user = await GetUserFromUserManager(resetPassword.Email);
-
-            if (user != null)
-            {
-                var res = await _userManager.ResetPasswordAsync(user, resetPassword.Token, resetPassword.NewPassword);
-
-                if (res.Succeeded)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         public async Task<IdentityUser?> GetUserFromUserManager(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
             return user;
         }
 
+        public async Task<string> ResetPasswordReq(ResetPasswordReqModel resetPasswordReqModel)
+        {
+            var user = await _userManager.FindByEmailAsync(resetPasswordReqModel.Email);
+
+            if (user==null)
+            {
+                return "Nie ma takiego użytkownika";
+            }
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+            return token;
+        }
+
+        public async Task<bool> ResetPassword(ResetPasswordModel resetPasswordModel)
+        {
+            var user = await _userManager.FindByEmailAsync(resetPasswordModel.Email);
+
+            if (user == null)
+            {
+                return false;
+            }
+
+            var res = await _userManager.ResetPasswordAsync(user, resetPasswordModel.Token, resetPasswordModel.NewPassword);
+
+            return res.Succeeded;
+        }
     }
 }

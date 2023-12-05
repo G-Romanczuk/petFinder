@@ -64,27 +64,37 @@ namespace shelter.Controllers.UserController
             return BadRequest(new { message = "Wrong Data" });
         }
 
-        [HttpPost("ResetPassword", Name = "ResetUserPassword")]
-        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordModel resetPasswordModel)
+        [HttpPost("ResetPasswordRequest", Name = "ResetPasswordReq")]
+        public async Task<IActionResult> ResetPasswordReq([FromBody] ResetPasswordReqModel resetPasswordReq)
         {
-            var resetTokenResult = await _userService.ResetPassowrdToken(resetPasswordModel);
+            var token = await _userService.ResetPasswordReq(resetPasswordReq);
 
-            if (resetTokenResult.StartsWith("Podany uzytkownik o danym Email nie istnieje"))
+            if (!ModelState.IsValid) return BadRequest();
+
+            if (token == null)
             {
-                return NotFound(new { Message = "Użytkownik o podanym adresie Email nie istnieje" });
+                return NotFound("Bład przy generowaniu tokena zmiany hasła");
             }
 
-            var resetResult = await _userService.ResetPassword(resetPasswordModel);
+            return Ok(token);
 
-            if (resetResult)
+        }
+
+        [HttpPost("ResetPassword", Name = "ResetUserPassword")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordModel resetPassword)
+        {
+            var success = await _userService.ResetPassword(resetPassword);
+
+            if (success)
             {
-                return Ok(new { Message = "Hasło zostało zresetowane pomyślnie." });
+                return Ok("Hasło zostało zresetowane pomyślnie");
             }
             else
             {
-                return BadRequest(new { Message = "Nie udało się zresetować hasła." });
+                return BadRequest("Nie udało się zresetować hasła");
             }
         }
+        
 
     }
 }

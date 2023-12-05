@@ -11,8 +11,8 @@ namespace shelter.Interfaces.User
         Task<bool> LoginUser(UserLoginDto user);
         Task<bool> AddUserDetailsForm(UserForm userForm);
         string GenerateTokenString(UserLoginDto user);
-        Task<string> ResetPassowrdToken(ResetPasswordModel email);
-        Task<bool> ResetPassword ( ResetPasswordModel resetPassword);
+        Task<string> ResetPasswordReq(ResetPasswordReqModel resetPasswordReqModel);
+        Task<bool> ResetPassword(ResetPasswordModel resetPasswordModel);
         Task<IdentityUser?> GetUserFromUserManager(string email);
     }
 }
