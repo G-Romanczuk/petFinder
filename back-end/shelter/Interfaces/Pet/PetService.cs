@@ -70,6 +70,13 @@ namespace shelter.Interfaces.Pet
             }
         }
 
+        public async Task<List<PetModel>> GetAllPets()
+        {
+            var allPets = await _shelterPetFinderDbContext.Pets.ToListAsync();
+
+            return allPets;
+        }
+
         public async Task<bool> UpdatePet(PetForm pet)
         {
             try

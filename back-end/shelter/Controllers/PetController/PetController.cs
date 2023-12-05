@@ -29,6 +29,7 @@ namespace shelter.Controllers.PetController
 
             return BadRequest( new {message = "Wrong Data"});
         }
+
         [HttpPost("Update", Name = "UpdatePet")]
         public async Task<IActionResult> UpdatePet([FromForm] PetForm pet)
         {
@@ -38,9 +39,24 @@ namespace shelter.Controllers.PetController
                 return Ok();
             }
             return BadRequest(new { message = "Wrong Data" });
-            
+        }
 
-            
+        [HttpGet("GetAllPets", Name ="GetAllPetsFromDb")]
+        public async Task<IActionResult> GetAllPets()
+        {
+            if (!ModelState.IsValid) return BadRequest();
+
+            try
+            {
+                return Ok(await _petService.GetAllPets());
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(500, $"Wystąpił błąd podczas pobierania zwierząt: {ex.Message}");
+
+            }
+
         }
 
     }

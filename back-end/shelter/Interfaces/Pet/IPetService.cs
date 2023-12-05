@@ -6,5 +6,6 @@ namespace shelter.Interfaces.Pet
     {
         Task<bool> AddPetForm(PetForm pet);
         Task<bool> UpdatePet(PetForm pet);
+        Task <List<PetModel>> GetAllPets();
     }
 }
