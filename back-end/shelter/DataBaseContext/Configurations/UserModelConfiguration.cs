@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using shelter.Models.UserModels;
 
-namespace shelter.DataBaseContext.UserDbContext.Configurations
+namespace shelter.DataBaseContext.Configurations
 {
     public class UserModelConfiguration : IEntityTypeConfiguration<UserModel>
     {

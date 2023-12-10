@@ -3,17 +3,20 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using shelter.DataBaseContext.UserDbContext;
+using shelter.DataBaseContext.ShelterPetFinderDbContext;
 
 #nullable disable
 
 namespace shelter.Migrations
 {
-    [DbContext(typeof(UserDbContext))]
-    partial class UserDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ShelterPetFinderDbContext))]
+    [Migration("20231121234021_settleNewShelterPetFinderDbContext")]
+    partial class settleNewShelterPetFinderDbContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -220,6 +223,242 @@ namespace shelter.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("shelter.Models.PetModels.PetImg", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<byte[]>("Images")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("PetModelId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PetModelId");
+
+                    b.ToTable("PetImgs");
+                });
+
+            modelBuilder.Entity("shelter.Models.PetModels.PetModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Activity")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Age")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BasicTraining")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Breed")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Castration")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ChildFriendly")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Cuddly")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OtherCats")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OtherDogs")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ShelterModelId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Size")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Temper")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Vaccination")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ShelterModelId");
+
+                    b.ToTable("Pets");
+                });
+
+            modelBuilder.Entity("shelter.Models.ShelterModels.ShelterHabbitsModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("HoursAlone")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Lifestyle")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ShelterModelId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Text")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("WalksNumber")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("WalksTime")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ShelterModelId");
+
+                    b.ToTable("ShelterQuestionsHabbits");
+                });
+
+            modelBuilder.Entity("shelter.Models.ShelterModels.ShelterModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Adress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Town")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Shelters");
+                });
+
+            modelBuilder.Entity("shelter.Models.ShelterModels.ShelterPetDetailsModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("AnimalsBefore")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("AnimalsBeforeText")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("CareAlone")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("PetPlace")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("PetPlaceAlone")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ShelterModelId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ShelterModelId");
+
+                    b.ToTable("ShelterQuestionsPetDetails");
+                });
+
+            modelBuilder.Entity("shelter.Models.ShelterModels.ShelterResidenceModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Animals")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Elevator")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Fence")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("FenceHeight")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Floor")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HouseMates")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HouseOwner")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HousingType")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IncomeSource")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("PropertySize")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ShelterModelId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ShelterModelId");
+
+                    b.ToTable("ShelterQuestionsResidence");
+                });
+
             modelBuilder.Entity("shelter.Models.UserModels.UserHabbitsModel", b =>
                 {
                     b.Property<int>("Id")
@@ -228,24 +467,24 @@ namespace shelter.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("HoursAlone")
+                        .HasColumnType("int");
+
                     b.Property<string>("Lifestyle")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LongestWalkDurationMinutes")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MaxHoursAway")
-                        .HasColumnType("int");
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserModelId")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserStoryLine")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("WalksNumber")
+                        .HasColumnType("int");
 
-                    b.Property<int>("WalksPerDay")
+                    b.Property<int>("WalksTime")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -263,11 +502,7 @@ namespace shelter.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("City")
+                    b.Property<string>("Adress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -279,7 +514,7 @@ namespace shelter.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LastName")
+                    b.Property<string>("Lname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -287,20 +522,24 @@ namespace shelter.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhoneNumber")
+                    b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PostalCode")
+                    b.Property<string>("PostCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("terms")
+                    b.Property<bool>("Terms")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Town")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("RegisteredUsers");
                 });
 
             modelBuilder.Entity("shelter.Models.UserModels.UserResidenceModel", b =>
@@ -311,38 +550,43 @@ namespace shelter.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("FenceHeightInCentimeters")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FloorNumber")
-                        .HasColumnType("int");
-
-                    b.Property<string>("HouseholdResidents")
+                    b.Property<string>("Animals")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsElevator")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("IsResidenceFenced")
-                        .HasColumnType("int");
-
-                    b.Property<string>("OtherAnimalsInResidence")
+                    b.Property<string>("Elevator")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("OwnerOfResidence")
+                    b.Property<string>("Fence")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TypeOfResidence")
+                    b.Property<string>("FenceHeight")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Floor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HouseMates")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HouseOwner")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HousingType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PropertySize")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserModelId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("YardOrGardenAreaInSquareMeters")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -360,22 +604,23 @@ namespace shelter.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("CanProvideSubstituteCareDuringExtendedAbsence")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("DogLocationDuringOwnerAndOthersAbsence")
+                    b.Property<string>("AnimalsBefore")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DogLocationThroughoutDay")
+                    b.Property<string>("AnimalsBeforeText")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PastDogsHistory")
+                    b.Property<string>("CareAlone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TimeWhenOwnedDog")
+                    b.Property<string>("PetPlace")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PetPlaceAlone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -440,6 +685,61 @@ namespace shelter.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("shelter.Models.PetModels.PetImg", b =>
+                {
+                    b.HasOne("shelter.Models.PetModels.PetModel", "PetModel")
+                        .WithMany("PetImg")
+                        .HasForeignKey("PetModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PetModel");
+                });
+
+            modelBuilder.Entity("shelter.Models.PetModels.PetModel", b =>
+                {
+                    b.HasOne("shelter.Models.ShelterModels.ShelterModel", "ShelterModel")
+                        .WithMany("Pets")
+                        .HasForeignKey("ShelterModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ShelterModel");
+                });
+
+            modelBuilder.Entity("shelter.Models.ShelterModels.ShelterHabbitsModel", b =>
+                {
+                    b.HasOne("shelter.Models.ShelterModels.ShelterModel", "ShelterModel")
+                        .WithMany("ShelterHabbits")
+                        .HasForeignKey("ShelterModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ShelterModel");
+                });
+
+            modelBuilder.Entity("shelter.Models.ShelterModels.ShelterPetDetailsModel", b =>
+                {
+                    b.HasOne("shelter.Models.ShelterModels.ShelterModel", "ShelterModel")
+                        .WithMany("ShelterPetDetails")
+                        .HasForeignKey("ShelterModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ShelterModel");
+                });
+
+            modelBuilder.Entity("shelter.Models.ShelterModels.ShelterResidenceModel", b =>
+                {
+                    b.HasOne("shelter.Models.ShelterModels.ShelterModel", "ShelterModel")
+                        .WithMany("ShelterResidence")
+                        .HasForeignKey("ShelterModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ShelterModel");
+                });
+
             modelBuilder.Entity("shelter.Models.UserModels.UserHabbitsModel", b =>
                 {
                     b.HasOne("shelter.Models.UserModels.UserModel", "UserModel")
@@ -471,6 +771,22 @@ namespace shelter.Migrations
                         .IsRequired();
 
                     b.Navigation("UserModel");
+                });
+
+            modelBuilder.Entity("shelter.Models.PetModels.PetModel", b =>
+                {
+                    b.Navigation("PetImg");
+                });
+
+            modelBuilder.Entity("shelter.Models.ShelterModels.ShelterModel", b =>
+                {
+                    b.Navigation("Pets");
+
+                    b.Navigation("ShelterHabbits");
+
+                    b.Navigation("ShelterPetDetails");
+
+                    b.Navigation("ShelterResidence");
                 });
 
             modelBuilder.Entity("shelter.Models.UserModels.UserModel", b =>

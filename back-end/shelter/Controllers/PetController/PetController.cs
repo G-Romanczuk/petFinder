@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using shelter.Dtos.PetsDtos;
 using shelter.Interfaces.Pet;
 using shelter.Interfaces.User;
 using shelter.Models.PetModels;
@@ -19,15 +18,46 @@ namespace shelter.Controllers.PetController
         }
 
         [HttpPost("Add", Name ="AddPet")]
-        public async Task<IActionResult> AddPet([FromBody] PetDto pet)
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> AddPet([FromForm] PetForm pet)
         {
-            if(true)
+            if (!ModelState.IsValid) return BadRequest();
+            if (await _petService.AddPetForm(pet))
             {
-                await _petService.AddPet(pet);
-                return Ok("Pet was added to the database");
+                return Ok();
             }
 
-            return BadRequest();
+            return BadRequest( new {message = "Wrong Data"});
         }
+
+        [HttpPost("Update", Name = "UpdatePet")]
+        public async Task<IActionResult> UpdatePet([FromForm] PetForm pet)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+            if (await _petService.UpdatePet(pet))
+            {
+                return Ok();
+            }
+            return BadRequest(new { message = "Wrong Data" });
+        }
+
+        [HttpGet("GetAllPets", Name ="GetAllPetsFromDb")]
+        public async Task<IActionResult> GetAllPets()
+        {
+            if (!ModelState.IsValid) return BadRequest();
+
+            try
+            {
+                return Ok(await _petService.GetAllPets());
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(500, $"Wystąpił błąd podczas pobierania zwierząt: {ex.Message}");
+
+            }
+
+        }
+
     }
 }

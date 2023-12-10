@@ -1,10 +1,11 @@
-﻿using shelter.Dtos.PetsDtos;
-using shelter.Models.PetModels;
+﻿using shelter.Models.PetModels;
 
 namespace shelter.Interfaces.Pet
 {
     public interface IPetService
     {
-        Task<bool> AddPet(PetDto pet);
+        Task<bool> AddPetForm(PetForm pet);
+        Task<bool> UpdatePet(PetForm pet);
+        Task <List<PetModel>> GetAllPets();
     }
 }

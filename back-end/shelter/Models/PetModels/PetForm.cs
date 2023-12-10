@@ -1,17 +1,13 @@
-﻿using shelter.Models.ShelterModels;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace shelter.Models.PetModels
 {
-    public class PetModel
+    public class PetForm
     {
-        [Key]
-        public int Id { get; set; }
-        public int ShelterModelId { get; set; }
-        [ForeignKey("ShelterModelId")]
-        public ShelterModel ShelterModel { get; set; }
+        public int? Id { get; set; }
         public string? Name { get; set; }
+        [FromForm(Name = "images[]")]
+        public List<IFormFile>? Images { get; set; }
         public string? Type { get; set; }
         public string? Gender { get; set; }
         public string? Castration { get; set; }
@@ -27,9 +23,6 @@ namespace shelter.Models.PetModels
         public string? Cuddly { get; set; }
         public string? Temper { get; set; }
         public string? Text { get; set; }
-
-        public List<PetImg> PetImg { get; set; }
+        public string? ShelterEmail { get; set; }
     }
-   
-
 }
