@@ -2,7 +2,7 @@
     <v-dialog v-model="dialog" width="98vw" height="98vh">
         <template v-slot:activator="{ props }">
             
-                <v-btn elevation="8" class="text" v-bind="props" >
+                <v-btn elevation="8" class="text font-big" v-bind="props" >
                       <v-icon color="rgb(143, 83, 122)" icon="mdi-paw" > </v-icon> Znajdź przyjaciela</v-btn>
         </template>
         <div class="d-flex align-center flex-column" style="width: 100%; margin: auto; height: 100%;">

@@ -2,7 +2,7 @@
     <v-dialog transition="dialog-bottom-transition" overlay-color="black" overlay-opacity="1" v-model="dialog"
         max-width="80vw">
         <template v-slot:activator="{ props }">
-            <v-btn elevation="8" class="text" v-bind="props">
+            <v-btn elevation="8" class="text font-big" v-bind="props">
                 <v-icon color="rgb(143, 83, 122)" icon="mdi-paw"> </v-icon> Dodaj
                 podopiecznego</v-btn>
         </template>
@@ -174,7 +174,7 @@ function Submit(petData) {
 const onFileChange = (e) => {
     show.value = false
     urls = []
-    images = []
+    images = ref([])
      images = e.target.files;
     console.log(e.target.files)
     for(var i = 0; i < e.target.files.length; i++){
@@ -234,7 +234,8 @@ async function petFormTest() {
 .p {
     font-family: 'Gruppo', sans-serif;
     font-size: medium;
-    color: rgb(175, 126, 158);
+    font-weight: 900;
+    color: rgb(95, 20, 83);
     text-align: center;
 }
 
