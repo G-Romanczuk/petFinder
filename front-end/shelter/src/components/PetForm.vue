@@ -174,7 +174,7 @@ function Submit(petData) {
 const onFileChange = (e) => {
     show.value = false
     urls = []
-    images = ref([])
+    images = []
      images = e.target.files;
     console.log(e.target.files)
     for(var i = 0; i < e.target.files.length; i++){
