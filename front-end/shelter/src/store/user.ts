@@ -45,11 +45,12 @@ export const useUserStore = defineStore("user", {
       questions: {
         incomeSource: false,
         lifestyle: false,
+        housingType: false,
         houseOwner: false,
         hoursAlone: false,
         floor: false,
         elevator: false,
-        walksNumber:false,
+        walksNumber: false,
         walksTime: false,
         fence: false,
         fenceHeight: false,

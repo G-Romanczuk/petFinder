@@ -2,7 +2,7 @@
     <v-dialog v-model="dialog" width="98vw" height="98vh">
         <template v-slot:activator="{ props }">
             
-                <v-btn elevation="8" class="text" v-bind="props" >
+                <v-btn elevation="8" class="text font-big" v-bind="props" >
                       <v-icon color="rgb(143, 83, 122)" icon="mdi-paw" > </v-icon> Znajdź przyjaciela</v-btn>
         </template>
         <div class="d-flex align-center flex-column" style="width: 100%; margin: auto; height: 100%;">
@@ -76,8 +76,10 @@ function Show() {
 </script>
 
 <style lang="css">
+@import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
+
 .pet-text{
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Gruppo', sans-serif;
     font-size: large;
     display: block;
     padding: 5px;
@@ -88,7 +90,7 @@ function Show() {
 
 
 .title {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Gruppo', sans-serif;
     font-size: xxx-large;
     font-weight: bolder;
     font-stretch: wider;
@@ -96,7 +98,7 @@ function Show() {
 }
 
 .little-title {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Gruppo', sans-serif;
     font-weight: bold;
     font-size: medium;
     color: rgb(175, 126, 158);

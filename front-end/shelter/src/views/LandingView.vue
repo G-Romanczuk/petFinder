@@ -1,16 +1,15 @@
 <template>
-  <div class="d-flex align-center flex-column" style=" margin: 0 auto; overflow: visible;">
+  <div class="d-flex align-center flex-column" style=" margin: 0 auto; overflow: visible; position: relative; top: -10vh;">
       <!-- 1 -->
-      <v-parallax src="@/assets/spaniel.jpg" style="height: 100vh; width: 100vw; ">
+      <v-parallax src="@/assets/spaniel.jpg" style="height: 130vh; width: 100vw; ">
           <v-sheet height="100vh" style=" background: rgb(255, 255, 255, 0) ">
-              <v-col style="height: 80vh; margin-top: 15vh; ">
+              <v-col style="height: 80vh; margin-top: 20vh; ">
 
                   <v-row style=" width: 40%; ">
-                      <v-divider :thickness="40" class="border-opacity-0"></v-divider>
                       <div style=" border-radius: 3%;  width: 90%; margin: 3vh auto ; "
                           class="d-flex align-center flex-column">
                           <div style=" ">
-                              <h1 style="color: rgb(91, 30, 133); text-align: center; " class="main">
+                              <h1 style="color: rgb(91, 30, 133); text-align: center; " class="font">
                                   Marzysz o przygarnięciu uroczego zwierzaka ze schroniska i
                                   ofiarowania mu kochającego domu ?
                               </h1>
@@ -28,7 +27,7 @@
                           <div style="background-color: #000000; width: 80%; height: 1px;"></div>
                           <v-divider :thickness="40" class="border-opacity-0"></v-divider>
                           <div style=" ">
-                              <h1 style="color: rgb(91, 30, 133); text-align: center; " class="main">
+                              <h1 style="color: rgb(91, 30, 133); text-align: center; " class="font">
                                   Nasza aplikacja jest tutaj, aby uczynić proces adopcji łatwiejszym i
                                   bardziej emocjonującym niż kiedykolwiek wcześniej !
                               </h1>
@@ -51,7 +50,8 @@
 
 
       <!-- 2 -->
-      <v-parallax src="@/assets/cat.jpg" style="height: 100vh; width: 100vw; " >
+      <v-parallax src="@/assets/cat.jpg" style="height: 130vh; width: 100vw; " >
+        <div style="height: 10vh;"></div>
           <v-sheet height="100vh" style="width: 100vw; background: rgb(255, 255, 255,0) ">
               <v-row>
                   <v-col style="height: 90vh; margin-top: 3vh; width: 45vw; " class="reveal fade-left">
@@ -61,7 +61,7 @@
                           <div style=" border-radius: 3%;  width: 90%; margin: 1vh auto auto 3vh ; "
                               class="d-flex align-center flex-column">
                               <div style=" ">
-                                  <p class=" main" style="font-size: 25px; font-weight: 800;">
+                                  <p class=" font" style="font-size: 25px; font-weight: 800;">
                                       Dzięki naszej innowacyjnej platformie, możesz przeglądać profile
                                       różnorodnych zwierząt, które poszukują nowego domu. Czy to pies,
                                       kot, królik czy chomik, u nas znajdziesz szeroki wybór zwierzaków
@@ -83,12 +83,12 @@
                   </v-col>
 
                   <v-col style="height: 90vh; margin-top: 3vh; width: 45vw;  " class="reveal fade-right">
-                      <v-row style="height: 50vh;"></v-row>
+                      <v-row style="height: 60vh;"></v-row>
                       <v-row style="">
                           <v-divider :thickness="40" class="border-opacity-0"></v-divider>
                           <div style=" border-radius: 3%;  width: 90%;   " class="d-flex align-center flex-column">
                               <div style=" ">
-                                  <p class=" main" style="font-size: 25px; font-weight: 800; color: beige;">
+                                  <p class=" font" style="font-size: 25px; font-weight: 800; color: beige;">
 
 
                                       Nasza aplikacja oferuje nie tylko możliwość przeglądania profili,
@@ -115,7 +115,7 @@
 
 
 
-      <v-parallax src="@/assets/pigs.jpg" style="height: 110vh; width: 100vw; ">
+      <v-parallax src="@/assets/pigs.jpg" style="height: 120vh; width: 100vw; ">
           <v-sheet height="100vh" style="width: 100vw; background: rgb(255, 255, 255,0) ">
 
               <v-col style="height: 90vh; margin-top: 10vh; width: 80vw; margin-left:  auto; margin-right: auto;  " class="reveal fade-bottom">
@@ -124,7 +124,7 @@
                       <v-divider :thickness="40" class="border-opacity-0"></v-divider>
                       <div style=" border-radius: 3%;  width: 90%; margin: 1vh auto auto 3vh ; "
                           class="d-flex align-center flex-column">
-                          <div style="font-size: 25px; font-weight: 800; text-align: center; " class="main">
+                          <div style="font-size: 25px; font-weight: 800; text-align: center; " class="font">
                               Wierzymy, że każde zwierzę zasługuje na kochający dom i
                               troskliwego opiekuna. Dlatego stworzyliśmy tę aplikację, aby
                               połączyć ludzi, którzy szukają zwierzaka do adopcji, z tymi,
@@ -137,7 +137,7 @@
                               schronisk. Razem możemy tworzyć prawdziwie szczęśliwe zakończenia
                               dla tych wspaniałych istot. <br />
                               <br />
-                              <h3 class="main" style="color:rgb(106, 68, 58); font-weight:900; ">
+                              <h3 class="font" style="color:rgb(106, 68, 58); font-weight:900; ">
                                   Nie czekaj dłużej - zarejestruj się już teraz i rozpocznij swoją
                                   przygodę z adopcją zwierzaka!
                               </h3>
@@ -180,7 +180,7 @@
                       style="width: 15vw; height: 15vw; margin: auto 0; border-radius: 5%;"></v-img>
               </v-row>
               <h1 style="color: bisque; width: 80%; margin: auto; text-align: center; font-size: 30px; font-weight: 900;"
-                  class="main">
+                  class="font">
                   W schroniskach dla zwierząt często znajdują się różnorodne gatunki zwierząt, które zostały
                   uratowane lub
                   porzucone. Warunki życia w schroniskach mogą być trudne, zwłaszcza ze względu na
@@ -197,16 +197,16 @@
 
 -->
 
-      <v-carousel cycle show-arrows="hover" hide-delimiters style="height: 100vh; width: 100vw;">
+      <v-carousel cycle show-arrows="hover" hide-delimiters style="height: 120vh; width: 100vw;">
           <v-carousel-item cover>
-              <v-parallax src="@/assets/golden.jpg" style="height: 100vh; width: 100vw; ">
+              <v-parallax src="@/assets/golden.jpg" style="height: 120vh; width: 100vw; ">
                   <div style="height: 80vh; width: 70vw; margin: auto; margin-top: 10vh; ">
-                      <h2 class="main"
+                      <h2 class="font"
                           style="text-shadow: 2px 2px 2px; font-weight: bold; font-size: 35px; text-align: center;">
                           Psy
                       </h2>
                       <v-divider :thickness="40" class="border-opacity-0"></v-divider>
-                      <p class="main" style="font-size: 30px; font-weight: 900;">
+                      <p class="font" style="font-size: 30px; font-weight: 900;">
                           Psy są najczęściej spotykanymi zwierzętami w schroniskach. Są różnych ras, wielkości i
                           wieku. W
                           schroniskach może brakować miejsca, a psy mogą być umieszczone w małych klatkach lub
@@ -221,13 +221,13 @@
           </v-carousel-item>
 
           <v-carousel-item cover>
-              <v-parallax src="@/assets/cat-cream.jpg" style="height: 100vh; width: 100vw; ">
+              <v-parallax src="@/assets/cat-cream.jpg" style="height: 120vh; width: 100vw; ">
                   <div style="height: 80vh; width: 70vw; margin: auto; margin-top: 10vh; ">
-                      <h2 class="main"
+                      <h2 class="font"
                           style="text-shadow: 2px 2px 2px; font-weight: bold; font-size: 35px; text-align: center;">
                           Koty
                       </h2> <v-divider :thickness="40" class="border-opacity-0"></v-divider>
-                      <p class="main" style="font-size: 30px; font-weight: 900;">
+                      <p class="font" style="font-size: 30px; font-weight: 900;">
                           Koty również są często obecne w schroniskach. Mogą być dzikie, bezdomne lub opuszczone. Koty są
                           bardziej
                           niezależne niż psy, ale nadal wymagają odpowiedniej opieki. Brak wystarczających środków może
@@ -241,13 +241,13 @@
           </v-carousel-item>
 
           <v-carousel-item cover>
-              <v-parallax src="@/assets/parrot.jpg" style="height: 100vh; width: 100vw; ">
+              <v-parallax src="@/assets/parrot.jpg" style="height: 120vh; width: 100vw; ">
                   <div style="height: 80vh; width: 70vw; margin: auto; margin-top: 10vh; ">
-                      <h2 class="main"
+                      <h2 class="font"
                           style="text-shadow: 2px 2px 2px; font-weight: bold; font-size: 35px; text-align: center;">
                           Ptaki
                       </h2> <v-divider :thickness="40" class="border-opacity-0"></v-divider>
-                      <p class="main" style="font-size: 30px; font-weight: 900;">
+                      <p class="font" style="font-size: 30px; font-weight: 900;">
 
                           Schroniska mogą również przyjmować porzucone ptaki, takie jak papugi, kanarki czy gołębie. Ptaki
                           potrzebują
@@ -262,14 +262,14 @@
           </v-carousel-item>
 
           <v-carousel-item cover>
-              <v-parallax src="@/assets/hamster.jpg" style="height: 100vh; width: 100vw; ">
+              <v-parallax src="@/assets/hamster.jpg" style="height: 120vh; width: 100vw; ">
                   <div style="height: 80vh; width: 70vw; margin: auto; margin-top: 10vh; ">
-                      <h2 class="main"
+                      <h2 class="font"
                           style="text-shadow: 2px 2px 2px; font-weight: bold; font-size: 35px; text-align: center;">
                           Gryzonie
                       </h2> <v-divider :thickness="40" class="border-opacity-0"></v-divider>
                       <v-divider :thickness="20" class="border-opacity-0"></v-divider>
-                      <p class="main" style="font-size: 30px; font-weight: 900;">
+                      <p class="font" style="font-size: 30px; font-weight: 900;">
                           Często można spotkać króliki, chomiki, świnki morskie i inne gryzonie. Te zwierzęta potrzebują
                           odpowiednich
                           klatek, miejsca do aktywności i regularnej opieki weterynaryjnej. Brak odpowiedniej diety i brak
@@ -293,7 +293,7 @@
 
           <div style=" width: 60%; margin: auto; margin-top: 15vh;">
 
-              <p class="main reveal fade-bottom" style="text-align: center; font-size: 25px; font-weight: 900;" >
+              <p class="font reveal fade-bottom" style="text-align: center; font-size: 25px; font-weight: 900;" >
 
 
 
@@ -310,7 +310,7 @@
                   celu
                   zapobieganie porzucaniu i nadmiernemu rozmnażaniu się zwierząt. <br>
                   <v-divider :thickness="80" class="border-opacity-0"></v-divider>
-              <h3 class="main" style="color:rgb(175, 126, 158); font-size: 30px; font-weight: 900;">
+              <h3 class="font" style="color:rgb(175, 126, 158); font-size: 30px; font-weight: 900;">
                   Nie czekaj dłużej - zarejestruj się już teraz i rozpocznij swoją
                   przygodę z adopcją zwierzaka!
               </h3>
@@ -369,7 +369,7 @@ window.addEventListener("scroll", reveal);
 @import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
 
 
-.main {
+.font {
   font-family: 'Gruppo', sans-serif;
 }
 
@@ -393,7 +393,7 @@ window.addEventListener("scroll", reveal);
 
 .text {
   text-align: justify;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Gruppo', sans-serif;
 
 }
 

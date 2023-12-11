@@ -1,12 +1,12 @@
 <template>
   <v-dialog v-model="dialog" max-width="60vw"  >
       <template v-slot:activator="{ props }">
-          <v-btn elevation="8" class="d-flex align-center flex-column main-text main-text" v-bind="props">Zaloguj
+          <v-btn elevation="8" class="d-flex align-center flex-column font" v-bind="props">Zaloguj
               się</v-btn>
       </template>
       
     
-      <div class="d-flex align-center flex-column" style="width: 100%; height: 64vh; margin-left: auto; margin-right: auto;">
+      <div class="d-flex align-center flex-column" style="width: 100%; height: 70vh; margin-left: auto; margin-right: auto;">
 
           <div class="title" style="padding: 20px;">Logowanie</div>
 
@@ -19,7 +19,7 @@
               <v-card-text style="width: 70%; margin: auto; ">
 
                 <div class="little-title" style="padding-bottom: 20px; text-align: center; text-shadow: 0px 0px 0px #000000;">Schronisko</div>
-                  <v-form v-model="isValid">
+                  <v-form v-model="isValid" class="font">
                       
                       <v-text-field label="E-mail" v-model="emailShelter" :rules="emailRules" required></v-text-field>
                       <v-divider :thickness="20" class="border-opacity-0"></v-divider>
@@ -48,7 +48,7 @@
             <v-col>
               <v-card-text style="width: 70%; margin: 0 auto;">
                 <div class="little-title" style="padding-bottom: 20px; text-align: center; text-shadow: 0px 0px 0px #000000">Adoptujący</div>
-                  <v-form v-model="isValid">
+                  <v-form v-model="isValid"  class="font">
                       
                       <v-text-field label="E-mail" v-model="emailUser" :rules="emailRules" required></v-text-field>
                       <v-divider :thickness="20" class="border-opacity-0"></v-divider>
@@ -71,7 +71,10 @@
                  <v-divider :thickness="10" class="border-opacity-0"></v-divider>
                 <div class="little-title" style=" text-shadow: 0px 0px 0px #000000">Nie posiadam konta</div>
                  <v-divider  :thickness="20" class="border-opacity-0"></v-divider>
-               <RegisterPopup />
+                
+                  <RegisterPopup  />
+                   
+
                   <v-divider color="rgb(175, 126, 158)" :thickness="20" class="border-opacity-0"></v-divider>
               </v-card-actions>
             </v-col>
@@ -148,8 +151,26 @@ var userLogin = {
 </script>
 
 <style lang="css">
+@import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
+
+
+.font {
+  font-family: 'Gruppo', sans-serif;
+  text-decoration: none;
+font-weight:900;
+}
+
+
+
+.scale :hover {
+  transform: scale(1.2);
+}
+
+
+
+
 .title {
-  font-family:'Courier New', Courier, monospace;
+  font-family: 'Gruppo', sans-serif;
   font-size: xxx-large;
   font-weight: bolder;
   font-stretch: wider;
@@ -158,7 +179,7 @@ var userLogin = {
 }
 
 .little-title {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Gruppo', sans-serif;
   font-weight: bold;
   font-size: medium;
   color: rgb(175, 126, 158);

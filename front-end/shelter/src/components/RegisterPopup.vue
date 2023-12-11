@@ -1,12 +1,18 @@
 <template>
     <v-dialog v-model="dialog" max-width="50vw">
-        <template v-slot:activator="{ props }">
-            <div class="d-flex align-center flex-column  main" size="x-large" v-bind="props" style="margin: auto; color:  rgb(91, 30, 133); font-size: 40px;">Zarejestruj
+       <template v-slot:activator="{ props }">
+            
+            <div class="d-flex align-center flex-column  font " size="x-large" v-bind="props" style="margin: auto; color:  rgb(91, 30, 133); font-size: 30px;">Zarejestruj
                 się</div>
         </template>
+       
+
+      
+
+
         <div class="d-flex align-center flex-column" style="width: 100%; margin-left: auto; margin-right: auto;">
 
-            <div class="title" style="padding: 20px;">Rejestracja</div>
+            <div class="font title" style="padding: 20px;">Rejestracja</div>
 
 
             <v-card class="scrollbar" width="100%" height="85vh" style="overflow-y: scroll; border-radius: 5%;">
@@ -21,8 +27,8 @@
                     <v-divider :thickness="20" class="border-opacity-0"></v-divider>
                     <div style="width: 80%; height: 2px; background-color: rgb(175, 126, 158); opacity: 0.5;"></div>
                 </div>
-                <v-form @submit="onSubmit" :validation-schema="schema" @invalid-submit="onInvalidSubmit" class="px-4">
-                    <v-card-text style="width: 70%; margin: 0 auto;">
+                <v-form @submit="onSubmit" :validation-schema="schema" @invalid-submit="onInvalidSubmit" class="px-4 font">
+                    <v-card-text style="width: 70%; margin: 0 auto; color: #000000;">
 
                         <v-text-field v-bind="name" v-model="nameValue" label="Name" type="Name" />
                         <v-text-field v-bind="lname" v-model="lnameValue" label="LName" type="LName" />
@@ -165,15 +171,23 @@ store.postRegister(register)
 
 <style lang="css">
 
+@import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
 
-  .main{
-    font-family: 'Major Mono Display', monospace;
-  }
+.font {
+  font-family: 'Gruppo', sans-serif;
+  text-decoration: none;
+font-weight:900;
+}
+
+
+
+.scale :hover {
+  transform: scale(1.2);
+}
 
 .title {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Gruppo', sans-serif;
     font-size: xxx-large;
     font-weight: bolder;
     font-stretch: wider;
@@ -182,7 +196,7 @@ store.postRegister(register)
 }
 
 .little-title {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Gruppo', sans-serif;
     font-weight: bold;
     font-size: medium;
     color: rgb(175, 126, 158);

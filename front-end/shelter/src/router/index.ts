@@ -22,11 +22,11 @@ const routes = [
     name: 'test',
     component: () => import('@/components/tes.vue'),
   },
-  {
-    path: '/test1',
-    name: 'test1',
-    component: () => import('@/components/test.vue'),
-  },
+  // {
+  //   path: '/test1',
+  //   name: 'test1',
+  //   component: () => import('@/components/test.vue'),
+  // },
 ]
 
 const router = createRouter({

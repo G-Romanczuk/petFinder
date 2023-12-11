@@ -9,7 +9,7 @@
     <template v-slot:activator="{ props }">
       <v-btn
         elevation="8"
-        class="d-flex align-center flex-column text"
+        class="d-flex align-center flex-column text font-big"
         v-bind="props"
       >
         <v-icon color="rgb(143, 83, 122)" icon="mdi-account-edit"> </v-icon>Dane
@@ -403,8 +403,10 @@ store.postShelterForm(shelterForm)
 </script>
 
 <style lang="css">
+@import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
+
 .title {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Gruppo', sans-serif;
   font-size: xxx-large;
   font-weight: bolder;
   font-stretch: wider;
@@ -413,9 +415,9 @@ store.postShelterForm(shelterForm)
 }
 
 .p {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Gruppo', sans-serif;
   font-size: medium;
-  color: rgb(145, 87, 124);
+  color: rgb(0, 0, 0);
   text-align: center;
   opacity: 1;
 }
