@@ -238,9 +238,29 @@ namespace shelter.Interfaces.User
             return res.Succeeded;
         }
 
-        public Task<UserForm> GetSignleUser(string email)
+        public async Task<UserForm> GetSignleUser(string email)
         {
-            throw new NotImplementedException();
+            var userModel = await _shelterPetFinderDbContext.UsersRegistered.FirstOrDefaultAsync(u=>u.Email == email);
+            if (userModel!=null)
+            {
+                var userModelId = userModel.Id;
+
+                var userHabbits = await _shelterPetFinderDbContext.UserQuestionsHabbits.FirstOrDefaultAsync(u => u.UserModelId == userModelId);
+                var userResidence = await _shelterPetFinderDbContext.UserQuestionsResidence.FirstOrDefaultAsync(u => u.UserModelId == userModelId);
+                var userPetDetails = await _shelterPetFinderDbContext.UserQuestionsPetDetails.FirstOrDefaultAsync(u => u.UserModelId == userModelId);
+
+                var userToGet = _mapper.Map<UserForm>(userModel);
+                _mapper.Map(userHabbits, userToGet);
+                _mapper.Map(userResidence, userToGet);
+                _mapper.Map(userPetDetails, userToGet);
+
+                return userToGet;
+            }
+            else
+            {
+                return null;
+            }
+            
         }
     }
 }

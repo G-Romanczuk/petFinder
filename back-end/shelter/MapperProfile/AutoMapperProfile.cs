@@ -21,6 +21,11 @@ namespace shelter.MapperProfile
             CreateMap<UserForm, UserResidenceModel>();
             CreateMap<UserForm, UsersDogDetailsModel>();
 
+            CreateMap<UserModel, UserForm>();
+            CreateMap<UserHabbitsModel, UserForm>();
+            CreateMap<UserResidenceModel, UserForm>();
+            CreateMap<UsersDogDetailsModel, UserForm>();
+
             CreateMap<ShelterForm, ShelterModel>();
             CreateMap<Questions, ShelterHabbitsModel>();
             CreateMap<Questions, ShelterResidenceModel>();
