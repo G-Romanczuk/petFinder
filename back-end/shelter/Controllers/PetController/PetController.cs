@@ -59,5 +59,24 @@ namespace shelter.Controllers.PetController
 
         }
 
+        [HttpDelete("Delete", Name ="DeletePet")]
+        public async Task<IActionResult> DeletePet([FromBody] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                return Ok(await _petService.DeletePet(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Wystapił bład podczas usuwania zwierzaka {ex.Message}");
+            }
+        }
+
+
     }
 }
