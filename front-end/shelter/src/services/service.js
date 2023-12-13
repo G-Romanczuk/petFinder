@@ -16,7 +16,7 @@ export default {
     //     emailShelter : emailUser.value,
     //     passwordUser: passwordUser.value
     //   }
-    return await axios.post(baseURL + "/api/test", data);
+    return await axios.post(baseURL + "/User/Login", data);
   },
   async postRegister(data) {
     //data

@@ -79,8 +79,10 @@ export const useUserStore = defineStore("user", {
     postShelterLogin(data) {
       service.postShelterLogin(data)
     },
-    postUserLogin(data) {
-      service.postUserLogin(data)
+    async postUserLogin(data) {
+      const res = await service.postUserLogin(data)
+
+      return res
     },
     postRegister(data) {
       service.postRegister(data)

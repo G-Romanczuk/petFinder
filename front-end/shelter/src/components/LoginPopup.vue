@@ -62,10 +62,7 @@
                   <v-divider :thickness="20" class="border-opacity-0"></v-divider>
               
                       <v-btn color="rgb(175, 126, 158)" :disabled="!isValid" class="little-title"
-                          @click="dialog = false, //@ts-ignore
-      store.loggedUser = emailUser,
-      $router.push('/userMenu')">Zaloguj się</v-btn>
-      <v-btn @click="userTest()">TEST User</v-btn>
+                          @click="userLogin()">Zaloguj się</v-btn>
                  <v-divider :thickness="10" class="border-opacity-0"></v-divider>
                  <div style="width: 80%; height: 2px; background-color: rgb(175, 126, 158); opacity: 0.5;"></div>
                  <v-divider :thickness="10" class="border-opacity-0"></v-divider>
@@ -91,6 +88,7 @@
 import { ref } from 'vue'
 import { useUserStore } from '@/store/user';
 import RegisterPopup from './RegisterPopup.vue';
+import router from '@/router';
 
 const store = useUserStore();
 
@@ -134,13 +132,31 @@ const store = useUserStore();
     store.postShelterLogin(shelterLogin)
   }
 
-    async function userTest() {
+    async function userLogin() {
 
 var userLogin = {
-  emailShelter : emailUser.value,
+  emailUser : emailUser.value,
   passwordUser: passwordUser.value
 }
-    store.postUserLogin(userLogin)
+    const res = await store.postUserLogin(userLogin)
+
+    if( res == "Success"){
+      
+    router.push('/userMenu')
+    store.loggedUser = emailUser.value
+    dialog = false
+    }
+    else {
+      console.log("wrong password")
+    }
+
+    
+    
+
+
+    
+
+
   }
 
 
