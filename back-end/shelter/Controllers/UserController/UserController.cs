@@ -95,8 +95,8 @@ namespace shelter.Controllers.UserController
             }
         }
 
-        [HttpGet("Get",Name = "GetSingleUser")]
-        public async Task<IActionResult> GetSingleUser([FromBody] string email)
+        [HttpGet("Get/{email}",Name = "GetSingleUser")]
+        public async Task<IActionResult> GetSingleUser( string email)
         {
             try
             {

@@ -132,7 +132,7 @@ var show2 = ref(false)
 
     if( res.data.message == "Success"){
       
-      store.loggedShelter = emailShelter.value
+      store.shelterData.email = emailShelter.value
       dialog = false
       router.push('/shelterMenu')
      
@@ -150,8 +150,11 @@ var userLogin = {
     const res = await store.postUserLogin(userLogin)
 
      if( res.data.message == "Success"){
-      
-    store.loggedUser = emailUser.value
+
+      console.log(emailUser.value)
+     await store.getUserData(emailUser.value)  
+
+    store.loggedUserJWT = res.data.jwtToken
     dialog = false
     router.push('/userMenu')
    

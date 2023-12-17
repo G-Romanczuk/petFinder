@@ -3,7 +3,7 @@ import service from "@/services/service";
 export const useUserStore = defineStore("user", {
   state: () => {
     return {
-      loggedUser: "",
+      loggedUserJWT: "",
       userData: {
         name: "",
       lname: "",
@@ -33,7 +33,7 @@ export const useUserStore = defineStore("user", {
       animalsBeforeText: "",
       text: "",
       },
-      loggedShelter: '',
+      loggedShelterJWT: '',
       shelterData : {
       name: '',
       email: "",
@@ -71,16 +71,23 @@ export const useUserStore = defineStore("user", {
   },
   actions: {
     login(email) {
-      this.loggedUser = email
+      this.loggedUserJWT = email
     },
     logout() {
-      this.loggedUser = ''
+      this.loggedUserJWT = ''
     },
     postShelterLogin(data) {
       service.postShelterLogin(data)
     },
     async postUserLogin(data) {
       const res = await service.postUserLogin(data)
+
+      return res
+    },
+    async getUserData(userToken){
+      const res = await service.getUserData(userToken)
+
+      console.log(res)
 
       return res
     },
@@ -95,7 +102,7 @@ export const useUserStore = defineStore("user", {
     },
   },
   getters: {
-    getLoggedUser: (state) => {return state.loggedUser},
+    getLoggedUserJWT: (state) => {return state.loggedUserJWT},
   },
   persist: true,
 });
