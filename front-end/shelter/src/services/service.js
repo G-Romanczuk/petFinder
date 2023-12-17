@@ -1,3 +1,4 @@
+import { email } from "@vuelidate/validators";
 import axios from "axios";
 const baseURL = "https://localhost:7164";
 
@@ -17,6 +18,13 @@ export default {
     //     passwordUser: passwordUser.value
     //   }
     return await axios.post(baseURL + "/User/Login", data);
+  },
+  async getUserData(data) {
+    //data
+    // {
+    //     jwtToken - string
+    //   }
+    return await axios.get(baseURL + "/User/Get", { params: { email: data } }  );
   },
   async postRegister(data) {
     //data

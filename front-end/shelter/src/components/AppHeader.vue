@@ -13,10 +13,10 @@
     </v-app-bar-title>
 
     <template v-slot:append>
-      <h5 class="font header-text">{{ store.loggedUser + store.loggedShelter }}</h5>
+      <h5 class="font header-text">{{ store.userData.email + store.shelterData.email }}</h5>
       <v-divider vertical :thickness="20" class="border-opacity-0"></v-divider>
 
-      <LoginPopup v-if="loggedUser == '' && loggedShelter == ''" />
+      <LoginPopup v-if="loggedUserJWT == '' && loggedShelterJWT == ''" />
       <div style="display: flex; width: fit-content;" v-else>
         <v-menu>
           <template v-slot:activator="{ props }">
@@ -24,7 +24,7 @@
           </template>
 
           <v-list class="font d-flex align-center flex-column">
-            <v-list-item @click="$router.push('/userMenu')" v-if="loggedShelter == ''">
+            <v-list-item @click="$router.push('/userMenu')" v-if="loggedShelterJWT == ''">
               <v-list-item-title> User Menu </v-list-item-title>
             </v-list-item>
             <v-list-item @click="$router.push('/shelterMenu')" v-else>
@@ -51,8 +51,8 @@ import { storeToRefs } from 'pinia'
 
 const store = useUserStore();
 
-const { loggedUser } = storeToRefs(store)
-const { loggedShelter } = storeToRefs(store)
+const { loggedUserJWT } = storeToRefs(store)
+const { loggedShelterJWT } = storeToRefs(store)
 
 function logout() {
   store.$reset()

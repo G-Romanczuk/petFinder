@@ -140,7 +140,7 @@ var otherCats = ref(store.petData.otherCats)
 var cuddly = ref(store.petData.cuddly)
 var temper = ref(store.petData.temper)
 var text = ref(store.petData.text)
-var shelterEmail = ref(userStore.loggedShelter)
+var shelterEmail = ref(userStore.shelterData.email)
 var petData = {
     shelter: shelterEmail,
     name: name,
