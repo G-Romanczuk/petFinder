@@ -34,8 +34,6 @@ namespace shelter.Controllers.UserController
 
             return BadRequest(new { message = "User already exist" }); 
 
-
-
         }
 
         [HttpPost("Login", Name ="LoginUser")]
