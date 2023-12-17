@@ -12,5 +12,6 @@ namespace shelter.Interfaces.Shelter
         Task<bool> LoginUser(ShelterLoginDto shelter);
         Task<bool> AddShelterDetailsForm(ShelterForm shelterForm);
         Task<List<PetModel>> GetAllPetsBelongsToShelter(string shelterEmail);
+        Task<ShelterForm> GetSingleShelter ( string shelterEmail);
     }
 }

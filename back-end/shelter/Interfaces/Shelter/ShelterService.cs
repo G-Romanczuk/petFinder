@@ -253,6 +253,29 @@ namespace shelter.Interfaces.Shelter
             return token;
         }
 
-       
+        public async Task<ShelterForm> GetSingleShelter(string shelterEmail)
+        {
+            var shelterModel = await _shelterPetFinderDbContext.Shelters.FirstOrDefaultAsync(s=>s.Email == shelterEmail);
+
+            if (shelterModel != null)
+            {
+                var shelterModelId = shelterModel.Id;
+
+                var shelterHabbits = await _shelterPetFinderDbContext.ShelterQuestionsHabbits.FirstOrDefaultAsync(s => s.ShelterModelId == shelterModelId);
+                var shelterResidence = await _shelterPetFinderDbContext.ShelterQuestionsResidence.FirstOrDefaultAsync(s => s.ShelterModelId == shelterModelId);
+                var shelterPetDetails = await _shelterPetFinderDbContext.ShelterQuestionsPetDetails.FirstOrDefaultAsync(s => s.ShelterModelId == shelterModelId);
+
+                var shelterToGet = _mapper.Map<ShelterForm>(shelterModel);
+                _mapper.Map(shelterHabbits, shelterToGet);
+                _mapper.Map(shelterResidence, shelterToGet);
+                _mapper.Map(shelterPetDetails, shelterToGet);
+
+                return shelterToGet;
+            }
+            else
+            {
+                return null; 
+            }
+        }
     }
 }
