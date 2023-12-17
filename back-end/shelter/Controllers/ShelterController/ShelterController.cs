@@ -60,10 +60,11 @@ namespace shelter.Controllers.ShelterController
         }
 
         [HttpGet("GetPets", Name ="GetAllPetsBelongsToShelter")]
-        public async Task<IActionResult> GetAllPetsBelongsToShelter ( string shelterEmail)
+        public async Task<IActionResult> GetAllPetsBelongsToShelter ()
         {
             try
             {
+                var shelterEmail = HttpContext.Request.Query["email"];
                 var pets = await _shelterService.GetAllPetsBelongsToShelter(shelterEmail);
 
                 if (pets.Count>0)
