@@ -81,5 +81,29 @@ namespace shelter.Controllers.ShelterController
                 return BadRequest();
             }
         }
+
+        [HttpGet("Get", Name = "GetSingleShelter")]
+        public async Task<IActionResult> GetSingleShelter()
+        {
+            try
+            {
+                var email = HttpContext.Request.Query["email"];
+                var shelter = await _shelterService.GetSingleShelter(email);
+
+                if (shelter == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return Ok(shelter);
+                }
+            }
+            catch (Exception)
+            {
+
+                return BadRequest();
+            }
+        }
     }
 }
