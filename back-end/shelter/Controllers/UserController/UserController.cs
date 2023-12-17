@@ -94,6 +94,29 @@ namespace shelter.Controllers.UserController
                 return BadRequest("Nie udało się zresetować hasła");
             }
         }
+
+        [HttpGet("Get",Name = "GetSingleUser")]
+        public async Task<IActionResult> GetSingleUser([FromBody] string email)
+        {
+            try
+            {
+                var user = await _userService.GetSignleUser(email);
+
+                if (user==null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return Ok(user);    
+                }
+            }
+            catch (Exception)
+            {
+
+                return BadRequest();    
+            }
+        }
         
 
     }

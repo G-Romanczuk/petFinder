@@ -45,7 +45,7 @@ namespace shelter.Interfaces.User
             try
             {
                
-                var userModelToUpdate = await _shelterPetFinderDbContext.RegisteredUsers.FirstOrDefaultAsync(um => um.Email == userModel.Email);
+                var userModelToUpdate = await _shelterPetFinderDbContext.UsersRegistered.FirstOrDefaultAsync(um => um.Email == userModel.Email);
                 if ( userModelToUpdate == null )
                 {
                     return false;
@@ -65,11 +65,11 @@ namespace shelter.Interfaces.User
                 userModelToUpdate.IncomeSource = userModel.IncomeSource;
                 await _shelterPetFinderDbContext.SaveChangesAsync();
 
-                var userHabbitsModelToUpdate = await _shelterPetFinderDbContext.Habbits.FirstOrDefaultAsync(uid => uid.UserModelId == userModelToUpdateId);
+                var userHabbitsModelToUpdate = await _shelterPetFinderDbContext.UserQuestionsHabbits.FirstOrDefaultAsync(uid => uid.UserModelId == userModelToUpdateId);
                 if (userHabbitsModelToUpdate == null)
                 {
                     userHabbitsModel.UserModelId = userModelToUpdateId;
-                    _shelterPetFinderDbContext.Habbits.Add(userHabbitsModel);
+                    _shelterPetFinderDbContext.UserQuestionsHabbits.Add(userHabbitsModel);
                     await _shelterPetFinderDbContext.SaveChangesAsync();
                 }
                 else
@@ -82,11 +82,11 @@ namespace shelter.Interfaces.User
                     await _shelterPetFinderDbContext.SaveChangesAsync();
                 }
 
-                var userResidenceModelToUpdate = await _shelterPetFinderDbContext.Residences.FirstOrDefaultAsync(uid => uid.UserModelId == userModelToUpdateId);
+                var userResidenceModelToUpdate = await _shelterPetFinderDbContext.UserQuestionsResidence.FirstOrDefaultAsync(uid => uid.UserModelId == userModelToUpdateId);
                 if (userResidenceModelToUpdate == null)
                 {
                     userResidenceModel.UserModelId = userModelToUpdateId;
-                    _shelterPetFinderDbContext.Residences.Add(userResidenceModel);
+                    _shelterPetFinderDbContext.UserQuestionsResidence.Add(userResidenceModel);
                     await _shelterPetFinderDbContext.SaveChangesAsync();
                 }
                 else
@@ -103,7 +103,7 @@ namespace shelter.Interfaces.User
                     await _shelterPetFinderDbContext.SaveChangesAsync();
                 }
 
-                var userDogDetailsModelToUpdate = await _shelterPetFinderDbContext.usersDogDetails.FirstOrDefaultAsync(uid => uid.UserModelId == userModelToUpdateId);
+                var userDogDetailsModelToUpdate = await _shelterPetFinderDbContext.UserQuestionsPetDetails.FirstOrDefaultAsync(uid => uid.UserModelId == userModelToUpdateId);
                 if (userDogDetailsModelToUpdate == null)
                 {
                     userDogDetailsModel.UserModelId = userModelToUpdateId;
@@ -136,7 +136,7 @@ namespace shelter.Interfaces.User
 
             try
             {
-                _shelterPetFinderDbContext.RegisteredUsers.Add(userToCreate);
+                _shelterPetFinderDbContext.UsersRegistered.Add(userToCreate);
                 await _shelterPetFinderDbContext.SaveChangesAsync();
                 return true;
             }
@@ -236,6 +236,31 @@ namespace shelter.Interfaces.User
             var res = await _userManager.ResetPasswordAsync(user, resetPasswordModel.Token, resetPasswordModel.NewPassword);
 
             return res.Succeeded;
+        }
+
+        public async Task<UserForm> GetSignleUser(string email)
+        {
+            var userModel = await _shelterPetFinderDbContext.UsersRegistered.FirstOrDefaultAsync(u=>u.Email == email);
+            if (userModel!=null)
+            {
+                var userModelId = userModel.Id;
+
+                var userHabbits = await _shelterPetFinderDbContext.UserQuestionsHabbits.FirstOrDefaultAsync(u => u.UserModelId == userModelId);
+                var userResidence = await _shelterPetFinderDbContext.UserQuestionsResidence.FirstOrDefaultAsync(u => u.UserModelId == userModelId);
+                var userPetDetails = await _shelterPetFinderDbContext.UserQuestionsPetDetails.FirstOrDefaultAsync(u => u.UserModelId == userModelId);
+
+                var userToGet = _mapper.Map<UserForm>(userModel);
+                _mapper.Map(userHabbits, userToGet);
+                _mapper.Map(userResidence, userToGet);
+                _mapper.Map(userPetDetails, userToGet);
+
+                return userToGet;
+            }
+            else
+            {
+                return null;
+            }
+            
         }
     }
 }
