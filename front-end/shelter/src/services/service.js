@@ -29,7 +29,7 @@ export default {
     //     phone: phoneValue.value,
     //     terms:termsValue.value
     // }
-    return await axios.post(baseURL + "/api/test", data);
+    return await axios.post(baseURL + "/user/register", data);
   },
   async postUserForm(data) {
     //data

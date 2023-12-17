@@ -46,7 +46,7 @@ namespace shelter.Controllers.UserController
             if (await _userService.LoginUser(user))
             {
                 var JwtToken = _userService.GenerateTokenString(user);
-                return Ok(JwtToken);
+                return Ok( new { JwtToken,  message = "Success" });
             }
             return BadRequest(new { message = "Email or password is incorrect" });
 

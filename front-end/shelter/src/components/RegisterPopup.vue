@@ -30,14 +30,14 @@
                 <v-form @submit="onSubmit" :validation-schema="schema" @invalid-submit="onInvalidSubmit" class="px-4 font">
                     <v-card-text style="width: 70%; margin: 0 auto; color: #000000;">
 
-                        <v-text-field v-bind="name" v-model="nameValue" label="Name" type="Name" />
-                        <v-text-field v-bind="lname" v-model="lnameValue" label="LName" type="LName" />
-                        <v-text-field v-bind="email" v-model="emailValue" label="E-mail" type="email" />
+                        <v-text-field clearable v-bind="name" v-model="nameValue" label="Imie" type="Name" />
+                        <v-text-field clearable v-bind="lname" v-model="lnameValue" label="Nazwisko" type="LName" />
+                        <v-text-field clearable v-bind="email" v-model="emailValue" label="E-mail" type="email" />
 
-                        <v-text-field v-bind="password" v-model="passwordValue" label="Hasło" type="password" />
-                        <v-text-field v-bind="passwordConfirm" v-model="passwordConfirmValue" label="Potwierdź hasło" type="password" />
+                        <v-text-field :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" clearable v-bind="password" v-model="passwordValue" label="Hasło" :type="show1 ? 'text' : 'password'"  @click:append="show1 = !show1" />
+                        <v-text-field :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'" clearable v-bind="passwordConfirm" v-model="passwordConfirmValue" label="Potwierdź hasło" :type="show2 ? 'text' : 'password'"  @click:append="show2 = !show2"/>
 
-                        <v-text-field label="Telefon kontaktowy"  v-bind="phone" v-model="phoneValue"  type="tel"
+                        <v-text-field clearable label="Telefon kontaktowy"  v-bind="phone" v-model="phoneValue"  type="tel"
                             required></v-text-field>
 
 
@@ -47,8 +47,8 @@
                             v-bind="terms"></v-checkbox>
                     </v-card-text>
                     <v-card-actions class="d-flex align-center flex-column">
-                        <v-divider :thickness="20" class="border-opacity-0"></v-divider>
-                        <v-btn color="outline" class="ml-4" @click="resetForm()"> Reset </v-btn>
+                       
+                      
                         <div style="display: flex; ">
                             <v-btn color="rgb(175, 126, 158)" :disabled="!isValid" class="little-title"
                                 @click="dialog = false">Zrezygnuj</v-btn>
@@ -57,7 +57,7 @@
                               @click="onSubmit"  type="submit" >Zarejestruj się</v-btn>
                               
                         </div>
-                        <v-btn @click="registerUserTest() "> TEST REGISTER</v-btn>
+                      
                         <v-divider :thickness="20" class="border-opacity-0"></v-divider>
                     </v-card-actions>
                 </v-form>
@@ -76,19 +76,18 @@ import * as yup from 'yup';
 import { useUserStore } from '@/store/user';
 
 const isValid = ref(true)
-var typeOfUser = ref();
-
 const store = useUserStore();
 
 
 
 var dialog = ref(false)
-
+var show1 = ref(false)
+var show2 = ref(false)
 
 
 const schema = yup.object({
-    name: yup.string().required().label('Name'),
-    lname: yup.string().required().label('LName'),
+    name: yup.string().required().label('Imie'),
+    lname: yup.string().required().label('Nazwisko'),
     email: yup.string().email().required().label('E-mail'),
     password: yup.string().min(6).required(),
     passwordConfirm: yup
@@ -124,6 +123,8 @@ var passwordConfirmValue = ref()
 var phoneValue = ref()
 var termsValue = ref()
 
+
+
 const name = defineComponentBinds('name', vuetifyConfig);
 const lname = defineComponentBinds('lname', vuetifyConfig);
 const email = defineComponentBinds('email', vuetifyConfig);
@@ -136,21 +137,9 @@ const terms = defineComponentBinds('terms', vuetifyConfig);
 
 
 const onSubmit = handleSubmit((values) => {
-    alert(JSON.stringify(values, null, 2));
+   // alert(JSON.stringify(values, null, 2));
 
-});
-
-
-
-function onInvalidSubmit({ values, errors, results }) {
-  console.log(values); // current form values
-  console.log(errors); // a map of field names and their first error message
-  console.log(results); // a detailed map of field names and their validation results
-}
-
-async function registerUserTest() {
-
-var register = {
+    var register = {
     name: nameValue.value,
     lname: lnameValue.value,
     email: emailValue.value,
@@ -161,7 +150,36 @@ var register = {
 }
 
 store.postRegister(register)
+});
+
+
+
+function onInvalidSubmit({ values, errors, results }) {
+  console.log(values); // current form values
+  console.log(errors); // a map of field names and their first error message
+  console.log(results); // a detailed map of field names and their validation results
 }
+
+
+
+
+
+
+
+// async function registerUserTest() {
+
+// var register = {
+//     name: nameValue.value,
+//     lname: lnameValue.value,
+//     email: emailValue.value,
+//     password: passwordValue.value,
+//     passwordConfirm: passwordConfirmValue.value,
+//     phone: phoneValue.value,
+//     terms:termsValue.value
+// }
+
+// store.postRegister(register)
+//}
 
 
 
@@ -200,10 +218,24 @@ font-weight:900;
     font-weight: bold;
     font-size: medium;
     color: rgb(175, 126, 158);
-    text-shadow: 1px 2px 2px #000000
+    text-shadow: 1px 1px 2px #000000
 }
 
+.font-big {
+  font-size: large;
+  font-weight: 600;
+}
 
+.font-bigger {
+  font-size:x-large;
+  font-weight: 900;
+}
+
+.font {
+  font-family: 'Gruppo', sans-serif;
+  text-decoration: none;
+  font-weight: 900;
+}
 .scrollbar::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 0px rgba(0, 0, 0, 0.3);
     background-color: transparent;

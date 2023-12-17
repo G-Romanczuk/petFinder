@@ -28,7 +28,7 @@
 import AppHeader from "./components/AppHeader.vue";
 import AppFooter from "./components/AppFooter.vue";
 import { defineComponent, onMounted, ref } from "vue";
-
+import router from "./router";
 const loading = ref(true)
 
 const onLoad = () => {

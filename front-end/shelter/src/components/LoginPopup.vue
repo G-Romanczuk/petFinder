@@ -23,8 +23,9 @@
                       
                       <v-text-field label="E-mail" v-model="emailShelter" :rules="emailRules" required></v-text-field>
                       <v-divider :thickness="20" class="border-opacity-0"></v-divider>
-                      <v-text-field label="Hasło" v-model="passwordShelter" type="password" :rules="passwordRules"
-                          required></v-text-field>
+                      <v-text-field :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'" clearable  v-model="passwordShelter" label="Hasło" :type="show2 ? 'text' : 'password'"  @click:append="show2 = !show2" :rules="passwordRules"
+                          required />
+                    
                     
 
                   </v-form>
@@ -33,10 +34,8 @@
                   <v-divider :thickness="20" class="border-opacity-0"></v-divider>
               
                       <v-btn color="rgb(175, 126, 158)" :disabled="!isValid" class="little-title"
-                          @click="dialog = false, //@ts-ignore
-      store.loggedShelter = emailShelter,
-      $router.push('/shelterMenu')">Zaloguj się</v-btn>
-      <v-btn @click="shelterTest()">TEST SHELTER</v-btn>
+                      @click="shelterLogin()">Zaloguj się</v-btn>
+
                  <v-divider :thickness="10" class="border-opacity-0"></v-divider>
                
               </v-card-actions>
@@ -52,8 +51,8 @@
                       
                       <v-text-field label="E-mail" v-model="emailUser" :rules="emailRules" required></v-text-field>
                       <v-divider :thickness="20" class="border-opacity-0"></v-divider>
-                      <v-text-field label="Hasło" v-model="passwordUser" type="password" :rules="passwordRules"
-                          required></v-text-field>
+                      <v-text-field :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" clearable  v-model="passwordUser" label="Hasło" :type="show1 ? 'text' : 'password'"  @click:append="show1 = !show1" :rules="passwordRules"
+                          required />
                     
 
                   </v-form>
@@ -91,8 +90,8 @@ import RegisterPopup from './RegisterPopup.vue';
 import router from '@/router';
 
 const store = useUserStore();
-
-
+var show1 = ref(false)
+var show2 = ref(false)
       const emailUser = ref(null)
       const passwordUser = ref(null)
 
@@ -123,40 +122,43 @@ const store = useUserStore();
       var dialog = ref(false)
 
 
-  async function shelterTest() {
+  async function shelterLogin() {
 
     var shelterLogin = {
       emailShelter : emailShelter.value,
       passwordShelter: passwordShelter.value
     }
-    store.postShelterLogin(shelterLogin)
+    const res = await  store.postShelterLogin(shelterLogin)
+
+    if( res.data.message == "Success"){
+      
+      store.loggedShelter = emailShelter.value
+      dialog = false
+      router.push('/shelterMenu')
+     
+      }
+      else {
+        console.log("wrong password")
+      }
   }
 
     async function userLogin() {
-
 var userLogin = {
   emailUser : emailUser.value,
   passwordUser: passwordUser.value
 }
     const res = await store.postUserLogin(userLogin)
 
-    if( res == "Success"){
+     if( res.data.message == "Success"){
       
-    router.push('/userMenu')
     store.loggedUser = emailUser.value
     dialog = false
+    router.push('/userMenu')
+   
     }
     else {
       console.log("wrong password")
     }
-
-    
-    
-
-
-    
-
-
   }
 
 
