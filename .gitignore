@@ -726,3 +726,4 @@ obj/
 /.vs/slnx.sqlite
 /.vs/VSWorkspaceState.json
 /back-end/shelter/shelter.csproj
+/back-end/shelter/appsettings.json
