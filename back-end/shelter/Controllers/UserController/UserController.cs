@@ -96,11 +96,10 @@ namespace shelter.Controllers.UserController
         }
 
         [HttpGet("Get",Name = "GetSingleUser")]
-        public async Task<IActionResult> GetSingleUser()
+        public async Task<IActionResult> GetSingleUser([FromQuery] string email)
         {
             try
             {
-                var email = HttpContext.Request.Query["email"];
                 var user = await _userService.GetSignleUser(email);
 
                 if (user==null)
