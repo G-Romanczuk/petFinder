@@ -1,8 +1,6 @@
 import { defineStore } from "pinia";
 import service from "@/services/service";
-import { useNotificationsStore } from "./notifications";
 
-const notifStore = useNotificationsStore();
 
 export const useUserStore = defineStore("user", {
   state: () => {
