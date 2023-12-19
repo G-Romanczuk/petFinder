@@ -10,7 +10,7 @@
         public string? town { get; set; }
         public string? adress { get; set; }
         public string? incomeSource { get; set; }
-        public string? lifeStyle { get; set; }
+        public string? lifestyle { get; set; }
         public string? housingType { get; set; }
         public string? houseOwner { get; set; }
         public int? hoursAlone { get; set; }
