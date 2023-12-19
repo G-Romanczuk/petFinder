@@ -277,5 +277,34 @@ namespace shelter.Interfaces.Shelter
                 return null; 
             }
         }
+
+        public async Task<string> ResetPassworReq(ResetPasswordReqModel resetPasswordReqModel)
+        {
+            var sh = await _userManagerShelter.FindByEmailAsync(resetPasswordReqModel.Email);
+
+            if (sh == null) 
+            {
+                return "Shelter Not Found";
+            }
+
+            var token = await _userManagerShelter.GeneratePasswordResetTokenAsync(sh);
+
+            return token;
+
+        }
+
+        public async Task<bool> ResetPassword(ResetPasswordModel resetPasswordModel)
+        {
+            var sh = await _userManagerShelter.FindByEmailAsync(resetPasswordModel.Email);
+
+            if  (sh == null)
+            {
+                return false;
+            }
+
+            var res = await _userManagerShelter.ResetPasswordAsync(sh, resetPasswordModel.Token, resetPasswordModel.NewPassword);
+
+            return res.Succeeded;
+        }
     }
 }

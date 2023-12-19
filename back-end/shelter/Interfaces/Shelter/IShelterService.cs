@@ -1,6 +1,7 @@
 ﻿using shelter.Dtos.ShelterDtos;
 using shelter.Models.PetModels;
 using shelter.Models.ShelterModels;
+using shelter.Models.UserModels;
 
 namespace shelter.Interfaces.Shelter
 {
@@ -13,5 +14,7 @@ namespace shelter.Interfaces.Shelter
         Task<bool> AddShelterDetailsForm(ShelterForm shelterForm);
         Task<List<PetModel>> GetAllPetsBelongsToShelter(string shelterEmail);
         Task<ShelterForm> GetSingleShelter ( string shelterEmail);
+        Task<string> ResetPassworReq(ResetPasswordReqModel resetPasswordReqModel);
+        Task<bool> ResetPassword(ResetPasswordModel resetPasswordModel);
     }
 }
