@@ -297,7 +297,7 @@ namespace shelter.Interfaces.Shelter
         {
             var sh = await _userManagerShelter.FindByEmailAsync(resetPasswordModel.Email);
 
-            if  (sh == null)
+            if  (sh == null || resetPasswordModel.NewPassword != resetPasswordModel.ConfirmPassword)
             {
                 return false;
             }
