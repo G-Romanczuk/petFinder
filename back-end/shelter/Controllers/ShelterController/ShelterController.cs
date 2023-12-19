@@ -106,7 +106,7 @@ namespace shelter.Controllers.ShelterController
             }
         }
 
-        [HttpPost("ResetPasswordRequest", Name = "ResetPasswordReq")]
+        [HttpPost("ResetShelterPasswordRequest", Name = "ResetShelterPasswordReq")]
         public async Task<IActionResult> ResetPasswordReq([FromBody] ResetPasswordReqModel resetPasswordReq)
         {
             var token = await _shelterService.ResetPassworReq(resetPasswordReq);
@@ -124,7 +124,7 @@ namespace shelter.Controllers.ShelterController
             return Ok(token);
         }
 
-        [HttpPost("ResetPassword", Name = "ResetUserPassword")]
+        [HttpPost("ResetShelterPassword", Name = "ResetShelterPassword")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordModel resetPassword)
         {
             var success = await _shelterService.ResetPassword(resetPassword);
