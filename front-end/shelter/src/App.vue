@@ -19,6 +19,7 @@
     <AppHeader app ></AppHeader>
     <v-main >
       <router-view ></router-view>
+    <NotificationsPopup></NotificationsPopup>
     </v-main>
     <AppFooter app style="opacity: 0.8;"></AppFooter>
   </v-app>
@@ -27,6 +28,7 @@
 <script setup lang="ts">
 import AppHeader from "./components/AppHeader.vue";
 import AppFooter from "./components/AppFooter.vue";
+import NotificationsPopup from "@/components/NotificationsPopup.vue"
 import { defineComponent, onMounted, ref } from "vue";
 import router from "./router";
 const loading = ref(true)

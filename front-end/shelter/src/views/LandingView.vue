@@ -13,6 +13,7 @@
                                   Marzysz o przygarnięciu uroczego zwierzaka ze schroniska i
                                   ofiarowania mu kochającego domu ?
                               </h1>
+                              <v-btn @click="Test()">click</v-btn>
                           </div>
                           <v-divider :thickness="40" class="border-opacity-0"></v-divider>
                           <div style="background-color: #000000; width: 80%; height: 1px;"></div>
@@ -331,11 +332,13 @@
 <script setup lang="ts">
 import LoginPopup from '@/components/LoginPopup.vue';
 import RegisterPopup from '@/components/RegisterPopup.vue';
+import { useNotificationsStore } from '@/store/notifications';
 import { shallowEqual } from '@babel/types';
+import test from 'node:test';
 import { onMounted, ref } from 'vue';
 
 
-
+const notifStore = useNotificationsStore();
 
 function reveal() {
   var reveals = document.querySelectorAll(".reveal");
@@ -355,7 +358,16 @@ function reveal() {
 
 window.addEventListener("scroll", reveal);
 
+async function Test() {
 
+const notification = {
+    type: "error",
+    message: "hi",
+  }
+
+  console.log(notification.message)
+  notifStore.add(notification)
+}
 
 
 </script>

@@ -86,10 +86,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useUserStore } from '@/store/user';
+import { useNotificationsStore } from '@/store/notifications';
 import RegisterPopup from './RegisterPopup.vue';
 import router from '@/router';
 
 const store = useUserStore();
+const notifStore = useNotificationsStore();
 var show1 = ref(false)
 var show2 = ref(false)
       const emailUser = ref(null)
@@ -161,6 +163,14 @@ var userLogin = {
     }
     else {
       console.log("wrong password")
+
+  //     const notification = {
+  //   type: "error",
+  //   message: res.data.message
+  // }
+
+  // console.error(notification.message)
+  // notifStore.add(notification)
     }
   }
 
