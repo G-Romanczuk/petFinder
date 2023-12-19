@@ -27,7 +27,7 @@ namespace shelter.Controllers.ShelterController
         {
             if (!ModelState.IsValid) return BadRequest();
 
-            if (await _shelterService.AddShelterDetailsForm(shelterForm)) return Ok();
+            if (await _shelterService.AddShelterDetailsForm(shelterForm)) return Ok(new {message="Success"});
 
             return BadRequest();
         }
@@ -39,7 +39,7 @@ namespace shelter.Controllers.ShelterController
             {
                 var shelterCredentials = await _shelterService.CreateAccount(email);
                 await _shelterService.CreateUserShelter(email);
-                return Ok(shelterCredentials);
+                return Ok(new {message="Success", shelterCredentials });
             }
             catch (Exception ex)
             {
@@ -55,7 +55,7 @@ namespace shelter.Controllers.ShelterController
             if (await _shelterService.LoginUser(shelter))
             {
                 var jwtToken = _shelterService.GenerateTokenString(shelter);
-                return Ok(jwtToken);
+                return Ok(new { message = "Success", jwtToken });
             }
             return BadRequest();
         }
