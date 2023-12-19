@@ -50,7 +50,7 @@ export default {
     //   town: town.value,
     //   adress: adress.value,
     //   incomeSource: incomeSource.value,
-    //   lifestyle: lifestyle.value,
+    //   lifeStyle: lifeStyle.value,
     //   housingType: housingType.value,
     //   houseOwner: houseOwner.value,
     //   hoursAlone: hoursAlone.value,
@@ -84,7 +84,7 @@ export default {
     //     url: url.value,
     //     questions: {
     //         incomeSource: incomeSource.value,
-    //         lifestyle: lifestyle.value,
+    //         lifeStyle: lifeStyle.value,
     //         housingType: housingType.value,
     //         houseOwner: houseOwner.value,
     //         hoursAlone: hoursAlone.value,

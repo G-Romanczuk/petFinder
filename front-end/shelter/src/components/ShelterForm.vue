@@ -108,7 +108,7 @@
 
             <v-checkbox
               class="p"
-              v-model="lifestyle"
+              v-model="lifeStyle"
               label="Jaki tryb życia Pan(i) prowadzi? (Proszę zaznaczyć prawidłową
                 odpowiedź)"
             />
@@ -302,7 +302,7 @@ var town = ref(store.shelterData.town)
 var adress = ref(store.shelterData.adress)
 var url = ref(store.shelterData.url)
 var incomeSource = ref(store.shelterData.questions.incomeSource)
-var lifestyle = ref(store.shelterData.questions.lifestyle)
+var lifeStyle = ref(store.shelterData.questions.lifeStyle)
 var housingType = ref(store.shelterData.questions.housingType)
 var houseOwner = ref(store.shelterData.questions.houseOwner)
 var hoursAlone = ref(store.shelterData.questions.hoursAlone)
@@ -332,7 +332,7 @@ var shelterData = {
     url: url,
     questions: {
         incomeSource: incomeSource,
-        lifestyle: lifestyle,
+        lifeStyle: lifeStyle,
         housingType: housingType,
         houseOwner: houseOwner,
         hoursAlone: hoursAlone,
@@ -376,7 +376,7 @@ async function shelterFormTest() {
     url: url.value,
     questions: {
         incomeSource: incomeSource.value,
-        lifestyle: lifestyle.value,
+        lifeStyle: lifeStyle.value,
         housingType: housingType.value,
         houseOwner: houseOwner.value,
         hoursAlone: hoursAlone.value,

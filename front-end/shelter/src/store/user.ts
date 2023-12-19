@@ -5,7 +5,7 @@ export const useUserStore = defineStore("user", {
     return {
       loggedUserJWT: "",
       userData: {
-        name: "",
+      name: "",
       lname: "",
       email: "",
       phone: "",
@@ -13,7 +13,7 @@ export const useUserStore = defineStore("user", {
       town: "",
       adress: "",
       incomeSource: "",
-      lifestyle: "",
+      lifeStyle: "",
       housingType: "",
       houseOwner: "",
       hoursAlone: "",
@@ -44,7 +44,7 @@ export const useUserStore = defineStore("user", {
       url: "",
       questions: {
         incomeSource: false,
-        lifestyle: false,
+        lifeStyle: false,
         housingType: false,
         houseOwner: false,
         hoursAlone: false,
@@ -84,18 +84,50 @@ export const useUserStore = defineStore("user", {
 
       return res
     },
-    async getUserData(userToken){
-      const res = await service.getUserData(userToken)
+    async getUserData(email){
+      const res = await service.getUserData(email)
 
-      console.log(res)
+      this.userData.name = res.data.name
+      this.userData.lname = res.data.lname
+      this.userData.email = res.data.email
+      this.userData.phone = res.data.phone
+      this.userData.postCode = res.data.postCode
+      this.userData.town = res.data.town
+      this.userData.adress = res.data.adress
+      this.userData.incomeSource = res.data.incomeSource
+      this.userData.lifeStyle = res.data.lifeStyle
+      this.userData.housingType = res.data.housingType
+      this.userData.houseOwner = res.data.houseOwner
+      this.userData.hoursAlone = res.data.hoursAlone
+      this.userData.floor = res.data.floor
+      this.userData.elevator = res.data.elevator
+      this.userData.walksNumber = res.data.walksNumber
+      this.userData.walksTime = res.data.walksTime
+      this.userData.fence = res.data.fence
+      this.userData.fenceHeight = res.data.fenceHeight
+      this.userData.propertySize = res.data.propertySize
+      this.userData.petPlace = res.data.petPlace
+      this.userData.petPlaceAlone = res.data.petPlaceAlone
+      this.userData.careAlone = res.data.careAlone
+      this.userData.houseMates = res.data.houseMates
+      this.userData.animals = res.data.animals
+      this.userData.animalsBefore = res.data.animalsBefore
+      this.userData.animalsBeforeText = res.data.animalsBeforeText
+      this.userData.text = res.data.text
+
+
+
+      console.log(this.userData)
 
       return res
     },
     postRegister(data) {
       service.postRegister(data)
     },
-    postUserForm(data) {
-      service.postUserForm(data)
+   async postUserForm(data) {
+     const res = await service.postUserForm(data)
+     console.log(res)
+     return res
     },
     postShelterForm(data) {
       service.postShelterForm(data)
