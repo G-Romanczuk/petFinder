@@ -270,7 +270,6 @@
                 >Zapisz</v-btn
               >
             </div>
-            <v-btn @click="shelterFormTest() "> TEST shelterform</v-btn>
             <v-divider :thickness="20" class="border-opacity-0"></v-divider>
           </v-card-actions>
         </v-form>
