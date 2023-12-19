@@ -57,7 +57,7 @@ namespace shelter.Controllers.UserController
 
             if (await _userService.AddUserDetailsForm(userForm))
             {
-                return Ok();
+                return Ok(new {message = "Success"});
             }
             return BadRequest(new { message = "Wrong Data" });
         }
@@ -115,6 +115,8 @@ namespace shelter.Controllers.UserController
                 return BadRequest();    
             }
         }
+
+        
         
 
     }
