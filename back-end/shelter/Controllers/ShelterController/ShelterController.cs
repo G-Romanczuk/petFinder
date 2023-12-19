@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using shelter.Dtos.ShelterDtos;
 using shelter.Interfaces.Shelter;
 using shelter.Models.ShelterModels;
+using shelter.Models.UserModels;
 using System.Net.Mime;
 
 namespace shelter.Controllers.ShelterController
@@ -102,6 +103,39 @@ namespace shelter.Controllers.ShelterController
             {
 
                 return BadRequest();
+            }
+        }
+
+        [HttpPost("ResetShelterPasswordRequest", Name = "ResetShelterPasswordReq")]
+        public async Task<IActionResult> ResetPasswordReq([FromBody] ResetPasswordReqModel resetPasswordReq)
+        {
+            var token = await _shelterService.ResetPassworReq(resetPasswordReq);
+
+            if (!ModelState.IsValid) 
+            {
+                return BadRequest();
+            }
+
+            if (token == null)
+            {
+                return NotFound("Error while generating token");
+            }
+
+            return Ok(token);
+        }
+
+        [HttpPost("ResetShelterPassword", Name = "ResetShelterPassword")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordModel resetPassword)
+        {
+            var success = await _shelterService.ResetPassword(resetPassword);
+
+            if (success)
+            {
+                return Ok("New Password Created Succesfully");
+            }
+            else
+            {
+                return BadRequest("Error while changing the password");
             }
         }
     }

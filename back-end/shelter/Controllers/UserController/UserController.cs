@@ -57,7 +57,7 @@ namespace shelter.Controllers.UserController
 
             if (await _userService.AddUserDetailsForm(userForm))
             {
-                return Ok();
+                return Ok(new {message = "Success"});
             }
             return BadRequest(new { message = "Wrong Data" });
         }
@@ -71,7 +71,7 @@ namespace shelter.Controllers.UserController
 
             if (token == null)
             {
-                return NotFound("Bład przy generowaniu tokena zmiany hasła");
+                return NotFound("Error while generating token");
             }
 
             return Ok(token);
@@ -85,11 +85,11 @@ namespace shelter.Controllers.UserController
 
             if (success)
             {
-                return Ok("Hasło zostało zresetowane pomyślnie");
+                return Ok("New Password Created Succesfully");
             }
             else
             {
-                return BadRequest("Nie udało się zresetować hasła");
+                return BadRequest("Error while changing the password");
             }
         }
 
@@ -115,6 +115,8 @@ namespace shelter.Controllers.UserController
                 return BadRequest();    
             }
         }
+
+        
         
 
     }

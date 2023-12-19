@@ -216,7 +216,7 @@ namespace shelter.Interfaces.User
 
             if (user==null)
             {
-                return "Nie ma takiego użytkownika";
+                return "User Not Found";
             }
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
@@ -228,7 +228,7 @@ namespace shelter.Interfaces.User
         {
             var user = await _userManager.FindByEmailAsync(resetPasswordModel.Email);
 
-            if (user == null)
+            if (user == null || resetPasswordModel.NewPassword != resetPasswordModel.ConfirmPassword)
             {
                 return false;
             }
