@@ -13,7 +13,7 @@
     </v-app-bar-title>
 
     <template v-slot:append>
-      <h5 class="font header-text">{{ store.userData.email + store.shelterData.email }}</h5>
+      <h5 class="font header-text">{{ userStore.userData.email + shelterStore.shelterData.email }}</h5>
       <v-divider vertical :thickness="20" class="border-opacity-0"></v-divider>
 
       <LoginPopup v-if="loggedUserJWT == '' && loggedShelterJWT == ''" />
@@ -45,17 +45,19 @@
   
 <script setup lang="ts">
 import { useUserStore } from '@/store/user';
+import { useShelterStore } from '@/store/shelter';
 import LoginPopup from './LoginPopup.vue';
 import { ref, watch } from 'vue';
 import { storeToRefs } from 'pinia'
 
-const store = useUserStore();
-
-const { loggedUserJWT } = storeToRefs(store)
-const { loggedShelterJWT } = storeToRefs(store)
+const userStore = useUserStore();
+const shelterStore = useShelterStore();
+const { loggedUserJWT } = storeToRefs(userStore)
+const { loggedShelterJWT } = storeToRefs(shelterStore)
 
 function logout() {
-  store.$reset()
+  userStore.$reset()
+  shelterStore.$reset()
 }
 
 

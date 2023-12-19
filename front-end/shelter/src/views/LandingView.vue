@@ -13,7 +13,6 @@
                                   Marzysz o przygarnięciu uroczego zwierzaka ze schroniska i
                                   ofiarowania mu kochającego domu ?
                               </h1>
-                              <v-btn @click="Test()">click</v-btn>
                           </div>
                           <v-divider :thickness="40" class="border-opacity-0"></v-divider>
                           <div style="background-color: #000000; width: 80%; height: 1px;"></div>
@@ -358,16 +357,6 @@ function reveal() {
 
 window.addEventListener("scroll", reveal);
 
-async function Test() {
-
-const notification = {
-    type: "error",
-    message: "hi",
-  }
-
-  console.log(notification.message)
-  notifStore.add(notification)
-}
 
 
 </script>

@@ -14,7 +14,7 @@
               ">
               <div style="width: fit-content; margin: 0 auto;">
                 <h1 style="color: white; text-shadow: 5px 2px 4px #000000" class="little-title">
-                  Witaj {{ store.userData.name }}!
+                  Witaj {{ userStore.userData.name }}!
                 </h1>
               </div>
               <v-divider :thickness="20" class="border-opacity-0"></v-divider>
@@ -50,7 +50,7 @@
   import { useUserStore } from '@/store/user';
  
         var dialog = ref(false)
-        const store = useUserStore();
+        const userStore = useUserStore();
   
   
   

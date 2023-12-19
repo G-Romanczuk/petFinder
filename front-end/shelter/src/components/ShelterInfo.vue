@@ -44,7 +44,6 @@
   
   <script setup lang="ts">
   import { ref } from 'vue'
-  import { useUserStore } from '@/store/user';
  
         var dialog = ref(false)
   

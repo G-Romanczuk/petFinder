@@ -301,42 +301,42 @@ import LoginPopup from '@/components/LoginPopup.vue';
 import { useForm } from 'vee-validate';
 import * as yup from 'yup';
 import { useUserStore } from '@/store/user';
-
+import { useNotificationsStore } from '@/store/notifications';
 const isValid = ref(true)
-const store = useUserStore();
-
+const userStore = useUserStore();
+const notifStore = useNotificationsStore();
 const phoneRules = [v => !!v || 'Wymagane', v => /^[1-9]\d{8}$/.test(v) || 'Nieprawidłowy numer telefonu']
 
 const emailRules = [v => !!v || 'Wymagane',
       v => /.+@.+/.test(v) || 'Nieprawidłowy E-mail'
       ]
-var name = ref(store.userData.name)
-var lname = ref(store.userData.lname)
-var email = ref(store.userData.email)
-var phone = ref(store.userData.phone)
-var postCode = ref(store.userData.postCode)
-var town = ref(store.userData.town)
-var adress = ref(store.userData.adress)
-var incomeSource = ref(store.userData.incomeSource)
-var lifeStyle = ref(store.userData.lifeStyle)
-var housingType = ref(store.userData.housingType)
-var houseOwner = ref(store.userData.houseOwner)
-var hoursAlone = ref(store.userData.hoursAlone)
-var floor = ref(store.userData.floor)
-var elevator = ref(store.userData.elevator)
-var walksNumber = ref(store.userData.walksNumber)
-var walksTime = ref(store.userData.walksTime)
-var fence = ref(store.userData.fence)
-var fenceHeight = ref(store.userData.fenceHeight)
-var propertySize = ref(store.userData.propertySize)
-var petPlace = ref(store.userData.petPlace)
-var petPlaceAlone = ref(store.userData.petPlaceAlone)
-var careAlone = ref(store.userData.careAlone)
-var houseMates = ref(store.userData.houseMates)
-var animals = ref(store.userData.animals)
-var animalsBefore = ref(store.userData.animalsBefore)
-var animalsBeforeText = ref(store.userData.animalsBeforeText)
-var text = ref(store.userData.text)
+var name = ref(userStore.userData.name)
+var lname = ref(userStore.userData.lname)
+var email = ref(userStore.userData.email)
+var phone = ref(userStore.userData.phone)
+var postCode = ref(userStore.userData.postCode)
+var town = ref(userStore.userData.town)
+var adress = ref(userStore.userData.adress)
+var incomeSource = ref(userStore.userData.incomeSource)
+var lifeStyle = ref(userStore.userData.lifeStyle)
+var housingType = ref(userStore.userData.housingType)
+var houseOwner = ref(userStore.userData.houseOwner)
+var hoursAlone = ref(userStore.userData.hoursAlone)
+var floor = ref(userStore.userData.floor)
+var elevator = ref(userStore.userData.elevator)
+var walksNumber = ref(userStore.userData.walksNumber)
+var walksTime = ref(userStore.userData.walksTime)
+var fence = ref(userStore.userData.fence)
+var fenceHeight = ref(userStore.userData.fenceHeight)
+var propertySize = ref(userStore.userData.propertySize)
+var petPlace = ref(userStore.userData.petPlace)
+var petPlaceAlone = ref(userStore.userData.petPlaceAlone)
+var careAlone = ref(userStore.userData.careAlone)
+var houseMates = ref(userStore.userData.houseMates)
+var animals = ref(userStore.userData.animals)
+var animalsBefore = ref(userStore.userData.animalsBefore)
+var animalsBeforeText = ref(userStore.userData.animalsBeforeText)
+var text = ref(userStore.userData.text)
 
 
 
@@ -380,7 +380,23 @@ var userForm = {
     animalsBeforeText: animalsBeforeText.value,
     text: text.value
 }
-await store.postUserForm(userForm)
+const res = await userStore.postUserForm(userForm)
+
+if(res.data.message == "Success"){
+        const notification = {
+          type: "succes",
+          message: "Registered successfully !",
+        }
+        notifStore.add(notification)
+      } 
+      else
+      {
+        const notification = {
+          type: "error",
+          message: res.data.message,
+        }
+        notifStore.add(notification)
+      }
 
 
 var userData = {
@@ -413,10 +429,10 @@ var userData = {
     text: text
 }
 
-store.userData = userData
-
+userStore.userData = userData
 
 }
+
 
 
 function onInvalidSubmit({ values, errors, results }) {

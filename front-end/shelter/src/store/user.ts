@@ -1,5 +1,9 @@
 import { defineStore } from "pinia";
 import service from "@/services/service";
+import { useNotificationsStore } from "./notifications";
+
+const notifStore = useNotificationsStore();
+
 export const useUserStore = defineStore("user", {
   state: () => {
     return {
@@ -33,52 +37,10 @@ export const useUserStore = defineStore("user", {
       animalsBeforeText: "",
       text: "",
       },
-      loggedShelterJWT: '',
-      shelterData : {
-      name: '',
-      email: "",
-      phone: "",
-      postCode: "",
-      town: "",
-      adress: "",
-      url: "",
-      questions: {
-        incomeSource: false,
-        lifeStyle: false,
-        housingType: false,
-        houseOwner: false,
-        hoursAlone: false,
-        floor: false,
-        elevator: false,
-        walksNumber: false,
-        walksTime: false,
-        fence: false,
-        fenceHeight: false,
-        propertySize: false,
-        petPlace: false,
-        petPlaceAlone: false,
-        careAlone: false,
-        houseMates: false,
-        animals: false,
-        animalsBefore: false,
-        animalsBeforeText: false,
-        text: false,
-      }
-      }
-
       
     };
   },
   actions: {
-    login(email) {
-      this.loggedUserJWT = email
-    },
-    logout() {
-      this.loggedUserJWT = ''
-    },
-    postShelterLogin(data) {
-      service.postShelterLogin(data)
-    },
     async postUserLogin(data) {
       const res = await service.postUserLogin(data)
 
@@ -115,22 +77,15 @@ export const useUserStore = defineStore("user", {
       this.userData.animalsBeforeText = res.data.animalsBeforeText
       this.userData.text = res.data.text
 
-
-
-      console.log(this.userData)
-
       return res
     },
-    postRegister(data) {
-      service.postRegister(data)
+    async postRegister(data) {
+      const res = await service.postRegister(data)
+    return res
     },
    async postUserForm(data) {
      const res = await service.postUserForm(data)
-     console.log(res)
      return res
-    },
-    postShelterForm(data) {
-      service.postShelterForm(data)
     },
   },
   getters: {

@@ -74,9 +74,11 @@ import LoginPopup from '@/components/LoginPopup.vue';
 import { useForm } from 'vee-validate';
 import * as yup from 'yup';
 import { useUserStore } from '@/store/user';
+import { useNotificationsStore } from '@/store/notifications';
 
 const isValid = ref(true)
 const store = useUserStore();
+const notifStore = useNotificationsStore();
 
 
 
@@ -149,10 +151,28 @@ const onSubmit = handleSubmit((values) => {
     terms:termsValue.value
 }
 
-store.postRegister(register)
+Post(register)
 });
 
+async function Post(form) {
+    const res = await userStore.postRegister(form)
 
+    if(res.data.message == "Success"){
+        const notification = {
+          type: "succes",
+          message: "Registered successfully !",
+        }
+        notifStore.add(notification)
+      } 
+      else
+      {
+        const notification = {
+          type: "error",
+          message: res.data.message,
+        }
+        notifStore.add(notification)
+      }
+}
 
 function onInvalidSubmit({ values, errors, results }) {
   console.log(values); // current form values
@@ -178,7 +198,7 @@ function onInvalidSubmit({ values, errors, results }) {
 //     terms:termsValue.value
 // }
 
-// store.postRegister(register)
+// userStore.postRegister(register)
 //}
 
 
