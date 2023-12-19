@@ -184,7 +184,7 @@ namespace shelter.Interfaces.Shelter
                     var shelterCredentials = new ShelterLoginDto
                     {
                         EmailShelter = email,
-                        PasswordShelter = generatedPassword,
+                        PasswordShelter = generatedPassword.Substring(0,8),
                     };
 
                     return shelterCredentials;
