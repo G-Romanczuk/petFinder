@@ -27,7 +27,7 @@ namespace shelter.Controllers.ShelterController
         {
             if (!ModelState.IsValid) return BadRequest();
 
-            if (await _shelterService.AddShelterDetailsForm(shelterForm)) return Ok();
+            if (await _shelterService.AddShelterDetailsForm(shelterForm)) return Ok(new {message="Success"});
 
             return BadRequest();
         }
