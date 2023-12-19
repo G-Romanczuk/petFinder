@@ -108,7 +108,7 @@
 
             <v-checkbox
               class="p"
-              v-model="lifestyle"
+              v-model="lifeStyle"
               label="Jaki tryb życia Pan(i) prowadzi? (Proszę zaznaczyć prawidłową
                 odpowiedź)"
             />
@@ -284,43 +284,43 @@ import { ref } from 'vue'
 import LoginPopup from '@/components/LoginPopup.vue';
 import { useForm } from 'vee-validate';
 import * as yup from 'yup';
-import { useUserStore } from '@/store/user';
+import { useShelterStore } from '@/store/shelter';
 
+const shelterStore = useShelterStore();
 const isValid = ref(true)
-const store = useUserStore();
 
 const phoneRules = [v => !!v || 'Wymagane', v => /^[1-9]\d{8}$/.test(v) || 'Nieprawidłowy numer telefonu']
 
 const emailRules = [v => !!v || 'Wymagane',
 v => /.+@.+/.test(v) || 'Nieprawidłowy E-mail'
 ]
-var name = ref(store.shelterData.name)
-var email = ref(store.shelterData.email)
-var phone = ref(store.shelterData.phone)
-var postCode = ref(store.shelterData.postCode)
-var town = ref(store.shelterData.town)
-var adress = ref(store.shelterData.adress)
-var url = ref(store.shelterData.url)
-var incomeSource = ref(store.shelterData.questions.incomeSource)
-var lifestyle = ref(store.shelterData.questions.lifestyle)
-var housingType = ref(store.shelterData.questions.housingType)
-var houseOwner = ref(store.shelterData.questions.houseOwner)
-var hoursAlone = ref(store.shelterData.questions.hoursAlone)
-var floor = ref(store.shelterData.questions.floor)
-var elevator = ref(store.shelterData.questions.elevator)
-var walksNumber = ref(store.shelterData.questions.walksNumber)
-var walksTime = ref(store.shelterData.questions.walksTime)
-var fence = ref(store.shelterData.questions.fence)
-var fenceHeight = ref(store.shelterData.questions.fenceHeight)
-var propertySize = ref(store.shelterData.questions.propertySize)
-var petPlace = ref(store.shelterData.questions.petPlace)
-var petPlaceAlone = ref(store.shelterData.questions.petPlaceAlone)
-var careAlone = ref(store.shelterData.questions.careAlone)
-var houseMates = ref(store.shelterData.questions.houseMates)
-var animals = ref(store.shelterData.questions.animals)
-var animalsBefore = ref(store.shelterData.questions.animalsBefore)
-var animalsBeforeText = ref(store.shelterData.questions.animalsBeforeText)
-var text = ref(store.shelterData.questions.text)
+var name = ref(shelterStore.shelterData.name)
+var email = ref(shelterStore.shelterData.email)
+var phone = ref(shelterStore.shelterData.phone)
+var postCode = ref(shelterStore.shelterData.postCode)
+var town = ref(shelterStore.shelterData.town)
+var adress = ref(shelterStore.shelterData.adress)
+var url = ref(shelterStore.shelterData.url)
+var incomeSource = ref(shelterStore.shelterData.questions.incomeSource)
+var lifeStyle = ref(shelterStore.shelterData.questions.lifeStyle)
+var housingType = ref(shelterStore.shelterData.questions.housingType)
+var houseOwner = ref(shelterStore.shelterData.questions.houseOwner)
+var hoursAlone = ref(shelterStore.shelterData.questions.hoursAlone)
+var floor = ref(shelterStore.shelterData.questions.floor)
+var elevator = ref(shelterStore.shelterData.questions.elevator)
+var walksNumber = ref(shelterStore.shelterData.questions.walksNumber)
+var walksTime = ref(shelterStore.shelterData.questions.walksTime)
+var fence = ref(shelterStore.shelterData.questions.fence)
+var fenceHeight = ref(shelterStore.shelterData.questions.fenceHeight)
+var propertySize = ref(shelterStore.shelterData.questions.propertySize)
+var petPlace = ref(shelterStore.shelterData.questions.petPlace)
+var petPlaceAlone = ref(shelterStore.shelterData.questions.petPlaceAlone)
+var careAlone = ref(shelterStore.shelterData.questions.careAlone)
+var houseMates = ref(shelterStore.shelterData.questions.houseMates)
+var animals = ref(shelterStore.shelterData.questions.animals)
+var animalsBefore = ref(shelterStore.shelterData.questions.animalsBefore)
+var animalsBeforeText = ref(shelterStore.shelterData.questions.animalsBeforeText)
+var text = ref(shelterStore.shelterData.questions.text)
 
 var shelterData = {
     name: name,
@@ -332,7 +332,7 @@ var shelterData = {
     url: url,
     questions: {
         incomeSource: incomeSource,
-        lifestyle: lifestyle,
+        lifeStyle: lifeStyle,
         housingType: housingType,
         houseOwner: houseOwner,
         hoursAlone: hoursAlone,
@@ -359,8 +359,8 @@ var dialog = ref(false)
 
 
 function Submit(shelterData) {
-    store.shelterData = shelterData;
-    console.log(store.shelterData)
+    shelterStore.shelterData = shelterData;
+    console.log(shelterStore.shelterData)
 }
 
 async function shelterFormTest() {
@@ -376,7 +376,7 @@ async function shelterFormTest() {
     url: url.value,
     questions: {
         incomeSource: incomeSource.value,
-        lifestyle: lifestyle.value,
+        lifeStyle: lifeStyle.value,
         housingType: housingType.value,
         houseOwner: houseOwner.value,
         hoursAlone: hoursAlone.value,
@@ -398,7 +398,7 @@ async function shelterFormTest() {
     }
   }
 
-store.postShelterForm(shelterForm)
+shelterStore.postShelterForm(shelterForm)
 }
 </script>
 

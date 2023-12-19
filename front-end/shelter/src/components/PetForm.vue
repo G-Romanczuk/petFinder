@@ -114,12 +114,11 @@
 <script setup lang="js">
 import { ref } from 'vue'
 import { usePetStore } from '@/store/pet';
-import { useUserStore } from '@/store/user';
-
+import { useShelterStore } from '@/store/shelter';
+const shelterStore = useShelterStore();
 
 const isValid = ref(true)
 const store = usePetStore();
-const userStore = useUserStore();
 var show = ref(false)
 var urls = []
 
@@ -140,7 +139,7 @@ var otherCats = ref(store.petData.otherCats)
 var cuddly = ref(store.petData.cuddly)
 var temper = ref(store.petData.temper)
 var text = ref(store.petData.text)
-var shelterEmail = ref(userStore.shelterData.email)
+var shelterEmail = ref(shelterStore.shelterData.email)
 var petData = {
     shelter: shelterEmail,
     name: name,

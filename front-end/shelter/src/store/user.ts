@@ -1,11 +1,13 @@
 import { defineStore } from "pinia";
 import service from "@/services/service";
+
+
 export const useUserStore = defineStore("user", {
   state: () => {
     return {
       loggedUserJWT: "",
       userData: {
-        name: "",
+      name: "",
       lname: "",
       email: "",
       phone: "",
@@ -13,7 +15,7 @@ export const useUserStore = defineStore("user", {
       town: "",
       adress: "",
       incomeSource: "",
-      lifestyle: "",
+      lifeStyle: "",
       housingType: "",
       houseOwner: "",
       hoursAlone: "",
@@ -33,72 +35,55 @@ export const useUserStore = defineStore("user", {
       animalsBeforeText: "",
       text: "",
       },
-      loggedShelterJWT: '',
-      shelterData : {
-      name: '',
-      email: "",
-      phone: "",
-      postCode: "",
-      town: "",
-      adress: "",
-      url: "",
-      questions: {
-        incomeSource: false,
-        lifestyle: false,
-        housingType: false,
-        houseOwner: false,
-        hoursAlone: false,
-        floor: false,
-        elevator: false,
-        walksNumber: false,
-        walksTime: false,
-        fence: false,
-        fenceHeight: false,
-        propertySize: false,
-        petPlace: false,
-        petPlaceAlone: false,
-        careAlone: false,
-        houseMates: false,
-        animals: false,
-        animalsBefore: false,
-        animalsBeforeText: false,
-        text: false,
-      }
-      }
-
       
     };
   },
   actions: {
-    login(email) {
-      this.loggedUserJWT = email
-    },
-    logout() {
-      this.loggedUserJWT = ''
-    },
-    postShelterLogin(data) {
-      service.postShelterLogin(data)
-    },
     async postUserLogin(data) {
       const res = await service.postUserLogin(data)
 
       return res
     },
-    async getUserData(userToken){
-      const res = await service.getUserData(userToken)
+    async getUserData(email){
+      const res = await service.getUserData(email)
 
-      console.log(res)
+      this.userData.name = res.data.name
+      this.userData.lname = res.data.lname
+      this.userData.email = res.data.email
+      this.userData.phone = res.data.phone
+      this.userData.postCode = res.data.postCode
+      this.userData.town = res.data.town
+      this.userData.adress = res.data.adress
+      this.userData.incomeSource = res.data.incomeSource
+      this.userData.lifeStyle = res.data.lifeStyle
+      this.userData.housingType = res.data.housingType
+      this.userData.houseOwner = res.data.houseOwner
+      this.userData.hoursAlone = res.data.hoursAlone
+      this.userData.floor = res.data.floor
+      this.userData.elevator = res.data.elevator
+      this.userData.walksNumber = res.data.walksNumber
+      this.userData.walksTime = res.data.walksTime
+      this.userData.fence = res.data.fence
+      this.userData.fenceHeight = res.data.fenceHeight
+      this.userData.propertySize = res.data.propertySize
+      this.userData.petPlace = res.data.petPlace
+      this.userData.petPlaceAlone = res.data.petPlaceAlone
+      this.userData.careAlone = res.data.careAlone
+      this.userData.houseMates = res.data.houseMates
+      this.userData.animals = res.data.animals
+      this.userData.animalsBefore = res.data.animalsBefore
+      this.userData.animalsBeforeText = res.data.animalsBeforeText
+      this.userData.text = res.data.text
 
       return res
     },
-    postRegister(data) {
-      service.postRegister(data)
+    async postRegister(data) {
+      const res = await service.postRegister(data)
+    return res
     },
-    postUserForm(data) {
-      service.postUserForm(data)
-    },
-    postShelterForm(data) {
-      service.postShelterForm(data)
+   async postUserForm(data) {
+     const res = await service.postUserForm(data)
+     return res
     },
   },
   getters: {

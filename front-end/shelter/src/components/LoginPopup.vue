@@ -86,10 +86,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useUserStore } from '@/store/user';
+import { useNotificationsStore } from '@/store/notifications';
 import RegisterPopup from './RegisterPopup.vue';
 import router from '@/router';
+import { useShelterStore } from '@/store/shelter';
 
-const store = useUserStore();
+const shelterStore = useShelterStore();
+const userStore = useUserStore();
+const notifStore = useNotificationsStore();
 var show1 = ref(false)
 var show2 = ref(false)
       const emailUser = ref(null)
@@ -128,18 +132,18 @@ var show2 = ref(false)
       emailShelter : emailShelter.value,
       passwordShelter: passwordShelter.value
     }
-    const res = await  store.postShelterLogin(shelterLogin)
-
-    if( res.data.message == "Success"){
+    const res = await  shelterStore.postShelterLogin(shelterLogin)
+    dialog = false
+    // if( res.data.message == "Success"){
+      shelterStore.loggedShelterJWT = res.data   //.jwtToken
+      shelterStore.shelterData.email = emailShelter.value
       
-      store.shelterData.email = emailShelter.value
-      dialog = false
       router.push('/shelterMenu')
      
-      }
-      else {
-        console.log("wrong password")
-      }
+      // }
+      // else {
+      //   console.log("wrong password")
+      // }
   }
 
     async function userLogin() {
@@ -147,20 +151,31 @@ var userLogin = {
   emailUser : emailUser.value,
   passwordUser: passwordUser.value
 }
-    const res = await store.postUserLogin(userLogin)
+    const res = await userStore.postUserLogin(userLogin)
 
      if( res.data.message == "Success"){
 
-      console.log(emailUser.value)
-     await store.getUserData(emailUser.value)  
+      const notification = {
+    type: "success",
+    message: "Loggeed in succesfully",
+  }
 
-    store.loggedUserJWT = res.data.jwtToken
+  notifStore.add(notification)
+      console.log(emailUser.value)
+     await userStore.getUserData(emailUser.value)  
+
+    userStore.loggedUserJWT = res.data.jwtToken
     dialog = false
     router.push('/userMenu')
    
     }
     else {
-      console.log("wrong password")
+      
+const notification = {
+    type: "error",
+    message: res.data.message,
+  }
+  notifStore.add(notification)
     }
   }
 

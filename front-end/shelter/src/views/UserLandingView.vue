@@ -169,7 +169,7 @@ import FindPopup from "@/components/FindPopup.vue";
 import { useUserStore } from "@/store/user";
 import UserInfo from "@/components/UserInfo.vue";
 import { ref } from "vue";
-const store = useUserStore();
+const userStore = useUserStore();
 
 const props = defineProps({
 post: Object,

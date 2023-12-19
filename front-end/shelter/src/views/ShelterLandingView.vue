@@ -151,9 +151,11 @@
 import ShelterForm from "@/components/ShelterForm.vue";
 import PetForm from "@/components/PetForm.vue";
 import ShelterInfo from "@/components/ShelterInfo.vue";
-import { useUserStore } from "@/store/user";
 import { ref } from "vue";
-const store = useUserStore();
+import { useShelterStore } from '@/store/shelter';
+
+const shelterStore = useShelterStore();
+
 var tab = ref(null)
 function reveal() {
   var reveals = document.querySelectorAll(".reveal");

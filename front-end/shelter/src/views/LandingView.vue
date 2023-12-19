@@ -331,11 +331,13 @@
 <script setup lang="ts">
 import LoginPopup from '@/components/LoginPopup.vue';
 import RegisterPopup from '@/components/RegisterPopup.vue';
+import { useNotificationsStore } from '@/store/notifications';
 import { shallowEqual } from '@babel/types';
+import test from 'node:test';
 import { onMounted, ref } from 'vue';
 
 
-
+const notifStore = useNotificationsStore();
 
 function reveal() {
   var reveals = document.querySelectorAll(".reveal");
@@ -354,7 +356,6 @@ function reveal() {
 }
 
 window.addEventListener("scroll", reveal);
-
 
 
 

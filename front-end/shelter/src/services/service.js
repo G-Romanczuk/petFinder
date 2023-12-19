@@ -9,7 +9,7 @@ export default {
     //     emailShelter : emailShelter.value,
     //     passwordShelter: passwordShelter.value
     //   }
-    return await axios.post(baseURL + "/api/test", data);
+    return await axios.post(baseURL + "/Shelter/Login", data);
   },
   async postUserLogin(data) {
     //data
@@ -50,7 +50,7 @@ export default {
     //   town: town.value,
     //   adress: adress.value,
     //   incomeSource: incomeSource.value,
-    //   lifestyle: lifestyle.value,
+    //   lifeStyle: lifeStyle.value,
     //   housingType: housingType.value,
     //   houseOwner: houseOwner.value,
     //   hoursAlone: hoursAlone.value,
@@ -84,7 +84,7 @@ export default {
     //     url: url.value,
     //     questions: {
     //         incomeSource: incomeSource.value,
-    //         lifestyle: lifestyle.value,
+    //         lifeStyle: lifeStyle.value,
     //         housingType: housingType.value,
     //         houseOwner: houseOwner.value,
     //         hoursAlone: hoursAlone.value,

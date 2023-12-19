@@ -29,14 +29,14 @@
         >
           <v-card-text style="width: 70%; margin: 0 auto">
             <p class="p">Imie</p>
-            <v-text-field v-model="name" label="Imie" type="name" :rules="[v => !!v || 'Wymagane']" />
+            <v-text-field required v-model="name" label="Imie" type="name" :rules="[v => !!v || 'Wymagane']" />
 
             <p class="p">Nazwisko</p>
-            <v-text-field v-model="lname" required label="Nazwisko" type="lname" :rules="[v => !!v || 'Wymagane']"/>
+            <v-text-field required v-model="lname"  label="Nazwisko" type="lname" :rules="[v => !!v || 'Wymagane']"/>
 
             <p class="p">E-Mail</p>
             <v-text-field
-              v-model="email"
+              required v-model="email"
               label="E-mail"
               type="email"
               disabled
@@ -45,34 +45,34 @@
 
             <p class="p">Telefon</p>
             <v-text-field
-              v-model="phone"
+              required v-model="phone"
               label="Telefon kontaktowy"
               type="tel"
-              required
+              
               :rules="phoneRules"
             ></v-text-field>
 
             <p class="p">Kod pocztowy</p>
-            <v-text-field v-model="postCode" label="kod pocztowy" :rules="[v =>/^[0-9]{2}-[0-9]{3}/.test(v) || 'Nieprawidłowy kod pocztowy', v => v.length <= 6 || 'Nieprawidłowy kod pocztowy']" />
+            <v-text-field required v-model="postCode" label="kod pocztowy" :rules="[v =>/^[0-9]{2}-[0-9]{3}/.test(v) || 'Nieprawidłowy kod pocztowy', v => v.length <= 6 || 'Nieprawidłowy kod pocztowy']" />
 
             <p class="p">Miasto</p>
-            <v-text-field v-model="town" label="miasto" />
+            <v-text-field required v-model="town" label="miasto" />
 
             <p class="p">Ulica z numerem</p>
-            <v-text-field v-model="adress" label="adres" />
+            <v-text-field required v-model="adress" label="adres" />
 
             <p class="p">
               1. Jakie jest Pana(i) główne źródło utrzymania? (np. umowa o
               pracę, prace dorywcze/zlecone, świadczenia socjalne)
             </p>
-            <v-text-field v-model="incomeSource" label="Źródło utrzymania" />
+            <v-text-field required v-model="incomeSource" label="Źródło utrzymania" />
 
             <p class="p">
               2. Jaki tryb życia Pan(i) prowadzi? (Proszę zaznaczyć prawidłową
               odpowiedź)
             </p>
             <v-select
-              v-model="lifestyle"
+              required v-model="lifeStyle"
               label="tryb życia"
               :items="['Spokojny', 'Przeciętny', 'Aktywny']"
             ></v-select>
@@ -81,7 +81,7 @@
               3. Gdzie Pan(i) mieszka? (Proszę zaznaczyć prawidłową odpowiedź)
             </p>
             <v-select
-              v-model="housingType"
+              required v-model="housingType"
               label="typ zamieszkania"
               :items="[
                 'W domu z ogrodem/podwórkiem',
@@ -95,7 +95,7 @@
               prawidłową odpowiedź)
             </p>
             <v-select
-              v-model="houseOwner"
+              required v-model="houseOwner"
               label="właściciel"
               :items="[
                 'Ja',
@@ -109,7 +109,7 @@
               domu?
             </p>
             <v-slider
-              v-model="hoursAlone"
+              required v-model="hoursAlone"
               :ticks="[1, 2, 3, 4, 5, 6, 7, 8]"
               :max="9"
               step="1"
@@ -126,7 +126,7 @@
               Na którym piętrze Pan(i) mieszka?
             </p>
             <v-text-field
-              v-model="floor"
+              required v-model="floor"
               hide-details
               single-line
               type="number"
@@ -134,7 +134,7 @@
 
             <p class="p" style="text-align: left">Czy w budynku jest winda?</p>
             <v-select
-              v-model="elevator"
+              required v-model="elevator"
               label="winda"
               :items="['Tak', 'Nie']"
             ></v-select>
@@ -143,7 +143,7 @@
               Jak często pies będzie wychodził na spacer? (na dzień)
             </p>
             <v-slider
-              v-model="walksNumber"
+              required v-model="walksNumber"
               step="1"
               thumb-label
               max="10"
@@ -153,7 +153,7 @@
               Ile czasu będzie trwał najdłuższy spacer z psem? (w minutach)
             </p>
             <v-slider
-              v-model="walksTime"
+              required v-model="walksTime"
               step="10"
               thumb-label
               max="200"
@@ -165,7 +165,7 @@
             </p>
             <p class="p" style="text-align: left">Czy dom jest ogrodzony?</p>
             <v-select
-              v-model="fence"
+              required v-model="fence"
               label="ogrodzenie"
               :items="['Tak', 'Nie']"
             ></v-select>
@@ -174,7 +174,7 @@
               Jeśli dom jest ogrodzony to jaką wysokość ma ogrodzenie? (cm)
             </p>
             <v-text-field
-              v-model="fenceHeight"
+              required v-model="fenceHeight"
               label="cm"
               hide-details
               single-line
@@ -185,7 +185,7 @@
               Jaka jest powierzchnia podwórka/ogrodu? (m<sup>2</sup>)
             </p>
             <v-text-field
-              v-model="propertySize"
+              required v-model="propertySize"
               label="m2"
               hide-details
               single-line
@@ -198,7 +198,7 @@
               luzem, na posesji w budzie, na posesji w kojcu, na posesji na
               uwięzi).
             </p>
-            <v-text-field v-model="petPlace" label="miejsca pobytu psa" />
+            <v-text-field required v-model="petPlace" label="miejsca pobytu psa" />
 
             <p class="p" style="text-align: left">
               Gdzie będzie przebywał pies w czasie Pana(i) nieobecności oraz
@@ -206,7 +206,7 @@
               szczegółowo opisać, czy pies będzie na podwórku luzem, w kojcu, w
               domu – w jakimś konkretnym pomieszczeniu itp.,itd.)
             </p>
-            <v-text-field v-model="petPlaceAlone" label="miejsce pobytu psa" />
+            <v-text-field required v-model="petPlaceAlone" label="miejsce pobytu psa" />
 
             <p class="p">
               8. Czy podczas dłuższej nieobecności (wakacje, sanatorium, pobyt w
@@ -214,7 +214,7 @@
               opiekę nad zwierzęciem ?
             </p>
             <v-select
-              v-model="careAlone"
+              required v-model="careAlone"
               label="opieka"
               :items="['Tak', 'Nie']"
             ></v-select>
@@ -224,7 +224,7 @@
               odpowiedź)
             </p>
             <v-select
-              v-model="houseMates"
+              required v-model="houseMates"
               label="współlokatorzy"
               :items="[
                 'Mieszkam sam(a)',
@@ -238,14 +238,14 @@
               (Jeśli tak, proszę napisać jakie zwierzęta, ile ich jest i w jakim
               są wieku)
             </p>
-            <v-text-field v-model="animals" label="inne zwierzęta" />
+            <v-text-field required v-model="animals" label="inne zwierzęta" />
 
             <p class="p">
               11. Jeśli kiedykolwiek w przeszłości posiadał(a) Pan(i) psa (psy)?
               Jeśli tak, proszę napisać kiedy?
             </p>
             <v-text-field
-              v-model="animalsBefore"
+              required v-model="animalsBefore"
               label="poprzednie zwierzęta"
             />
 
@@ -254,12 +254,12 @@
               i skąd wziął/ wzięły się u Pana(i) i co się z nimi stało?
             </p>
             <v-text-field
-              v-model="animalsBeforeText"
+              required v-model="animalsBeforeText"
               label="poprzednie zwierzęta"
             />
 
             <p class="p">13. Prosimy o napisanie kilku słów od siebie</p>
-            <v-text-field v-model="text" label="kilka słów" />
+            <v-text-field required v-model="text" label="kilka słów" />
           </v-card-text>
           <v-card-actions class="d-flex align-center flex-column">
             <v-divider :thickness="20" class="border-opacity-0"></v-divider>
@@ -281,12 +281,12 @@
                 color="rgb(175, 126, 158)"
                 :disabled="!isValid"
                 class="little-title"
-                @click="Submit(userData)"
+                @click="Submit()"
                 >Zapisz</v-btn
               >
             </div>
             
-            <v-btn @click="userFormTest() "> TEST userform</v-btn>
+          
             <v-divider :thickness="20" class="border-opacity-0"></v-divider>
           </v-card-actions>
         </v-form>
@@ -301,44 +301,105 @@ import LoginPopup from '@/components/LoginPopup.vue';
 import { useForm } from 'vee-validate';
 import * as yup from 'yup';
 import { useUserStore } from '@/store/user';
-
+import { useNotificationsStore } from '@/store/notifications';
 const isValid = ref(true)
-const store = useUserStore();
-
+const userStore = useUserStore();
+const notifStore = useNotificationsStore();
 const phoneRules = [v => !!v || 'Wymagane', v => /^[1-9]\d{8}$/.test(v) || 'Nieprawidłowy numer telefonu']
 
 const emailRules = [v => !!v || 'Wymagane',
       v => /.+@.+/.test(v) || 'Nieprawidłowy E-mail'
       ]
-var name = ref(store.userData.name)
-var lname = ref(store.userData.lname)
-var email = ref(store.userData.email)
-var phone = ref(store.userData.phone)
-var postCode = ref(store.userData.postCode)
-var town = ref(store.userData.town)
-var adress = ref(store.userData.adress)
-var incomeSource = ref(store.userData.incomeSource)
-var lifestyle = ref(store.userData.lifestyle)
-var housingType = ref(store.userData.housingType)
-var houseOwner = ref(store.userData.houseOwner)
-var hoursAlone = ref(store.userData.hoursAlone)
-var floor = ref(store.userData.floor)
-var elevator = ref(store.userData.elevator)
-var walksNumber = ref(store.userData.walksNumber)
-var walksTime = ref(store.userData.walksTime)
-var fence = ref(store.userData.fence)
-var fenceHeight = ref(store.userData.fenceHeight)
-var propertySize = ref(store.userData.propertySize)
-var petPlace = ref(store.userData.petPlace)
-var petPlaceAlone = ref(store.userData.petPlaceAlone)
-var careAlone = ref(store.userData.careAlone)
-var houseMates = ref(store.userData.houseMates)
-var animals = ref(store.userData.animals)
-var animalsBefore = ref(store.userData.animalsBefore)
-var animalsBeforeText = ref(store.userData.animalsBeforeText)
-var text = ref(store.userData.text)
+var name = ref(userStore.userData.name)
+var lname = ref(userStore.userData.lname)
+var email = ref(userStore.userData.email)
+var phone = ref(userStore.userData.phone)
+var postCode = ref(userStore.userData.postCode)
+var town = ref(userStore.userData.town)
+var adress = ref(userStore.userData.adress)
+var incomeSource = ref(userStore.userData.incomeSource)
+var lifeStyle = ref(userStore.userData.lifeStyle)
+var housingType = ref(userStore.userData.housingType)
+var houseOwner = ref(userStore.userData.houseOwner)
+var hoursAlone = ref(userStore.userData.hoursAlone)
+var floor = ref(userStore.userData.floor)
+var elevator = ref(userStore.userData.elevator)
+var walksNumber = ref(userStore.userData.walksNumber)
+var walksTime = ref(userStore.userData.walksTime)
+var fence = ref(userStore.userData.fence)
+var fenceHeight = ref(userStore.userData.fenceHeight)
+var propertySize = ref(userStore.userData.propertySize)
+var petPlace = ref(userStore.userData.petPlace)
+var petPlaceAlone = ref(userStore.userData.petPlaceAlone)
+var careAlone = ref(userStore.userData.careAlone)
+var houseMates = ref(userStore.userData.houseMates)
+var animals = ref(userStore.userData.animals)
+var animalsBefore = ref(userStore.userData.animalsBefore)
+var animalsBeforeText = ref(userStore.userData.animalsBeforeText)
+var text = ref(userStore.userData.text)
 
- var userData = {
+
+
+
+var dialog = ref(false)
+
+
+
+
+
+async function Submit() {
+
+console.log(propertySize.value)
+console.log(lifeStyle.value)
+var userForm = {
+  name: name.value,
+    lname: lname.value,
+    email: email.value,
+    phone: phone.value,
+    postCode: postCode.value,
+    town: town.value,
+    adress: adress.value,
+    incomeSource: incomeSource.value,
+    lifeStyle: lifeStyle.value,
+    housingType: housingType.value,
+    houseOwner: houseOwner.value,
+    hoursAlone: hoursAlone.value,
+    floor: floor.value,
+    elevator: elevator.value,
+    walksNumber: walksNumber.value,
+    walksTime: walksTime.value,
+    fence: fence.value,
+    fenceHeight: fenceHeight.value,
+    propertySize: propertySize.value,
+    petPlace: petPlace.value,
+    petPlaceAlone: petPlaceAlone.value,
+    careAlone: careAlone.value,
+    houseMates: houseMates.value,
+    animals: animals.value,
+    animalsBefore: animalsBefore.value,
+    animalsBeforeText: animalsBeforeText.value,
+    text: text.value
+}
+const res = await userStore.postUserForm(userForm)
+
+if(res.data.message == "Success"){
+        const notification = {
+          type: "succes",
+          message: "Registered successfully !",
+        }
+        notifStore.add(notification)
+      } 
+      else
+      {
+        const notification = {
+          type: "error",
+          message: res.data.message,
+        }
+        notifStore.add(notification)
+      }
+
+
+var userData = {
     name: name,
     lname: lname,
     email: email,
@@ -347,7 +408,7 @@ var text = ref(store.userData.text)
     town: town,
     adress: adress,
     incomeSource: incomeSource,
-    lifestyle: lifestyle,
+    lifeStyle: lifeStyle,
     housingType: housingType,
     houseOwner: houseOwner,
     hoursAlone: hoursAlone,
@@ -368,59 +429,10 @@ var text = ref(store.userData.text)
     text: text
 }
 
+userStore.userData = userData
 
-var dialog = ref(false)
-
-
-
-
-
-// Refer to the docs for how to make advanced validation behaviors with dynamic configs
-// TODO: Add link
-
-
-//const userType = defineComponentBinds('select', vuetifyConfig);
-//const items = [ 'Schronisko', 'Adoptujący']
-
-function Submit (userData) {
-  store.userData = userData;
-  console.log(store.userData)
 }
 
-async function userFormTest() {
-
-var userForm = {
-  name: name.value,
-    lname: lname.value,
-    email: email.value,
-    phone: phone.value,
-    postCode: postCode.value,
-    town: town.value,
-    adress: adress.value,
-    incomeSource: incomeSource.value,
-    lifestyle: lifestyle.value,
-    housingType: housingType.value,
-    houseOwner: houseOwner.value,
-    hoursAlone: hoursAlone.value,
-    floor: floor.value,
-    elevator: elevator.value,
-    walksNumber: walksNumber.value,
-    walksTime: walksTime.value,
-    fence: fence.value,
-    fenceHeight: fenceHeight.value,
-    propertySize: propertySize.value,
-    petPlace: petPlace.value,
-    petPlaceAlone: petPlaceAlone.value,
-    careAlone: careAlone.value,
-    houseMates: houseMates.value,
-    animals: animals.value,
-    animalsBefore: animalsBefore.value,
-    animalsBeforeText: animalsBeforeText.value,
-    text: text.value
-}
-
-store.postUserForm(userForm)
-}
 
 
 function onInvalidSubmit({ values, errors, results }) {
