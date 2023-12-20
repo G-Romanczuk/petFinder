@@ -44,9 +44,9 @@ namespace shelter.Interfaces.Shelter
         public async Task<bool> AddShelterDetailsForm(ShelterForm shelterForm)
         {
             var shelterModel = _mapper.Map<ShelterModel>( shelterForm );
-            var shelterHabbitsModel = _mapper.Map<ShelterHabbitsModel>( shelterForm.Questions );
-            var shelterResidenceModel = _mapper.Map<ShelterResidenceModel>( shelterForm.Questions );
-            var shelterPetDetailsModel = _mapper.Map<ShelterPetDetailsModel>( shelterForm.Questions );
+            var shelterHabbitsModel = _mapper.Map<ShelterHabbitsModel>( shelterForm);
+            var shelterResidenceModel = _mapper.Map<ShelterResidenceModel>( shelterForm);
+            var shelterPetDetailsModel = _mapper.Map<ShelterPetDetailsModel>( shelterForm);
             try
             {
                 var shelterModelToUpdate = await _shelterPetFinderDbContext.Shelters.FirstOrDefaultAsync(se=>se.Email == shelterModel.Email);
