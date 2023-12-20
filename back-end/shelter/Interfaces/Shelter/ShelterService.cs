@@ -170,7 +170,8 @@ namespace shelter.Interfaces.Shelter
         {
             try
             {
-                string generatedPassword = GeneratePassword(email);
+                var generatedPassword = GeneratePassword(email);
+
                 var identityShelter = new IdentityUser
                 {
                     UserName = email,
@@ -184,7 +185,7 @@ namespace shelter.Interfaces.Shelter
                     var shelterCredentials = new ShelterLoginDto
                     {
                         EmailShelter = email,
-                        PasswordShelter = generatedPassword.Substring(0,8),
+                        PasswordShelter = generatedPassword,
                     };
 
                     return shelterCredentials;
@@ -222,9 +223,22 @@ namespace shelter.Interfaces.Shelter
 
         public string GeneratePassword(string password)
         {
+            var random = new Random();
+
             var passwordHasher = new PasswordHasher<IdentityUser>(_passwordHasherOptions);
-            var hashedPassword = passwordHasher.HashPassword(null, password);
-            return hashedPassword;
+            var salt = Guid.NewGuid().ToString("N");
+
+            // Dodanie salt do hasła
+            var saltedPassword = $"{salt}{password}";
+
+            // Haszowanie hasła z uwzględnieniem salt
+            var hashedPassword = passwordHasher.HashPassword(null, saltedPassword);
+
+            var uniqueChars = hashedPassword.Distinct().OrderBy(_ => random.Next()).Take(8).ToArray();
+
+            var res = new string(uniqueChars);
+            res += "!1Aa";
+            return res;
         }
 
         public string GenerateTokenString(ShelterLoginDto shelter)
