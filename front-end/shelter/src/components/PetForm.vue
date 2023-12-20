@@ -180,7 +180,7 @@ async function Submit(petData) {
 
     store.petData = petData;
     var petForm = {
-        shelter: shelterEmail.value,
+        shelterEmail: shelterEmail.value,
         name: name.value,
         images: images,
         type: type.value,
