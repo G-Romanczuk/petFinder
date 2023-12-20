@@ -228,10 +228,8 @@ namespace shelter.Interfaces.Shelter
             var passwordHasher = new PasswordHasher<IdentityUser>(_passwordHasherOptions);
             var salt = Guid.NewGuid().ToString("N");
 
-            // Dodanie salt do hasła
             var saltedPassword = $"{salt}{password}";
 
-            // Haszowanie hasła z uwzględnieniem salt
             var hashedPassword = passwordHasher.HashPassword(null, saltedPassword);
 
             var uniqueChars = hashedPassword.Distinct().OrderBy(_ => random.Next()).Take(8).ToArray();
