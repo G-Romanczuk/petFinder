@@ -159,7 +159,7 @@ async function Post(form) {
 
     if(res.data.message == "Success"){
         const notification = {
-          type: "succes",
+          type: "success",
           message: "Registered successfully !",
         }
         notifStore.add(notification)

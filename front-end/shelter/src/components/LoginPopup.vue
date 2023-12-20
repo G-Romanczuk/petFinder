@@ -134,16 +134,16 @@ var show2 = ref(false)
     }
     const res = await  shelterStore.postShelterLogin(shelterLogin)
     dialog = false
-    // if( res.data.message == "Success"){
-      shelterStore.loggedShelterJWT = res.data   //.jwtToken
+    if( res.data.message == "Success"){
+      shelterStore.loggedShelterJWT = res.data.jwtToken   //.jwtToken
       shelterStore.shelterData.email = emailShelter.value
       
       router.push('/shelterMenu')
      
-      // }
-      // else {
-      //   console.log("wrong password")
-      // }
+      }
+      else {
+        console.log("wrong password")
+      }
   }
 
     async function userLogin() {

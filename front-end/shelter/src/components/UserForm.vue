@@ -349,8 +349,6 @@ var dialog = ref(false)
 
 async function Submit() {
 
-console.log(propertySize.value)
-console.log(lifeStyle.value)
 var userForm = {
   name: name.value,
     lname: lname.value,
@@ -384,8 +382,8 @@ const res = await userStore.postUserForm(userForm)
 
 if(res.data.message == "Success"){
         const notification = {
-          type: "succes",
-          message: "Registered successfully !",
+          type: "success",
+          message: "Updated successfully !",
         }
         notifStore.add(notification)
       } 

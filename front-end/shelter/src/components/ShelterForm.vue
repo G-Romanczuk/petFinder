@@ -270,7 +270,6 @@
                 >Zapisz</v-btn
               >
             </div>
-            <v-btn @click="shelterFormTest() "> TEST shelterform</v-btn>
             <v-divider :thickness="20" class="border-opacity-0"></v-divider>
           </v-card-actions>
         </v-form>
@@ -285,8 +284,9 @@ import LoginPopup from '@/components/LoginPopup.vue';
 import { useForm } from 'vee-validate';
 import * as yup from 'yup';
 import { useShelterStore } from '@/store/shelter';
-
+import { useNotificationsStore } from '@/store/notifications';
 const shelterStore = useShelterStore();
+const notifStore = useNotificationsStore();
 const isValid = ref(true)
 
 const phoneRules = [v => !!v || 'Wymagane', v => /^[1-9]\d{8}$/.test(v) || 'Nieprawidłowy numer telefonu']
@@ -358,14 +358,7 @@ var shelterData = {
 var dialog = ref(false)
 
 
-function Submit(shelterData) {
-    shelterStore.shelterData = shelterData;
-    console.log(shelterStore.shelterData)
-}
-
-async function shelterFormTest() {
-
-
+async function Submit(shelterData) {
   var shelterForm = {
     name: name.value,
     email: email.value,
@@ -398,8 +391,29 @@ async function shelterFormTest() {
     }
   }
 
-shelterStore.postShelterForm(shelterForm)
+const res = await shelterStore.postShelterForm(shelterForm)
+
+if(res.data.message == "Success"){
+        const notification = {
+          type: "success",
+          message: "Updated Successfully !",
+        }
+        notifStore.add(notification)
+      } 
+      else
+      {
+        const notification = {
+          type: "error",
+          message: res.data.message,
+        }
+        notifStore.add(notification)
+      }
+
+
+    shelterStore.shelterData = shelterForm;
+    console.log(shelterStore.shelterData)
 }
+
 </script>
 
 <style lang="css">
