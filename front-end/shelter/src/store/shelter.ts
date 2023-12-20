@@ -7,7 +7,7 @@ export const useShelterStore = defineStore("shelter", {
       loggedShelterJWT: '',
       shelterData : {
       name: '',
-      email: "shellter@t.t",
+      email: "",
       phone: "",
       postCode: "",
       town: "",
