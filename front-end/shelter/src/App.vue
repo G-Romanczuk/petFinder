@@ -15,13 +15,14 @@
 </v-col>
 </v-row>
   <v-app v-show="!loading" class="reveal fade-back">
-   
+    <NotificationsPopup></NotificationsPopup>
     <AppHeader app ></AppHeader>
     <v-main >
       <router-view ></router-view>
-    <NotificationsPopup></NotificationsPopup>
+   
     </v-main>
     <AppFooter app style="opacity: 0.8;"></AppFooter>
+    
   </v-app>
 </template>
 

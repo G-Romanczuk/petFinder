@@ -393,21 +393,14 @@ async function Submit(shelterData) {
 
 const res = await shelterStore.postShelterForm(shelterForm)
 
-if(res.data.message == "Success"){
+if(res.status == 200){
+  console.log(res.status)
         const notification = {
           type: "success",
           message: "Updated Successfully !",
         }
         notifStore.add(notification)
       } 
-      else
-      {
-        const notification = {
-          type: "error",
-          message: res.data.message,
-        }
-        notifStore.add(notification)
-      }
 
 
     shelterStore.shelterData = shelterForm;

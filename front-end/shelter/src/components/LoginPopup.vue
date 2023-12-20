@@ -1,85 +1,91 @@
 <template>
-  <v-dialog v-model="dialog" max-width="60vw"  >
-      <template v-slot:activator="{ props }">
-          <v-btn elevation="8" class="d-flex align-center flex-column font" v-bind="props">Zaloguj
-              się</v-btn>
-      </template>
-      
-    
-      <div class="d-flex align-center flex-column" style="width: 100%; height: 70vh; margin-left: auto; margin-right: auto;">
+  <v-dialog v-model="dialog" max-width="60vw">
+    <template v-slot:activator="{ props }">
+      <v-btn elevation="8" class="d-flex align-center flex-column font" v-bind="props">Zaloguj
+        się</v-btn>
+    </template>
 
-          <div class="title" style="padding: 20px;">Logowanie</div>
 
-          
-          <v-card class="scrollbar" width="100%" height="58vh" style="overflow-y: scroll; border-radius: 5%;">
+    <div class="d-flex align-center flex-column"
+      style="width: 100%; height: 70vh; margin-left: auto; margin-right: auto;">
+
+      <div class="title" style="padding: 20px;">Logowanie</div>
+
+
+      <v-card class="scrollbar" width="100%" height="58vh" style="overflow-y: scroll; border-radius: 5%;">
+        <v-divider :thickness="20" class="border-opacity-0"></v-divider>
+        <v-row>
+          <v-col style="height: fit-content; margin: auto 0;">
+
+            <v-card-text style="width: 70%; margin: auto; ">
+
+              <div class="little-title"
+                style="padding-bottom: 20px; text-align: center; text-shadow: 0px 0px 0px #000000;">Schronisko</div>
+              <v-form v-model="isValid" class="font">
+
+                <v-text-field label="E-mail" v-model="emailShelter" :rules="emailRules" required></v-text-field>
+                <v-divider :thickness="20" class="border-opacity-0"></v-divider>
+                <v-text-field :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'" clearable v-model="passwordShelter"
+                  label="Hasło" :type="show2 ? 'text' : 'password'" @click:append="show2 = !show2" :rules="passwordRules"
+                  required />
+
+
+
+              </v-form>
+            </v-card-text>
+            <v-card-actions class="d-flex align-center flex-column">
               <v-divider :thickness="20" class="border-opacity-0"></v-divider>
-              <v-row>
-             <v-col style="height: fit-content; margin: auto 0;">
-            
-              <v-card-text style="width: 70%; margin: auto; ">
 
-                <div class="little-title" style="padding-bottom: 20px; text-align: center; text-shadow: 0px 0px 0px #000000;">Schronisko</div>
-                  <v-form v-model="isValid" class="font">
-                      
-                      <v-text-field label="E-mail" v-model="emailShelter" :rules="emailRules" required></v-text-field>
-                      <v-divider :thickness="20" class="border-opacity-0"></v-divider>
-                      <v-text-field :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'" clearable  v-model="passwordShelter" label="Hasło" :type="show2 ? 'text' : 'password'"  @click:append="show2 = !show2" :rules="passwordRules"
-                          required />
-                    
-                    
+              <v-btn color="rgb(175, 126, 158)" :disabled="!isValid" class="little-title" @click="shelterLogin()">Zaloguj
+                się</v-btn>
 
-                  </v-form>
-              </v-card-text>
-              <v-card-actions class="d-flex align-center flex-column">
-                  <v-divider :thickness="20" class="border-opacity-0"></v-divider>
-              
-                      <v-btn color="rgb(175, 126, 158)" :disabled="!isValid" class="little-title"
-                      @click="shelterLogin()">Zaloguj się</v-btn>
+              <v-divider :thickness="10" class="border-opacity-0"></v-divider>
 
-                 <v-divider :thickness="10" class="border-opacity-0"></v-divider>
-               
-              </v-card-actions>
-         
-            </v-col>
+            </v-card-actions>
 
-            <div style="width: 2px; height: 350px; background-color: rgb(175, 126, 158); opacity: 0.5; margin: auto 0"></div>
+          </v-col>
 
-            <v-col>
-              <v-card-text style="width: 70%; margin: 0 auto;">
-                <div class="little-title" style="padding-bottom: 20px; text-align: center; text-shadow: 0px 0px 0px #000000">Adoptujący</div>
-                  <v-form v-model="isValid"  class="font">
-                      
-                      <v-text-field label="E-mail" v-model="emailUser" :rules="emailRules" required></v-text-field>
-                      <v-divider :thickness="20" class="border-opacity-0"></v-divider>
-                      <v-text-field :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" clearable  v-model="passwordUser" label="Hasło" :type="show1 ? 'text' : 'password'"  @click:append="show1 = !show1" :rules="passwordRules"
-                          required />
-                    
+          <div style="width: 2px; height: 350px; background-color: rgb(175, 126, 158); opacity: 0.5; margin: auto 0">
+          </div>
 
-                  </v-form>
-              </v-card-text>
-              <v-card-actions class="d-flex align-center flex-column">
-                  <v-divider :thickness="20" class="border-opacity-0"></v-divider>
-              
-                      <v-btn color="rgb(175, 126, 158)" :disabled="!isValid" class="little-title"
-                          @click="userLogin()">Zaloguj się</v-btn>
-                 <v-divider :thickness="10" class="border-opacity-0"></v-divider>
-                 <div style="width: 80%; height: 2px; background-color: rgb(175, 126, 158); opacity: 0.5;"></div>
-                 <v-divider :thickness="10" class="border-opacity-0"></v-divider>
-                <div class="little-title" style=" text-shadow: 0px 0px 0px #000000">Nie posiadam konta</div>
-                 <v-divider  :thickness="20" class="border-opacity-0"></v-divider>
-                
-                  <RegisterPopup  />
-                   
+          <v-col>
+            <v-card-text style="width: 70%; margin: 0 auto;">
+              <div class="little-title"
+                style="padding-bottom: 20px; text-align: center; text-shadow: 0px 0px 0px #000000">Adoptujący</div>
+              <v-form v-model="isValid" class="font">
 
-                  <v-divider color="rgb(175, 126, 158)" :thickness="20" class="border-opacity-0"></v-divider>
-              </v-card-actions>
-            </v-col>
-
-            </v-row>
-          </v-card>
+                <v-text-field label="E-mail" v-model="emailUser" :rules="emailRules" required></v-text-field>
+                <v-divider :thickness="20" class="border-opacity-0"></v-divider>
+                <v-text-field :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" clearable v-model="passwordUser"
+                  label="Hasło" :type="show1 ? 'text' : 'password'" @click:append="show1 = !show1" :rules="passwordRules"
+                  required />
 
 
-      </div>
+              </v-form>
+            </v-card-text>
+            <v-card-actions class="d-flex align-center flex-column">
+              <v-divider :thickness="20" class="border-opacity-0"></v-divider>
+
+              <v-btn color="rgb(175, 126, 158)" :disabled="!isValid" class="little-title" @click="userLogin()">Zaloguj
+                się</v-btn>
+              <v-divider :thickness="10" class="border-opacity-0"></v-divider>
+              <div style="width: 80%; height: 2px; background-color: rgb(175, 126, 158); opacity: 0.5;"></div>
+              <v-divider :thickness="10" class="border-opacity-0"></v-divider>
+              <div class="little-title" style=" text-shadow: 0px 0px 0px #000000">Nie posiadam konta</div>
+              <v-divider :thickness="20" class="border-opacity-0"></v-divider>
+
+              <RegisterPopup />
+
+
+              <v-divider color="rgb(175, 126, 158)" :thickness="20" class="border-opacity-0"></v-divider>
+            </v-card-actions>
+          </v-col>
+
+        </v-row>
+      </v-card>
+
+
+    </div>
   </v-dialog>
 </template>
 
@@ -96,92 +102,81 @@ const userStore = useUserStore();
 const notifStore = useNotificationsStore();
 var show1 = ref(false)
 var show2 = ref(false)
-      const emailUser = ref(null)
-      const passwordUser = ref(null)
-
-      
-
-      const emailShelter = ref(null)
-      const passwordShelter = ref(null)
-
-      
+const emailUser = ref(null)
+const passwordUser = ref(null)
 
 
-      const isValid = ref(true)
-      
 
-      const emailRules = [v => !!v || 'Wymagane',
-      v => /.+@.+/.test(v) || 'Nieprawidłowy E-mail'
-      ]
-      const passwordRules = [
-          v => !!v || 'Password is required',
-          v => (v && v.length >= 6) || 'Hasło musi mieć ponad 6 znaków',
-          // v => /(?=.*[A-Z])/.test(v) || 'Hasło musi mieć 1 dużą literę',
-          // v => /(?=.*\d)/.test(v) || 'Hasło musi mieć 1 liczbę',
-          // v => /([!@$%.,<>?/~`^&*])/.test(v) || 'Hasło musi mieć 1 znak specjalny [!@$%.,<>?/~`^&*]'
-      ]
-
-      
-
-      var dialog = ref(false)
+const emailShelter = ref(null)
+const passwordShelter = ref(null)
 
 
-  async function shelterLogin() {
 
-    var shelterLogin = {
-      emailShelter : emailShelter.value,
-      passwordShelter: passwordShelter.value
-    }
-    const res = await  shelterStore.postShelterLogin(shelterLogin)
-    dialog = false
-    if( res.data.message == "Success"){
-      shelterStore.loggedShelterJWT = res.data.jwtToken   //.jwtToken
-      shelterStore.shelterData.email = emailShelter.value
-      
-      router.push('/shelterMenu')
-     
-      }
-      else {
-        console.log("wrong password")
-      }
+
+const isValid = ref(true)
+
+
+const emailRules = [v => !!v || 'Wymagane',
+v => /.+@.+/.test(v) || 'Nieprawidłowy E-mail'
+]
+const passwordRules = [
+  v => !!v || 'Password is required',
+  v => (v && v.length >= 6) || 'Hasło musi mieć ponad 6 znaków',
+  // v => /(?=.*[A-Z])/.test(v) || 'Hasło musi mieć 1 dużą literę',
+  // v => /(?=.*\d)/.test(v) || 'Hasło musi mieć 1 liczbę',
+  // v => /([!@$%.,<>?/~`^&*])/.test(v) || 'Hasło musi mieć 1 znak specjalny [!@$%.,<>?/~`^&*]'
+]
+
+
+
+var dialog = ref(false)
+
+
+async function shelterLogin() {
+  console.log("NIE MA GETTERA JESZCZE PAMITAJ")
+  var shelterLogin = {
+    emailShelter: emailShelter.value,
+    passwordShelter: passwordShelter.value
   }
+  const res = await shelterStore.postShelterLogin(shelterLogin)
+  dialog = false
+  if (res.status == 200) {
+    shelterStore.loggedShelterJWT = res.data.jwtToken   //.jwtToken
+    shelterStore.shelterData.email = emailShelter.value
+    await shelterStore.getShelterData(emailShelter.value)
+    router.push('/shelterMenu')
 
-    async function userLogin() {
-var userLogin = {
-  emailUser : emailUser.value,
-  passwordUser: passwordUser.value
+  }
 }
-    const res = await userStore.postUserLogin(userLogin)
 
-     if( res.data.message == "Success"){
-
-      const notification = {
-    type: "success",
-    message: "Loggeed in succesfully",
+async function userLogin() {
+  var userLogin = {
+    emailUser: emailUser.value,
+    passwordUser: passwordUser.value
   }
+  const res = await userStore.postUserLogin(userLogin)
 
-  notifStore.add(notification)
-      console.log(emailUser.value)
-     await userStore.getUserData(emailUser.value)  
+  if (res.status == 200) {
+
+    const notification = {
+      type: "success",
+      message: "Loggeed in succesfully",
+    }
+
+    notifStore.add(notification)
+    console.log(emailUser.value)
+    await userStore.getUserData(emailUser.value)
 
     userStore.loggedUserJWT = res.data.jwtToken
     dialog = false
     router.push('/userMenu')
-   
-    }
-    else {
-      
-const notification = {
-    type: "error",
-    message: res.data.message,
+
   }
-  notifStore.add(notification)
-    }
-  }
+}
 
 
 
-  
+
 
 
 </script>
@@ -193,7 +188,7 @@ const notification = {
 .font {
   font-family: 'Gruppo', sans-serif;
   text-decoration: none;
-font-weight:900;
+  font-weight: 900;
 }
 
 
@@ -236,12 +231,12 @@ font-weight:900;
 .scrollbar::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background-image: -webkit-gradient(linear,
-          left bottom,
-          left top,
-          color-stop(0.14, rgb(235, 196, 222)),
-          color-stop(0.24, rgb(221, 167, 202)),
-          color-stop(0.52, rgb(175, 126, 158)),
-          color-stop(0.86, rgb(131, 70, 109)));
+      left bottom,
+      left top,
+      color-stop(0.14, rgb(235, 196, 222)),
+      color-stop(0.24, rgb(221, 167, 202)),
+      color-stop(0.52, rgb(175, 126, 158)),
+      color-stop(0.86, rgb(131, 70, 109)));
 }
 
 .scrollbar::-webkit-scrollbar-track-piece:end {
@@ -252,5 +247,4 @@ font-weight:900;
 .scrollbar::-webkit-scrollbar-track-piece:start {
   background: transparent;
   margin-top: 3vh;
-}
-</style>
+}</style>

@@ -157,21 +157,15 @@ Post(register)
 async function Post(form) {
     const res = await userStore.postRegister(form)
 
-    if(res.data.message == "Success"){
+    if(res.status == 200){
         const notification = {
           type: "success",
           message: "Registered successfully !",
         }
         notifStore.add(notification)
       } 
-      else
-      {
-        const notification = {
-          type: "error",
-          message: res.data.message,
-        }
-        notifStore.add(notification)
-      }
+    
+
 }
 
 function onInvalidSubmit({ values, errors, results }) {

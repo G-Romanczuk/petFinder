@@ -1,7 +1,7 @@
 import { email } from "@vuelidate/validators";
 import axios from "axios";
 const baseURL = "https://localhost:7164";
-
+import { useNotificationsStore } from "@/store/notifications";
 export default {
   async postShelterLogin(data) {
     //data
@@ -9,7 +9,15 @@ export default {
     //     emailShelter : emailShelter.value,
     //     passwordShelter: passwordShelter.value
     //   }
-    return await axios.post(baseURL + "/Shelter/Login", data);
+    return await axios.post(baseURL + "/Shelter/Login", data).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
   },
   async postUserLogin(data) {
     //data
@@ -17,14 +25,45 @@ export default {
     //     emailShelter : emailUser.value,
     //     passwordUser: passwordUser.value
     //   }
-    return await axios.post(baseURL + "/User/Login", data);
+    return await axios.post(baseURL + "/User/Login", data).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
   },
   async getUserData(data) {
     //data
     // {
     //     jwtToken - string
     //   }
-    return await axios.get(baseURL + "/User/Get", { params: { email: data } }  );
+    return await axios.get(baseURL + "/User/Get", { params: { email: data } }  ).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
+  async getShelterData(data) {
+    //data
+    // {
+    //     jwtToken - string
+    //   }
+    return await axios.get(baseURL + "/Shelter/Get", { params: { email: data } }  ).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
   },
   async postRegister(data) {
     //data
@@ -37,7 +76,15 @@ export default {
     //     phone: phoneValue.value,
     //     terms:termsValue.value
     // }
-    return await axios.post(baseURL + "/user/register", data);
+    return await axios.post(baseURL + "/user/register", data).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
   },
   async postUserForm(data) {
     //data
@@ -70,7 +117,15 @@ export default {
     //   animalsBeforeText: animalsBeforeText.value,
     //   text: text.value
     // }
-    return await axios.post(baseURL + "/User/DetailsForm", data);
+    return await axios.post(baseURL + "/User/DetailsForm", data).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
   },
   async postShelterForm(data) {
     //data
@@ -105,7 +160,15 @@ export default {
     //         text: text.value
     //     }
     //   }
-    return await axios.post(baseURL + "/Shelter/DetailsForm", data);
+    return await axios.post(baseURL + "/Shelter/DetailsForm", data).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
   },
   async postPetForm(data) {
     console.log(data);
@@ -135,6 +198,14 @@ export default {
       headers: {
         "Content-Type": "multipart/form-data",
       },
-    });
+    }).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
   },
 };

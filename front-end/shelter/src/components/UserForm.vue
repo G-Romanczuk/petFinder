@@ -379,22 +379,13 @@ var userForm = {
     text: text.value
 }
 const res = await userStore.postUserForm(userForm)
-
-if(res.data.message == "Success"){
+if(res.status == 200){
         const notification = {
           type: "success",
           message: "Updated successfully !",
         }
         notifStore.add(notification)
       } 
-      else
-      {
-        const notification = {
-          type: "error",
-          message: res.data.message,
-        }
-        notifStore.add(notification)
-      }
 
 
 var userData = {
