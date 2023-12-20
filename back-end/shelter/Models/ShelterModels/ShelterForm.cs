@@ -9,11 +9,6 @@
         public string Town { get; set; }
         public string Adress { get; set; }
         public string Url { get; set; }
-        public Questions Questions { get; set; }
-    }
-
-    public class Questions
-    {
         public bool? IncomeSource { get; set; }
         public bool? Lifestyle { get; set; }
         public bool? HousingType { get; set; }

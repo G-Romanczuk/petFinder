@@ -27,9 +27,14 @@ namespace shelter.MapperProfile
             CreateMap<UsersDogDetailsModel, UserForm>();
 
             CreateMap<ShelterForm, ShelterModel>();
-            CreateMap<Questions, ShelterHabbitsModel>();
-            CreateMap<Questions, ShelterResidenceModel>();
-            CreateMap<Questions, ShelterPetDetailsModel>();
+            CreateMap<ShelterForm, ShelterHabbitsModel>();
+            CreateMap<ShelterForm, ShelterResidenceModel>();
+            CreateMap<ShelterForm, ShelterPetDetailsModel>();
+
+            CreateMap<ShelterModel, ShelterForm>();
+            CreateMap<ShelterHabbitsModel, ShelterForm>();
+            CreateMap<ShelterResidenceModel, ShelterForm>();
+            CreateMap<ShelterPetDetailsModel, ShelterForm>();
 
             CreateMap<ShelterRegisterForm, ShelterModel>();
 
