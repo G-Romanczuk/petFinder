@@ -47,6 +47,7 @@
               v-model="email"
               label="E-mail"
               type="email"
+              disabled
               :rules="emailRules"
             />
 

@@ -14,8 +14,8 @@
         location="bottom right"
       >
         <template v-slot:default>
-          <v-dialog  v-model="notification.isSuccess" v-if=" notification.isSuccess " attach="v-snackbar" z-index="-1" >   <v-img src="@/assets/fireworks.gif" style=" position: relative; top: -100px;" ></v-img></v-dialog>
-            <div style="height: 100%; width: 100%; display: flex; ">
+          <v-dialog   v-model="notification.isSuccess" v-if=" notification.isSuccess " attach="v-snackbar" z-index="-1" >    <v-img   src="@/assets/fireworks.gif" style=" position: relative; top: -100px;" ></v-img></v-dialog>
+            <div style="height: 100%; width: 100%; display: flex; " >
             <div style="height: fit-content; width: 70%; margin: auto 0; ">
               <v-icon v-if="notification.icon" style="padding-right: 10px;">{{ notification.icon }}</v-icon>
               {{ notification.message }}
@@ -98,5 +98,9 @@
     display: flexbox;
     max-height: 4vh;
   }
+
+
   </style>
+
+  
   

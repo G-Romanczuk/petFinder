@@ -7,7 +7,7 @@ export const useShelterStore = defineStore("shelter", {
       loggedShelterJWT: '',
       shelterData : {
       name: '',
-      email: "",
+      email: "shellter@t.t",
       phone: "",
       postCode: "",
       town: "",
@@ -59,7 +59,7 @@ export const useShelterStore = defineStore("shelter", {
       const res = await service.getShelterData(email)
 
       this.shelterData.name = res.data.name
-      this.shelterData.email = res.data.email
+  //    this.shelterData.email = res.data.email
       this.shelterData.phone = res.data.phone
       this.shelterData.postCode = res.data.postCode
       this.shelterData.town = res.data.town

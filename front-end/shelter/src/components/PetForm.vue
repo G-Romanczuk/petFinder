@@ -102,7 +102,6 @@
                             <v-btn color="rgb(175, 126, 158)" :disabled="!isValid" class="little-title"
                                 @click="Submit(petData)">Zapisz</v-btn>
                         </div>
-                        <v-btn @click="petFormTest()"> TEST petform</v-btn>
                         <v-divider :thickness="20" class="border-opacity-0"></v-divider>
                     </v-card-actions>
                 </v-form>
@@ -114,9 +113,10 @@
 <script setup lang="js">
 import { ref } from 'vue'
 import { usePetStore } from '@/store/pet';
+import { useNotificationsStore } from '@/store/notifications';
 import { useShelterStore } from '@/store/shelter';
 const shelterStore = useShelterStore();
-
+const notifStore = useNotificationsStore();
 const isValid = ref(true)
 const store = usePetStore();
 var show = ref(false)
@@ -163,13 +163,6 @@ var petData = {
 
 var dialog = ref(false)
 
-
-
-function Submit(petData) {
-    store.petData = petData;
-   
-}
-
 const onFileChange = (e) => {
     show.value = false
     urls = []
@@ -183,13 +176,9 @@ const onFileChange = (e) => {
     show.value = true
     };
 
+async function Submit(petData) {
 
-
-//for tests
-async function petFormTest() {
-
-    console.log(images)
-
+    store.petData = petData;
     var petForm = {
         shelter: shelterEmail.value,
         name: name.value,
@@ -211,8 +200,15 @@ async function petFormTest() {
         text: text.value,
     }
  
-    console.log(petForm)
-    store.postPetForm(petForm)
+    const res= await store.postPetForm(petForm)
+
+    if(res.status == 200){
+        const notification = {
+      type: "success",
+      message: "Added  succesfully",
+    }
+    notifStore.add(notification)
+    }
 }
 
 

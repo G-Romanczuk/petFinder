@@ -32,8 +32,12 @@ export const usePetStore = defineStore("pet", {
     }
   },
   actions: {
-    postPetForm(data) {
-      service.postPetForm(data)
+    async postPetForm(data) {
+      const res= await service.postPetForm(data)
+
+
+
+      return res
     },
   },
   getters: {
