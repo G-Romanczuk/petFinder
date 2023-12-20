@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using shelter.Dtos.PetDto;
 using shelter.Dtos.UserDtos;
 using shelter.Models.PetModels;
 using shelter.Models.ShelterModels;
@@ -38,8 +39,16 @@ namespace shelter.MapperProfile
 
             CreateMap<ShelterRegisterForm, ShelterModel>();
 
-            CreateMap<PetForm, PetModel>();
-            CreateMap<PetModel, PetForm>();
+            
+            CreateMap<PetForm, PetModel>()
+                .ForMember(dest => dest.Images, opt => opt.Ignore());
+
+            CreateMap<PetModel, PetsBelongsToShelterDto>()
+            .ForMember(dest => dest.Images, opt => opt.MapFrom(src => src.Images.Select(img => img.Images).ToList()));
+
+            CreateMap<PetImg, PetsBelongsToShelterDto>()
+                .ForMember(dest => dest.Images, opt => opt.MapFrom(src => new List<byte[]> { src.Images }));
+
         }
     }
     

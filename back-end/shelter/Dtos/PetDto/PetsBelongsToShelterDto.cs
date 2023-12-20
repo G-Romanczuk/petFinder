@@ -1,16 +1,7 @@
-﻿using shelter.Models.ShelterModels;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace shelter.Models.PetModels
+﻿namespace shelter.Dtos.PetDto
 {
-    public class PetModel
+    public class PetsBelongsToShelterDto
     {
-        [Key]
-        public int Id { get; set; }
-        public int ShelterModelId { get; set; }
-        [ForeignKey("ShelterModelId")]
-        public ShelterModel ShelterModel { get; set; }
         public string? Name { get; set; }
         public string? Type { get; set; }
         public string? Gender { get; set; }
@@ -27,9 +18,6 @@ namespace shelter.Models.PetModels
         public string? Cuddly { get; set; }
         public string? Temper { get; set; }
         public string? Text { get; set; }
-
-        public List<PetImg> Images { get; set; }
+        public List<byte[]> Images { get; set; }
     }
-   
-
 }

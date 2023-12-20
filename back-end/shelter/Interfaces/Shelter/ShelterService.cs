@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using shelter.DataBaseContext.ShelterPetFinderDbContext;
+using shelter.Dtos.PetDto;
 using shelter.Dtos.ShelterDtos;
 using shelter.Dtos.UserDtos;
 using shelter.Models.PetModels;
@@ -16,7 +17,7 @@ using System.Security.Cryptography;
 using System.Text;
 
 namespace shelter.Interfaces.Shelter
-{ 
+{
     public class ShelterService : IShelterService
     {
         private readonly ShelterPetFinderDbContext _shelterPetFinderDbContext;
@@ -202,23 +203,31 @@ namespace shelter.Interfaces.Shelter
             }
         }
 
-        public async Task<List<PetModel>> GetAllPetsBelongsToShelter(string shelterEmail)
+        public async Task<List<PetsBelongsToShelterDto>> GetAllPetsBelongsToShelter(string shelterEmail)
         {
             var shelterId = await _shelterPetFinderDbContext.Shelters
                 .Where(shEmail => shEmail.Email == shelterEmail)
                 .Select(shId => shId.Id)
                 .FirstOrDefaultAsync();
-
-            if (shelterId != 0)
+            
+            try
             {
-                return await _shelterPetFinderDbContext.Pets
+               var petsFromDb = await _shelterPetFinderDbContext.Pets
+                    .Include(p => p.Images)
                     .Where(shId => shId.ShelterModelId == shelterId)
                     .ToListAsync();
+
+               var petsToGet = _mapper.Map<List<PetsBelongsToShelterDto>>(petsFromDb);
+
+               return petsToGet;
             }
-            else
+            catch (Exception ex)
             {
-                return new List<PetModel>();
+
+                return null;
             }
+                
+            
         }
 
         public string GeneratePassword(string password)
