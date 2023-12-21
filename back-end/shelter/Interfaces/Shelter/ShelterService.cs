@@ -205,21 +205,21 @@ namespace shelter.Interfaces.Shelter
 
         public async Task<List<PetsBelongsToShelterDto>> GetAllPetsBelongsToShelter(string shelterEmail)
         {
-            var shelterId = await _shelterPetFinderDbContext.Shelters
+            try
+            {
+                var shelterId = await _shelterPetFinderDbContext.Shelters
                 .Where(shEmail => shEmail.Email == shelterEmail)
                 .Select(shId => shId.Id)
                 .FirstOrDefaultAsync();
-            
-            try
-            {
-               var petsFromDb = await _shelterPetFinderDbContext.Pets
+
+                var allShelterPets = await _shelterPetFinderDbContext.Pets
                     .Include(p => p.Images)
                     .Where(shId => shId.ShelterModelId == shelterId)
                     .ToListAsync();
 
-               var petsToGet = _mapper.Map<List<PetsBelongsToShelterDto>>(petsFromDb);
+                var petsToGet = _mapper.Map<List<PetsBelongsToShelterDto>>(allShelterPets);
 
-               return petsToGet;
+                return petsToGet;
             }
             catch (Exception ex)
             {

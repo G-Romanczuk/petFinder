@@ -44,10 +44,10 @@ namespace shelter.MapperProfile
                 .ForMember(dest => dest.Images, opt => opt.Ignore());
 
             CreateMap<PetModel, PetsBelongsToShelterDto>()
-            .ForMember(dest => dest.Images, opt => opt.MapFrom(src => src.Images.Select(img => img.Images).ToList()));
+                .ForMember(dest => dest.Images, opt => opt.MapFrom(src => src.Images.Count));
 
             CreateMap<PetImg, PetsBelongsToShelterDto>()
-                .ForMember(dest => dest.Images, opt => opt.MapFrom(src => new List<byte[]> { src.Images }));
+                .ForMember(dest => dest.Images, opt => opt.Ignore());
 
         }
     }
