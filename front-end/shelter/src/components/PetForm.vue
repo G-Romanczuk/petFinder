@@ -21,27 +21,38 @@
 
                         <p class="p">Zdjęcia (max 5)</p>
 
-                        <v-file-input type="file" @change="onFileChange" :rules="[(v) => v.length <= 5 || 'Maksymalnie 5 plików']"  prepend-icon="mdi-camera" accept=".jpg,.png" chips
-                            multiple show-size counter  />
+           
+                        <v-file-input type="file" @change="onFileChange" 
+                            :rules="[(v) => v.length <= 5 || 'Maksymalnie 5 plików']" prepend-icon="mdi-camera"
+                            accept=".jpg,.png" chips multiple show-size counter />
                         <div style=" display: flexbox;" v-if="show">
                             <v-row>
                                 <v-col>
-      <v-img lazy-src="https://geekflare.com/wp-content/uploads/2023/03/img-placeholder.png" :src="urls[0]"   alt="..."/>
-    </v-col>
-    <v-col>
-    <v-img lazy-src="https://geekflare.com/wp-content/uploads/2023/03/img-placeholder.png" :src="urls[1]"   alt="..."/>
-</v-col>
-<v-col>
-     <v-img lazy-src="https://geekflare.com/wp-content/uploads/2023/03/img-placeholder.png" :src="urls[2]"   alt="..."/>
-    </v-col>
-    <v-col>
-      <v-img lazy-src="https://geekflare.com/wp-content/uploads/2023/03/img-placeholder.png" :src="urls[3]"   alt="..."/>
-    </v-col>
-    <v-col>
-      <v-img lazy-src="https://geekflare.com/wp-content/uploads/2023/03/img-placeholder.png" :src="urls[4]"   alt="..."/>
-    </v-col>
-    </v-row>
-    </div>
+                                    <v-img lazy-src="https://geekflare.com/wp-content/uploads/2023/03/img-placeholder.png"
+                                        :src="urls[0]" alt="..." />
+                                </v-col>
+                                <v-col>
+                                    <v-img lazy-src="https://geekflare.com/wp-content/uploads/2023/03/img-placeholder.png"
+                                        :src="urls[1]" alt="..." />
+                                </v-col>
+                                <v-col>
+                                    <v-img lazy-src="https://geekflare.com/wp-content/uploads/2023/03/img-placeholder.png"
+                                        :src="urls[2]" alt="..." />
+                                </v-col>
+                                <v-col>
+                                    <v-img lazy-src="https://geekflare.com/wp-content/uploads/2023/03/img-placeholder.png"
+                                        :src="urls[3]" alt="..." />
+                                </v-col>
+                                <v-col>
+                                    <v-img lazy-src="https://geekflare.com/wp-content/uploads/2023/03/img-placeholder.png"
+                                        :src="urls[4]" alt="..." />
+                                </v-col>
+                            </v-row>
+                        </div>
+
+
+                        
+
 
                         <p class="p">Typ zwierzęcia</p>
                         <v-select v-model="type" label="typ" :items="['Pies', 'Kot', 'Gryzoń']"></v-select>
@@ -115,15 +126,17 @@ import { ref } from 'vue'
 import { usePetStore } from '@/store/pet';
 import { useNotificationsStore } from '@/store/notifications';
 import { useShelterStore } from '@/store/shelter';
+import { file } from '@babel/types';
 const shelterStore = useShelterStore();
 const notifStore = useNotificationsStore();
 const isValid = ref(true)
 const store = usePetStore();
 var show = ref(false)
 var urls = []
+var files = []
+var images = []
 
 var name = ref(store.petData.name)
-var images = ref(store.petData.images)
 var type = ref(store.petData.type)
 var gender = ref(store.petData.gender)
 var castration = ref(store.petData.castration)
@@ -163,18 +176,63 @@ var petData = {
 
 var dialog = ref(false)
 
-const onFileChange = (e) => {
+const onFileChange =  (e)  => {
     show.value = false
     urls = []
-    images = []
-     images = e.target.files;
+    files = [];
+    files = e.target.files;
+    forBase64(files);
+
     console.log(e.target.files)
-    for(var i = 0; i < e.target.files.length; i++){
-       
-        urls[i] = URL.createObjectURL(images[i])
+    for (var i = 0; i < e.target.files.length; i++) {
+        
+        urls[i] = URL.createObjectURL(e.target.files[i])
+      
+
     }
+
     show.value = true
-    };
+};
+
+async function getBase64(file, i) {
+
+        const reader = new FileReader();
+    reader.onload = (event) => {
+        images[i] = event.target.result;
+      }
+      reader.readAsDataURL(file);
+
+    }
+ 
+    var test = null
+
+async function forBase64(files){
+
+    for(var i = 0; i < files.length; i++){
+      await getBase64(files[i], i)
+
+
+
+    }
+    //picture.value = true
+   console.log(images)
+    
+}
+//   return new Promise((resolve, reject) => {
+//     const reader = new FileReader();
+//     reader.readAsDataURL(file);
+//     reader.onload = () => {
+//       let encoded = reader.result.toString().replace(/^data:(.*,)?/, '');
+//       if ((encoded.length % 4) > 0) {
+//         encoded += '='.repeat(4 - (encoded.length % 4));
+//       }
+//       resolve( console.log(encoded));
+//     };
+//     reader.onerror = error => reject(error);
+//   });
+
+
+
 
 async function Submit(petData) {
 
@@ -199,15 +257,16 @@ async function Submit(petData) {
         temper: temper.value,
         text: text.value,
     }
- 
-    const res= await store.postPetForm(petForm)
 
-    if(res.status == 200){
+    console.log(petForm)
+    const res = await store.postPetForm(petForm)
+
+    if (res.status == 200) {
         const notification = {
-      type: "success",
-      message: "Added  succesfully",
-    }
-    notifStore.add(notification)
+            type: "success",
+            message: "Added  succesfully",
+        }
+        notifStore.add(notification)
     }
 }
 
@@ -264,5 +323,4 @@ async function Submit(petData) {
 .scrollbar::-webkit-scrollbar-track-piece:start {
     background: transparent;
     margin-top: 3vh;
-}
-</style>
+}</style>

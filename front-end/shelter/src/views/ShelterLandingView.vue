@@ -125,9 +125,10 @@
                   <h3 style="color: black; font-size: medium; text-align: center; height: fit-content; padding: 10px;" class="text">
                     TUTAJ DODAJ POWIADOMIENIA
 
+                    <v-btn @click="shelterStore.getShelterPets(shelterEmail)"> click</v-btn>
 
 
-
+                   
 
 
 
@@ -155,6 +156,9 @@ import { ref } from "vue";
 import { useShelterStore } from '@/store/shelter';
 
 const shelterStore = useShelterStore();
+const shelterEmail = "shellter@t.t"
+
+
 
 var tab = ref(null)
 function reveal() {
