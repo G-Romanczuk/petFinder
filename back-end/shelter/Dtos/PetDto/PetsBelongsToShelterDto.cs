@@ -18,6 +18,6 @@
         public string? Cuddly { get; set; }
         public string? Temper { get; set; }
         public string? Text { get; set; }
-        public int Images { get; set; }
+        public List<string>? Images { get; set; }
     }
 }

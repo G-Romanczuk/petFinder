@@ -7,7 +7,8 @@ namespace shelter.Models.PetModels
     {
         [Key]
         public int Id { get; set; }
-        public byte[] Images { get; set; }
+        [MaxLength]
+        public string Images { get; set; }
         public int PetModelId { get; set; }
         [ForeignKey("PetModelId")]
         public PetModel PetModel { get; set; }

@@ -40,27 +40,6 @@ namespace shelter.Interfaces.Pet
                 _shelterPetFinderDbContext.Pets.Add(newPetModel);
                 await _shelterPetFinderDbContext.SaveChangesAsync();
 
-                string blob;
-                foreach (var img in pet.Images)
-                {
-                    if (img.Length>0)
-                    {
-                        using (var ms = new MemoryStream())
-                        {
-                            img.CopyTo( ms );
-                            var fileBytes = ms.ToArray();
-                            blob = Convert.ToBase64String( fileBytes );
-                        }
-                        var newPetImgs = new PetImg()
-                        {
-                            Images = Encoding.UTF8.GetBytes(blob),
-                            PetModelId = newPetModel.Id
-                        };
-                        _shelterPetFinderDbContext.PetImgs.Add(newPetImgs);
-                        await _shelterPetFinderDbContext.SaveChangesAsync();
-                    }
-                    
-                }
                 return true;
             }
             catch (Exception)

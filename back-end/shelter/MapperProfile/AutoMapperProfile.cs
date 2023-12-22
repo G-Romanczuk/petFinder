@@ -39,15 +39,14 @@ namespace shelter.MapperProfile
 
             CreateMap<ShelterRegisterForm, ShelterModel>();
 
-            
+
             CreateMap<PetForm, PetModel>()
-                .ForMember(dest => dest.Images, opt => opt.Ignore());
+            .ForMember(dest => dest.Images, opt => opt.MapFrom(src => src.Images.Select(img => new PetImg { Images = img })));
 
             CreateMap<PetModel, PetsBelongsToShelterDto>()
-                .ForMember(dest => dest.Images, opt => opt.MapFrom(src => src.Images.Count));
+            .ForMember(dest => dest.Images, opt => opt.MapFrom(src => src.Images.Select(img => img.Images)));
 
-            CreateMap<PetImg, PetsBelongsToShelterDto>()
-                .ForMember(dest => dest.Images, opt => opt.Ignore());
+            CreateMap<PetImg, PetsBelongsToShelterDto>();
 
         }
     }

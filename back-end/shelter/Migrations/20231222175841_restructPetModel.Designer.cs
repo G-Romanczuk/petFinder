@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using shelter.DataBaseContext.ShelterPetFinderDbContext;
 
@@ -11,9 +12,11 @@ using shelter.DataBaseContext.ShelterPetFinderDbContext;
 namespace shelter.Migrations
 {
     [DbContext(typeof(ShelterPetFinderDbContext))]
-    partial class ShelterPetFinderDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231222175841_restructPetModel")]
+    partial class restructPetModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

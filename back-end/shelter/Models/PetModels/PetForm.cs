@@ -7,7 +7,7 @@ namespace shelter.Models.PetModels
         public int? Id { get; set; }
         public string? Name { get; set; }
         [FromForm(Name = "images[]")]
-        public List<IFormFile>? Images { get; set; }
+        public List<string>? Images { get; set; }
         public string? Type { get; set; }
         public string? Gender { get; set; }
         public string? Castration { get; set; }
