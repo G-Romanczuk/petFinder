@@ -133,7 +133,6 @@ var dialog = ref(false)
 
 
 async function shelterLogin() {
-  console.log("NIE MA GETTERA JESZCZE PAMITAJ")
   var shelterLogin = {
     emailShelter: emailShelter.value,
     passwordShelter: passwordShelter.value
@@ -144,6 +143,7 @@ async function shelterLogin() {
     shelterStore.loggedShelterJWT = res.data.jwtToken   //.jwtToken
     shelterStore.shelterData.email = emailShelter.value
     await shelterStore.getShelterData(emailShelter.value)
+    await shelterStore.getShelterPets(emailShelter.value)
     router.push('/shelterMenu')
 
   }

@@ -65,6 +65,21 @@ export default {
     notifStore.add(notification)
   });
   },
+  async getShelterPets(data) {
+    //data
+    // {
+    //     jwtToken - string
+    //   }
+    return await axios.get(baseURL + "/Shelter/GetPets", { params: { shelterEmail: data } }  ).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
   async postRegister(data) {
     //data
     //  {

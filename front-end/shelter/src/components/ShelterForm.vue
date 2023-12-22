@@ -27,6 +27,10 @@
         height="85vh"
         style="overflow-y: scroll; border-radius: 5%"
       >
+
+     
+      
+
         <v-divider :thickness="20" class="border-opacity-0"></v-divider>
 
         <div class="d-flex align-center flex-column">
@@ -34,6 +38,9 @@
         </div>
         <v-form class="px-4">
           <v-card-text style="width: 70%; margin: 0 auto">
+
+
+
             <p class="p">Nazwa</p>
             <v-text-field
               v-model="name"
@@ -407,6 +414,7 @@ if(res.status == 200){
     shelterStore.shelterData = shelterForm;
     console.log(shelterStore.shelterData)
 }
+
 
 </script>
 

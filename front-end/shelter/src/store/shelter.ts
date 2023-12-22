@@ -34,7 +34,8 @@ export const useShelterStore = defineStore("shelter", {
         animalsBefore: false,
         animalsBeforeText: false,
         text: false,
-      }
+      },
+      pets: []
       }
 
       
@@ -65,26 +66,26 @@ export const useShelterStore = defineStore("shelter", {
       this.shelterData.town = res.data.town
       this.shelterData.adress = res.data.adress
       this.shelterData.url = res.data.url
-      this.shelterData.questions.incomeSource = res.data.questions.incomeSource
-      this.shelterData.questions.lifeStyle = res.data.questions.lifeStyle
-      this.shelterData.questions.housingType = res.data.questions.housingType
-      this.shelterData.questions.houseOwner = res.data.questions.houseOwner
-      this.shelterData.questions.hoursAlone = res.data.questions.hoursAlone
-      this.shelterData.questions.floor = res.data.questions.floor
-      this.shelterData.questions.elevator = res.data.questions.elevator
-      this.shelterData.questions.walksNumber = res.data.questions.walksNumber
-      this.shelterData.questions.walksTime = res.data.questions.walksTime
-      this.shelterData.questions.fence = res.data.questions.fence
-      this.shelterData.questions.fenceHeight = res.data.questions.fenceHeight
-      this.shelterData.questions.propertySize = res.data.questions.propertySize
-      this.shelterData.questions.petPlace = res.data.questions.petPlace
-      this.shelterData.questions.petPlaceAlone = res.data.questions.petPlaceAlone
-      this.shelterData.questions.careAlone = res.data.questions.careAlone
-      this.shelterData.questions.houseMates = res.data.questions.houseMates
-      this.shelterData.questions.animals = res.data.questions.animals
-      this.shelterData.questions.animalsBefore = res.data.questions.animalsBefore
-      this.shelterData.questions.animalsBeforeText = res.data.questions.animalsBeforeText
-      this.shelterData.questions.text = res.data.questions.text
+      this.shelterData.questions.incomeSource = res.data.incomeSource
+      this.shelterData.questions.lifeStyle = res.data.lifeStyle
+      this.shelterData.questions.housingType = res.data.housingType
+      this.shelterData.questions.houseOwner = res.data.houseOwner
+      this.shelterData.questions.hoursAlone = res.data.hoursAlone
+      this.shelterData.questions.floor = res.data.floor
+      this.shelterData.questions.elevator = res.data.elevator
+      this.shelterData.questions.walksNumber = res.data.walksNumber
+      this.shelterData.questions.walksTime = res.data.walksTime
+      this.shelterData.questions.fence = res.data.fence
+      this.shelterData.questions.fenceHeight = res.data.fenceHeight
+      this.shelterData.questions.propertySize = res.data.propertySize
+      this.shelterData.questions.petPlace = res.data.petPlace
+      this.shelterData.questions.petPlaceAlone = res.data.petPlaceAlone
+      this.shelterData.questions.careAlone = res.data.careAlone
+      this.shelterData.questions.houseMates = res.data.houseMates
+      this.shelterData.questions.animals = res.data.animals
+      this.shelterData.questions.animalsBefore = res.data.animalsBefore
+      this.shelterData.questions.animalsBeforeText = res.data.animalsBeforeText
+      this.shelterData.questions.text = res.data.text
 
 
 
@@ -92,6 +93,16 @@ export const useShelterStore = defineStore("shelter", {
 
 
 
+
+      return res
+    },
+    async getShelterPets(shelterEmail){
+      const res = await service.getShelterPets(shelterEmail)
+
+      console.log(res.data)
+      this.shelterData.pets = res.data
+      console.log(this.shelterData.pets)
+    console.log(this.shelterData.pets[1].images[0])  
 
       return res
     }
