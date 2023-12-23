@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using shelter.DataBaseContext.ShelterPetFinderDbContext;
+using shelter.Dtos.PetDto;
 using shelter.Models.PetModels;
 using System.Reflection.Metadata;
 using System.Text;
@@ -63,11 +64,24 @@ namespace shelter.Interfaces.Pet
             return true;
         }
 
-        public async Task<List<PetModel>> GetAllPets()
+        public async Task<List<PetsBelongsToShelterDto>> GetAllPets()
         {
-            var allPets = await _shelterPetFinderDbContext.Pets.Include(i => i.Images).ToListAsync();
+            try
+            {
+                var allPets = await _shelterPetFinderDbContext.Pets
+                    .Include(p => p.Images)
+                    .ToListAsync();
 
-            return allPets;
+                var petsToGet = _mapper.Map<List<PetsBelongsToShelterDto>>(allPets);
+
+                return petsToGet;
+            }
+            catch (Exception ex) 
+            {
+
+                return null;
+            }
+            
         }
 
         public async Task<bool> UpdatePet(PetForm pet)
