@@ -1,83 +1,122 @@
 <template>
   <v-parallax src="@/assets/spaniel-background.jpg" style=" width: 100vw; height: 100vh;">
     <v-row style="width: 100vw; background-color: rgb(255, 255, 255, 0);">
-      <v-col style="width: 70vw; height: 100vh; background-color: rgb(255, 255, 255, 0);">  
+      <v-col style="width: 70vw; height: 100vh; background-color: rgb(255, 255, 255, 0);">
         <div class="d-flex align-center flex-column" style="width: 75vw; margin-left: auto; margin-right: auto;">
-      <div class="title" style="padding: 5px; margin: 0 auto; color: rgb(255, 255, 255); "> Menu  <div style="display: inline-block; font-size: small; margin-bottom: auto; "> <ShelterInfo/> </div> </div>
-    
-    </div>
-          <v-sheet class="d-flex align-center flex-column" style="background-color: rgb(255, 255, 255, 0);">
-            <div class="hello-message" style="border-radius: 10px;  width: 99%; ">
-            
+          <div class="title" style="padding: 5px; margin: 0 auto; color: rgb(255, 255, 255); "> Menu <div
+              style="display: inline-block; font-size: small; margin-bottom: auto; ">
+              <ShelterInfo />
+            </div>
+          </div>
+
+        </div>
+        <v-sheet class="d-flex align-center flex-column" style="background-color: rgb(255, 255, 255, 0);">
+          <div class="hello-message" style="border-radius: 10px;  width: 99%; ">
 
 
-              <v-card>
-    <v-tabs
-      v-model="tab"
-      color="rgb(143, 83, 122)"
-      class="text cards"
-    >
-      <v-tab value="one" class="cards font-bigger">Podopieczni</v-tab>
-      <v-tab value="two" class="cards font-bigger">Adopcje</v-tab>
-      <v-tab value="three" class="cards font-bigger">Konto</v-tab>
-    </v-tabs>
-    <div
-                    style="height: 2px; width: 100%; background-color:rgb(143, 83, 122) ; margin-right: auto; ">
-                  </div>
-    <v-card-text>
 
-      <v-window v-model="tab" class="text">
-        <v-window-item value="one">
-         
-          <div style="height: 78vh;">
-          <v-row style="width: fit-content; margin: 0 auto; padding-bottom: 10px; ">
-                      <PetForm />
-                      <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
-                      <v-btn elevation="8" class="text font-big">
-                        <v-icon color="rgb(143, 83, 122)" icon="mdi-dog"> </v-icon>
-                        Psy</v-btn>
-                      <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
-                      <v-btn elevation="8" class="text font-big">
-                        <v-icon color="rgb(143, 83, 122)" icon="mdi-cat"> </v-icon>
-                        Koty</v-btn>
-                      <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
-                      <v-btn elevation="8" class="text font-big">
-                        <v-icon color="rgb(143, 83, 122)" icon="mdi-rodent"> </v-icon>
-                        Gryzonie</v-btn>
-                      <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
-                      <v-btn elevation="8" class="text font-big">
-                        <v-icon color="rgb(143, 83, 122)" icon="mdi-bird"> </v-icon>
-                        Ptaki</v-btn>
-                      <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
-                      <v-btn elevation="8" class="text font-big">
-                        <v-icon color="rgb(143, 83, 122)" icon="mdi-heart"> </v-icon>
-                        Inne</v-btn>
-                      <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
-                  
+            <v-card>
+              <v-tabs v-model="tab" color="rgb(143, 83, 122)" class="text cards">
+                <v-tab value="one" class="cards font-bigger">Podopieczni</v-tab>
+                <v-tab value="two" class="cards font-bigger">Adopcje</v-tab>
+                <v-tab value="three" class="cards font-bigger">Konto</v-tab>
+              </v-tabs>
+              <div style="height: 2px; width: 100%; background-color:rgb(143, 83, 122) ; margin-right: auto; ">
+              </div>
+              <v-card-text>
+
+                <v-window v-model="tab" class="text">
+                  <v-window-item value="one">
+
+                    <div style="height: 78vh; ">
+                      <v-row style="width: fit-content; margin: 0 auto; padding-bottom: 10px; height: 6vh; ">
+                        <PetForm />
+                        <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
+                        <v-btn elevation="8" class="text font-big">
+                          <v-icon color="rgb(143, 83, 122)" icon="mdi-dog"> </v-icon>
+                          Psy</v-btn>
+                        <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
+                        <v-btn elevation="8" class="text font-big">
+                          <v-icon color="rgb(143, 83, 122)" icon="mdi-cat"> </v-icon>
+                          Koty</v-btn>
+                        <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
+                        <v-btn elevation="8" class="text font-big">
+                          <v-icon color="rgb(143, 83, 122)" icon="mdi-rodent"> </v-icon>
+                          Gryzonie</v-btn>
+                        <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
+                        <v-btn elevation="8" class="text font-big">
+                          <v-icon color="rgb(143, 83, 122)" icon="mdi-bird"> </v-icon>
+                          Ptaki</v-btn>
+                        <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
+                        <v-btn elevation="8" class="text font-big">
+                          <v-icon color="rgb(143, 83, 122)" icon="mdi-heart"> </v-icon>
+                          Inne</v-btn>
+                        <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
+
+                      </v-row>
+
+
+
+                      <div
+                        style="width: 100%; display: grid; grid-template-columns:repeat(4, 25% [col-start]); height: 72vh; overflow-y: scroll; overflow-x: hidden; margin: auto; "
+                        class="scrollbar">
+
+
+
+                        <div v-for="(pet, i) in shelterStore.shelterData.pets"
+                          style="width: 300px; height: 370px; padding: 10px;" class="scale"  @click="">
+                          <PetPopup >
+                            <template #activator>
+                              <div style="height: 10px;"></div>
+                              <v-card class="mx-auto dontscale" width="260" height="350">
+                                <v-img cover v-bind:src="pet.images[0]"
+                                  style="margin: auto; width: 90%; border-radius: 10px; height: 80%;" />
+
+                                <v-card-title class="font">
+
+                                  {{ pet.name }} , {{ pet.age }}
+                                </v-card-title>
+
+                                <v-card-subtitle class="font">
+                                 Wykastrowany/a: {{ pet.castration}}
+                                </v-card-subtitle>
+
+
+                              </v-card>
+
+
+                            </template>
+                          </PetPopup>
+                        </div>
+
+
+
+                      </div>
+                    </div>
+
+
+
+
+
+
+
+
+                  </v-window-item>
+
+                  <v-window-item value="two">
+                    <v-row style="width: fit-content; margin: 0 auto; padding-bottom: 10px; height: 78vh;">
+
+
+
                     </v-row>
-                   
-                    ^ dodawanie i edycja podopiecznych
+                  </v-window-item>
 
-                    Tutaj Dodaj W SUMIE CHUJ WIE CO JAKIEŚ POMOCE
-                    
+                  <v-window-item value="three">
+                    <v-row style="width: fit-content; margin: 0 auto; padding-bottom: 10px; height: 78vh;">
 
-                  </div>
-        </v-window-item>
-
-        <v-window-item value="two">
-          <v-row style="width: fit-content; margin: 0 auto; padding-bottom: 10px; height: 78vh;">
-          
-          
-          
-          </v-row>
-        </v-window-item>
-
-        <v-window-item value="three">
-          <v-row style="width: fit-content; margin: 0 auto; padding-bottom: 10px; height: 78vh;">
-                  
-                  <ShelterForm />
-                  <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
-                  <v-btn elevation="8" class="text font-big">
+                      <ShelterForm />
+                      <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
+                      <v-btn elevation="8" class="text font-big">
                         <v-icon color="rgb(143, 83, 122)" icon="mdi-lock-reset"> </v-icon> Zmień hasło</v-btn>
                       <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
                       <v-btn elevation="8" class="text font-big">
@@ -87,20 +126,21 @@
                       <v-btn elevation="8" class="text font-big"> <v-icon color="rgb(143, 83, 122)"
                           icon="mdi-delete-empty"></v-icon>Usuń konto</v-btn>
 
-          </v-row>     
-        </v-window-item>
-      </v-window>
-    </v-card-text>
-  </v-card>
+                    </v-row>
+                  </v-window-item>
+                </v-window>
+              </v-card-text>
+            </v-card>
 
 
-            </div>
-          </v-sheet>
-       
-      </v-col >
+          </div>
+        </v-sheet>
+
+      </v-col>
       <v-col style="max-width: 27vw; ">
-        <v-sheet class="d-flex align-center flex-column" style="margin-top: 2vh; background-color: rgb(255, 255, 255, 0);">
-             <v-sheet class="scrollbar" style="
+        <v-sheet class="d-flex align-center flex-column"
+          style="margin-top: 2vh; background-color: rgb(255, 255, 255, 0);">
+          <v-sheet class="scrollbar" style="
                   float: right;
                   width: 90%;
                   border-radius: 10px;
@@ -113,30 +153,28 @@
                   background-color: rgba(255, 255, 255, 0.5) ;
                   
                 ">
-                <div style="width: fit-content; margin: 0 auto;">
-                  <h1 style="color: black; font-size:large;" class="font"><v-icon color="rgb(143, 83, 122)"
-                      icon="mdi-filter-outline"></v-icon>Powiadomienia</h1>
-                 
-                </div>
-                <div
-                    style="height: 2px; width: 80%; background-color: rgb(143, 83, 122) ; margin: 0 auto; opacity: 0.5;">
-                  </div>
-                <div style="padding: 5px; text-align: center;">
-                  <h3 style="color: black; font-size: medium; text-align: center; height: fit-content; padding: 10px;" class="text">
-                    TUTAJ DODAJ POWIADOMIENIA
+            <div style="width: fit-content; margin: 0 auto;">
+              <h1 style="color: black; font-size:large;" class="font"><v-icon color="rgb(143, 83, 122)"
+                  icon="mdi-filter-outline"></v-icon>Powiadomienia</h1>
 
-                    <v-btn @click="shelterStore.getShelterPets(shelterEmail)"> click</v-btn>
+            </div>
+            <div style="height: 2px; width: 80%; background-color: rgb(143, 83, 122) ; margin: 0 auto; opacity: 0.5;">
+            </div>
+            <div style="padding: 5px; text-align: center;">
+              <h3 style="color: black; font-size: medium; text-align: center; height: fit-content; padding: 10px;"
+                class="text">
+                TUTAJ DODAJ POWIADOMIENIA
 
-
-                   
+             
 
 
 
 
-                  </h3>
-                </div>
-              </v-sheet>
-            </v-sheet>
+
+              </h3>
+            </div>
+          </v-sheet>
+        </v-sheet>
       </v-col>
 
     </v-row>
@@ -152,11 +190,14 @@
 import ShelterForm from "@/components/ShelterForm.vue";
 import PetForm from "@/components/PetForm.vue";
 import ShelterInfo from "@/components/ShelterInfo.vue";
+import PetPopup from "@/components/PetPopup.vue";
 import { ref } from "vue";
 import { useShelterStore } from '@/store/shelter';
+import { usePetStore } from "@/store/pet";
 
 const shelterStore = useShelterStore();
-const shelterEmail = "shellter@t.t"
+shelterStore.getShelterPets(shelterStore.shelterData.email)
+const petStore = usePetStore();
 
 
 
@@ -185,7 +226,7 @@ window.addEventListener("scroll", reveal);
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
 
-.cards{
+.cards {
   font-size: large;
   font-weight: 900;
 }
@@ -215,8 +256,15 @@ window.addEventListener("scroll", reveal);
   padding-bottom: 20px;
 }
 
+.scale :hover {
+  transform: scale(1.1);
+  z-index: 1;
+}
 
-
+.dontscale :hover {
+  transform: scale(1);
+  z-index: 1;
+}
 .text {
   text-align: justify;
   font-family: 'Gruppo', sans-serif;
@@ -277,7 +325,7 @@ window.addEventListener("scroll", reveal);
     transform: translateX(0);
     opacity: 1;
   }
-  
+
 }
 
 .font-big {
@@ -286,7 +334,7 @@ window.addEventListener("scroll", reveal);
 }
 
 .font-bigger {
-  font-size:x-large;
+  font-size: x-large;
   font-weight: 900;
 }
 
@@ -306,15 +354,13 @@ window.addEventListener("scroll", reveal);
 
 .scrollbar::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-image: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    color-stop(0.14, rgb(235, 196, 222)),
-    color-stop(0.24, rgb(221, 167, 202)),
-    color-stop(0.52, rgb(175, 126, 158)),
-    color-stop(0.86, rgb(131, 70, 109))
-  );
+  background-image: -webkit-gradient(linear,
+      left bottom,
+      left top,
+      color-stop(0.14, rgb(235, 196, 222)),
+      color-stop(0.24, rgb(221, 167, 202)),
+      color-stop(0.52, rgb(175, 126, 158)),
+      color-stop(0.86, rgb(131, 70, 109)));
 }
 
 .scrollbar::-webkit-scrollbar-track-piece:end {
@@ -325,5 +371,6 @@ window.addEventListener("scroll", reveal);
 .scrollbar::-webkit-scrollbar-track-piece:start {
   background: transparent;
   margin-top: 3vh;
-}</style>
+}
+</style>
   

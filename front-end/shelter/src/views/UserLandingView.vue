@@ -33,7 +33,11 @@
           <div style="height: 78vh;">
           
           <v-row  style="width: fit-content; margin: 0 auto; padding-bottom: 10px; ">
-              <FindPopup  />
+              <PetPopup  >
+                <template #activator>
+                  <v-icon color="rgb(143, 83, 122)" icon="mdi-paw" > </v-icon> Znajdź przyjaciela
+                </template>
+              </PetPopup>
                       <v-divider vertical :thickness="10" class="border-opacity-0 "></v-divider>
                       <v-btn elevation="8" class="text font-big">
                         <v-icon color="rgb(143, 83, 122)" icon="mdi-dog"> </v-icon>
@@ -165,7 +169,7 @@
   
 <script setup lang="ts">
 import UserForm from "@/components/UserForm.vue";
-import FindPopup from "@/components/FindPopup.vue";
+import PetPopup from "@/components/PetPopup.vue";
 import { useUserStore } from "@/store/user";
 import UserInfo from "@/components/UserInfo.vue";
 import { ref } from "vue";
