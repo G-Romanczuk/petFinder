@@ -80,6 +80,17 @@ export default {
     notifStore.add(notification)
   });
   },
+  async getPets() {
+    return await axios.get(baseURL + "/Pet/GetAllPets"  ).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
   async postRegister(data) {
     //data
     //  {
