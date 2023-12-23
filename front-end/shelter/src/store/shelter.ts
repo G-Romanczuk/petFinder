@@ -87,13 +87,6 @@ export const useShelterStore = defineStore("shelter", {
       this.shelterData.questions.animalsBeforeText = res.data.animalsBeforeText
       this.shelterData.questions.text = res.data.text
 
-
-
-
-
-
-
-
       return res
     },
     async getShelterPets(shelterEmail){
@@ -101,9 +94,7 @@ export const useShelterStore = defineStore("shelter", {
 
       console.log(res.data)
       this.shelterData.pets = res.data
-      console.log(this.shelterData.pets)
-    console.log(this.shelterData.pets[1].images[0])  
-
+      
       return res
     }
   },
