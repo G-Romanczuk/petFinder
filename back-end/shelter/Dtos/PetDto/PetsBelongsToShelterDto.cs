@@ -1,8 +1,10 @@
-﻿namespace shelter.Dtos.PetDto
+﻿using shelter.Dtos.ShelterDtos;
+
+namespace shelter.Dtos.PetDto
 {
     public class PetsBelongsToShelterDto
     {
-        public int Id { get; set; } 
+        public int Id { get; set; }
         public string? Name { get; set; }
         public string? Type { get; set; }
         public string? Gender { get; set; }
@@ -19,6 +21,8 @@
         public string? Cuddly { get; set; }
         public string? Temper { get; set; }
         public string? Text { get; set; }
+        public ShelterModelDto shelterModel { get; set; }
         public List<string>? Images { get; set; }
+       
     }
 }

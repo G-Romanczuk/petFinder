@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using shelter.Dtos.PetDto;
+using shelter.Dtos.ShelterDtos;
 using shelter.Dtos.UserDtos;
 using shelter.Models.PetModels;
 using shelter.Models.ShelterModels;
@@ -44,8 +45,10 @@ namespace shelter.MapperProfile
             .ForMember(dest => dest.Images, opt => opt.MapFrom(src => src.Images.Select(img => new PetImg { Images = img })));
 
             CreateMap<PetModel, PetsBelongsToShelterDto>()
-            .ForMember(dest => dest.Images, opt => opt.MapFrom(src => src.Images.Select(img => img.Images)));
+            .ForMember(dest => dest.Images, opt => opt.MapFrom(src => src.Images.Select(img => img.Images)))
+            .ForMember(dest => dest.shelterModel, opt => opt.MapFrom(src => src.ShelterModel));
 
+            CreateMap<ShelterModel, ShelterModelDto>();
             CreateMap<PetImg, PetsBelongsToShelterDto>();
 
         }

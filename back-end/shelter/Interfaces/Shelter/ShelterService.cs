@@ -214,8 +214,11 @@ namespace shelter.Interfaces.Shelter
 
                 var allShelterPets = await _shelterPetFinderDbContext.Pets
                     .Include(p => p.Images)
+                    .Include(s=>s.ShelterModel)
                     .Where(shId => shId.ShelterModelId == shelterId)
                     .ToListAsync();
+
+                
 
                 var petsToGet = _mapper.Map<List<PetsBelongsToShelterDto>>(allShelterPets);
 

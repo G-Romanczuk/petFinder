@@ -27,8 +27,8 @@ namespace shelter.Models.PetModels
         public string? Cuddly { get; set; }
         public string? Temper { get; set; }
         public string? Text { get; set; }
-
         public List<PetImg> Images { get; set; }
+
     }
    
 
