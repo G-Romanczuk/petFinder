@@ -12,7 +12,7 @@
       <div class="title" style="padding: 20px;">Logowanie</div>
 
 
-      <v-card class="scrollbar" width="100%" height="58vh" style="overflow-y: scroll; border-radius: 5%;">
+      <v-card class="scrollbar" width="100%" height="58vh" style="overflow-y: scroll; border-radius: 10px;">
         <v-divider :thickness="20" class="border-opacity-0"></v-divider>
         <v-row>
           <v-col style="height: fit-content; margin: auto 0;">

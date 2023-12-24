@@ -64,8 +64,8 @@
 
 
                         <div v-for="(pet, i) in shelterStore.shelterData.pets"
-                          style="width: 300px; height: 370px; padding: 10px;" class="scale"  @click="">
-                          <PetPopup >
+                          style="width: 300px; height: 370px; padding: 10px;" class="scale"  >
+                          <PetPopup :pet="pet" >
                             <template #activator>
                               <div style="height: 10px;"></div>
                               <v-card class="mx-auto dontscale" width="260" height="350">
@@ -199,7 +199,9 @@ const shelterStore = useShelterStore();
 shelterStore.getShelterPets(shelterStore.shelterData.email)
 const petStore = usePetStore();
 
+async function showPet(pet){
 
+}
 
 var tab = ref(null)
 function reveal() {

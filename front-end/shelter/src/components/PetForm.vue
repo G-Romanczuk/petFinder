@@ -8,7 +8,7 @@
         </template>
         <div class="d-flex align-center flex-column" style="width: 100%; margin-left: auto; margin-right: auto">
             <div class="title" style="padding: 20px">Dodaj podopiecznego</div>
-            <v-card class="scrollbar" width="100%" height="85vh" style="overflow-y: scroll; border-radius: 5%">
+            <v-card class="scrollbar" width="100%" height="85vh" style="overflow-y: scroll; border-radius: 10px">
                 <v-divider :thickness="20" class="border-opacity-0"></v-divider>
 
                 <div class="d-flex align-center flex-column">
@@ -130,28 +130,28 @@ import { file } from '@babel/types';
 const shelterStore = useShelterStore();
 const notifStore = useNotificationsStore();
 const isValid = ref(true)
-const store = usePetStore();
+const petStore = usePetStore();
 var show = ref(false)
 var urls = []
 var files = []
 var images = []
 
-var name = ref(store.petData.name)
-var type = ref(store.petData.type)
-var gender = ref(store.petData.gender)
-var castration = ref(store.petData.castration)
-var breed = ref(store.petData.breed)
-var size = ref(store.petData.size)
-var age = ref(store.petData.age)
-var vaccination = ref(store.petData.vaccination)
-var childFriendly = ref(store.petData.childFriendly)
-var basicTraining = ref(store.petData.basicTraining)
-var activity = ref(store.petData.activity)
-var otherDogs = ref(store.petData.otherDogs)
-var otherCats = ref(store.petData.otherCats)
-var cuddly = ref(store.petData.cuddly)
-var temper = ref(store.petData.temper)
-var text = ref(store.petData.text)
+var name = ref(petStore.petData.name)
+var type = ref(petStore.petData.type)
+var gender = ref(petStore.petData.gender)
+var castration = ref(petStore.petData.castration)
+var breed = ref(petStore.petData.breed)
+var size = ref(petStore.petData.size)
+var age = ref(petStore.petData.age)
+var vaccination = ref(petStore.petData.vaccination)
+var childFriendly = ref(petStore.petData.childFriendly)
+var basicTraining = ref(petStore.petData.basicTraining)
+var activity = ref(petStore.petData.activity)
+var otherDogs = ref(petStore.petData.otherDogs)
+var otherCats = ref(petStore.petData.otherCats)
+var cuddly = ref(petStore.petData.cuddly)
+var temper = ref(petStore.petData.temper)
+var text = ref(petStore.petData.text)
 var shelterEmail = ref(shelterStore.shelterData.email)
 var petData = {
     shelter: shelterEmail,
@@ -236,7 +236,7 @@ async function forBase64(files){
 
 async function Submit(petData) {
 
-    store.petData = petData;
+    petStore.petData = petData;
     var petForm = {
         shelterEmail: shelterEmail.value,
         name: name.value,
@@ -259,7 +259,7 @@ async function Submit(petData) {
     }
 
     console.log(petForm)
-    const res = await store.postPetForm(petForm)
+    const res = await petStore.postPetForm(petForm)
 
     if (res.status == 200) {
         const notification = {

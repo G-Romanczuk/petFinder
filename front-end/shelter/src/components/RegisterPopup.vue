@@ -15,7 +15,7 @@
             <div class="font title" style="padding: 20px;">Rejestracja</div>
 
 
-            <v-card class="scrollbar" width="100%" height="85vh" style="overflow-y: scroll; border-radius: 5%;">
+            <v-card class="scrollbar" width="100%" height="85vh" style="overflow-y: scroll; border-radius: 10px;">
                 <v-divider :thickness="20" class="border-opacity-0"></v-divider>
 
                 <div class="d-flex align-center flex-column">
