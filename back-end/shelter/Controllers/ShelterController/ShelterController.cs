@@ -4,12 +4,14 @@ using shelter.Dtos.ShelterDtos;
 using shelter.Interfaces.Shelter;
 using shelter.Models.ShelterModels;
 using shelter.Models.UserModels;
+using Swashbuckle.AspNetCore.Annotations;
 using System.Net.Mime;
 
 namespace shelter.Controllers.ShelterController
 {
     [Route("/[controller]")]
     [ApiController]
+    [SwaggerTag("Opis kontrolera")]
     public class ShelterController : ControllerBase
     {
         private readonly IShelterService _shelterService;
@@ -61,6 +63,8 @@ namespace shelter.Controllers.ShelterController
         }
 
         [HttpGet("GetPets", Name ="GetAllPetsBelongsToShelter")]
+        [SwaggerOperation("Opis akcji")]
+        [SwaggerResponse(200, "Opis sukcesu")]
         public async Task<IActionResult> GetAllPetsBelongsToShelter ([FromQuery] string shelterEmail)
         {
             try
