@@ -63,8 +63,6 @@ namespace shelter.Controllers.ShelterController
         }
 
         [HttpGet("GetPets", Name ="GetAllPetsBelongsToShelter")]
-        [SwaggerOperation("Opis akcji")]
-        [SwaggerResponse(200, "Opis sukcesu")]
         public async Task<IActionResult> GetAllPetsBelongsToShelter ([FromQuery] string shelterEmail)
         {
             try
