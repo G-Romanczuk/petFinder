@@ -25,7 +25,7 @@
         class="scrollbar"
         width="100%"
         height="85vh"
-        style="overflow-y: scroll; border-radius: 5%"
+        style="overflow-y: scroll; border-radius: 10px"
       >
 
      

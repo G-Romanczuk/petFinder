@@ -96,6 +96,13 @@ export const useShelterStore = defineStore("shelter", {
       this.shelterData.pets = res.data
       
       return res
+    },
+    async deletePet(id) {
+      const res= await service.deletePet(id)
+
+
+
+      return res
     }
   },
   getters: {

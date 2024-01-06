@@ -234,4 +234,32 @@ export default {
     notifStore.add(notification)
   });
   },
+  async postPetFormUpdate(data) {
+  
+    return await axios.post(baseURL + "/Pet/Update", data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
+  async deletePet(id) {
+console.log(id)
+    return await axios.delete(baseURL + "/Pet/Delete", id).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
 };

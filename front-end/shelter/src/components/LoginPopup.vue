@@ -12,7 +12,7 @@
       <div class="title" style="padding: 20px;">Logowanie</div>
 
 
-      <v-card class="scrollbar" width="100%" height="58vh" style="overflow-y: scroll; border-radius: 5%;">
+      <v-card class="scrollbar" width="100%" height="58vh" style="overflow-y: scroll; border-radius: 10px;">
         <v-divider :thickness="20" class="border-opacity-0"></v-divider>
         <v-row>
           <v-col style="height: fit-content; margin: auto 0;">
@@ -121,7 +121,7 @@ v => /.+@.+/.test(v) || 'Nieprawidłowy E-mail'
 ]
 const passwordRules = [
   v => !!v || 'Password is required',
-  v => (v && v.length >= 6) || 'Hasło musi mieć ponad 6 znaków',
+  v => (v && v.length >= 8) || 'Hasło musi mieć 8 lub więcej znaków',
   // v => /(?=.*[A-Z])/.test(v) || 'Hasło musi mieć 1 dużą literę',
   // v => /(?=.*\d)/.test(v) || 'Hasło musi mieć 1 liczbę',
   // v => /([!@$%.,<>?/~`^&*])/.test(v) || 'Hasło musi mieć 1 znak specjalny [!@$%.,<>?/~`^&*]'
