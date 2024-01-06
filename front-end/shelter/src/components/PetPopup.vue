@@ -7,15 +7,13 @@
             </v-btn>
         </template>
 
+<v-row>
+        
 
-        <div class="d-flex align-center flex-column" style="width: 100%; margin: auto; height: 100%; display: flex; ">
-
-            <v-card class="scrollbar" width="55%" height="98vh" style="overflow-y: scroll; border-radius: 10px;">
-
-                <v-btn style="float: right;" @click="dialog = false"><v-icon icon="mdi-window-close"></v-icon></v-btn>
-
+            <v-card class="scrollbar" width="55%" height="98vh" style="overflow-y: scroll; border-radius: 10px; margin: auto;">
                 <div style=" width: fit-content; margin: 0 auto; ">
 
+                    <v-btn style="float: right;" @click="dialog = false"><v-icon icon="mdi-window-close"></v-icon></v-btn>
                     <h1 class="title" style="text-align: center; color:  rgb(143, 83, 122); text-shadow:none;">
                         {{ props.pet.name }}, <div style="font-size: medium; display: inline"
                             v-if="(props.pet.shelterModel.name != '')"> {{
@@ -23,8 +21,6 @@
                     </h1>
 
                   
-
-
                             <v-carousel
                                 style="border-radius: 10px; width: 95%; margin: auto;  border: 1px solid rgb(143, 83, 122);">
                                 <v-carousel-item v-for="(img, i) in props.pet.images" cover>
@@ -35,6 +31,7 @@
 
                                 </v-carousel-item>
                             </v-carousel>
+
 
                             <v-row
                                 style="width: fit-content; margin: 1vh auto 0 auto; border-bottom:2px solid darkgray ; font-size: small; ">
@@ -80,11 +77,16 @@
                                 </v-row>
                             </v-row>
 
+
+
+
                             <p class="shelterText text-center" style="height: ; border-radius: 10px;"> Krótki opis: <br>
                                     {{ props.pet.text }}</p>
+                                    <v-divider :thickness="20" class="border-opacity-0"></v-divider>
 
-                            <v-divider :thickness="20" class="border-opacity-0"></v-divider>
 
+
+                           
                             <v-col class="text-center" style="height: fit-content; margin: auto;">
                                 <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;"
                                     v-if="(props.pet.shelterModel.adress != '') || (props.pet.shelterModel.town != '')">
@@ -93,7 +95,6 @@
                                     <div style="width: 60%;"> {{ props.pet.shelterModel.adress }}, {{
                                         props.pet.shelterModel.town }}
                                     </div>
-
                                 </v-row>
                                 <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;"
                                     v-if="(props.pet.shelterModel.email != '')">
@@ -129,13 +130,6 @@
                                     </div>
                                     <div style="width: 60%;"> {{ props.pet.size }}</div>
                                 </v-row>
-
-
-
-
-
-
-
                                 <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
                                     <div style="width: 40%; background-color: darkgrey; border-radius: 2px;">
                                         Przybliżony
@@ -143,63 +137,51 @@
                                     </div>
                                     <div style="width: 60%;"> {{ props.pet.age }}</div>
                                 </v-row>
-
-
                                 <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
                                     <div style="width: 40%; background-color: darkgrey; border-radius: 2px;"> Poziom
                                         aktywności
                                         (1-10): </div>
                                     <div style="width: 60%;"> {{ props.pet.activity }}</div>
                                 </v-row>
-
-
                                 <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
                                     <div style="width: 40%; background-color: darkgrey; border-radius: 2px;"> Opis
                                         temperamentu:
                                     </div>
                                     <div style="width: 60%;"> {{ props.pet.temper }}</div>
                                 </v-row>
-
-                               
-
                             </v-col>
 
-
-
-                      
-
-
-
-
-                    <v-divider :thickness="20" class="border-opacity-0"></v-divider>
                 </div>
             </v-card>
 
+            <v-card width="10vw" height="30vh" style="margin: auto;" v-if="shelterStore.loggedShelterJWT != ''">
+
+                <DeletePetPopup :id="props.pet.id"  />
+                <v-btn> EDYTUJ</v-btn>
 
 
+            </v-card>
 
 
-        </div>
+        </v-row>
+
     </v-dialog>
 </template>
 
 <script setup lang="js">
 import { ref } from 'vue'
-import LoginPopup from '@/components/LoginPopup.vue';
-import { useForm } from 'vee-validate';
-import * as yup from 'yup';
-import { usePetStore } from '@/store/pet';
 import BigImagePopup from './BigImagePopup.vue';
+import { useShelterStore } from '@/store/shelter';
+import DeletePetPopup from './DeletePetPopup.vue';
 const props = defineProps({
     pet: Object
 })
 
-const store = usePetStore();
-
+const shelterStore = useShelterStore();
 
 var dialog = ref(false)
 
-console.log(props.pet.shelterModel.adress)
+console.log(props.pet)
 
 
 </script>

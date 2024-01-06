@@ -25,16 +25,10 @@
 
 <script setup lang="js">
 import { ref } from 'vue'
-import LoginPopup from '@/components/LoginPopup.vue';
-import { useForm } from 'vee-validate';
-import * as yup from 'yup';
-import { usePetStore } from '@/store/pet';
 
 const props = defineProps({
    img: String
 })
-
-const store = usePetStore();
 
 
 var dialog = ref(false)

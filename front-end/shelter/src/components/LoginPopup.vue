@@ -121,7 +121,7 @@ v => /.+@.+/.test(v) || 'Nieprawidłowy E-mail'
 ]
 const passwordRules = [
   v => !!v || 'Password is required',
-  v => (v && v.length >= 6) || 'Hasło musi mieć ponad 6 znaków',
+  v => (v && v.length >= 8) || 'Hasło musi mieć 8 lub więcej znaków',
   // v => /(?=.*[A-Z])/.test(v) || 'Hasło musi mieć 1 dużą literę',
   // v => /(?=.*\d)/.test(v) || 'Hasło musi mieć 1 liczbę',
   // v => /([!@$%.,<>?/~`^&*])/.test(v) || 'Hasło musi mieć 1 znak specjalny [!@$%.,<>?/~`^&*]'

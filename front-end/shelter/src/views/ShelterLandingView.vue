@@ -193,11 +193,9 @@ import ShelterInfo from "@/components/ShelterInfo.vue";
 import PetPopup from "@/components/PetPopup.vue";
 import { ref } from "vue";
 import { useShelterStore } from '@/store/shelter';
-import { usePetStore } from "@/store/pet";
 
 const shelterStore = useShelterStore();
 shelterStore.getShelterPets(shelterStore.shelterData.email)
-const petStore = usePetStore();
 
 async function showPet(pet){
 

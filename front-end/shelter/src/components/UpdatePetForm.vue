@@ -2,12 +2,10 @@
     <v-dialog transition="dialog-bottom-transition" overlay-color="black" overlay-opacity="1" v-model="dialog"
         max-width="80vw">
         <template v-slot:activator="{ props }">
-            <v-btn elevation="8" class="text font-big" v-bind="props">
-                <v-icon color="rgb(143, 83, 122)" icon="mdi-paw"> </v-icon> Dodaj
-                podopiecznego</v-btn>
+            <v-btn elevation="8" class="text font-big" v-bind="props">Edytuj</v-btn>
         </template>
         <div class="d-flex align-center flex-column" style="width: 100%; margin-left: auto; margin-right: auto">
-            <div class="title" style="padding: 20px">Dodaj podopiecznego</div>
+            <div class="title" style="padding: 20px">Edytuj podopiecznego</div>
             <v-card class="scrollbar" width="100%" height="85vh" style="overflow-y: scroll; border-radius: 10px">
                 <v-divider :thickness="20" class="border-opacity-0"></v-divider>
 
