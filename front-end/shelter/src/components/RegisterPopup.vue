@@ -77,7 +77,7 @@ import { useUserStore } from '@/store/user';
 import { useNotificationsStore } from '@/store/notifications';
 
 const isValid = ref(true)
-const store = useUserStore();
+const userStore = useUserStore();
 const notifStore = useNotificationsStore();
 
 

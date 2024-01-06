@@ -333,7 +333,6 @@ import LoginPopup from '@/components/LoginPopup.vue';
 import RegisterPopup from '@/components/RegisterPopup.vue';
 import { useNotificationsStore } from '@/store/notifications';
 import { shallowEqual } from '@babel/types';
-import test from 'node:test';
 import { onMounted, ref } from 'vue';
 
 
