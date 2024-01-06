@@ -48,6 +48,31 @@
                             </v-row>
                         </div>
 
+                        <div style=" display: flexbox;" v-else>
+                            <v-row>
+                                <v-col>
+                                    <v-img lazy-src="https://geekflare.com/wp-content/uploads/2023/03/img-placeholder.png"
+                                    v-bind:src="petStore.pet.images[0]" alt="..." />
+                                </v-col>
+                                <v-col>
+                                    <v-img lazy-src="https://geekflare.com/wp-content/uploads/2023/03/img-placeholder.png"
+                                    v-bind:src="petStore.pet.images[1]" alt="..." />
+                                </v-col>
+                                <v-col>
+                                    <v-img lazy-src="https://geekflare.com/wp-content/uploads/2023/03/img-placeholder.png"
+                                    v-bind:src="petStore.pet.images[2]" alt="..." />
+                                </v-col>
+                                <v-col>
+                                    <v-img lazy-src="https://geekflare.com/wp-content/uploads/2023/03/img-placeholder.png"
+                                    v-bind:src="petStore.pet.images[3]" alt="..." />
+                                </v-col>
+                                <v-col>
+                                    <v-img lazy-src="https://geekflare.com/wp-content/uploads/2023/03/img-placeholder.png"
+                                    v-bind:src="petStore.pet.images[4]" alt="..." />
+                                </v-col>
+                            </v-row>
+                        </div>
+
 
                         
 
@@ -109,7 +134,7 @@
                                 @click="dialog = false">Zrezygnuj</v-btn>
                             <v-divider vertical :thickness="300" class="border-opacity-0"></v-divider>
                             <v-btn color="rgb(175, 126, 158)" :disabled="!isValid" class="little-title"
-                                @click="Submit(petData)">Zapisz</v-btn>
+                                @click="Submit()">Zapisz</v-btn>
                         </div>
                         <v-divider :thickness="20" class="border-opacity-0"></v-divider>
                     </v-card-actions>
@@ -124,17 +149,28 @@ import { ref } from 'vue'
 import { usePetStore } from '@/store/pet';
 import { useNotificationsStore } from '@/store/notifications';
 import { useShelterStore } from '@/store/shelter';
-import { file } from '@babel/types';
+import { FLATTENABLE_KEYS } from '@babel/types';
+const props = defineProps({
+    pet: Object
+})
+const petStore = usePetStore();
+
+petStore.pet = props.pet
+
+
+
 const shelterStore = useShelterStore();
 const notifStore = useNotificationsStore();
 const isValid = ref(true)
-const petStore = usePetStore();
+
 var show = ref(false)
 var urls = []
 var files = []
 var images = []
 
+var id = ref(petStore.pet.id)
 var name = ref(petStore.pet.name)
+var images = ref(petStore.pet.images)
 var type = ref(petStore.pet.type)
 var gender = ref(petStore.pet.gender)
 var castration = ref(petStore.pet.castration)
@@ -235,6 +271,7 @@ async function forBase64(files){
 async function Submit() {
 
     var petForm = {
+        id: id.value,
         shelterEmail: shelterEmail.value,
         name: name.value,
         images: images,
@@ -256,17 +293,16 @@ async function Submit() {
     }
 
     console.log(petForm)
-    const res = await petStore.postPetForm(petForm)
+    const res = await petStore.postPetFormUpdate(petForm)
 
     if (res.status == 200) {
         const notification = {
             type: "success",
-            message: "Added  succesfully",
+            message: "Updated  succesfully",
         }
         notifStore.add(notification)
     }
 }
-
 
 </script>
 

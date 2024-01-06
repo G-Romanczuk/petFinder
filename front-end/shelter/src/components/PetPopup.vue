@@ -7,8 +7,19 @@
             </v-btn>
         </template>
 
+        <v-col>
+        <v-card width="fit-content" height="fit-content" style="margin: auto; display: flex; padding: 20px; background-color: rgba(255, 255, 255, 0); margin-bottom: 10px;" v-if="shelterStore.loggedShelterJWT != ''">
+                <UpdatePetForm :pet = "props.pet" />
+                <v-divider vertical :thickness="40" class="border-opacity-0"></v-divider>
+                <DeletePetPopup :id="props.pet.id"  />
+            
+
+
+        </v-card>
+
 <v-row>
         
+  
 
             <v-card class="scrollbar" width="55%" height="98vh" style="overflow-y: scroll; border-radius: 10px; margin: auto;">
                 <div style=" width: fit-content; margin: 0 auto; ">
@@ -154,17 +165,11 @@
                 </div>
             </v-card>
 
-            <v-card width="10vw" height="30vh" style="margin: auto;" v-if="shelterStore.loggedShelterJWT != ''">
-
-                <DeletePetPopup :id="props.pet.id"  />
-                <v-btn> EDYTUJ</v-btn>
-
-
-            </v-card>
+         
 
 
         </v-row>
-
+    </v-col>
     </v-dialog>
 </template>
 
@@ -173,6 +178,7 @@ import { ref } from 'vue'
 import BigImagePopup from './BigImagePopup.vue';
 import { useShelterStore } from '@/store/shelter';
 import DeletePetPopup from './DeletePetPopup.vue';
+import UpdatePetForm from './UpdatePetForm.vue';
 const props = defineProps({
     pet: Object
 })

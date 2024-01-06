@@ -1,7 +1,8 @@
 <template>
     <v-dialog v-model="dialog" max-width="60vw"  >
         <template v-slot:activator="{ props }">
-            <v-btn  v-bind="props"  color="rgb(175, 126, 158)"  class="little-title" >USUŃ</v-btn>
+           
+            <v-btn elevation="8" class="text font-big" v-bind="props">Usuń</v-btn>
         </template>
         
       
