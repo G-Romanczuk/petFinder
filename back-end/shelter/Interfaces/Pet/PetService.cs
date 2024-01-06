@@ -90,17 +90,21 @@ namespace shelter.Interfaces.Pet
         {
             try
             {
-                var newPetModel = _mapper.Map<PetModel>(pet);
+                var existingPet = await _shelterPetFinderDbContext.Pets
+                    .Include (p => p.Images)
+                    .Include(s=> s.ShelterModel)
+                    .FirstOrDefaultAsync(p => p.Id == pet.Id);
 
-                var petToUpdate = _shelterPetFinderDbContext.Pets.FirstOrDefaultAsync(petId=>petId.Id == pet.Id);  
-                if (petToUpdate == null) 
+                if (existingPet != null)
                 {
-                    return false;
-                }
+                    _mapper.Map(pet, existingPet);
 
-               var updatedPet = await _mapper.Map(newPetModel, petToUpdate);
-                _shelterPetFinderDbContext.Pets.Update(updatedPet);
-                return true;
+                    _shelterPetFinderDbContext.Entry(existingPet).State = EntityState.Modified;
+                    await _shelterPetFinderDbContext.SaveChangesAsync();
+                    return true;
+                }
+                else { return false; }
+               
             }
             catch (Exception)
             {
