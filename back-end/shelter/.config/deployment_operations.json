@@ -1,0 +1,19 @@
+[
+  {
+    "id": "/subscriptions/edd028ba-0e09-481f-b058-f6562a7a99d7/resourceGroups/Sph/providers/Microsoft.Resources/deployments/65987b004b6f47f55165d307/operations/FD7A93CFCF17D0F9",
+    "operationId": "FD7A93CFCF17D0F9",
+    "properties": {
+      "provisioningOperation": "Create",
+      "provisioningState": "Running",
+      "timestamp": "2024-01-05T22:03:21.040274Z",
+      "duration": "PT6M56.8606319S",
+      "trackingId": "1e1c7e0b-ad33-4cd7-bc5b-45d748138dd7",
+      "statusCode": "Created",
+      "targetResource": {
+        "id": "/subscriptions/edd028ba-0e09-481f-b058-f6562a7a99d7/resourceGroups/Sph/providers/Microsoft.ApiManagement/service/sphpi",
+        "resourceType": "Microsoft.ApiManagement/service",
+        "resourceName": "sphpi"
+      }
+    }
+  }
+]

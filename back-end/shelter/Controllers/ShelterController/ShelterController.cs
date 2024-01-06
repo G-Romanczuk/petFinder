@@ -4,12 +4,14 @@ using shelter.Dtos.ShelterDtos;
 using shelter.Interfaces.Shelter;
 using shelter.Models.ShelterModels;
 using shelter.Models.UserModels;
+using Swashbuckle.AspNetCore.Annotations;
 using System.Net.Mime;
 
 namespace shelter.Controllers.ShelterController
 {
     [Route("/[controller]")]
     [ApiController]
+    [SwaggerTag("Opis kontrolera")]
     public class ShelterController : ControllerBase
     {
         private readonly IShelterService _shelterService;
@@ -137,6 +139,78 @@ namespace shelter.Controllers.ShelterController
             else
             {
                 return BadRequest("Error while changing the password");
+            }
+        }
+
+        [HttpGet("GetDogs", Name = "GetAllDogsBelongsToShelter")]
+        public async Task<IActionResult> GetAllDogsBelongsToShelter([FromQuery] string shelterEmail)
+        {
+            try
+            {
+                var pets = await _shelterService.GetAllDogsBelongsToShelter(shelterEmail);
+
+
+                if (pets.Count > 0 || pets != null)
+                {
+                    return Ok(pets);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception)
+            {
+
+                return BadRequest();
+            }
+        }
+
+        [HttpGet("GetCats", Name = "GetAllCatsBelongsToShelter")]
+        public async Task<IActionResult> GetAllCatsBelongsToShelter([FromQuery] string shelterEmail)
+        {
+            try
+            {
+                var pets = await _shelterService.GetAllCatsBelongsToShelter(shelterEmail);
+
+
+                if (pets.Count > 0 || pets != null)
+                {
+                    return Ok(pets);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception)
+            {
+
+                return BadRequest();
+            }
+        }
+
+        [HttpGet("GetRodents", Name = "GetAllRodentsBelongsToShelter")]
+        public async Task<IActionResult> GetAllRodentsBelongsToShelter([FromQuery] string shelterEmail)
+        {
+            try
+            {
+                var pets = await _shelterService.GetAllRodentsBelongsToShelter(shelterEmail);
+
+
+                if (pets.Count > 0 || pets != null)
+                {
+                    return Ok(pets);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception)
+            {
+
+                return BadRequest();
             }
         }
     }

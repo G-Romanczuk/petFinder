@@ -330,5 +330,94 @@ namespace shelter.Interfaces.Shelter
 
             return res.Succeeded;
         }
+
+        public async Task<List<PetsBelongsToShelterDto>> GetAllDogsBelongsToShelter(string shelterEmail)
+        {
+            try
+            {
+                var shelterId = await _shelterPetFinderDbContext.Shelters
+                .Where(shEmail => shEmail.Email == shelterEmail)
+                .Select(shId => shId.Id)
+                .FirstOrDefaultAsync();
+
+                var allShelterPets = await _shelterPetFinderDbContext.Pets
+                    .Include(p => p.Images)
+                    .Include(s => s.ShelterModel)
+                    .Where(shId => shId.ShelterModelId == shelterId && shId.Type=="Pies")
+                    .ToListAsync();
+
+
+
+                var petsToGet = _mapper.Map<List<PetsBelongsToShelterDto>>(allShelterPets);
+
+                return petsToGet;
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+        }
+
+        public async Task<List<PetsBelongsToShelterDto>> GetAllCatsBelongsToShelter(string shelterEmail)
+        {
+            try
+            {
+                var shelterId = await _shelterPetFinderDbContext.Shelters
+                .Where(shEmail => shEmail.Email == shelterEmail)
+                .Select(shId => shId.Id)
+                .FirstOrDefaultAsync();
+
+                var allShelterPets = await _shelterPetFinderDbContext.Pets
+                    .Include(p => p.Images)
+                    .Include(s => s.ShelterModel)
+                    .Where(shId => shId.ShelterModelId == shelterId && shId.Type == "Kot")
+                    .ToListAsync();
+
+
+
+                var petsToGet = _mapper.Map<List<PetsBelongsToShelterDto>>(allShelterPets);
+
+                return petsToGet;
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+        }
+
+        public async Task<List<PetsBelongsToShelterDto>> GetAllRodentsBelongsToShelter(string shelterEmail)
+        {
+            try
+            {
+                var shelterId = await _shelterPetFinderDbContext.Shelters
+                .Where(shEmail => shEmail.Email == shelterEmail)
+                .Select(shId => shId.Id)
+                .FirstOrDefaultAsync();
+
+                var allShelterPets = await _shelterPetFinderDbContext.Pets
+                    .Include(p => p.Images)
+                    .Include(s => s.ShelterModel)
+                    .Where(shId => shId.ShelterModelId == shelterId && shId.Type == "Gryzoń")
+                    .ToListAsync();
+
+
+
+                var petsToGet = _mapper.Map<List<PetsBelongsToShelterDto>>(allShelterPets);
+
+                return petsToGet;
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+        }
+
+        public Task<List<PetsBelongsToShelterDto>> GetOthersBelongsToShelter(string shelterEmail)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

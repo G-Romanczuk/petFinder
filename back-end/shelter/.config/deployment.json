@@ -1,0 +1,111 @@
+{
+  "id": "/subscriptions/edd028ba-0e09-481f-b058-f6562a7a99d7/resourceGroups/Sph/providers/Microsoft.Resources/deployments/65987b004b6f47f55165d307",
+  "name": "65987b004b6f47f55165d307",
+  "type": "Microsoft.Resources/deployments",
+  "tags": {
+    "marketplaceItemId": "Microsoft.ApiManagement",
+    "provisioningHash": "APIManagement_Extension"
+  },
+  "properties": {
+    "templateHash": "10005433869113862233",
+    "parameters": {
+      "apimName": {
+        "type": "String",
+        "value": "sphpi"
+      },
+      "location": {
+        "type": "String",
+        "value": "eastus"
+      },
+      "tier": {
+        "type": "String",
+        "value": "Developer"
+      },
+      "capacity": {
+        "type": "String",
+        "value": "1"
+      },
+      "adminEmail": {
+        "type": "String",
+        "value": "mateusz.nosel@microsoft.wsei.edu.pl"
+      },
+      "organizationName": {
+        "type": "String",
+        "value": "WSEI"
+      },
+      "virtualNetworkType": {
+        "type": "String",
+        "value": "External"
+      },
+      "tagsByResource": {
+        "type": "Object",
+        "value": {}
+      },
+      "vnet": {
+        "type": "Object",
+        "value": {}
+      },
+      "customProperties": {
+        "type": "Object",
+        "value": {
+          "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Protocols.Tls11": false,
+          "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Protocols.Tls10": false,
+          "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Backend.Protocols.Tls11": false,
+          "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Backend.Protocols.Tls10": false,
+          "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Backend.Protocols.Ssl30": false,
+          "Microsoft.WindowsAzure.ApiManagement.Gateway.Protocols.Server.Http2": false,
+          "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Ciphers.TripleDes168": false,
+          "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Protocols.Ssl30": false
+        }
+      },
+      "identity": {
+        "type": "Object",
+        "value": {
+          "type": "None"
+        }
+      },
+      "appInsightsObject": {
+        "type": "Object",
+        "value": {
+          "id": null,
+          "name": null
+        }
+      },
+      "privateEndpoint": {
+        "type": "Object",
+        "value": {}
+      },
+      "privateDnsDeploymentName": {
+        "type": "String",
+        "value": "PrivateDNS-1704491776614"
+      },
+      "subnetDeploymentName": {
+        "type": "String",
+        "value": "UpdateSubnetDeployment-1704491776614"
+      }
+    },
+    "mode": "Incremental",
+    "debugSetting": {
+      "detailLevel": "None"
+    },
+    "provisioningState": "Running",
+    "timestamp": "2024-01-05T22:03:20.9814211Z",
+    "duration": "PT6M57.8603502S",
+    "correlationId": "726ebe97-9e51-453c-8677-8b83196fbf8d",
+    "providers": [
+      {
+        "namespace": "Microsoft.ApiManagement",
+        "resourceTypes": [
+          {
+            "resourceType": "service",
+            "locations": [
+              "eastus"
+            ]
+          }
+        ]
+      }
+    ],
+    "dependencies": [],
+    "validationLevel": "Template"
+  }
+}
