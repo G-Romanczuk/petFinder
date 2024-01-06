@@ -197,29 +197,6 @@ export default {
   });
   },
   async postPetForm(data) {
-    console.log(data);
-    //data
-    // {
-    //    shelter: shelterEmail.value,
-    //    name: name.value,
-    //    images: images.value,
-    //    type: type.value,
-    //    gender: gender.value,
-    //    castration: castration.value,
-    //    breed: breed.value,
-    //    size: size.value,
-    //    age: age.value,
-    //    vaccination: vaccination.value,
-    //    childFriendly: childFriendly.value,
-    //    basicTraining: basicTraining.value,
-    //    activity: activity.value,
-    //    otherDogs: otherDogs.value,
-    //    otherCats: otherCats.value,
-    //    cuddly: cuddly.value,
-    //    temper: temper.value,
-    //    text: text.value,
-    // }
-
     return await axios.post(baseURL + "/Pet/Add", data, {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -236,7 +213,7 @@ export default {
   },
   async postPetFormUpdate(data) {
   
-    return await axios.post(baseURL + "/Pet/Update", data, {
+    return await axios.put(baseURL + "/Pet/Update", data, {
       headers: {
         "Content-Type": "multipart/form-data",
       },

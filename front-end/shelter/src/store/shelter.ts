@@ -92,7 +92,6 @@ export const useShelterStore = defineStore("shelter", {
     async getShelterPets(shelterEmail){
       const res = await service.getShelterPets(shelterEmail)
 
-      console.log(res.data)
       this.shelterData.pets = res.data
       
       return res
