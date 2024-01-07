@@ -52,16 +52,25 @@ namespace shelter.Interfaces.Pet
 
         public async Task<bool> DeletePet(int id)
         {
-            var petToDelete = await _shelterPetFinderDbContext.Pets.FindAsync(id);
-            if (petToDelete == null)
+            try
             {
+                var petToDelete = await _shelterPetFinderDbContext.Pets.FindAsync(id);
+                if (petToDelete == null)
+                {
+                    return false;
+                }
+
+                _shelterPetFinderDbContext.Pets.Remove(petToDelete);
+                await _shelterPetFinderDbContext.SaveChangesAsync();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+
                 return false;
             }
-
-            _shelterPetFinderDbContext.Pets.Remove(petToDelete);
-            await _shelterPetFinderDbContext.SaveChangesAsync();
-
-            return true;
+            
         }
 
         public async Task<List<PetsBelongsToShelterDto>> GetAllPets()
