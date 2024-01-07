@@ -1,14 +1,14 @@
 <template>
     <div class="tinder">
         <div class="tinder--status">
-            <i class="fa fa-remove"></i>
-            <i class="fa fa-heart"></i>
+            <i class="fa fa-remove"> <img src="@/assets/broken.png" alt="" style="position: relative; z-index: -1;  right: 40vw;" ></i>
+            <i class="fa fa-heart"> <img src="@/assets/pinkheart.png" alt="" style="position: relative; z-index: -1;  left: 40vw;"></i>
         </div>
 
         <div class="tinder--cards">
             <div v-for="(id, i) in animalsStore.pets" class="tinder--card">
 
-                        <v-img v-bind:src="animalsStore.pets[i].images[0]"
+                        <img v-bind:src="animalsStore.pets[i].images[0]"
                             style=" border-radius: 10px; height: 100%; width: 100%;  margin: 0;  border: 1px solid rgb(143, 83, 122);  "
                             cover>
 
@@ -82,13 +82,13 @@
                             </div>
 
                            
-                        </v-img>
+                       
        
             </div>
         </div>
         <div class="tinder--buttons">
-            <button id="nope"><i class="fa fa-remove"></i></button>
-            <button id="love"><i class="fa fa-heart"></i></button>
+            <button id="nope"  ><i class="fa fa-remove">  <img src="@/assets/broken.png" alt="" style="width: 50px; position: relative; top: 1vh;  " >  </i></button>
+            <button id="love" ><i class="fa fa-heart">  <img src="@/assets/pinkheart.png" alt="" style="width: 50px; position: relative; top: 1vh;" ></i></button>
         </div>
     </div>
 </template>
@@ -97,7 +97,6 @@
 import { onMounted, ref } from 'vue'
 import { useUserStore } from '@/store/user';
 import { useAnimalsStore } from '@/store/animals';
-import { onActivated } from 'vue';
 import TinderPetsComponent from './TinderPetsComponent.vue';
 import * as Hammer from 'hammerjs'
 const userStore = useUserStore();
@@ -174,6 +173,8 @@ onMounted(() => {
 
                 event.target.style.transform = 'translate(' + toX + 'px, ' + (toY + event.deltaY) + 'px) rotate(' + rotate + 'deg)';
                 initCards();
+
+                //TUTAJ OPUSZA
             }
         });
     });
@@ -400,7 +401,7 @@ onMounted(() => {
     transition: opacity 0.1s ease-in-out;
     margin-top: auto;
     width: 100vw;
-    height: 97vh;
+    height: 90vh;
 
 
 
@@ -431,13 +432,17 @@ onMounted(() => {
     margin-left: -50px;
 }
 
+.fa {
+    width: 100px;
+}
+
 .tinder_love .fa-heart {
-    opacity: 0.7;
+    opacity: 0.3;
     transform: scale(1);
 }
 
 .tinder_nope .fa-remove {
-    opacity: 0.7;
+    opacity: 0.3;
     transform: scale(1);
 }
 
@@ -453,8 +458,8 @@ onMounted(() => {
 
 .tinder--card {
     display: inline-block;
-    width: 50vw;
-    height: 88vh;
+    width: 45vw;
+    height: 80vh;
     background: #FFFFFF;
     border-radius: 8px;
     overflow: hidden;
@@ -495,7 +500,6 @@ onMounted(() => {
 .tinder--buttons {
     flex: 0 0 100px;
     text-align: center;
-    padding-top: 20px;
 }
 
 .tinder--buttons button {

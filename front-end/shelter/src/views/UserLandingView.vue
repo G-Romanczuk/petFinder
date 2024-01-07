@@ -1,9 +1,9 @@
 <template>
-  <v-parallax src="@/assets/spaniel-background.jpg" style=" width: 100vw; height: 100vh;">
+  <v-parallax src="@/assets/spaniel-background.jpg" style=" width: 100vw; height: 92.8vh;">
 
 
 
-    <div v-if="showTinder" style="position: absolute; width: 100vw; height: 100vh; background-color: rgba(0, 0, 0, 0.842);  z-index: 1;">
+    <div v-if="showTinder" style="position: absolute; width: 100vw; height: 92.8vh; background-color: rgba(0, 0, 0, 0.842);  z-index: 1;">
                       <div style="width: fit-content; margin: auto;">
                       <v-btn style="margin-top: 10px; margin-left: 10px;" @click="showTinder = false">CLOSE</v-btn>
                       <TinderComponent  />
@@ -13,7 +13,7 @@
 
 
     <v-row style="width: 100vw; background-color: rgb(255, 255, 255, 0);">
-      <v-col style="width: 70vw; height: 100vh; background-color: rgb(255, 255, 255, 0);">
+      <v-col style="width: 70vw; height: 92.8vh; background-color: rgb(255, 255, 255, 0);">
         <div class="d-flex align-center flex-column" style="width: 75vw; margin-left: auto; margin-right: auto;">
           <div class="title" style="padding: 5px; margin: 0 auto; color: rgb(255, 255, 255); font-size:  "> Menu <div
               style="display: inline-block; font-size: small; margin-bottom: auto; ">
@@ -41,7 +41,7 @@
                 <v-window v-model="tab" class="text">
                   <v-window-item value="one">
 
-                    <div style="height: 78vh;">
+                    <div style="height: 71vh;">
 
                       <v-row style="width: fit-content; margin: 0 auto; padding-bottom: 10px; ">
                         <v-btn elevation="8" class="text font-big" @click="showTinder = true">
@@ -80,7 +80,7 @@
                   </v-window-item>
 
                   <v-window-item value="two">
-                    <v-row style="width: fit-content; margin: 0 auto; padding-bottom: 10px; height: 78vh;">
+                    <v-row style="width: fit-content; margin: 0 auto; padding-bottom: 10px; height: 71vh;">
 
                       Tutaj wstaw popupy psów z tym kto je polubił do sprawdzenia (forma może się zmienić totalnie jeszcze
                       idk)
@@ -89,7 +89,7 @@
                   </v-window-item>
 
                   <v-window-item value="three">
-                    <v-row style="width: fit-content; margin: 0 auto; padding-bottom: 10px; height: 78vh;">
+                    <v-row style="width: fit-content; margin: 0 auto; padding-bottom: 10px; height: 71vh;">
 
                       Tutaj wstaw adopcje w toku (zdjęcie psa + imie, mini profil adoptującego imie, wiek takie o)
 
@@ -99,7 +99,7 @@
 
                   <v-window-item value="four">
 
-                    <div style="height: 78vh;">
+                    <div style="height: 71vh;">
 
                       <v-row style="width: fit-content; margin: 0 auto; padding-bottom: 10px; ">
 
