@@ -1,22 +1,96 @@
 <template>
-  <div class="tinder">
-    <div class="tinder--status">
-      <i class="fa fa-remove"></i>
-      <i class="fa fa-heart"></i>
-    </div>
+    <div class="tinder">
+        <div class="tinder--status">
+            <i class="fa fa-remove"></i>
+            <i class="fa fa-heart"></i>
+        </div>
 
-    <div class="tinder--cards">
-      <div v-for="(id, i) in animalsStore.pets" class="tinder--card" >
+        <div class="tinder--cards">
+            <div v-for="(id, i) in animalsStore.pets" class="tinder--card">
 
-        <TinderPetsComponent :pet="animalsStore.pets[i]" :index="i" />
+                        <v-img v-bind:src="animalsStore.pets[i].images[0]"
+                            style=" border-radius: 10px; height: 100%; width: 100%;  margin: 0;  border: 1px solid rgb(143, 83, 122);  "
+                            cover>
 
-      </div>
+                           
+
+                            <div
+                                style="position: absolute; bottom: 10px; left: 10px; width: fit-content; height: fit-content; padding-bottom: 10px; background-color:  rgba(255, 255, 255, 0.8); margin-top: auto;">
+                              <v-row>
+                               
+                                <p class="title" style="text-align: left; color:  rgb(143, 83, 122); text-shadow:none;">
+                                   
+                                    {{ animalsStore.pets[i].name }},
+                                <div style="font-size: medium; display: inline"
+                                    v-if="(animalsStore.pets[i].shelterModel.name != '')"> {{
+                                        animalsStore.pets[i].shelterModel.name }}   </div>
+                                </p>  
+                                <TinderPetsComponent :pet="animalsStore.pets[i]" :index="i" />
+                            </v-row>
+                                <v-row
+                                    style="width: fit-content; margin: 1vh auto 0 0; border-bottom:2px solid darkgray ; font-size: small; ">
+
+                                    <v-row style=" width: fit-content; margin: 0.5vh"
+                                        v-if="(animalsStore.pets[i].vaccination == 'Tak')">
+                                        <div style="width: fit-content; border-radius: 7px; margin: 2px;"> Szczepiony/a:
+                                        </div>
+                                        <div style="width: 10%;"> <v-icon color="rgb(175, 126, 158)"
+                                                icon="mdi-check-circle"></v-icon></div>
+                                    </v-row>
+                                    <v-row style=" width: fit-content; margin: 0.5vh"
+                                        v-if="(animalsStore.pets[i].castration == 'Tak')">
+                                        <div style="width: fit-content; border-radius: 7px; margin: 2px;">
+                                            Kastracja/Sterylizacja: </div>
+                                        <div style="width: 10%;"> <v-icon color="rgb(175, 126, 158)"
+                                                icon="mdi-check-circle"></v-icon></div>
+                                    </v-row>
+                                    <v-row style=" width: fit-content; margin: 0.5vh"
+                                        v-if="(animalsStore.pets[i].childFriendly == 'Tak')">
+                                        <div style="width: fit-content; border-radius: 7px; margin: 2px;"> Akceptuje dzieci:
+                                        </div>
+                                        <div style="width: 10%;"> <v-icon color="rgb(175, 126, 158)"
+                                                icon="mdi-check-circle"></v-icon></div>
+                                    </v-row>
+                                    <v-row style=" width: fit-content; margin: 0.5vh"
+                                        v-if="(animalsStore.pets[i].basicTraining == 'Tak')">
+                                        <div style="width: fit-content; border-radius: 7px; margin: 2px;"> Tresowany: </div>
+                                        <div style="width: 10%;"> <v-icon color="rgb(175, 126, 158)"
+                                                icon="mdi-check-circle"></v-icon></div>
+                                    </v-row>
+                                    <v-row style=" width: fit-content; margin: 0.5vh"
+                                        v-if="(animalsStore.pets[i].otherDogs == 'Tak')">
+                                        <div style="width: fit-content; border-radius: 7px; margin: 2px;"> Akceptuje psy:
+                                        </div>
+                                        <div style="width: 10%;"> <v-icon color="rgb(175, 126, 158)"
+                                                icon="mdi-check-circle"></v-icon></div>
+                                    </v-row>
+                                    <v-row style=" width: fit-content; margin: 0.5vh"
+                                        v-if="(animalsStore.pets[i].otherCats == 'Tak')">
+                                        <div style="width: fit-content; border-radius: 7px; margin: 2px;"> Akceptuje koty:
+                                        </div>
+                                        <div style="width: 10%;"> <v-icon color="rgb(175, 126, 158)"
+                                                icon="mdi-check-circle"></v-icon></div>
+                                    </v-row>
+                                    <v-row style=" width: fit-content; margin: 0.5vh"
+                                        v-if="(animalsStore.pets[i].cuddly == 'Tak')">
+                                        <div style="width: fit-content; border-radius: 7px; margin: 2px;"> Czuły: </div>
+                                        <div style="width: 10%;"> <v-icon color="rgb(175, 126, 158)"
+                                                icon="mdi-check-circle"></v-icon></div>
+                                    </v-row>
+                                </v-row>
+                               
+                            </div>
+
+                           
+                        </v-img>
+       
+            </div>
+        </div>
+        <div class="tinder--buttons">
+            <button id="nope"><i class="fa fa-remove"></i></button>
+            <button id="love"><i class="fa fa-heart"></i></button>
+        </div>
     </div>
-    <div class="tinder--buttons">
-      <button id="nope"><i class="fa fa-remove"></i></button>
-      <button id="love"><i class="fa fa-heart"></i></button>
-    </div>
-  </div>
 </template>
 
 <script setup lang="js">
@@ -144,10 +218,7 @@ onMounted(() => {
 <style lang="css">
 @import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
 
-.vue-tinder {
-    width: 335px;
-    height: 447px;
-}
+
 
 
 .shelterText {
@@ -174,7 +245,7 @@ onMounted(() => {
 
 .title {
     font-family: 'Gruppo', sans-serif;
-    font-size: xxx-large;
+    font-size: x-large;
     font-weight: bolder;
     font-stretch: wider;
     color: white;
@@ -328,8 +399,8 @@ onMounted(() => {
     opacity: 0;
     transition: opacity 0.1s ease-in-out;
     margin-top: auto;
-  width: 100vw;
-  height: 100vh;
+    width: 100vw;
+    height: 97vh;
 
 
 
@@ -372,7 +443,7 @@ onMounted(() => {
 
 .tinder--cards {
     flex-grow: 1;
-    padding-top: 40px;
+    padding-top: 10px;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -383,9 +454,8 @@ onMounted(() => {
 .tinder--card {
     display: inline-block;
     width: 50vw;
-    height: 90vh;
+    height: 88vh;
     background: #FFFFFF;
-    padding-bottom: 40px;
     border-radius: 8px;
     overflow: hidden;
     position: absolute;
@@ -453,5 +523,4 @@ onMounted(() => {
 
 .fa-remove {
     color: #CDD6DD;
-}
-</style>
+}</style>

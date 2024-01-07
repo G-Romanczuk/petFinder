@@ -1,10 +1,20 @@
 <template>
  
-                <v-card  class="scrollbar" height="95vh" style=" overflow-y: scroll; border-radius: 10px; margin: auto; ">
+ <v-dialog v-model="dialog" width="98vw" height="98vh">
+        <template v-slot:activator="{ props }">
+
+            <v-btn elevation="0" class="text"  v-bind="props" style= " margin-top: auto;">
+                OPEN
+            </v-btn>
+        </template>
+
+
+
+                <v-card  class="scrollbar" height="95vh" width="50vw" style=" overflow-y: scroll; border-radius: 10px; margin: auto; ">
 
                     <div style=" width: fit-content; margin: 0 auto; ">
 
-                      
+                        <v-btn style="float: right;" @click="dialog = false"><v-icon icon="mdi-window-close"></v-icon></v-btn>
                         <div style="height: 10px;"></div>
                         <h1 class="title" style="text-align: center; color:  rgb(143, 83, 122); text-shadow:none;">
                             {{ props.pet.name }}, <div style="font-size: medium; display: inline"
@@ -146,7 +156,7 @@
                     </div>
                 </v-card>
 
-
+ </v-dialog>
 
 </template>
 
