@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import service from "@/services/service";
 
-export const usePetStore = defineStore("pet", {
+export const useAnimalsStore = defineStore("pet", {
   state: () => {
     return {
         pets: []
@@ -11,7 +11,7 @@ export const usePetStore = defineStore("pet", {
     async getPets() {
       const res= await service.getPets()
 
-      console.log(res)
+      this.pets = res.data
 
 
       return res

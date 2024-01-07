@@ -166,7 +166,7 @@ const isValid = ref(true)
 var show = ref(false)
 var urls = []
 var files = []
-var images = []
+var imagesForm = []
 
 var id = ref(petStore.pet.id)
 var name = ref(petStore.pet.name)
@@ -187,27 +187,6 @@ var cuddly = ref(petStore.pet.cuddly)
 var temper = ref(petStore.pet.temper)
 var text = ref(petStore.pet.text)
 var shelterEmail = ref(shelterStore.shelterData.email)
-var petData = {
-    shelter: shelterEmail,
-    name: name,
-    images: images,
-    type: type,
-    gender: gender,
-    castration: castration,
-    breed: breed,
-    size: size,
-    age: age,
-    vaccination: vaccination,
-    childFriendly: childFriendly,
-    basicTraining: basicTraining,
-    activity: activity,
-    otherDogs: otherDogs,
-    otherCats: otherCats,
-    cuddly: cuddly,
-    temper: temper,
-    text: text,
-}
-
 var dialog = ref(false)
 
 const onFileChange =  (e)  => {
@@ -217,7 +196,6 @@ const onFileChange =  (e)  => {
     files = e.target.files;
     forBase64(files);
 
-    console.log(e.target.files)
     for (var i = 0; i < e.target.files.length; i++) {
         
         urls[i] = URL.createObjectURL(e.target.files[i])
@@ -232,7 +210,7 @@ async function getBase64(file, i) {
 
         const reader = new FileReader();
     reader.onload = (event) => {
-        images[i] = event.target.result;
+        imagesForm[i] = event.target.result;
       }
       reader.readAsDataURL(file);
 
@@ -248,23 +226,8 @@ async function forBase64(files){
 
 
     }
-    //picture.value = true
-   console.log(images)
-    
 }
-//   return new Promise((resolve, reject) => {
-//     const reader = new FileReader();
-//     reader.readAsDataURL(file);
-//     reader.onload = () => {
-//       let encoded = reader.result.toString().replace(/^data:(.*,)?/, '');
-//       if ((encoded.length % 4) > 0) {
-//         encoded += '='.repeat(4 - (encoded.length % 4));
-//       }
-//       resolve( console.log(encoded));
-//     };
-//     reader.onerror = error => reject(error);
-//   });
-
+    
 
 
 
@@ -274,7 +237,7 @@ async function Submit() {
         id: id.value,
         shelterEmail: shelterEmail.value,
         name: name.value,
-        images: images,
+        images: imagesForm,
         type: type.value,
         gender: gender.value,
         castration: castration.value,
@@ -292,7 +255,6 @@ async function Submit() {
         text: text.value,
     }
 
-    console.log(petForm)
     const res = await petStore.postPetFormUpdate(petForm)
 
     if (res.status == 200) {
@@ -301,6 +263,9 @@ async function Submit() {
             message: "Updated  succesfully",
         }
         notifStore.add(notification)
+        shelterStore.getShelterPets(shelterStore.shelterData.email)
+
+        dialog.value = false
     }
 }
 

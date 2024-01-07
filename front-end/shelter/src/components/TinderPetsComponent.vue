@@ -3,7 +3,7 @@
         <template v-slot:activator="{ props }">
 
             <v-btn elevation="0" class="text font-big" v-bind="props">
-                <slot name="activator"> </slot>
+                <v-icon color="rgb(143, 83, 122)" icon="mdi-paw" > </v-icon> Znajdź przyjaciela
             </v-btn>
         </template>
 
@@ -187,6 +187,7 @@ const shelterStore = useShelterStore();
 
 var dialog = ref(false)
 
+console.log(props.pet)
 
 
 </script>
