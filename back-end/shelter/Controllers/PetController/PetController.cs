@@ -94,6 +94,17 @@ namespace shelter.Controllers.PetController
            
         }
 
+        [HttpPost("AddLikedPets", Name ="AddPetsLikedByUser")]
+        public async Task<IActionResult> AddLikedPetList([FromBody] LikedPetListModel likedPetListModel)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+            if (await _petService.AddLikedPetList(likedPetListModel))
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+
 
     }
 }

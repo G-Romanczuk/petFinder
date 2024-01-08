@@ -26,6 +26,35 @@ namespace shelter.Interfaces.Pet
             _mapper = mapper;
         }
 
+        public async Task<bool> AddLikedPetList(LikedPetListModel likedPetListModel)
+        {
+            try
+            {
+                var userId = likedPetListModel.userId;
+                var listOfLikedPets = likedPetListModel.likedPetIds.ToList();
+
+                foreach (var item in listOfLikedPets)
+                {
+                    var PetLikeModel = new PetLikeModel
+                    {
+                        UserId = userId,
+                        PetId = item
+                    };
+
+                    _shelterPetFinderDbContext.PetLike.Add(PetLikeModel);
+                    await _shelterPetFinderDbContext.SaveChangesAsync();
+
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            
+        }
+
         public async Task<bool> AddPetForm(PetForm pet)
         {
             try
