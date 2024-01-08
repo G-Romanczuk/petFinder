@@ -77,7 +77,7 @@ namespace shelter.Controllers.ShelterController
                 }
                 else
                 {
-                    return NotFound();
+                    return NotFound(); 
                 }
             }
             catch (Exception)
