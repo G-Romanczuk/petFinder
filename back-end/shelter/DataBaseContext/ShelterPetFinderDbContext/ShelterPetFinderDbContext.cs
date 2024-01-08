@@ -23,5 +23,6 @@ namespace shelter.DataBaseContext.ShelterPetFinderDbContext
         public DbSet<UserResidenceModel> UserQuestionsResidence { get; set; }
         public DbSet<UserHabbitsModel> UserQuestionsHabbits { get; set; }
         public DbSet<UsersDogDetailsModel> UserQuestionsPetDetails { get; set; }
+        public DbSet<PetLikeModel> PetLike { get; set; }
     }
 }
