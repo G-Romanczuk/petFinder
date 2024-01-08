@@ -15,5 +15,6 @@ namespace shelter.Interfaces.User
         Task<bool> ResetPassword(ResetPasswordModel resetPasswordModel);
         Task<IdentityUser?> GetUserFromUserManager(string email);
         Task<UserForm> GetSignleUser (string email);
+        Task<List<int>> GetLikedPetsByUser(int userId);
     }
 }

@@ -262,5 +262,24 @@ namespace shelter.Interfaces.User
             }
             
         }
+
+        public async Task<List<int>> GetLikedPetsByUser(int userId)
+        {
+            try
+            {
+                var likedPets = await _shelterPetFinderDbContext.PetLike
+               .Where(u => u.UserId == userId)
+               .Select(u => u.PetId)
+               .ToListAsync();
+
+                return likedPets;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+           
+        }
     }
 }

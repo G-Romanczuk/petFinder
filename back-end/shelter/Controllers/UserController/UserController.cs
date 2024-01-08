@@ -116,8 +116,18 @@ namespace shelter.Controllers.UserController
             }
         }
 
-        
-        
+        [HttpGet("LikedPets",Name = "GetLikedPetsByUser")]
+        public async Task<IActionResult> GetLikedPetsByUser([FromQuery] int id)
+        {
+            var likedPets = await _userService.GetLikedPetsByUser(id);
+            if (likedPets == null)
+            {
+                return NotFound();
+            }
+           return Ok(likedPets);
+        }
+
+
 
     }
 }
