@@ -9,5 +9,6 @@ namespace shelter.Interfaces.Pet
         Task<bool> UpdatePet(PetForm pet);
         Task <bool> DeletePet(int id);
         Task<List<PetsBelongsToShelterDto>> GetAllPets();
+        Task<PetByIdDto> GetPetById(int id);
     }
 }

@@ -95,6 +95,28 @@ namespace shelter.Interfaces.Pet
             
         }
 
+        public async Task<PetByIdDto> GetPetById(int id)
+        {
+            try
+            {
+                var pet = await _shelterPetFinderDbContext.Pets
+                .Include(p => p.Images)
+                .Include(s=>s.ShelterModel)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+                var petToGet = _mapper.Map<PetByIdDto>(pet);
+
+                return petToGet;
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+         
+            
+        }
+
         public async Task<bool> UpdatePet(PetForm pet)
         {
             try

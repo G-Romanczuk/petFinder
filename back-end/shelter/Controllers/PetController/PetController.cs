@@ -77,6 +77,23 @@ namespace shelter.Controllers.PetController
             }
         }
 
+        [HttpGet("GetSingle", Name ="GetSinglePetById")]
+        public async Task<IActionResult> GetPetById([FromQuery] int id)
+        {
+            
+            if (!ModelState.IsValid) return BadRequest();
+
+            var pet = await _petService.GetPetById(id);
+
+            if (pet == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(pet);
+           
+        }
+
 
     }
 }

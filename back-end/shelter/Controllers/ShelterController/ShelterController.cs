@@ -39,6 +39,7 @@ namespace shelter.Controllers.ShelterController
         {
             try
             {
+                if (!ModelState.IsValid) return BadRequest();
                 var shelterCredentials = await _shelterService.CreateAccount(email);
                 await _shelterService.CreateUserShelter(email);
                 return Ok(new {message="Success", shelterCredentials });

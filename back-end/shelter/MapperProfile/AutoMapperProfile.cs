@@ -51,7 +51,13 @@ namespace shelter.MapperProfile
             CreateMap<ShelterModel, ShelterModelDto>();
             CreateMap<PetImg, PetsBelongsToShelterDto>();
 
+            CreateMap<PetModel, PetByIdDto>()
+            .ForMember(dest => dest.Images, opt => opt.MapFrom(src => src.Images.Select(img => img.Images)))
+            .ForMember(dest => dest.shelterModel, opt => opt.MapFrom(src => src.ShelterModel));
+
+            CreateMap<PetImg, PetByIdDto>();
         }
+       
     }
     
 
