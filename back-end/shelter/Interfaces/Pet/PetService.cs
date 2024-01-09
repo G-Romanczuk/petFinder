@@ -30,14 +30,14 @@ namespace shelter.Interfaces.Pet
         {
             try
             {
-                var userId = likedPetListModel.userId;
+                var userEmail = likedPetListModel.userEmail;
                 var listOfLikedPets = likedPetListModel.likedPetIds.ToList();
 
                 foreach (var item in listOfLikedPets)
                 {
                     var PetLikeModel = new PetLikeModel
                     {
-                        UserId = userId,
+                        userEmail = userEmail,
                         PetId = item
                     };
 
