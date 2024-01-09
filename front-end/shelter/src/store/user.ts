@@ -34,6 +34,7 @@ export const useUserStore = defineStore("user", {
       animalsBefore: "",
       animalsBeforeText: "",
       text: "",
+      likedPets: [],
       },
       
     };

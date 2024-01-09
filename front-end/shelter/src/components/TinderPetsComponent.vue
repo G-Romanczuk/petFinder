@@ -1,176 +1,163 @@
 <template>
-    <v-dialog v-model="dialog" width="98vw" height="98vh">
+ 
+ <v-dialog v-model="dialog" width="98vw" height="98vh">
         <template v-slot:activator="{ props }">
 
-            <v-btn elevation="0" class="text font-big" v-bind="props">
-                <v-icon color="rgb(143, 83, 122)" icon="mdi-paw" > </v-icon> Znajdź przyjaciela
+            <v-btn elevation="0" class="text"  v-bind="props" style= " margin-top: auto;">
+                OPEN
             </v-btn>
         </template>
 
-        <v-col>
-        <v-card width="fit-content" height="fit-content" style="margin: auto; display: flex; padding: 20px; background-color: rgba(255, 255, 255, 0); margin-bottom: 10px;" v-if="shelterStore.loggedShelterJWT != ''">
-                <UpdatePetForm :pet = "props.pet" />
-                <v-divider vertical :thickness="40" class="border-opacity-0"></v-divider>
-                <DeletePetPopup :id="props.pet.id"  />
-            
 
 
-        </v-card>
+                <v-card  class="scrollbar" height="95vh" width="50vw" style=" overflow-y: scroll; border-radius: 10px; margin: auto; ">
 
-<v-row>
-        
-  
+                    <div style=" width: fit-content; margin: 0 auto; ">
 
-            <v-card class="scrollbar" width="55%" height="98vh" style="overflow-y: scroll; border-radius: 10px; margin: auto;">
-                <div style=" width: fit-content; margin: 0 auto; ">
+                        <v-btn style="float: right;" @click="dialog = false"><v-icon icon="mdi-window-close"></v-icon></v-btn>
+                        <div style="height: 10px;"></div>
+                        <h1 class="title" style="text-align: center; color:  rgb(143, 83, 122); text-shadow:none;">
+                            {{ props.pet.name }}, <div style="font-size: medium; display: inline"
+                                v-if="(props.pet.shelterModel.name != '')"> {{
+                                    props.pet.shelterModel.name }}</div>
+                        </h1>
 
-                    <v-btn style="float: right;" @click="dialog = false"><v-icon icon="mdi-window-close"></v-icon></v-btn>
-                    <h1 class="title" style="text-align: center; color:  rgb(143, 83, 122); text-shadow:none;">
-                        {{ props.pet.name }}, <div style="font-size: medium; display: inline"
-                            v-if="(props.pet.shelterModel.name != '')"> {{
-                                props.pet.shelterModel.name }}</div>
-                    </h1>
+                        <div style="height: 10px;"></div>
+                        <v-carousel
+                            style="border-radius: 10px; width: 95%; margin: auto;  border: 1px solid rgb(143, 83, 122);">
+                            <v-carousel-item v-for="(img, i) in props.pet.images" cover>
 
-                  
-                            <v-carousel
-                                style="border-radius: 10px; width: 95%; margin: auto;  border: 1px solid rgb(143, 83, 122);">
-                                <v-carousel-item v-for="(img, i) in props.pet.images" cover>
+                                <v-img v-bind:src="props.pet.images[i]" cover>
+                                    <BigImagePopup :img="props.pet.images[i]" />
+                                </v-img>
 
-                                    <v-img v-bind:src="props.pet.images[i]" cover>
-                                        <BigImagePopup :img="props.pet.images[i]" />
-                                    </v-img>
-
-                                </v-carousel-item>
-                            </v-carousel>
+                            </v-carousel-item>
+                        </v-carousel>
 
 
-                            <v-row
-                                style="width: fit-content; margin: 1vh auto 0 auto; border-bottom:2px solid darkgray ; font-size: small; ">
+                        <v-row
+                            style="width: fit-content; margin: 1vh auto 0 auto; border-bottom:2px solid darkgray ; font-size: small; ">
 
-                                <v-row style=" width: fit-content; margin: 0.5vh" v-if="(props.pet.vaccination == 'Tak')">
-                                    <div style="width: fit-content; border-radius: 7px; margin: 2px;"> Szczepiony/a: </div>
-                                    <div style="width: 10%;"> <v-icon color="rgb(175, 126, 158)"
-                                            icon="mdi-check-circle"></v-icon></div>
-                                </v-row>
-                                <v-row style=" width: fit-content; margin: 0.5vh" v-if="(props.pet.castration == 'Tak')">
-                                    <div style="width: fit-content; border-radius: 7px; margin: 2px;">
-                                        Kastracja/Sterylizacja: </div>
-                                    <div style="width: 10%;"> <v-icon color="rgb(175, 126, 158)"
-                                            icon="mdi-check-circle"></v-icon></div>
-                                </v-row>
-                                <v-row style=" width: fit-content; margin: 0.5vh" v-if="(props.pet.childFriendly == 'Tak')">
-                                    <div style="width: fit-content; border-radius: 7px; margin: 2px;"> Akceptuje dzieci:
-                                    </div>
-                                    <div style="width: 10%;"> <v-icon color="rgb(175, 126, 158)"
-                                            icon="mdi-check-circle"></v-icon></div>
-                                </v-row>
-                                <v-row style=" width: fit-content; margin: 0.5vh" v-if="(props.pet.basicTraining == 'Tak')">
-                                    <div style="width: fit-content; border-radius: 7px; margin: 2px;"> Tresowany: </div>
-                                    <div style="width: 10%;"> <v-icon color="rgb(175, 126, 158)"
-                                            icon="mdi-check-circle"></v-icon></div>
-                                </v-row>
-                                <v-row style=" width: fit-content; margin: 0.5vh" v-if="(props.pet.otherDogs == 'Tak')">
-                                    <div style="width: fit-content; border-radius: 7px; margin: 2px;"> Akceptuje psy:
-                                    </div>
-                                    <div style="width: 10%;"> <v-icon color="rgb(175, 126, 158)"
-                                            icon="mdi-check-circle"></v-icon></div>
-                                </v-row>
-                                <v-row style=" width: fit-content; margin: 0.5vh" v-if="(props.pet.otherCats == 'Tak')">
-                                    <div style="width: fit-content; border-radius: 7px; margin: 2px;"> Akceptuje koty:
-                                    </div>
-                                    <div style="width: 10%;"> <v-icon color="rgb(175, 126, 158)"
-                                            icon="mdi-check-circle"></v-icon></div>
-                                </v-row>
-                                <v-row style=" width: fit-content; margin: 0.5vh" v-if="(props.pet.cuddly == 'Tak')">
-                                    <div style="width: fit-content; border-radius: 7px; margin: 2px;"> Czuły: </div>
-                                    <div style="width: 10%;"> <v-icon color="rgb(175, 126, 158)"
-                                            icon="mdi-check-circle"></v-icon></div>
-                                </v-row>
+                            <v-row style=" width: fit-content; margin: 0.5vh" v-if="(props.pet.vaccination == 'Tak')">
+                                <div style="width: fit-content; border-radius: 7px; margin: 2px;"> Szczepiony/a: </div>
+                                <div style="width: 10%;"> <v-icon color="rgb(175, 126, 158)"
+                                        icon="mdi-check-circle"></v-icon></div>
                             </v-row>
+                            <v-row style=" width: fit-content; margin: 0.5vh" v-if="(props.pet.castration == 'Tak')">
+                                <div style="width: fit-content; border-radius: 7px; margin: 2px;">
+                                    Kastracja/Sterylizacja: </div>
+                                <div style="width: 10%;"> <v-icon color="rgb(175, 126, 158)"
+                                        icon="mdi-check-circle"></v-icon></div>
+                            </v-row>
+                            <v-row style=" width: fit-content; margin: 0.5vh" v-if="(props.pet.childFriendly == 'Tak')">
+                                <div style="width: fit-content; border-radius: 7px; margin: 2px;"> Akceptuje dzieci:
+                                </div>
+                                <div style="width: 10%;"> <v-icon color="rgb(175, 126, 158)"
+                                        icon="mdi-check-circle"></v-icon></div>
+                            </v-row>
+                            <v-row style=" width: fit-content; margin: 0.5vh" v-if="(props.pet.basicTraining == 'Tak')">
+                                <div style="width: fit-content; border-radius: 7px; margin: 2px;"> Tresowany: </div>
+                                <div style="width: 10%;"> <v-icon color="rgb(175, 126, 158)"
+                                        icon="mdi-check-circle"></v-icon></div>
+                            </v-row>
+                            <v-row style=" width: fit-content; margin: 0.5vh" v-if="(props.pet.otherDogs == 'Tak')">
+                                <div style="width: fit-content; border-radius: 7px; margin: 2px;"> Akceptuje psy:
+                                </div>
+                                <div style="width: 10%;"> <v-icon color="rgb(175, 126, 158)"
+                                        icon="mdi-check-circle"></v-icon></div>
+                            </v-row>
+                            <v-row style=" width: fit-content; margin: 0.5vh" v-if="(props.pet.otherCats == 'Tak')">
+                                <div style="width: fit-content; border-radius: 7px; margin: 2px;"> Akceptuje koty:
+                                </div>
+                                <div style="width: 10%;"> <v-icon color="rgb(175, 126, 158)"
+                                        icon="mdi-check-circle"></v-icon></div>
+                            </v-row>
+                            <v-row style=" width: fit-content; margin: 0.5vh" v-if="(props.pet.cuddly == 'Tak')">
+                                <div style="width: fit-content; border-radius: 7px; margin: 2px;"> Czuły: </div>
+                                <div style="width: 10%;"> <v-icon color="rgb(175, 126, 158)"
+                                        icon="mdi-check-circle"></v-icon></div>
+                            </v-row>
+                        </v-row>
 
 
 
 
-                            <p class="shelterText text-center" style="height: ; border-radius: 10px;"> Krótki opis: <br>
-                                    {{ props.pet.text }}</p>
-                                    <v-divider :thickness="20" class="border-opacity-0"></v-divider>
+                        <p class="shelterText text-center" style="height: ; border-radius: 10px;"> Krótki opis: <br>
+                            {{ props.pet.text }}</p>
+                        <v-divider :thickness="20" class="border-opacity-0"></v-divider>
 
 
 
-                           
-                            <v-col class="text-center" style="height: fit-content; margin: auto;">
-                                <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;"
-                                    v-if="(props.pet.shelterModel.adress != '') || (props.pet.shelterModel.town != '')">
-                                    <div style="width: 40%; background-color: darkgrey; border-radius: 2px;"> Adres:
-                                    </div>
-                                    <div style="width: 60%;"> {{ props.pet.shelterModel.adress }}, {{
-                                        props.pet.shelterModel.town }}
-                                    </div>
-                                </v-row>
-                                <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;"
-                                    v-if="(props.pet.shelterModel.email != '')">
-                                    <div style="width: 40%; background-color: darkgrey; border-radius: 2px;"> E-Mail:
-                                    </div>
-                                    <div style="width: 60%;"> {{ props.pet.shelterModel.email }} </div>
-                                </v-row>
-                                <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;"
-                                    v-if="(props.pet.shelterModel.phone != '')">
-                                    <div style="width: 40%; background-color: darkgrey; border-radius: 2px;"> Telefon:
-                                    </div>
-                                    <div style="width: 60%;"> {{ props.pet.shelterModel.phone }} </div>
-                                </v-row>
-                                <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;"
-                                    v-if="(props.pet.shelterModel.url != '')">
-                                    <div style="width: 40%; background-color: darkgrey; border-radius: 2px;"> Strona
-                                        internetowa:
-                                    </div>
-                                    <div style="width: 60%;"> {{ props.pet.shelterModel.url }} </div>
-                                </v-row>
-                                <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
-                                    <div style="width: 40%; background-color: darkgrey; border-radius: 2px;"> Rasa:
-                                    </div>
-                                    <div style="width: 60%;"> {{ props.pet.breed }}</div>
-                                </v-row>
-                                <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
-                                    <div style="width: 40%; background-color: darkgrey; border-radius: 2px;"> Płeć:
-                                    </div>
-                                    <div style="width: 60%;"> {{ props.pet.gender }} </div>
-                                </v-row>
-                                <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
-                                    <div style="width: 40%; background-color: darkgrey; border-radius: 2px;"> Wielkość:
-                                    </div>
-                                    <div style="width: 60%;"> {{ props.pet.size }}</div>
-                                </v-row>
-                                <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
-                                    <div style="width: 40%; background-color: darkgrey; border-radius: 2px;">
-                                        Przybliżony
-                                        wiek:
-                                    </div>
-                                    <div style="width: 60%;"> {{ props.pet.age }}</div>
-                                </v-row>
-                                <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
-                                    <div style="width: 40%; background-color: darkgrey; border-radius: 2px;"> Poziom
-                                        aktywności
-                                        (1-10): </div>
-                                    <div style="width: 60%;"> {{ props.pet.activity }}</div>
-                                </v-row>
-                                <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
-                                    <div style="width: 40%; background-color: darkgrey; border-radius: 2px;"> Opis
-                                        temperamentu:
-                                    </div>
-                                    <div style="width: 60%;"> {{ props.pet.temper }}</div>
-                                </v-row>
-                            </v-col>
 
-                </div>
-            </v-card>
+                        <v-col class="text-center" style="height: fit-content; margin: auto;">
+                            <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;"
+                                v-if="(props.pet.shelterModel.adress != '') || (props.pet.shelterModel.town != '')">
+                                <div style="width: 40%; background-color: darkgrey; border-radius: 2px;"> Adres:
+                                </div>
+                                <div style="width: 60%;"> {{ props.pet.shelterModel.adress }}, {{
+                                    props.pet.shelterModel.town }}
+                                </div>
+                            </v-row>
+                            <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;"
+                                v-if="(props.pet.shelterModel.email != '')">
+                                <div style="width: 40%; background-color: darkgrey; border-radius: 2px;"> E-Mail:
+                                </div>
+                                <div style="width: 60%;"> {{ props.pet.shelterModel.email }} </div>
+                            </v-row>
+                            <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;"
+                                v-if="(props.pet.shelterModel.phone != '')">
+                                <div style="width: 40%; background-color: darkgrey; border-radius: 2px;"> Telefon:
+                                </div>
+                                <div style="width: 60%;"> {{ props.pet.shelterModel.phone }} </div>
+                            </v-row>
+                            <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;"
+                                v-if="(props.pet.shelterModel.url != '')">
+                                <div style="width: 40%; background-color: darkgrey; border-radius: 2px;"> Strona
+                                    internetowa:
+                                </div>
+                                <div style="width: 60%;"> {{ props.pet.shelterModel.url }} </div>
+                            </v-row>
+                            <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
+                                <div style="width: 40%; background-color: darkgrey; border-radius: 2px;"> Rasa:
+                                </div>
+                                <div style="width: 60%;"> {{ props.pet.breed }}</div>
+                            </v-row>
+                            <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
+                                <div style="width: 40%; background-color: darkgrey; border-radius: 2px;"> Płeć:
+                                </div>
+                                <div style="width: 60%;"> {{ props.pet.gender }} </div>
+                            </v-row>
+                            <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
+                                <div style="width: 40%; background-color: darkgrey; border-radius: 2px;"> Wielkość:
+                                </div>
+                                <div style="width: 60%;"> {{ props.pet.size }}</div>
+                            </v-row>
+                            <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
+                                <div style="width: 40%; background-color: darkgrey; border-radius: 2px;">
+                                    Przybliżony
+                                    wiek:
+                                </div>
+                                <div style="width: 60%;"> {{ props.pet.age }}</div>
+                            </v-row>
+                            <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
+                                <div style="width: 40%; background-color: darkgrey; border-radius: 2px;"> Poziom
+                                    aktywności
+                                    (1-10): </div>
+                                <div style="width: 60%;"> {{ props.pet.activity }}</div>
+                            </v-row>
+                            <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
+                                <div style="width: 40%; background-color: darkgrey; border-radius: 2px;"> Opis
+                                    temperamentu:
+                                </div>
+                                <div style="width: 60%;"> {{ props.pet.temper }}</div>
+                            </v-row>
+                        </v-col>
 
-         
+                    </div>
+                </v-card>
 
+ </v-dialog>
 
-        </v-row>
-    </v-col>
-    </v-dialog>
 </template>
 
 <script setup lang="js">
@@ -180,20 +167,72 @@ import { useShelterStore } from '@/store/shelter';
 import DeletePetPopup from './DeletePetPopup.vue';
 import UpdatePetForm from './UpdatePetForm.vue';
 const props = defineProps({
-    pet: Object
+    pet: Object,
+    index: Number
 })
-
 const shelterStore = useShelterStore();
 
 var dialog = ref(false)
 
-console.log(props.pet)
+
+var show = true
+
+function calcLeft(number) {
+
+    const basic = window.screen.width * 0.25;
+    var ten = number * 5
+    var left = basic - ten
+
+    return left + "px"
+}
+
+function calcTop(number) {
+
+    var top = number * 2
+
+    return top + "px"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </script>
 
 <style lang="css">
 @import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
+
+.finder-pets {
+    position: absolute;
+    width: 50%;
+    top: 0vh;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .shelterText {
@@ -265,4 +304,5 @@ console.log(props.pet)
 .scrollbar::-webkit-scrollbar-track-piece:start {
     background: transparent;
     margin-top: 3vh;
-}</style>
+}
+</style>

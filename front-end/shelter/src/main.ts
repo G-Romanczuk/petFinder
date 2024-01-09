@@ -25,6 +25,7 @@ import router from './router'
 import { useUserStore } from './store/user';
 const userStore = useUserStore()
 
+import 'hammerjs';
 registerPlugins(app)
 
 app.use(router)

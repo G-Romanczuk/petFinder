@@ -21,7 +21,7 @@
       <router-view ></router-view>
    
     </v-main>
-    <AppFooter app style="opacity: 0.8;"></AppFooter>
+    <!-- <AppFooter app style="opacity: 0.8;"></AppFooter> -->
     
   </v-app>
 </template>
