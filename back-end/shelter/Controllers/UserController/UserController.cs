@@ -117,9 +117,9 @@ namespace shelter.Controllers.UserController
         }
 
         [HttpGet("LikedPets",Name = "GetLikedPetsByUser")]
-        public async Task<IActionResult> GetLikedPetsByUser([FromQuery] int id)
+        public async Task<IActionResult> GetLikedPetsByUser([FromQuery] string userEmail)
         {
-            var likedPets = await _userService.GetLikedPetsByUser(id);
+            var likedPets = await _userService.GetLikedPetsByUser(userEmail);
             if (likedPets == null)
             {
                 return NotFound();

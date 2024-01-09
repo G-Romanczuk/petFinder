@@ -2,7 +2,7 @@
 {
     public class LikedPetListModel
     {
-        public int userId { get; set; }
+        public string userEmail { get; set; }
         public List<int> likedPetIds { get; set; }
     }
 }
