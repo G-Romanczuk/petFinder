@@ -187,7 +187,8 @@ import UserInfo from "@/components/UserInfo.vue";
 import { nextTick, ref } from "vue";
 import TinderComponent from "@/components/TinderComponent.vue";
 const userStore = useUserStore();
-
+ userStore.getLikedPets(userStore.userData.email)
+    
 const props = defineProps({
   post: Object,
 })

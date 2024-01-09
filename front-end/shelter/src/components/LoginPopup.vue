@@ -96,10 +96,12 @@ import { useNotificationsStore } from '@/store/notifications';
 import RegisterPopup from './RegisterPopup.vue';
 import router from '@/router';
 import { useShelterStore } from '@/store/shelter';
+import { useAnimalsStore } from '@/store/animals';
 
 const shelterStore = useShelterStore();
 const userStore = useUserStore();
 const notifStore = useNotificationsStore();
+const animalsStore = useAnimalsStore();
 var show1 = ref(false)
 var show2 = ref(false)
 const emailUser = ref(null)
@@ -166,6 +168,9 @@ async function userLogin() {
     notifStore.add(notification)
     console.log(emailUser.value)
     await userStore.getUserData(emailUser.value)
+    await userStore.getLikedPets(emailUser.value)
+  
+
 
     userStore.loggedUserJWT = res.data.jwtToken
     dialog = false

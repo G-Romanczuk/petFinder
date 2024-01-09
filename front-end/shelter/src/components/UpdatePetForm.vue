@@ -92,9 +92,6 @@
                         <p class="p">Wielkość</p>
                         <v-select v-model="size" label="Wielkość" :items="['Mała', 'Średnia', 'Duża']"></v-select>
 
-                        <p class="p">Wielkość</p>
-                        <v-select v-model="size" label="Wielkość" :items="['Mała', 'Średnia', 'Duża']"></v-select>
-
                         <p class="p">Przybliżony wiek</p>
                         <v-text-field v-model="age" label="m2" hide-details single-line type="number" />
 

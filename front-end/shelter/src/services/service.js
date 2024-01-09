@@ -50,6 +50,30 @@ export default {
     notifStore.add(notification)
   });
   },
+  async getLikedPets(data) {
+
+    return await axios.get(baseURL + "/User/LikedPets", { params: { email: data } }  ).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
+  async addLikedPets(data) {
+    
+    return await axios.post(baseURL + "/Pet/AddLikedPets", data).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
   async getShelterData(data) {
     //data
     // {

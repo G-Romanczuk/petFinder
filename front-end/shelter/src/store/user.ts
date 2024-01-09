@@ -34,6 +34,7 @@ export const useUserStore = defineStore("user", {
       animalsBefore: "",
       animalsBeforeText: "",
       text: "",
+      likedPetIds: [],
       likedPets: [],
       },
       
@@ -86,6 +87,44 @@ export const useUserStore = defineStore("user", {
      const res = await service.postUserForm(data)
      return res
     },
+    async getLikedPets(data) {
+      const res = await service.getLikedPets(data)
+
+      this.userData.likedPetIds = res.data.likedPetIds
+
+      return res
+
+    },
+    async addLikedPets() {
+
+      this.userData.likedPetIds = []
+      for(let i = 0; i < this.userData.likedPets.length; i++){
+
+        this.userData.likedPetIds.push(this.userData.likedPets[i].id)
+
+      }
+
+      var data = {
+        userEmail: this.userData.email,
+        likedPetIds: this.userData.likedPetIds 
+      }
+
+
+      const res = await service.addLikedPets(data)
+      return res
+
+    },
+    async unlikePet(id) {
+
+      for(let i = 0; i < this.userData.likedPets.length; i++){
+        
+      }
+
+
+
+
+
+    }
   },
   getters: {
     getLoggedUserJWT: (state) => {return state.loggedUserJWT},
