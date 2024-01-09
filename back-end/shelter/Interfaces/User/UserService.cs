@@ -263,12 +263,12 @@ namespace shelter.Interfaces.User
             
         }
 
-        public async Task<List<int>> GetLikedPetsByUser(int userId)
+        public async Task<List<int>> GetLikedPetsByUser(string userEmail)
         {
             try
             {
                 var likedPets = await _shelterPetFinderDbContext.PetLike
-               .Where(u => u.UserId == userId)
+               .Where(u => u.userEmail == userEmail)
                .Select(u => u.PetId)
                .ToListAsync();
 
