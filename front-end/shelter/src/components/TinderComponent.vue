@@ -1,5 +1,5 @@
 <template>
-    <div class="tinder">
+    <div class="tinder"  v-if="show">
         <div class="tinder--status">
             <i class="fa fa-remove"> <img src="@/assets/broken.png" alt="" style="position: relative; z-index: -1;  right: 40vw;" ></i>
             <i class="fa fa-heart"> <img src="@/assets/pinkheart.png" alt="" style="position: relative; z-index: -1;  left: 40vw;"></i>
@@ -103,11 +103,13 @@ const userStore = useUserStore();
 const animalsStore = useAnimalsStore()
 animalsStore.getPets();
 var dialog = ref(false)
-var show = ref(false)
+var show = ref(true)
 
 
 
 onMounted(() => {
+
+    
     'use strict';
 
     var tinderContainer = document.querySelector('.tinder');
@@ -125,10 +127,10 @@ onMounted(() => {
         });
 
         tinderContainer.classList.add('loaded');
+       
     }
 
     initCards();
-
     allCards.forEach(function (el) {
         var hammertime = new Hammer(el);
 
@@ -197,7 +199,6 @@ onMounted(() => {
             }
 
             initCards();
-
             event.preventDefault();
         };
     }
@@ -207,6 +208,8 @@ onMounted(() => {
 
     nope.addEventListener('click', nopeListener);
     love.addEventListener('click', loveListener);
+
+
 });
 
 

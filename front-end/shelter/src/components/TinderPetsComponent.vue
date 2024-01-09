@@ -174,7 +174,6 @@ const shelterStore = useShelterStore();
 
 var dialog = ref(false)
 
-console.log(props.pet)
 
 var show = true
 

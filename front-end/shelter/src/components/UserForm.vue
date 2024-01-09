@@ -376,7 +376,7 @@ var userForm = {
     animals: animals.value,
     animalsBefore: animalsBefore.value,
     animalsBeforeText: animalsBeforeText.value,
-    text: text.value
+    text: text.value,
 }
 const res = await userStore.postUserForm(userForm)
 if(res.status == 200){

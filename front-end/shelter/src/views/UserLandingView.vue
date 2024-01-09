@@ -3,12 +3,13 @@
 
 
 
-    <div v-if="showTinder" style="position: absolute; width: 100vw; height: 92.8vh; background-color: rgba(0, 0, 0, 0.842);  z-index: 1;">
-                      <div style="width: fit-content; margin: auto;">
-                      <v-btn style="margin-top: 10px; margin-left: 10px;" @click="showTinder = false">CLOSE</v-btn>
-                      <TinderComponent  />
-                    </div>
-                    </div>
+    <div v-if="showTinder"
+      style="position: absolute; width: 100vw; height: 92.8vh; background-color: rgba(0, 0, 0, 0.842);  z-index: 1;">
+      <div style="width: fit-content; margin: auto;">
+        <v-btn style="margin-top: 10px; margin-left: 10px;" @click="showTinder = false">CLOSE</v-btn>
+        <TinderComponent />
+      </div>
+    </div>
 
 
 
@@ -44,7 +45,7 @@
                     <div style="height: 71vh;">
 
                       <v-row style="width: fit-content; margin: 0 auto; padding-bottom: 10px; ">
-                        <v-btn elevation="8" class="text font-big" @click="showTinder = true">
+                        <v-btn elevation="8" class="text font-big" @click="loadFinder()">
                           <v-icon color="rgb(143, 83, 122)" icon="mdi-dog"> </v-icon>
                           Znajdź przyjaciela</v-btn>
                         <v-divider vertical :thickness="10" class="border-opacity-0 "></v-divider>
@@ -76,7 +77,7 @@
                       tutaj dodaj filtry i ich zatwierdzenie do wyszukiwania
                     </div>
 
-                   
+
                   </v-window-item>
 
                   <v-window-item value="two">
@@ -183,7 +184,7 @@
 import UserForm from "@/components/UserForm.vue";
 import { useUserStore } from "@/store/user";
 import UserInfo from "@/components/UserInfo.vue";
-import { ref } from "vue";
+import { nextTick, ref } from "vue";
 import TinderComponent from "@/components/TinderComponent.vue";
 const userStore = useUserStore();
 
@@ -210,6 +211,55 @@ function reveal() {
 }
 
 window.addEventListener("scroll", reveal);
+
+var open = 0
+
+async function loadFinder() {
+
+  if (open < 1) {
+
+
+    const delayTrue = () => {
+      setTimeout(() => {
+        console.log('true del')
+        showTinder.value = true
+      }, 1000)
+
+
+
+    }
+
+    const delay = () => {
+    setTimeout(() => {
+      console.log('false del')
+      showTinder.value = false
+    }, 1000)
+
+  }
+
+  
+
+
+  console.log('true')
+  showTinder.value = true
+  nextTick();
+  delay();
+  nextTick();
+  delayTrue();
+
+  open++;
+
+
+}
+  else {
+  console.log('hello')
+  showTinder.value = true
+}
+
+}
+
+
+
 
 </script>
   
