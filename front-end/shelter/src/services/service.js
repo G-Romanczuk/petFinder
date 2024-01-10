@@ -50,6 +50,30 @@ export default {
     notifStore.add(notification)
   });
   },
+  async getLikedPets(data) {
+
+    return await axios.get(baseURL + "/User/LikedPets", { params: { userEmail: data } }  ).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
+  async addLikedPets(data) {
+    
+    return await axios.post(baseURL + "/Pet/AddLikedPets", data).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
   async getShelterData(data) {
     //data
     // {
@@ -66,10 +90,6 @@ export default {
   });
   },
   async getShelterPets(data) {
-    //data
-    // {
-    //     jwtToken - string
-    //   }
     return await axios.get(baseURL + "/Shelter/GetPets", { params: { shelterEmail: data } }  ).catch((error) => { 
       
       const notifStore = useNotificationsStore();
@@ -80,7 +100,59 @@ export default {
     notifStore.add(notification)
   });
   },
-  async getPets() {
+  async getShelterDogs(data) {
+    return await axios.get(baseURL + "/Shelter/GetDogs", { params: { shelterEmail: data } }  ).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
+  async getShelterCats(data) {
+    return await axios.get(baseURL + "/Shelter/GetCats", { params: { shelterEmail: data } }  ).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
+  async getShelterRodents(data) {
+    //data
+    // {
+    //     jwtToken - string
+    //   }
+    return await axios.get(baseURL + "/Shelter/GetRodents", { params: { shelterEmail: data } }  ).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
+  async getShelterOther(data) {
+    //data
+    // {
+    //     jwtToken - string
+    //   }
+    return await axios.get(baseURL + "/Shelter/GetOther", { params: { shelterEmail: data } }  ).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
+  async getAllPets() {
     return await axios.get(baseURL + "/Pet/GetAllPets"  ).catch((error) => { 
       
       const notifStore = useNotificationsStore();
@@ -196,6 +268,52 @@ export default {
     notifStore.add(notification)
   });
   },
+  async resetShelterPasswordRequest(email) {
+    return await axios.post(baseURL + "/Shelter/ResetShelterPasswordRequest", email).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
+  async resetShelterPassword(data) {
+    return await axios.post(baseURL + "/Shelter/ResetShelterPassword", data).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
+  async resetUserPasswordRequest(email) {
+    return await axios.post(baseURL + "/User/ResetUserPasswordRequest", email).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
+  async resetUserPassword(data) {
+    return await axios.post(baseURL + "/User/ResetUserPassword", data).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
+
+
   async postPetForm(data) {
     return await axios.post(baseURL + "/Pet/Add", data, {
       headers: {

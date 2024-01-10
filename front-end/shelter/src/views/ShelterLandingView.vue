@@ -17,8 +17,8 @@
 
             <v-card>
               <v-tabs v-model="tab" color="rgb(143, 83, 122)" class="text cards">
-                <v-tab value="one" class="cards font-bigger">Podopieczni</v-tab>
-                <v-tab value="two" class="cards font-bigger">Adopcje</v-tab>
+                <v-tab value="one" class="cards font-bigger" >Podopieczni</v-tab>
+                <v-tab value="two" class="cards font-bigger">Potencjalne Adopcje</v-tab>
                 <v-tab value="three" class="cards font-bigger">Konto</v-tab>
               </v-tabs>
               <div style="height: 2px; width: 100%; background-color:rgb(143, 83, 122) ; margin-right: auto; ">
@@ -32,21 +32,22 @@
                       <v-row style="width: fit-content; margin: 0 auto; padding-bottom: 10px; height: 6vh; ">
                         <PetForm />
                         <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
-                        <v-btn elevation="8" class="text font-big">
+                        <v-btn elevation="8" class="text font-big" @click="shelterStore.getShelterPets(shelterStore.shelterData.email)" >
+                          <v-icon color="rgb(143, 83, 122)" icon="mdi-bird"> </v-icon>
+                          Wszystkie</v-btn>
+                        <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
+                        <v-btn elevation="8" class="text font-big" @click="shelterStore.getShelterDogs(shelterStore.shelterData.email)" >
                           <v-icon color="rgb(143, 83, 122)" icon="mdi-dog"> </v-icon>
                           Psy</v-btn>
                         <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
-                        <v-btn elevation="8" class="text font-big">
+                        <v-btn elevation="8" class="text font-big" @click="shelterStore.getShelterCats(shelterStore.shelterData.email)">
                           <v-icon color="rgb(143, 83, 122)" icon="mdi-cat"> </v-icon>
                           Koty</v-btn>
                         <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
-                        <v-btn elevation="8" class="text font-big">
+                        <v-btn elevation="8" class="text font-big" @click="shelterStore.getShelterRodents(shelterStore.shelterData.email)">
                           <v-icon color="rgb(143, 83, 122)" icon="mdi-rodent"> </v-icon>
                           Gryzonie</v-btn>
-                        <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
-                        <v-btn elevation="8" class="text font-big">
-                          <v-icon color="rgb(143, 83, 122)" icon="mdi-bird"> </v-icon>
-                          Ptaki</v-btn>
+                        
                         <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
                         <v-btn elevation="8" class="text font-big">
                           <v-icon color="rgb(143, 83, 122)" icon="mdi-heart"> </v-icon>
@@ -116,8 +117,7 @@
 
                       <ShelterForm />
                       <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
-                      <v-btn elevation="8" class="text font-big">
-                        <v-icon color="rgb(143, 83, 122)" icon="mdi-lock-reset"> </v-icon> Zmień hasło</v-btn>
+                      <ResetPasswordReq />
                       <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
                       <v-btn elevation="8" class="text font-big">
                         <v-icon color="rgb(143, 83, 122)" icon="mdi-translate"> </v-icon>
@@ -193,6 +193,7 @@ import ShelterInfo from "@/components/ShelterInfo.vue";
 import PetPopup from "@/components/PetPopup.vue";
 import { ref } from "vue";
 import { useShelterStore } from '@/store/shelter';
+import ResetPasswordReq from "@/components/ResetPasswordReq.vue";
 
 const shelterStore = useShelterStore();
 shelterStore.getShelterPets(shelterStore.shelterData.email)

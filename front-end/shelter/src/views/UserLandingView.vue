@@ -6,7 +6,7 @@
     <div v-if="showTinder"
       style="position: absolute; width: 100vw; height: 92.8vh; background-color: rgba(0, 0, 0, 0.842);  z-index: 1;">
       <div style="width: fit-content; margin: auto;">
-        <v-btn style="margin-top: 10px; margin-left: 10px;" @click="showTinder = false">CLOSE</v-btn>
+        <v-btn style="margin-top: 10px; margin-left: 10px;" @click="showTinder = false, animalsStore.addLikedPets()">CLOSE</v-btn>
         <TinderComponent />
       </div>
     </div>
@@ -32,8 +32,8 @@
               <v-tabs v-model="tab" color="rgb(143, 83, 122)" class="text cards ">
                 <v-tab value="one" class="cards font-bigger">Podopieczni</v-tab>
                 <v-tab value="two" class="cards font-bigger">Polubienia</v-tab>
-                <v-tab value="three" class="cards font-bigger">Adopcje</v-tab>
-                <v-tab value="four" class="cards font-bigger">Konto</v-tab>
+                <!-- <v-tab value="three" class="cards font-bigger">Adopcje</v-tab> -->
+                <v-tab value="three" class="cards font-bigger">Konto</v-tab>
               </v-tabs>
               <div style="height: 2px; width: 100%; background-color:rgb(143, 83, 122) ; margin-right: auto; ">
               </div>
@@ -83,22 +83,46 @@
                   <v-window-item value="two">
                     <v-row style="width: fit-content; margin: 0 auto; padding-bottom: 10px; height: 71vh;">
 
-                      Tutaj wstaw popupy psów z tym kto je polubił do sprawdzenia (forma może się zmienić totalnie jeszcze
-                      idk)
+                      <div v-for="(pet, i) in animalsStore.likedPets"
+                          style="width: 300px; height: 370px; padding: 10p;" class="scale"  >
+                          <PetPopup :pet="pet" >
+                            <template #activator>
+                              <div style="height: 10px;"></div>
+                              <v-card class="mx-auto dontscale" width="260" height="350">
+                                <v-img cover v-bind:src="pet.images[0]"
+                                  style="margin: auto; width: 90%; border-radius: 10px; height: 80%;" />
+
+                                <v-card-title class="font">
+
+                                  {{ pet.name }} , {{ pet.age }}
+                                </v-card-title>
+
+                                <v-card-subtitle class="font">
+                                 Wykastrowany/a: {{ pet.castration}}
+                                </v-card-subtitle>
+
+
+                              </v-card>
+
+
+                            </template>
+                          </PetPopup>
+                        </div>
+
 
                     </v-row>
                   </v-window-item>
 
-                  <v-window-item value="three">
+                  <!-- <v-window-item value="three">
                     <v-row style="width: fit-content; margin: 0 auto; padding-bottom: 10px; height: 71vh;">
 
                       Tutaj wstaw adopcje w toku (zdjęcie psa + imie, mini profil adoptującego imie, wiek takie o)
 
                     </v-row>
-                  </v-window-item>
+                  </v-window-item> -->
 
 
-                  <v-window-item value="four">
+                  <v-window-item value="three">
 
                     <div style="height: 71vh;">
 
@@ -106,8 +130,7 @@
 
                         <UserForm />
                         <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
-                        <v-btn elevation="8" class="text font-big">
-                          <v-icon color="rgb(143, 83, 122)" icon="mdi-lock-reset"> </v-icon> Zmień hasło</v-btn>
+                        <ResetPasswordReq />
                         <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
                         <v-btn elevation="8" class="text font-big">
                           <v-icon color="rgb(143, 83, 122)" icon="mdi-translate"> </v-icon>
@@ -183,11 +206,16 @@
 <script setup lang="ts">
 import UserForm from "@/components/UserForm.vue";
 import { useUserStore } from "@/store/user";
+import { useAnimalsStore } from "@/store/animals";
 import UserInfo from "@/components/UserInfo.vue";
 import { nextTick, ref } from "vue";
 import TinderComponent from "@/components/TinderComponent.vue";
+import PetPopup from "@/components/PetPopup.vue";
+import ResetPasswordReq from "@/components/ResetPasswordReq.vue";
 const userStore = useUserStore();
-
+const animalsStore = useAnimalsStore();
+ animalsStore.getLikedPets(userStore.userData.email)
+ animalsStore.getAllPets();   
 const props = defineProps({
   post: Object,
 })
@@ -215,46 +243,43 @@ window.addEventListener("scroll", reveal);
 var open = 0
 
 async function loadFinder() {
+//  await animalsStore.getAllPets();
 
-  if (open < 1) {
-
-
-    const delayTrue = () => {
-      setTimeout(() => {
-        console.log('true del')
-        showTinder.value = true
-      }, 1000)
+  // if (open < 1) {
 
 
+  //   const delayTrue = () => {
+  //     setTimeout(() => {
+  //       showTinder.value = true
+  //     }, 1000)
 
-    }
 
-    const delay = () => {
-    setTimeout(() => {
-      console.log('false del')
-      showTinder.value = false
-    }, 1000)
 
-  }
+  //   }
+
+  //   const delay = () => {
+  //   setTimeout(() => {
+  //     showTinder.value = false
+  //   }, 1000)
+
+  // }
 
   
 
 
-  console.log('true')
   showTinder.value = true
-  nextTick();
-  delay();
-  nextTick();
-  delayTrue();
+//   nextTick();
+//   delay();
+//   nextTick();
+//   delayTrue();
 
-  open++;
+//   open++;
 
 
-}
-  else {
-  console.log('hello')
-  showTinder.value = true
-}
+// }
+//   else {
+//   showTinder.value = true
+// }
 
 }
 

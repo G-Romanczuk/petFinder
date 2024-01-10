@@ -101,12 +101,10 @@ import TinderPetsComponent from './TinderPetsComponent.vue';
 import * as Hammer from 'hammerjs'
 const userStore = useUserStore();
 const animalsStore = useAnimalsStore()
-animalsStore.getPets();
 var dialog = ref(false)
 var show = ref(true)
 
-
-
+var cardId = 0;
 onMounted(() => {
 
     
@@ -120,6 +118,7 @@ onMounted(() => {
     function initCards(card, index) {
         var newCards = document.querySelectorAll('.tinder--card:not(.removed)');
 
+       if(newCards.length > 0) {
         newCards.forEach(function (card, index) {
             card.style.zIndex = allCards.length - index;
             card.style.transform = 'scale(' + (20 - index) / 20 + ') translateY(-' + 30 * index + 'px)';
@@ -127,6 +126,14 @@ onMounted(() => {
         });
 
         tinderContainer.classList.add('loaded');
+       } else {
+     //  animalsStore.pets = animalsStore.unliked
+
+       }
+
+
+
+       
        
     }
 
@@ -165,6 +172,8 @@ onMounted(() => {
             if (keep) {
                 event.target.style.transform = '';
             } else {
+
+                
                 var endX = Math.max(Math.abs(event.velocityX) * moveOutWidth, moveOutWidth);
                 var toX = event.deltaX > 0 ? endX : -endX;
                 var endY = Math.abs(event.velocityY) * moveOutWidth;
@@ -174,7 +183,22 @@ onMounted(() => {
                 var rotate = xMulti * yMulti;
 
                 event.target.style.transform = 'translate(' + toX + 'px, ' + (toY + event.deltaY) + 'px) rotate(' + rotate + 'deg)';
-                initCards();
+
+                if(event.deltaX < 0) {
+                    //nie
+                    cardId++;
+                    initCards();
+                } else {
+                    //tak
+
+                    animalsStore.likedPets.push(animalsStore.pets[cardId])
+                    cardId++;
+                 //   console.log(likedPets)
+                    initCards();
+                }
+
+
+
 
                 //TUTAJ OPUSZA
             }
@@ -193,8 +217,11 @@ onMounted(() => {
             card.classList.add('removed');
 
             if (love) {
+              //  animalsStore.likedPets.push(animalsStore.pets[cardId])
+             //   cardId++;
                 card.style.transform = 'translate(' + moveOutWidth + 'px, -100px) rotate(-30deg)';
             } else {
+               // cardId++;
                 card.style.transform = 'translate(-' + moveOutWidth + 'px, -100px) rotate(30deg)';
             }
 
