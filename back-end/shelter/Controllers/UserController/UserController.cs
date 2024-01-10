@@ -154,6 +154,20 @@ namespace shelter.Controllers.UserController
             }
         }
 
+        [HttpGet("UsersWhoLikedPets",Name ="GetAllUsersWhoLikedPet")]
+        public async Task<IActionResult> GetAllUsersWhoLikedPet([FromQuery] int id)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+
+            var res = await _userService.GetAllUsersWhoLikedPet(id);
+            if (res == null)
+            {
+                return BadRequest();
+            }
+            
+            return Ok(res);
+        }
+
 
     }
 }

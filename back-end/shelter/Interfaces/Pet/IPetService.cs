@@ -13,7 +13,6 @@ namespace shelter.Interfaces.Pet
         Task<List<PetsBelongsToShelterDto>> GetAllCats();
         Task<List<PetsBelongsToShelterDto>> GetAllRodents();
         Task<List<PetsBelongsToShelterDto>> GetAllOtherPets();
-
         Task<PetByIdDto> GetPetById(int id);
         Task<bool> AddLikedPetList(LikedPetListModel likedPetListModel);
     }

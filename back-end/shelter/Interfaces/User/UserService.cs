@@ -297,5 +297,25 @@ namespace shelter.Interfaces.User
             
             return true;    
         }
+
+        public async Task<List<string>> GetAllUsersWhoLikedPet(int petId)
+        {
+            try
+            {
+                var userEmails = await _shelterPetFinderDbContext.PetLike
+                .Where(p => p.PetId == petId)
+                .Select(m => m.userEmail)
+                .Distinct()
+                .ToListAsync();
+
+                return userEmails;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+            
+        }
     }
 }

@@ -120,7 +120,7 @@ namespace shelter.Controllers.PetController
             }
         }
 
-        [HttpGet("AllRodents", Name = "GetAllRodents")]
+        [HttpGet("AllDogs", Name = "GetAllDogs")]
         public async Task<IActionResult> GetAllDogs()
         {
             try
@@ -135,7 +135,7 @@ namespace shelter.Controllers.PetController
             }
         }
 
-        [HttpGet("AllRodents", Name = "GetAllRodents")]
+        [HttpGet("AllCats", Name = "GetAllCats")]
         public async Task<IActionResult> GetAllCats()
         {
             try
@@ -150,7 +150,7 @@ namespace shelter.Controllers.PetController
             }
         }
 
-        [HttpGet("AllRodents", Name = "GetAllRodents")]
+        [HttpGet("AllOthers", Name = "GetAllOthersPets")]
         public async Task<IActionResult> GetAllOthersPets()
         {
             try
