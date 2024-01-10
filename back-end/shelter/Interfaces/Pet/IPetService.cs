@@ -10,6 +10,6 @@ namespace shelter.Interfaces.Pet
         Task <bool> DeletePet(int id);
         Task<List<PetsBelongsToShelterDto>> GetAllPets();
         Task<PetByIdDto> GetPetById(int id);
-        Task<bool> AddLikedPetList(LikedPetListModel likedPetListModel); 
+        Task<bool> AddLikedPetList(LikedPetListModel likedPetListModel);
     }
 }

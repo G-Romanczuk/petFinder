@@ -31,20 +31,32 @@ namespace shelter.Interfaces.Pet
             try
             {
                 var userEmail = likedPetListModel.userEmail;
+                var existingEmail = await _shelterPetFinderDbContext.PetLike.FirstOrDefaultAsync(e => e.userEmail == userEmail);
+
                 var listOfLikedPets = likedPetListModel.likedPetIds.ToList();
+
+                if (existingEmail != null)
+                {
+                    var existingLikedPets = _shelterPetFinderDbContext.PetLike
+                        .Where(u=>u.userEmail == userEmail)
+                        .ToList();
+                    _shelterPetFinderDbContext.PetLike.RemoveRange(existingLikedPets);
+                    await _shelterPetFinderDbContext.SaveChangesAsync();
+                }
+
 
                 foreach (var item in listOfLikedPets)
                 {
-                    var PetLikeModel = new PetLikeModel
+                    var petLikeModel = new PetLikeModel
                     {
                         userEmail = userEmail,
                         PetId = item
                     };
 
-                    _shelterPetFinderDbContext.PetLike.Add(PetLikeModel);
+                    _shelterPetFinderDbContext.PetLike.Add(petLikeModel);
                     await _shelterPetFinderDbContext.SaveChangesAsync();
-
                 }
+
                 return true;
             }
             catch (Exception)
