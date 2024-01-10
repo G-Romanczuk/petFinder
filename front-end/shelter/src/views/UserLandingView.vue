@@ -136,8 +136,7 @@
                           <v-icon color="rgb(143, 83, 122)" icon="mdi-translate"> </v-icon>
                           Zmień Język</v-btn>
                         <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
-                        <v-btn elevation="8" class="text font-big"> <v-icon color="rgb(143, 83, 122)"
-                            icon="mdi-delete-empty"></v-icon>Usuń konto</v-btn>
+                       <DeleteUserPopup />
 
                       </v-row>
 
@@ -212,6 +211,7 @@ import { nextTick, ref } from "vue";
 import TinderComponent from "@/components/TinderComponent.vue";
 import PetPopup from "@/components/PetPopup.vue";
 import ResetPasswordReq from "@/components/ResetPasswordReq.vue";
+import DeleteUserPopup from "@/components/DeleteUserPopup.vue";
 const userStore = useUserStore();
 const animalsStore = useAnimalsStore();
  animalsStore.getLikedPets(userStore.userData.email)
