@@ -118,13 +118,13 @@ namespace shelter.Interfaces.Pet
         {
             try
             {
-                var allRodents = await _shelterPetFinderDbContext.Pets
+                var allCats = await _shelterPetFinderDbContext.Pets
                     .Include(p => p.Images)
                     .Include(s => s.ShelterModel)
                     .Where(s => s.Type == "Kot")
                     .ToListAsync();
 
-                return _mapper.Map<List<PetsBelongsToShelterDto>>(allRodents);
+                return _mapper.Map<List<PetsBelongsToShelterDto>>(allCats);
             }
             catch (Exception)
             {
@@ -136,13 +136,13 @@ namespace shelter.Interfaces.Pet
         {
             try
             {
-                var allRodents = await _shelterPetFinderDbContext.Pets
+                var allDogs = await _shelterPetFinderDbContext.Pets
                     .Include(p => p.Images)
                     .Include(s => s.ShelterModel)
                     .Where(s => s.Type == "Pies")
                     .ToListAsync();
 
-                return _mapper.Map<List<PetsBelongsToShelterDto>>(allRodents);
+                return  _mapper.Map<List<PetsBelongsToShelterDto>>(allDogs);
             }
             catch (Exception)
             {
@@ -154,13 +154,13 @@ namespace shelter.Interfaces.Pet
         {
             try
             {
-                var allRodents = await _shelterPetFinderDbContext.Pets
+                var allOthers = await _shelterPetFinderDbContext.Pets
                     .Include(p => p.Images)
                     .Include(s => s.ShelterModel)
                     .Where(s => s.Type == "Inne")
                     .ToListAsync();
 
-                return _mapper.Map<List<PetsBelongsToShelterDto>>(allRodents);
+                return _mapper.Map<List<PetsBelongsToShelterDto>>(allOthers);
             }
             catch (Exception)
             {
@@ -175,7 +175,6 @@ namespace shelter.Interfaces.Pet
                 var allPets = await _shelterPetFinderDbContext.Pets
                     .Include(p => p.Images)
                     .Include(s=>s.ShelterModel)
-                    .Where(s=>s.ShelterModel.Id == s.ShelterModelId)
                     .ToListAsync();
 
                 var petsToGet = _mapper.Map<List<PetsBelongsToShelterDto>>(allPets);
