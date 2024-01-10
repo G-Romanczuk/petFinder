@@ -88,8 +88,8 @@
 
 
                                             <div style="height: 10px;"></div>
-                                            <v-card class="mx-auto dontscale scrollbar" width="95%" max-height="400px" style="overflow-y: scroll;  border: 1px solid rgb(143, 83, 122);" >
-
+                                            <v-card class="mx-auto dontscale scrollbar" width="95%" style="overflow-y: scroll;  border: 1px solid rgb(143, 83, 122);" id="element-to-convert" >
+<center>
 
                                                 <v-card-title class="font">
 
@@ -104,7 +104,7 @@
 
                                                     Miasto: {{ user.town }} <br />
 
-                                                    Ulica z numerem: {{ user.address }} <br /> <br>
+                                                    Ulica z numerem: {{ user.adress }} <br /> <br>
 
                                                     <div style="width: 90%; margin: auto;  height: 2px; background-color: rgb(175, 126, 158);"></div>
 
@@ -112,7 +112,7 @@
 
                                                     Główne źródło utrzymania: <br/> {{ user.incomeSource }} <br />
 
-                                                    Tryb życia: <br/> {{ user.lifeStyle }} <br />
+                                                    Tryb życia: <br/> {{ user.lifestyle }} <br />
 
                                                     Zamiszkały/a: <br/> {{ user.housingType }} <br />
 
@@ -150,9 +150,10 @@
                                                     Kilka słow: <br/> {{ user.text }} <br>
                                                 </div>
                                                 </v-card-subtitle>
+                                            </center>
                                             </v-card>
 
-
+<v-btn @click="exportToPdf()">Click</v-btn>
                                      
                                     
                                 </div>
@@ -182,6 +183,7 @@ import { useUserStore } from '@/store/user';
 import DeletePetPopup from './DeletePetPopup.vue';
 import UpdatePetForm from './UpdatePetForm.vue';
 import UserFormPDF from './UserFormPDF.vue';
+import html2pdf from 'html2pdf.js'
 const props = defineProps({
     pet: Object
 })
@@ -192,7 +194,17 @@ const userStore = useUserStore();
 var dialog = ref(false)
 
 
+function exportToPdf(){
+html2pdf(document.getElementById('element-to-convert'), {
+    margin:       1,
+  filename:     'myfile.pdf',
+  html2canvas:  { scale: 2 },
+  jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+});
 
+
+
+}
 </script>
 
 <style lang="css">
