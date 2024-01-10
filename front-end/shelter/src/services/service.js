@@ -142,7 +142,7 @@ export default {
     // {
     //     jwtToken - string
     //   }
-    return await axios.get(baseURL + "/Shelter/GetOther", { params: { shelterEmail: data } }  ).catch((error) => { 
+    return await axios.get(baseURL + "/Shelter/GetOthers", { params: { shelterEmail: data } }  ).catch((error) => { 
       
       const notifStore = useNotificationsStore();
       const notification = {
