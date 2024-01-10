@@ -105,6 +105,65 @@ namespace shelter.Controllers.PetController
             return BadRequest();
         }
 
+        [HttpGet("AllRodents",Name = "GetAllRodents")]
+        public async Task<IActionResult> GetAllRodents()
+        {
+            try
+            {
+                var allRodents = _petService.GetAllRodents();
+                return Ok(allRodents);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("AllDogs", Name = "GetAllDogs")]
+        public async Task<IActionResult> GetAllDogs()
+        {
+            try
+            {
+                var allRodents = _petService.GetAllDogs();
+                return Ok(allRodents);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("AllCats", Name = "GetAllCats")]
+        public async Task<IActionResult> GetAllCats()
+        {
+            try
+            {
+                var allRodents = _petService.GetAllCats();
+                return Ok(allRodents);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("AllOthersPets", Name = "GetAllOthersPets")]
+        public async Task<IActionResult> GetAllOthersPets()
+        {
+            try
+            {
+                var allRodents = _petService.GetAllOtherPets();
+                return Ok(allRodents);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
 
     }
 }
