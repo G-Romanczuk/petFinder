@@ -19,6 +19,7 @@ export const useAnimalsStore = defineStore("pet", {
       this.allPets = res.data
       console.log(this.allPets)
       await this.getLikedPets(userStore.userData.email)
+      await this.fillLikedPets();
       await this.deleteLikedPets();
 
       return res
@@ -58,7 +59,7 @@ export const useAnimalsStore = defineStore("pet", {
       const res = await service.getLikedPets(data)
       
       this.likedPetIds = res.data
-      await this.fillLikedPets();
+      
       return res
 
     },
@@ -107,6 +108,7 @@ export const useAnimalsStore = defineStore("pet", {
             }
           }
         }
+        return
       }
 
 
