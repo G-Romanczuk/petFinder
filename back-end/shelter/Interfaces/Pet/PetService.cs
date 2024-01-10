@@ -114,6 +114,60 @@ namespace shelter.Interfaces.Pet
             
         }
 
+        public async Task<List<PetsBelongsToShelterDto>> GetAllCats()
+        {
+            try
+            {
+                var allRodents = await _shelterPetFinderDbContext.Pets
+                    .Include(p => p.Images)
+                    .Include(s => s.ShelterModel)
+                    .Where(s => s.Type == "Kot")
+                    .ToListAsync();
+
+                return _mapper.Map<List<PetsBelongsToShelterDto>>(allRodents);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public async Task<List<PetsBelongsToShelterDto>> GetAllDogs()
+        {
+            try
+            {
+                var allRodents = await _shelterPetFinderDbContext.Pets
+                    .Include(p => p.Images)
+                    .Include(s => s.ShelterModel)
+                    .Where(s => s.Type == "Pies")
+                    .ToListAsync();
+
+                return _mapper.Map<List<PetsBelongsToShelterDto>>(allRodents);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public async Task<List<PetsBelongsToShelterDto>> GetAllOtherPets()
+        {
+            try
+            {
+                var allRodents = await _shelterPetFinderDbContext.Pets
+                    .Include(p => p.Images)
+                    .Include(s => s.ShelterModel)
+                    .Where(s => s.Type == "Inne")
+                    .ToListAsync();
+
+                return _mapper.Map<List<PetsBelongsToShelterDto>>(allRodents);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public async Task<List<PetsBelongsToShelterDto>> GetAllPets()
         {
             try
@@ -134,6 +188,24 @@ namespace shelter.Interfaces.Pet
                 return null;
             }
             
+        }
+
+        public async Task<List<PetsBelongsToShelterDto>> GetAllRodents()
+        {
+            try
+            {
+                var allRodents = await _shelterPetFinderDbContext.Pets
+                    .Include(p => p.Images)
+                    .Include (s=>s.ShelterModel)
+                    .Where(s=>s.Type=="Gryzoń")
+                    .ToListAsync();
+
+                return _mapper.Map<List<PetsBelongsToShelterDto>>(allRodents);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public async Task<PetByIdDto> GetPetById(int id)
