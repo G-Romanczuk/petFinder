@@ -45,7 +45,7 @@
                     <div style="height: 71vh;">
 
                       <v-row style="width: fit-content; margin: 0 auto; padding-bottom: 10px; ">
-                        <v-btn elevation="8" class="text font-big" @click="loadFinder()">
+                        <v-btn elevation="8" class="text font-big" @click="loadFinder(), animalsStore.deleteLikedPets()">
                           <v-icon color="rgb(143, 83, 122)" icon="mdi-dog"> </v-icon>
                           Znajdź przyjaciela</v-btn>
                         <v-divider vertical :thickness="10" class="border-opacity-0 "></v-divider>
@@ -132,7 +132,7 @@
                         <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
                         <ResetPasswordReq />
                         <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
-                        <v-btn elevation="8" class="text font-big">
+                        <v-btn elevation="8" class="text font-big" @click="console.log(animalsStore.likedPets)">
                           <v-icon color="rgb(143, 83, 122)" icon="mdi-translate"> </v-icon>
                           Zmień Język</v-btn>
                         <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>

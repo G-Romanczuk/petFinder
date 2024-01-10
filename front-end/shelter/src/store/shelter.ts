@@ -40,7 +40,7 @@ export const useShelterStore = defineStore("shelter", {
       
       },
       passwordToken: '',
-
+      
       
     };
   },
@@ -132,6 +132,9 @@ export const useShelterStore = defineStore("shelter", {
     async deletePet(id) {
       const res= await service.deletePet(id)
 
+      if(res.status == 200){
+        this.getShelterPets(this.shelterData.email)
+      }
 
 
       return res

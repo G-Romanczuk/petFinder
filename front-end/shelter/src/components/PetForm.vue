@@ -55,7 +55,7 @@
 
 
                         <p class="p">Typ zwierzęcia</p>
-                        <v-select v-model="type" label="typ" :items="['Pies', 'Kot', 'Gryzoń']"></v-select>
+                        <v-select v-model="type" label="typ" :items="['Pies', 'Kot', 'Gryzoń', 'Inne']"></v-select>
 
                         <p class="p">Płeć</p>
                         <v-select v-model="gender" label="płeć" :items="['Żeńska', 'Męska']"></v-select>

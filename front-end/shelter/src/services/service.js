@@ -142,7 +142,7 @@ export default {
     // {
     //     jwtToken - string
     //   }
-    return await axios.get(baseURL + "/Shelter/GetOther", { params: { shelterEmail: data } }  ).catch((error) => { 
+    return await axios.get(baseURL + "/Shelter/GetOthers", { params: { shelterEmail: data } }  ).catch((error) => { 
       
       const notifStore = useNotificationsStore();
       const notification = {
@@ -291,7 +291,7 @@ export default {
   });
   },
   async resetUserPasswordRequest(email) {
-    return await axios.post(baseURL + "/User/ResetUserPasswordRequest", email).catch((error) => { 
+    return await axios.post(baseURL + "/User/ResetPasswordRequest", email).catch((error) => { 
       
       const notifStore = useNotificationsStore();
       const notification = {
@@ -302,7 +302,7 @@ export default {
   });
   },
   async resetUserPassword(data) {
-    return await axios.post(baseURL + "/User/ResetUserPassword", data).catch((error) => { 
+    return await axios.post(baseURL + "/User/ResetPassword", data).catch((error) => { 
       
       const notifStore = useNotificationsStore();
       const notification = {
@@ -347,7 +347,7 @@ export default {
   },
   async deletePet(id) {
 console.log(id)
-    return await axios.delete(baseURL + "/Pet/Delete", id).catch((error) => { 
+    return await axios.delete(baseURL + "/Pet/Delete",{ params: { id: id } }).catch((error) => { 
       
       const notifStore = useNotificationsStore();
       const notification = {

@@ -112,7 +112,7 @@ export const useAnimalsStore = defineStore("pet", {
      for (let i = 0; i < this.likedPets.length; i++) {
 
         if(this.likedPets[i].id == id){
-          this.likedPets.splice(i)
+          this.likedPets.splice(i, i)
           
         }
 

@@ -49,7 +49,7 @@
                           Gryzonie</v-btn>
                         
                         <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
-                        <v-btn elevation="8" class="text font-big">
+                        <v-btn elevation="8" class="text font-big" @click="shelterStore.getShelterOther(shelterStore.shelterData.email)" >
                           <v-icon color="rgb(143, 83, 122)" icon="mdi-heart"> </v-icon>
                           Inne</v-btn>
                         <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
