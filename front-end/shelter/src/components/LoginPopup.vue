@@ -166,9 +166,8 @@ async function userLogin() {
     }
 
     notifStore.add(notification)
-    console.log(emailUser.value)
     await userStore.getUserData(emailUser.value)
-    await userStore.getLikedPets(emailUser.value)
+    await animalsStore.getLikedPets(emailUser.value)
   
 
 

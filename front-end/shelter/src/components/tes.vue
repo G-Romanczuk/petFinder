@@ -25,7 +25,7 @@ import * as Hammer from 'hammerjs'
 import { useAnimalsStore } from "@/store/animals";
 import TinderPetsComponent from "./TinderPetsComponent.vue";
 const animalsStore = useAnimalsStore();
-animalsStore.getPets();
+animalsStore.getAllPets();
 onMounted(() => {
   'use strict';
 

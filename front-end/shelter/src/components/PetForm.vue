@@ -183,7 +183,6 @@ const onFileChange =  (e)  => {
     files = e.target.files;
     forBase64(files);
 
-    console.log(e.target.files)
     for (var i = 0; i < e.target.files.length; i++) {
         
         urls[i] = URL.createObjectURL(e.target.files[i])
@@ -214,9 +213,6 @@ async function forBase64(files){
 
 
     }
-    //picture.value = true
-   console.log(images)
-    
 }
 //   return new Promise((resolve, reject) => {
 //     const reader = new FileReader();
@@ -257,7 +253,6 @@ async function Submit() {
         text: text.value,
     }
 
-    console.log(petForm)
     const res = await petStore.postPetForm(petForm)
 
     if (res.status == 200) {

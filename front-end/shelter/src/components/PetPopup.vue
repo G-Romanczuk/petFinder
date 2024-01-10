@@ -23,7 +23,7 @@
 
             <v-card class="scrollbar" width="55%" height="98vh" style="overflow-y: scroll; border-radius: 10px; margin: auto;">
                 <div style=" width: fit-content; margin: 0 auto; ">
-
+                    <v-btn v-if="userStore.loggedUserJWT != ''" style="float: left;" @click="animalsStore.unlikePet(props.pet.id)"><v-icon color="red" icon="mdi-heart"></v-icon></v-btn>
                     <v-btn style="float: right;" @click="dialog = false"><v-icon icon="mdi-window-close"></v-icon></v-btn>
                     <h1 class="title" style="text-align: center; color:  rgb(143, 83, 122); text-shadow:none;">
                         {{ props.pet.name }}, <div style="font-size: medium; display: inline"
@@ -177,6 +177,8 @@
 import { ref } from 'vue'
 import BigImagePopup from './BigImagePopup.vue';
 import { useShelterStore } from '@/store/shelter';
+import { useAnimalsStore } from '@/store/animals';
+import { useUserStore } from '@/store/user';
 import DeletePetPopup from './DeletePetPopup.vue';
 import UpdatePetForm from './UpdatePetForm.vue';
 const props = defineProps({
@@ -184,7 +186,8 @@ const props = defineProps({
 })
 
 const shelterStore = useShelterStore();
-
+const animalsStore = useAnimalsStore();
+const userStore = useUserStore();
 var dialog = ref(false)
 
 

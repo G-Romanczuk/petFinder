@@ -60,7 +60,7 @@
     })
 
     watch(store.notifications, (newValue, oldValue) => {
-      console.log(newValue)
+  
       snackbar.value = true
     })
 
@@ -69,7 +69,6 @@
         return id
       },
       set: (id) => {
-        console.log(id)
         store.remove(id)
       },
     })

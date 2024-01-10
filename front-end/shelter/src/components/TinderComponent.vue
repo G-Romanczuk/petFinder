@@ -101,12 +101,10 @@ import TinderPetsComponent from './TinderPetsComponent.vue';
 import * as Hammer from 'hammerjs'
 const userStore = useUserStore();
 const animalsStore = useAnimalsStore()
-animalsStore.getPets();
 var dialog = ref(false)
 var show = ref(true)
 
 var cardId = 0;
-var likedPets = []
 onMounted(() => {
 
     
@@ -129,8 +127,7 @@ onMounted(() => {
 
         tinderContainer.classList.add('loaded');
        } else {
-        
-        animalsStore.pets = animalsStore.unliked  
+     //  animalsStore.pets = animalsStore.unliked
 
        }
 
@@ -189,15 +186,12 @@ onMounted(() => {
 
                 if(event.deltaX < 0) {
                     //nie
-                    
-                    animalsStore.unliked.push(animalsStore.pets[cardId])
                     cardId++;
                     initCards();
                 } else {
                     //tak
 
-                    userStore.userData.likedPets.push(animalsStore.pets[cardId])
-                    animalsStore.unliked
+                    animalsStore.likedPets.push(animalsStore.pets[cardId])
                     cardId++;
                  //   console.log(likedPets)
                     initCards();
@@ -223,8 +217,11 @@ onMounted(() => {
             card.classList.add('removed');
 
             if (love) {
+              //  animalsStore.likedPets.push(animalsStore.pets[cardId])
+             //   cardId++;
                 card.style.transform = 'translate(' + moveOutWidth + 'px, -100px) rotate(-30deg)';
             } else {
+               // cardId++;
                 card.style.transform = 'translate(-' + moveOutWidth + 'px, -100px) rotate(30deg)';
             }
 

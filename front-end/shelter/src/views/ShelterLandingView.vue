@@ -18,7 +18,7 @@
             <v-card>
               <v-tabs v-model="tab" color="rgb(143, 83, 122)" class="text cards">
                 <v-tab value="one" class="cards font-bigger">Podopieczni</v-tab>
-                <v-tab value="two" class="cards font-bigger">Adopcje</v-tab>
+                <v-tab value="two" class="cards font-bigger">Potencjalne Adopcje</v-tab>
                 <v-tab value="three" class="cards font-bigger">Konto</v-tab>
               </v-tabs>
               <div style="height: 2px; width: 100%; background-color:rgb(143, 83, 122) ; margin-right: auto; ">

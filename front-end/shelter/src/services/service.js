@@ -52,7 +52,7 @@ export default {
   },
   async getLikedPets(data) {
 
-    return await axios.get(baseURL + "/User/LikedPets", { params: { email: data } }  ).catch((error) => { 
+    return await axios.get(baseURL + "/User/LikedPets", { params: { userEmail: data } }  ).catch((error) => { 
       
       const notifStore = useNotificationsStore();
       const notification = {
@@ -104,7 +104,7 @@ export default {
     notifStore.add(notification)
   });
   },
-  async getPets() {
+  async getAllPets() {
     return await axios.get(baseURL + "/Pet/GetAllPets"  ).catch((error) => { 
       
       const notifStore = useNotificationsStore();
