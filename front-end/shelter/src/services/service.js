@@ -90,11 +90,59 @@ export default {
   });
   },
   async getShelterPets(data) {
+    return await axios.get(baseURL + "/Shelter/GetPets", { params: { shelterEmail: data } }  ).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
+  async getShelterDogs(data) {
+    return await axios.get(baseURL + "/Shelter/GetDogs", { params: { shelterEmail: data } }  ).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
+  async getShelterCats(data) {
+    return await axios.get(baseURL + "/Shelter/GetCats", { params: { shelterEmail: data } }  ).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
+  async getShelterRodents(data) {
     //data
     // {
     //     jwtToken - string
     //   }
-    return await axios.get(baseURL + "/Shelter/GetPets", { params: { shelterEmail: data } }  ).catch((error) => { 
+    return await axios.get(baseURL + "/Shelter/GetRodents", { params: { shelterEmail: data } }  ).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
+  async getShelterOther(data) {
+    //data
+    // {
+    //     jwtToken - string
+    //   }
+    return await axios.get(baseURL + "/Shelter/GetOther", { params: { shelterEmail: data } }  ).catch((error) => { 
       
       const notifStore = useNotificationsStore();
       const notification = {

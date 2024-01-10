@@ -96,6 +96,34 @@ export const useShelterStore = defineStore("shelter", {
       
       return res
     },
+    async getShelterDogs(shelterEmail){
+      const res = await service.getShelterDogs(shelterEmail)
+
+      this.shelterData.pets = res.data
+      
+      return res
+    },
+    async getShelterCats(shelterEmail){
+      const res = await service.getShelterCats(shelterEmail)
+
+      this.shelterData.pets = res.data
+      
+      return res
+    },
+    async getShelterRodents(shelterEmail){
+      const res = await service.getShelterRodents(shelterEmail)
+
+      this.shelterData.pets = res.data
+      
+      return res
+    },
+    async getShelterOther(shelterEmail){
+      const res = await service.getShelterOther(shelterEmail)
+
+      this.shelterData.pets = res.data
+      
+      return res
+    },
     async deletePet(id) {
       const res= await service.deletePet(id)
 
