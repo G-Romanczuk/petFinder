@@ -347,7 +347,7 @@ export default {
   },
   async deletePet(id) {
 console.log(id)
-    return await axios.delete(baseURL + "/Pet/Delete", id).catch((error) => { 
+    return await axios.delete(baseURL + "/Pet/Delete",{ params: { id: id } }).catch((error) => { 
       
       const notifStore = useNotificationsStore();
       const notification = {
