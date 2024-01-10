@@ -16,5 +16,6 @@ namespace shelter.Interfaces.User
         Task<IdentityUser?> GetUserFromUserManager(string email);
         Task<UserForm> GetSignleUser (string email);
         Task<List<int>> GetLikedPetsByUser(string userEmail);
+        Task<bool> DeleteUser (string userEmail);
     }
 }

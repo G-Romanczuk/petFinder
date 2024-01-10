@@ -281,5 +281,21 @@ namespace shelter.Interfaces.User
             }
            
         }
+
+        public async Task<bool> DeleteUser(string userEmail)
+        {
+            var userToDelete = await _shelterPetFinderDbContext.UsersRegistered
+                .FirstOrDefaultAsync(u=>u.Email == userEmail);
+
+            if (userToDelete == null) 
+            {
+                return false;
+            }
+
+            _shelterPetFinderDbContext.UsersRegistered.Remove(userToDelete);
+            await _shelterPetFinderDbContext.SaveChangesAsync();
+            
+            return true;    
+        }
     }
 }

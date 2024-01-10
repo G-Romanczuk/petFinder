@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using shelter.Dtos.UserDtos;
 using shelter.Interfaces.User;
@@ -13,14 +14,17 @@ namespace shelter.Controllers.UserController
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly UserManager<IdentityUser> _userManager;
 
         public UserController
         (
             IMapper mapper,
-            IUserService userService
+            IUserService userService,
+            UserManager<IdentityUser> userManager
         )
         {
             _userService = userService;
+            _userManager = userManager;
         }
 
         [HttpPost("Register",Name ="RegisterUser")]
@@ -127,6 +131,28 @@ namespace shelter.Controllers.UserController
            return Ok(likedPets);
         }
 
+        [HttpDelete("Delete", Name = "Delete User")]
+        public async Task<IActionResult> DeleteUser([FromQuery] string userEmail)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+            
+            var userToDelete = await _userManager.FindByEmailAsync(userEmail);
+            if (userToDelete == null)
+            {
+                return NotFound();
+            }
+
+            var res = await _userManager.DeleteAsync(userToDelete);
+
+            if (await _userService.DeleteUser(userEmail) && res.Succeeded)
+            {
+                return Ok("Użytkownik został usunięty");
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
 
 
     }
