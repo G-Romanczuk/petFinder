@@ -163,6 +163,49 @@ export default {
     notifStore.add(notification)
   });
   },
+  async getDogs() {
+    return await axios.get(baseURL + "/Pet/AllDogs"  ).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
+  async getCats() {
+    return await axios.get(baseURL + "/Pet/AllCats"  ).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
+  async getRodents() {
+    return await axios.get(baseURL + "/Pet/AllRodents"  ).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },async getOther() {
+    return await axios.get(baseURL + "/Pet/AllOthersPets"  ).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
   async postRegister(data) {
     //data
     //  {

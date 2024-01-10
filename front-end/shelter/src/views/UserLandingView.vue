@@ -49,23 +49,24 @@
                           <v-icon color="rgb(143, 83, 122)" icon="mdi-dog"> </v-icon>
                           Znajdź przyjaciela</v-btn>
                         <v-divider vertical :thickness="10" class="border-opacity-0 "></v-divider>
-                        <v-btn elevation="8" class="text font-big">
+                        <v-btn elevation="8" class="text font-big" @click="animalsStore.getAllPets()" >
+                          <v-icon color="rgb(143, 83, 122)" icon="mdi-bird"> </v-icon>
+                          Wszystkie</v-btn>
+                        <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
+                        <v-btn elevation="8" class="text font-big" @click="animalsStore.getDogs()" >
                           <v-icon color="rgb(143, 83, 122)" icon="mdi-dog"> </v-icon>
                           Psy</v-btn>
                         <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
-                        <v-btn elevation="8" class="text font-big">
+                        <v-btn elevation="8" class="text font-big" @click="animalsStore.getCats()">
                           <v-icon color="rgb(143, 83, 122)" icon="mdi-cat"> </v-icon>
                           Koty</v-btn>
                         <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
-                        <v-btn elevation="8" class="text font-big">
+                        <v-btn elevation="8" class="text font-big" @click="animalsStore.getRodents()">
                           <v-icon color="rgb(143, 83, 122)" icon="mdi-rodent"> </v-icon>
                           Gryzonie</v-btn>
+                        
                         <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
-                        <v-btn elevation="8" class="text font-big">
-                          <v-icon color="rgb(143, 83, 122)" icon="mdi-bird"> </v-icon>
-                          Ptaki</v-btn>
-                        <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
-                        <v-btn elevation="8" class="text font-big">
+                        <v-btn elevation="8" class="text font-big" @click="animalsStore.getOther()" >
                           <v-icon color="rgb(143, 83, 122)" icon="mdi-heart"> </v-icon>
                           Inne</v-btn>
                         <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>

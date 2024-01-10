@@ -23,6 +23,36 @@ export const useAnimalsStore = defineStore("pet", {
 
       return res
     },
+    async getDogs(){
+      const res = await service.getDogs()
+      const userStore = useUserStore();
+      this.allPets = res.data
+      await this.getLikedPets(userStore.userData.email)
+      await this.deleteLikedPets();
+
+      return res
+    },
+    async getCats(){
+      const res = await service.getCats()
+      const userStore = useUserStore();
+      this.allPets = res.data
+      await this.getLikedPets(userStore.userData.email)
+      await this.deleteLikedPets();
+    },
+    async getRodents(){
+      const res = await service.getRodents()
+      const userStore = useUserStore();
+      this.allPets = res.data
+      await this.getLikedPets(userStore.userData.email)
+      await this.deleteLikedPets();
+    },
+    async getOther(){
+      const res = await service.getOther()
+      const userStore = useUserStore();
+      this.allPets = res.data
+      await this.getLikedPets(userStore.userData.email)
+      await this.deleteLikedPets();
+    },
     async getLikedPets(data) {
 
       const res = await service.getLikedPets(data)
