@@ -117,8 +117,7 @@
 
                       <ShelterForm />
                       <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
-                      <v-btn elevation="8" class="text font-big">
-                        <v-icon color="rgb(143, 83, 122)" icon="mdi-lock-reset"> </v-icon> Zmień hasło</v-btn>
+                      <ResetPasswordReq />
                       <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
                       <v-btn elevation="8" class="text font-big">
                         <v-icon color="rgb(143, 83, 122)" icon="mdi-translate"> </v-icon>
@@ -194,6 +193,7 @@ import ShelterInfo from "@/components/ShelterInfo.vue";
 import PetPopup from "@/components/PetPopup.vue";
 import { ref } from "vue";
 import { useShelterStore } from '@/store/shelter';
+import ResetPasswordReq from "@/components/ResetPasswordReq.vue";
 
 const shelterStore = useShelterStore();
 shelterStore.getShelterPets(shelterStore.shelterData.email)

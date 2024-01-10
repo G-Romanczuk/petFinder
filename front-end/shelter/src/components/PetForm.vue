@@ -111,7 +111,7 @@
                                 @click="dialog = false">Zrezygnuj</v-btn>
                             <v-divider vertical :thickness="300" class="border-opacity-0"></v-divider>
                             <v-btn color="rgb(175, 126, 158)" :disabled="!isValid" class="little-title"
-                                @click="Submit(petData)">Zapisz</v-btn>
+                                @click="Submit()">Zapisz</v-btn>
                         </div>
                         <v-divider :thickness="20" class="border-opacity-0"></v-divider>
                     </v-card-actions>
@@ -136,43 +136,24 @@ var urls = []
 var files = []
 var images = []
 
-var name = ref(petStore.pet.name)
-var type = ref(petStore.pet.type)
-var gender = ref(petStore.pet.gender)
-var castration = ref(petStore.pet.castration)
-var breed = ref(petStore.pet.breed)
-var size = ref(petStore.pet.size)
-var age = ref(petStore.pet.age)
-var vaccination = ref(petStore.pet.vaccination)
-var childFriendly = ref(petStore.pet.childFriendly)
-var basicTraining = ref(petStore.pet.basicTraining)
-var activity = ref(petStore.pet.activity)
-var otherDogs = ref(petStore.pet.otherDogs)
-var otherCats = ref(petStore.pet.otherCats)
-var cuddly = ref(petStore.pet.cuddly)
-var temper = ref(petStore.pet.temper)
-var text = ref(petStore.pet.text)
+var name = ref()
+var type = ref()
+var gender = ref()
+var castration = ref()
+var breed = ref()
+var size = ref()
+var age = ref()
+var vaccination = ref()
+var childFriendly = ref()
+var basicTraining = ref()
+var activity = ref()
+var otherDogs = ref()
+var otherCats = ref()
+var cuddly = ref()
+var temper = ref()
+var text = ref()
 var shelterEmail = ref(shelterStore.shelterData.email)
-var petData = {
-    shelter: shelterEmail,
-    name: name,
-    images: images,
-    type: type,
-    gender: gender,
-    castration: castration,
-    breed: breed,
-    size: size,
-    age: age,
-    vaccination: vaccination,
-    childFriendly: childFriendly,
-    basicTraining: basicTraining,
-    activity: activity,
-    otherDogs: otherDogs,
-    otherCats: otherCats,
-    cuddly: cuddly,
-    temper: temper,
-    text: text,
-}
+
 
 var dialog = ref(false)
 
@@ -214,18 +195,7 @@ async function forBase64(files){
 
     }
 }
-//   return new Promise((resolve, reject) => {
-//     const reader = new FileReader();
-//     reader.readAsDataURL(file);
-//     reader.onload = () => {
-//       let encoded = reader.result.toString().replace(/^data:(.*,)?/, '');
-//       if ((encoded.length % 4) > 0) {
-//         encoded += '='.repeat(4 - (encoded.length % 4));
-//       }
-//       resolve( console.log(encoded));
-//     };
-//     reader.onerror = error => reject(error);
-//   });
+
 
 
 

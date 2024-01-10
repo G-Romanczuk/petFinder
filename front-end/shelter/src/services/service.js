@@ -268,6 +268,52 @@ export default {
     notifStore.add(notification)
   });
   },
+  async resetShelterPasswordRequest(email) {
+    return await axios.post(baseURL + "/Shelter/ResetShelterPasswordRequest", email).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
+  async resetShelterPassword(data) {
+    return await axios.post(baseURL + "/Shelter/ResetShelterPassword", data).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
+  async resetUserPasswordRequest(email) {
+    return await axios.post(baseURL + "/User/ResetUserPasswordRequest", email).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
+  async resetUserPassword(data) {
+    return await axios.post(baseURL + "/User/ResetUserPassword", data).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
+
+
   async postPetForm(data) {
     return await axios.post(baseURL + "/Pet/Add", data, {
       headers: {

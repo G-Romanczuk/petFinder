@@ -46,18 +46,21 @@
 <script setup lang="ts">
 import { useUserStore } from '@/store/user';
 import { useShelterStore } from '@/store/shelter';
+import { useAnimalsStore } from '@/store/animals';
 import LoginPopup from './LoginPopup.vue';
 import { ref, watch } from 'vue';
 import { storeToRefs } from 'pinia'
 
 const userStore = useUserStore();
 const shelterStore = useShelterStore();
+const animalsStore = useAnimalsStore();
 const { loggedUserJWT } = storeToRefs(userStore)
 const { loggedShelterJWT } = storeToRefs(shelterStore)
 
 function logout() {
   userStore.$reset()
   shelterStore.$reset()
+  animalsStore.$reset()
 }
 
 

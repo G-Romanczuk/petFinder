@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import service from "@/services/service";
-
+import { usePetStore } from "./pet";
+import { email } from "@vuelidate/validators";
 export const useShelterStore = defineStore("shelter", {
   state: () => {
     return {
@@ -35,8 +36,10 @@ export const useShelterStore = defineStore("shelter", {
         animalsBeforeText: false,
         text: false,
       },
-      pets: []
-      }
+      pets: [],
+      
+      },
+      passwordToken: '',
 
       
     };
@@ -90,9 +93,11 @@ export const useShelterStore = defineStore("shelter", {
       return res
     },
     async getShelterPets(shelterEmail){
+      var petStore = usePetStore();
       const res = await service.getShelterPets(shelterEmail)
 
       this.shelterData.pets = res.data
+      petStore.pet = this.shelterData.pets[0]
       
       return res
     },
@@ -128,6 +133,22 @@ export const useShelterStore = defineStore("shelter", {
       const res= await service.deletePet(id)
 
 
+
+      return res
+    },
+    async resetShelterPasswordRequest(){
+
+      var email = {email : this.shelterData.email}
+
+      const res= await service.resetShelterPasswordRequest(email)
+
+      this.passwordToken = res.data
+console.log(this.passwordToken)
+      return res
+    },
+    async resetShelterPassword(data){
+
+      const res= await service.resetShelterPassword(data)
 
       return res
     }

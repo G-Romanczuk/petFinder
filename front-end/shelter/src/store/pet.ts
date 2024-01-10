@@ -4,7 +4,26 @@ import service from "@/services/service";
 export const usePetStore = defineStore("pet", {
   state: () => {
     return {
-      pet: { }
+      pet: {
+        shelterEmail: '',
+        name: '',
+        images: [],
+        type: '',
+        gender: '',
+        castration: '',
+        breed: '',
+        size: '',
+        age: '',
+        vaccination: '',
+        childFriendly: '',
+        basicTraining: '',
+        activity: '',
+        otherDogs: '',
+        otherCats: '',
+        cuddly: '',
+        temper: '',
+        text: '',
+    }
       
       
     }

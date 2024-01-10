@@ -35,7 +35,7 @@ export const useUserStore = defineStore("user", {
       animalsBeforeText: "",
       text: "",
       },
-      
+      passwordToken: '',
     };
   },
   actions: {
@@ -85,6 +85,21 @@ export const useUserStore = defineStore("user", {
      const res = await service.postUserForm(data)
      return res
     },
+    async resetUserPasswordRequest(){
+
+      var email = {email : this.userData.email}
+
+      const res= await service.resetUserPasswordRequest(email)
+
+      this.passwordToken = res.data
+      return res
+    },
+    async resetUserPassword(data){
+
+      const res= await service.resetUserPassword(data)
+
+      return res
+    }
   },
   getters: {
     getLoggedUserJWT: (state) => {return state.loggedUserJWT},

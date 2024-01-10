@@ -130,8 +130,7 @@
 
                         <UserForm />
                         <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
-                        <v-btn elevation="8" class="text font-big">
-                          <v-icon color="rgb(143, 83, 122)" icon="mdi-lock-reset"> </v-icon> Zmień hasło</v-btn>
+                        <ResetPasswordReq />
                         <v-divider vertical :thickness="10" class="border-opacity-0"></v-divider>
                         <v-btn elevation="8" class="text font-big">
                           <v-icon color="rgb(143, 83, 122)" icon="mdi-translate"> </v-icon>
@@ -212,6 +211,7 @@ import UserInfo from "@/components/UserInfo.vue";
 import { nextTick, ref } from "vue";
 import TinderComponent from "@/components/TinderComponent.vue";
 import PetPopup from "@/components/PetPopup.vue";
+import ResetPasswordReq from "@/components/ResetPasswordReq.vue";
 const userStore = useUserStore();
 const animalsStore = useAnimalsStore();
  animalsStore.getLikedPets(userStore.userData.email)
