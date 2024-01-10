@@ -291,7 +291,7 @@ export default {
   });
   },
   async resetUserPasswordRequest(email) {
-    return await axios.post(baseURL + "/User/ResetUserPasswordRequest", email).catch((error) => { 
+    return await axios.post(baseURL + "/User/ResetPasswordRequest", email).catch((error) => { 
       
       const notifStore = useNotificationsStore();
       const notification = {
@@ -302,7 +302,7 @@ export default {
   });
   },
   async resetUserPassword(data) {
-    return await axios.post(baseURL + "/User/ResetUserPassword", data).catch((error) => { 
+    return await axios.post(baseURL + "/User/ResetPassword", data).catch((error) => { 
       
       const notifStore = useNotificationsStore();
       const notification = {
