@@ -357,4 +357,16 @@ console.log(id)
     notifStore.add(notification)
   });
   },
+  async deleteUser(email) {
+    console.log(email)
+        return await axios.delete(baseURL + "/User/Delete",{ params: { userEmail: email } }).catch((error) => { 
+          
+          const notifStore = useNotificationsStore();
+          const notification = {
+          type: "error",
+          message: error.message,
+        }
+        notifStore.add(notification)
+      });
+      },
 };

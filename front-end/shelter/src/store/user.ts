@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import service from "@/services/service";
-
+import router from "@/router";
+import { useNotificationsStore } from "./notifications";
 
 export const useUserStore = defineStore("user", {
   state: () => {
@@ -99,7 +100,28 @@ export const useUserStore = defineStore("user", {
       const res= await service.resetUserPassword(data)
 
       return res
-    }
+    },
+    async deleteUser(email) {
+const notifStore = useNotificationsStore()
+
+      const res= await service.deleteUser(email)
+
+      if(res.status == 200){
+        router.push('/')
+
+        const notification = {
+          type: "Success",
+          message: "Deleted succesfully",
+        }
+    
+        notifStore.add(notification)
+
+
+      }
+
+
+      return res
+    },
   },
   getters: {
     getLoggedUserJWT: (state) => {return state.loggedUserJWT},
