@@ -415,9 +415,32 @@ namespace shelter.Interfaces.Shelter
             }
         }
 
-        public Task<List<PetsBelongsToShelterDto>> GetOthersBelongsToShelter(string shelterEmail)
+        public async Task<List<PetsBelongsToShelterDto>> GetOthersBelongsToShelter(string shelterEmail)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var shelterId = await _shelterPetFinderDbContext.Shelters
+                .Where(shEmail => shEmail.Email == shelterEmail)
+                .Select(shId => shId.Id)
+                .FirstOrDefaultAsync();
+
+                var allShelterPets = await _shelterPetFinderDbContext.Pets
+                    .Include(p => p.Images)
+                    .Include(s => s.ShelterModel)
+                    .Where(shId => shId.ShelterModelId == shelterId && shId.Type == "Inne")
+                    .ToListAsync();
+
+
+
+                var petsToGet = _mapper.Map<List<PetsBelongsToShelterDto>>(allShelterPets);
+
+                return petsToGet;
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
         }
     }
 }

@@ -214,5 +214,29 @@ namespace shelter.Controllers.ShelterController
                 return BadRequest();
             }
         }
+
+        [HttpGet("GetOthers", Name = "GetAllOthersBelongsToShelter")]
+        public async Task<IActionResult> GetAllOthersBelongsToShelter([FromQuery] string shelterEmail)
+        {
+            try
+            {
+                var pets = await _shelterService.GetOthersBelongsToShelter(shelterEmail);
+
+
+                if (pets.Count > 0 || pets != null)
+                {
+                    return Ok(pets);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception)
+            {
+
+                return BadRequest();
+            }
+        }
     }
 }
