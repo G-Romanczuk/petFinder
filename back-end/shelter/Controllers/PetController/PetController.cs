@@ -108,10 +108,10 @@ namespace shelter.Controllers.PetController
         [HttpGet("AllRodents",Name = "GetAllRodents")]
         public async Task<IActionResult> GetAllRodents()
         {
+            if (!ModelState.IsValid) return BadRequest();
             try
             {
-                var allRodents = _petService.GetAllRodents();
-                return Ok(allRodents);
+                return Ok(await _petService.GetAllRodents());
             }
             catch (Exception ex)
             {
@@ -123,10 +123,10 @@ namespace shelter.Controllers.PetController
         [HttpGet("AllDogs", Name = "GetAllDogs")]
         public async Task<IActionResult> GetAllDogs()
         {
+            if (!ModelState.IsValid) return BadRequest();
             try
             {
-                var allRodents = _petService.GetAllDogs();
-                return Ok(allRodents);
+                return Ok(await _petService.GetAllDogs());
             }
             catch (Exception ex)
             {
@@ -138,10 +138,10 @@ namespace shelter.Controllers.PetController
         [HttpGet("AllCats", Name = "GetAllCats")]
         public async Task<IActionResult> GetAllCats()
         {
+            if (!ModelState.IsValid) return BadRequest();
             try
             {
-                var allRodents = _petService.GetAllCats();
-                return Ok(allRodents);
+                return Ok(await _petService.GetAllCats());
             }
             catch (Exception ex)
             {
@@ -153,10 +153,10 @@ namespace shelter.Controllers.PetController
         [HttpGet("AllOthersPets", Name = "GetAllOthersPets")]
         public async Task<IActionResult> GetAllOthersPets()
         {
+            if (!ModelState.IsValid) return BadRequest();
             try
             {
-                var allRodents = _petService.GetAllOtherPets();
-                return Ok(allRodents);
+                return Ok(await _petService.GetAllOtherPets());
             }
             catch (Exception ex)
             {

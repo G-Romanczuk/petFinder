@@ -28,7 +28,7 @@ builder.Services.AddDbContext<ShelterPetFinderDbContext>(options =>
 {
     var connectionString = configuration.GetConnectionString("ShelterPetFinderDbContext");
     options.UseSqlServer(connectionString);
-});
+}, ServiceLifetime.Scoped);
 
 builder.Services.AddSwaggerGen(c =>
 {
