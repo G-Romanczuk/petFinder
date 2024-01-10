@@ -50,6 +50,17 @@ export default {
     notifStore.add(notification)
   });
   },
+  async whoLikedPet(id) {
+    return await axios.get(baseURL + "/User/UsersWhoLikedPets", { params: { id: id } }  ).catch((error) => { 
+      
+      const notifStore = useNotificationsStore();
+      const notification = {
+      type: "error",
+      message: error.message,
+    }
+    notifStore.add(notification)
+  });
+  },
   async getLikedPets(data) {
 
     return await axios.get(baseURL + "/User/LikedPets", { params: { userEmail: data } }  ).catch((error) => { 

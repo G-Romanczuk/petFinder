@@ -105,11 +105,48 @@
                   </v-window-item>
 
                   <v-window-item value="two">
-                    <v-row style="width: fit-content; margin: 0 auto; padding-bottom: 10px; height: 78vh;">
+                    <div style=" height: 78vh;">
+                      <div
+                        style="width: 100%; display: grid; grid-template-columns:repeat(4, 25% [col-start]); height: 72vh; overflow-y: scroll; overflow-x: hidden; margin: auto; "
+                        class="scrollbar">
+                      <div v-for="(pet, i) in shelterStore.shelterData.likedpets"
+                          style="width: 260px; height: 370px; padding: 10px;" class="hover_opacity" >
+                          <LikedPetPopup :pet="pet" >
+                            <template #activator>
 
 
+                              <div style="height: 10px;"></div>
+                              <v-card class="mx-auto " width="260" height="350">
+                                <v-img cover v-bind:src="pet.images[0]"
+                                  style="margin: auto; width: 90%; border-radius: 10px; height: 80%;" >
+                                 
+                                <div style="width: 30px; height: 30px; float: left;">
+                                  <v-img cover src="@/assets/heart.png" style="text-align: center;"> {{ pet.likedBy.length }}</v-img>
+                                  
+                               
+                                </div>
 
-                    </v-row>
+
+                                
+                                </v-img>
+
+                                <v-card-title class="font">
+
+                                  {{ pet.name }} , {{ pet.age }}
+                                </v-card-title>
+
+                                <v-card-subtitle class="font">
+                                 Wykastrowany/a: {{ pet.castration}}
+                                </v-card-subtitle>
+
+
+                              </v-card>
+
+
+                            </template>
+                          </LikedPetPopup>
+</div> </div>
+                    </div>
                   </v-window-item>
 
                   <v-window-item value="three">
@@ -194,6 +231,7 @@ import PetPopup from "@/components/PetPopup.vue";
 import { ref } from "vue";
 import { useShelterStore } from '@/store/shelter';
 import ResetPasswordReq from "@/components/ResetPasswordReq.vue";
+import LikedPetPopup from "@/components/LikedPetPopup.vue"
 
 const shelterStore = useShelterStore();
 shelterStore.getShelterPets(shelterStore.shelterData.email)
@@ -372,6 +410,10 @@ window.addEventListener("scroll", reveal);
 .scrollbar::-webkit-scrollbar-track-piece:start {
   background: transparent;
   margin-top: 3vh;
+}
+
+.hover_opacity :hover {
+  opacity: 0.9;
 }
 </style>
   
