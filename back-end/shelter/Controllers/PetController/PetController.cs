@@ -60,7 +60,7 @@ namespace shelter.Controllers.PetController
         }
 
         [HttpDelete("Delete", Name ="DeletePet")]
-        public async Task<IActionResult> DeletePet([FromBody] int id)
+        public async Task<IActionResult> DeletePet([FromQuery] int id)
         {
             if (!ModelState.IsValid)
             {
