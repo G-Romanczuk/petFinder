@@ -26,6 +26,7 @@
         </div>
         <v-form
           class="px-4"
+          v-model="isValid"
         >
           <v-card-text style="width: 70%; margin: 0 auto">
             <p class="p">Imie</p>
@@ -53,26 +54,26 @@
             ></v-text-field>
 
             <p class="p">Kod pocztowy</p>
-            <v-text-field required v-model="postCode" label="kod pocztowy" :rules="[v =>/^[0-9]{2}-[0-9]{3}/.test(v) || 'Nieprawidłowy kod pocztowy', v => v.length <= 6 || 'Nieprawidłowy kod pocztowy']" />
+            <v-text-field required v-model="postCode" label="kod pocztowy" :rules="[v => !!v || 'Wymagane', v =>/^[0-9]{2}-[0-9]{3}/.test(v) || 'Nieprawidłowy kod pocztowy', v => v.length <= 6 || 'Nieprawidłowy kod pocztowy']" />
 
             <p class="p">Miasto</p>
-            <v-text-field required v-model="town" label="miasto" />
+            <v-text-field  :rules="requiredRule" v-model="town" label="miasto" />
 
             <p class="p">Ulica z numerem</p>
-            <v-text-field required v-model="adress" label="adres" />
+            <v-text-field :rules="requiredRule" v-model="adress" label="adres" />
 
             <p class="p">
               1. Jakie jest Pana(i) główne źródło utrzymania? (np. umowa o
               pracę, prace dorywcze/zlecone, świadczenia socjalne)
             </p>
-            <v-text-field required v-model="incomeSource" label="Źródło utrzymania" />
+            <v-text-field :rules="requiredRule" v-model="incomeSource" label="Źródło utrzymania" />
 
             <p class="p">
               2. Jaki tryb życia Pan(i) prowadzi? (Proszę zaznaczyć prawidłową
               odpowiedź)
             </p>
             <v-select
-              required v-model="lifestyle"
+              :rules="requiredRule" v-model="lifestyle"
               label="tryb życia"
               :items="['Spokojny', 'Przeciętny', 'Aktywny']"
             ></v-select>
@@ -81,7 +82,7 @@
               3. Gdzie Pan(i) mieszka? (Proszę zaznaczyć prawidłową odpowiedź)
             </p>
             <v-select
-              required v-model="housingType"
+              :rules="requiredRule" v-model="housingType"
               label="typ zamieszkania"
               :items="[
                 'W domu z ogrodem/podwórkiem',
@@ -95,7 +96,7 @@
               prawidłową odpowiedź)
             </p>
             <v-select
-              required v-model="houseOwner"
+              :rules="requiredRule" v-model="houseOwner"
               label="właściciel"
               :items="[
                 'Ja',
@@ -109,7 +110,7 @@
               domu?
             </p>
             <v-slider
-              required v-model="hoursAlone"
+              :rules="requiredRule" v-model="hoursAlone"
               :ticks="[1, 2, 3, 4, 5, 6, 7, 8]"
               :max="9"
               step="1"
@@ -126,7 +127,7 @@
               Na którym piętrze Pan(i) mieszka?
             </p>
             <v-text-field
-              required v-model="floor"
+              :rules="requiredRule" v-model="floor"
               hide-details
               single-line
               type="number"
@@ -134,7 +135,7 @@
 
             <p class="p" style="text-align: left">Czy w budynku jest winda?</p>
             <v-select
-              required v-model="elevator"
+              :rules="requiredRule" v-model="elevator"
               label="winda"
               :items="['Tak', 'Nie']"
             ></v-select>
@@ -143,7 +144,7 @@
               Jak często pies będzie wychodził na spacer? (na dzień)
             </p>
             <v-slider
-              required v-model="walksNumber"
+              :rules="requiredRule" v-model="walksNumber"
               step="1"
               thumb-label
               max="10"
@@ -153,7 +154,7 @@
               Ile czasu będzie trwał najdłuższy spacer z psem? (w minutach)
             </p>
             <v-slider
-              required v-model="walksTime"
+              :rules="requiredRule" v-model="walksTime"
               step="10"
               thumb-label
               max="200"
@@ -165,7 +166,7 @@
             </p>
             <p class="p" style="text-align: left">Czy dom jest ogrodzony?</p>
             <v-select
-              required v-model="fence"
+              :rules="requiredRule" v-model="fence"
               label="ogrodzenie"
               :items="['Tak', 'Nie']"
             ></v-select>
@@ -174,7 +175,7 @@
               Jeśli dom jest ogrodzony to jaką wysokość ma ogrodzenie? (cm)
             </p>
             <v-text-field
-              required v-model="fenceHeight"
+              :rules="requiredRule" v-model="fenceHeight"
               label="cm"
               hide-details
               single-line
@@ -185,7 +186,7 @@
               Jaka jest powierzchnia podwórka/ogrodu? (m<sup>2</sup>)
             </p>
             <v-text-field
-              required v-model="propertySize"
+              :rules="requiredRule" v-model="propertySize"
               label="m2"
               hide-details
               single-line
@@ -198,7 +199,7 @@
               luzem, na posesji w budzie, na posesji w kojcu, na posesji na
               uwięzi).
             </p>
-            <v-text-field required v-model="petPlace" label="miejsca pobytu psa" />
+            <v-text-field :rules="requiredRule" v-model="petPlace" label="miejsca pobytu psa" />
 
             <p class="p" style="text-align: left">
               Gdzie będzie przebywał pies w czasie Pana(i) nieobecności oraz
@@ -206,7 +207,7 @@
               szczegółowo opisać, czy pies będzie na podwórku luzem, w kojcu, w
               domu – w jakimś konkretnym pomieszczeniu itp.,itd.)
             </p>
-            <v-text-field required v-model="petPlaceAlone" label="miejsce pobytu psa" />
+            <v-text-field :rules="requiredRule" v-model="petPlaceAlone" label="miejsce pobytu psa" />
 
             <p class="p">
               8. Czy podczas dłuższej nieobecności (wakacje, sanatorium, pobyt w
@@ -214,7 +215,7 @@
               opiekę nad zwierzęciem ?
             </p>
             <v-select
-              required v-model="careAlone"
+              :rules="requiredRule" v-model="careAlone"
               label="opieka"
               :items="['Tak', 'Nie']"
             ></v-select>
@@ -224,7 +225,7 @@
               odpowiedź)
             </p>
             <v-select
-              required v-model="houseMates"
+              :rules="requiredRule" v-model="houseMates"
               label="współlokatorzy"
               :items="[
                 'Mieszkam sam(a)',
@@ -238,14 +239,14 @@
               (Jeśli tak, proszę napisać jakie zwierzęta, ile ich jest i w jakim
               są wieku)
             </p>
-            <v-text-field required v-model="animals" label="inne zwierzęta" />
+            <v-text-field :rules="requiredRule" v-model="animals" label="inne zwierzęta" />
 
             <p class="p">
               11. Jeśli kiedykolwiek w przeszłości posiadał(a) Pan(i) psa (psy)?
               Jeśli tak, proszę napisać kiedy?
             </p>
             <v-text-field
-              required v-model="animalsBefore"
+              :rules="requiredRule" v-model="animalsBefore"
               label="poprzednie zwierzęta"
             />
 
@@ -254,12 +255,12 @@
               i skąd wziął/ wzięły się u Pana(i) i co się z nimi stało?
             </p>
             <v-text-field
-              required v-model="animalsBeforeText"
+              :rules="requiredRule" v-model="animalsBeforeText"
               label="poprzednie zwierzęta"
             />
 
             <p class="p">13. Prosimy o napisanie kilku słów od siebie</p>
-            <v-text-field required v-model="text" label="kilka słów" />
+            <v-text-field :rules="requiredRule" v-model="text" label="kilka słów" />
           </v-card-text>
           <v-card-actions class="d-flex align-center flex-column">
             <v-divider :thickness="20" class="border-opacity-0"></v-divider>
@@ -279,6 +280,7 @@
               ></v-divider>
               <v-btn
                 color="rgb(175, 126, 158)"
+                type="submit" 
                 :disabled="!isValid"
                 class="little-title"
                 @click="Submit()"
@@ -310,6 +312,8 @@ const phoneRules = [v => !!v || 'Wymagane', v => /^[1-9]\d{8}$/.test(v) || 'Niep
 const emailRules = [v => !!v || 'Wymagane',
       v => /.+@.+/.test(v) || 'Nieprawidłowy E-mail'
       ]
+
+const requiredRule = [v => !!v || 'Wymagane']
 var name = ref(userStore.userData.name)
 var lname = ref(userStore.userData.lname)
 var email = ref(userStore.userData.email)

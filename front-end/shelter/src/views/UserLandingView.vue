@@ -12,8 +12,29 @@
     </div>
 
 
+    <div style="width: 100vw; height: 100vh;  background-color: rgba(0, 0, 0, 0.842); margin: auto;" v-if="userform">
+      <div style="height: 30vh;"></div>
 
-    <v-row style="width: 100vw; background-color: rgb(255, 255, 255, 0);">
+      <div style="padding: 10px; margin: auto; width: fit-content; text-align: center;">
+                <h3 style="
+                    color: white;
+                    text-shadow: 2px 2px 4px #000000;
+                    font-size: xx-large;
+                  " class="font">
+                    Uwaga! <br> Aby korzystać z aplikacji konieczne jest wypełnienie poniższej ankiety ! <br> 
+
+                   
+                </h3>
+              </div>
+              <div style="width: fit-content; margin: 0 auto;">
+                <div style="height: 50px;"></div>
+    <UserForm />
+              </div>
+
+
+
+  </div>
+    <v-row style="width: 100vw; background-color: rgb(255, 255, 255, 0);" v-else>
       <v-col style="width: 70vw; height: 92.8vh; background-color: rgb(255, 255, 255, 0);">
         <div class="d-flex align-center flex-column" style="width: 75vw; margin-left: auto; margin-right: auto;">
           <div class="title" style="padding: 5px; margin: 0 auto; color: rgb(255, 255, 255); font-size:  "> Menu <div
@@ -215,6 +236,18 @@ import ResetPasswordReq from "@/components/ResetPasswordReq.vue";
 import DeleteUserPopup from "@/components/DeleteUserPopup.vue";
 const userStore = useUserStore();
 const animalsStore = useAnimalsStore();
+var userform = ref(true)
+if(userStore.userData.animals != null) {
+console.log(userStore.userData.animals )
+
+userform.value = false
+
+
+}
+
+
+
+
  animalsStore.getLikedPets(userStore.userData.email)
  animalsStore.getAllPets();   
 const props = defineProps({
