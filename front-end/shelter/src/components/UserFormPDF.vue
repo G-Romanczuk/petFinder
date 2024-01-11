@@ -2,8 +2,8 @@
     <v-dialog v-model="dialog" width="98vw" height="98vh">
         <template v-slot:activator="{ props }">
 
-            <v-btn elevation="0" class="text font-big" v-bind="props">
-                <slot name="activator"> </slot>
+            <v-btn elevation="0" class="text font-big" v-bind="props" >
+                <slot name="activator" > </slot>
             </v-btn>
         </template>
 
@@ -113,7 +113,7 @@
                                         <div class= "answer"> {{
                                             props.user.incomeSource }} </div>
                                     </v-row>
-                                    <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
+                                    <v-row v-if="shelterStore.shelterData.lifestyle" style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
                                         <div
                                             class= "question-small">
                                             2. Jaki tryb życia Pan(i) prowadzi?
@@ -121,7 +121,7 @@
                                         <div class= "answer"> {{
                                             props.user.lifestyle }} </div>
                                     </v-row>
-                                    <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
+                                    <v-row v-if="shelterStore.shelterData.housingType" style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
                                         <div
                                             class= "question-small">
                                             3. Gdzie Pan(i) mieszka?
@@ -129,7 +129,7 @@
                                         <div class= "answer"> {{
                                             props.user.housingType }} </div>
                                     </v-row>
-                                    <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
+                                    <v-row v-if="shelterStore.shelterData.houseOwner" style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
                                         <div
                                             class= "question-small">
                                             4. Kto jest właścicielem mieszkania lub domu?
@@ -137,7 +137,7 @@
                                         <div class= "answer"> {{
                                             props.user.houseOwner }} </div>
                                     </v-row>
-                                    <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
+                                    <v-row v-if="shelterStore.shelterData.hoursAlone" style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
                                         <div
                                             style="width: 40%; text-wrap:pretty ; background-color: darkgrey; border-radius: 2px; ">
                                             5. Ile maksymalnie godzin w ciągu doby pies będzie zostawał sam w
@@ -148,7 +148,7 @@
                                     </v-row>
 
 
-                                    <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
+                                    <v-row v-if="shelterStore.shelterData.careAlone" style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
                                         <div
                                             class= "question-small">
                                             6. Czy podczas dłuższej nieobecności (wakacje, sanatorium, pobyt w
@@ -157,7 +157,7 @@
                                         </div>
                                         <div class= "answer"> {{ props.user.careAlone }} </div>
                                     </v-row>
-                                    <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
+                                    <v-row v-if="shelterStore.shelterData.houseMates" style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
                                         <div
                                             class= "question-small">
                                             7. Kto mieszka razem z Panem(ią)?
@@ -165,7 +165,7 @@
                                         <div class= "answer"> {{ props.user.houseMates }} </div>
                                     </v-row>
 
-                                    <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
+                                    <v-row v-if="shelterStore.shelterData.animals" style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
                                         <div
                                             class= "question-small">
                                             8. Czy w miejscu zamieszkania psa są obecnie inne zwierzęta?
@@ -173,7 +173,7 @@
                                         <div class= "answer"> {{ props.user.animals }} </div>
                                     </v-row>
 
-                                    <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
+                                    <v-row v-if="shelterStore.shelterData.animalsBefore" style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
                                         <div
                                             class= "question-small">
                                             9. Jeśli kiedykolwiek w przeszłości posiadał(a) Pan(i) psa (psy)?
@@ -189,7 +189,7 @@
 
 
                                     <div style="height: 10px;"></div>
-                                    <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
+                                    <v-row  style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
                                         <div style="width: 100%; background-color: darkgrey; border-radius: 2px; text-wrap: pretty;"> 10. Jeśli
                                             mieszka Pan(i) w bloku/ kamienicy lub w mieszkaniu z
                                             dostępem do ogródka (parter) proszę odpowiedzieć na następujące
@@ -201,7 +201,7 @@
 
 
 
-                                    <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
+                                    <v-row v-if="shelterStore.shelterData.floor" style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
                                         <div
                                             class= "question-small">
                                             Na którym piętrze Pan(i) mieszka?
@@ -210,7 +210,7 @@
                                             props.user.floor }} </div>
                                     </v-row>
 
-                                    <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
+                                    <v-row v-if="shelterStore.shelterData.elevator" style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
                                         <div
                                             class= "question-small">
                                             Czy w budynku jest winda?
@@ -219,7 +219,7 @@
                                             props.user.elevator }} </div>
                                     </v-row>
 
-                                    <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
+                                    <v-row v-if="shelterStore.shelterData.walksNumber" style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
                                         <div
                                             class= "question-small">
                                             Jak często pies będzie wychodził na spacer? (na dzień)
@@ -228,7 +228,7 @@
                                             props.user.walksNumber }} </div>
                                     </v-row>
 
-                                    <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
+                                    <v-row v-if="shelterStore.shelterData.walksTime" style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
                                         <div
                                             class= "question-small">
                                             Ile czasu będzie trwał najdłuższy spacer z psem?
@@ -239,28 +239,28 @@
 
                                  
                                     <div style="height: 10px;"></div>
-                                    <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
+                                    <v-row  style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
                                         <div style="width: 100%; background-color: darkgrey; border-radius: 2px; text-wrap: pretty;"> 
                                             11. Jeśli mieszka Pan(i) w domu z ogrodem/podwórkiem proszę
                                     odpowiedzieć na następujące pytania:
                                         </div>
 
                                     </v-row>
-                                    <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
+                                    <v-row v-if="shelterStore.shelterData.fence" style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
                                         <div
                                             class= "question-small">
                                             Czy dom jest ogrodzony?
                                         </div>
                                         <div class= "answer"> {{ props.user.fence }}  </div>
                                     </v-row>
-                                    <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
+                                    <v-row v-if="shelterStore.shelterData.fenceHeight" style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
                                         <div
                                             class= "question-small">
                                             Jeśli dom jest ogrodzony to jaką wysokość ma ogrodzenie?
                                         </div>
                                         <div class= "answer"> {{ props.user.fenceHeight }} cm </div>
                                     </v-row>
-                                    <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
+                                    <v-row v-if="shelterStore.shelterData.propertySize" style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
                                         <div
                                             class= "question-small">
                                             Jaka jest powierzchnia podwórka/ogrodu?
@@ -271,7 +271,7 @@
                                   
 
 
-                                    <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
+                                    <v-row v-if="shelterStore.shelterData.petPlace" style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
                                         <div
                                             class= "question-small">
                                             Gdzie pies będzie przebywał w ciągu całej doby?
@@ -279,7 +279,7 @@
                                         <div class= "answer"> {{ props.user.petPlace }} </div>
                                     </v-row>
 
-                                    <v-row style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
+                                    <v-row v-if="shelterStore.shelterData.petPlaceAlone" style="border-bottom:2px solid darkgray ; width: 100%; margin: auto;">
                                         <div
                                             class= "question-small">
                                             Gdzie będzie przebywał pies w czasie Pana(i) nieobecności oraz
@@ -289,7 +289,7 @@
                                     </v-row>
                                     <div style="height: 10px;"></div>
 
-                                  <br><br><br><br>
+                                  <br>
                                     <div id="page2el"
                                         style="width: 100%; text-align: center; border-bottom: 2px solid darkgray ; border-radius: 2px;">
                                         Kilka słow o mnie:

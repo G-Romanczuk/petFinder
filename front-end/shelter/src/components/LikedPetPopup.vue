@@ -19,6 +19,31 @@
                         <v-btn style="float: right;" @click="dialog = false"><v-icon
                                 icon="mdi-window-close"></v-icon></v-btn>
 
+
+                                <v-carousel
+                                style="border-radius: 10px; width: 30vw; height: 20vh; float: left; margin: 20px auto auto auto;  border: 1px solid rgb(143, 83, 122);">
+                                <v-carousel-item v-for="(img, i) in props.pet.images" cover>
+
+                                    <v-img v-bind:src="props.pet.images[i]" cover>
+                                        <BigImagePopup :img="props.pet.images[i]" />
+                                    </v-img>
+
+                                </v-carousel-item>
+                            </v-carousel>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                <div >
                         <h1 class="title" style="text-align: center; color:  rgb(143, 83, 122); text-shadow:none;">
                             {{ props.pet.name }}, <div style="font-size: medium; display: inline"
@@ -85,11 +110,11 @@
                                 <div v-for="(user, i) in props.pet.likedBy"
                                     style="width: 100%; height: 420px; padding: 10px;  ">
                                     
-                                    <UserFormPDF :user="user" :pet="props.pet" >
-                            <template #activator>
 
-                                            <div style="height: 10px;"></div>
-                                            <v-card class="mx-auto dontscale scrollbar" width="95%" style="overflow-y: scroll;  border: 1px solid rgb(143, 83, 122);"  >
+                                    <UserFormPDF :user="user" :pet="props.pet" style="">
+                            <template #activator style="width: 100%;">
+
+                                            <v-card class="mx-auto dontscale scrollbar"  style="width: 480px; overflow-y: scroll;  border: 1px solid rgb(143, 83, 122); margin: auto;"  >
 
 
                                                 <v-card-title class="font">

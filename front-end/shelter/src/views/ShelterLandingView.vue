@@ -120,9 +120,9 @@
                                 <v-img cover v-bind:src="pet.images[0]"
                                   style="margin: auto; width: 90%; border-radius: 10px; height: 80%;" >
                                  
-                                <div style="width: 30px; height: 30px; float: left;">
-                                  <v-img cover src="@/assets/heart.png" style="text-align: center;"> {{ pet.likedBy.length }}</v-img>
-                                  
+                                <div style="width: 50px; height: 50px; float: left; margin-top: 5px; margin-left: 5px; " class="scale-big" >
+                                  <v-img cover src="@/assets/heart.png" class="dontscale" > <div style=" width: fit-content; height: fit-content; margin: 7px auto auto auto;" >{{ pet.likedBy.length }}</div></v-img>
+                                   
                                
                                 </div>
 
@@ -296,6 +296,11 @@ window.addEventListener("scroll", reveal);
 .scale :hover {
   transform: scale(1.1);
   z-index: 1;
+}
+
+.scale-big :hover {
+  transform: scale(1.5);
+  z-index: 2;
 }
 
 .dontscale :hover {
