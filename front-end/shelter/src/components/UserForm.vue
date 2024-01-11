@@ -72,7 +72,7 @@
               odpowiedź)
             </p>
             <v-select
-              required v-model="lifeStyle"
+              required v-model="lifestyle"
               label="tryb życia"
               :items="['Spokojny', 'Przeciętny', 'Aktywny']"
             ></v-select>
@@ -318,7 +318,7 @@ var postCode = ref(userStore.userData.postCode)
 var town = ref(userStore.userData.town)
 var adress = ref(userStore.userData.adress)
 var incomeSource = ref(userStore.userData.incomeSource)
-var lifeStyle = ref(userStore.userData.lifeStyle)
+var lifestyle = ref(userStore.userData.lifestyle)
 var housingType = ref(userStore.userData.housingType)
 var houseOwner = ref(userStore.userData.houseOwner)
 var hoursAlone = ref(userStore.userData.hoursAlone)
@@ -358,7 +358,7 @@ var userForm = {
     town: town.value,
     adress: adress.value,
     incomeSource: incomeSource.value,
-    lifeStyle: lifeStyle.value,
+    lifestyle: lifestyle.value,
     housingType: housingType.value,
     houseOwner: houseOwner.value,
     hoursAlone: hoursAlone.value,
@@ -397,7 +397,7 @@ var userData = {
     town: town,
     adress: adress,
     incomeSource: incomeSource,
-    lifeStyle: lifeStyle,
+    lifestyle: lifestyle,
     housingType: housingType,
     houseOwner: houseOwner,
     hoursAlone: hoursAlone,

@@ -16,7 +16,7 @@ export const useUserStore = defineStore("user", {
       town: "",
       adress: "",
       incomeSource: "",
-      lifeStyle: "",
+      lifestyle: "",
       housingType: "",
       houseOwner: "",
       hoursAlone: "",
@@ -56,7 +56,7 @@ export const useUserStore = defineStore("user", {
       this.userData.town = res.data.town
       this.userData.adress = res.data.adress
       this.userData.incomeSource = res.data.incomeSource
-      this.userData.lifeStyle = res.data.lifeStyle
+      this.userData.lifestyle = res.data.lifestyle
       this.userData.housingType = res.data.housingType
       this.userData.houseOwner = res.data.houseOwner
       this.userData.hoursAlone = res.data.hoursAlone

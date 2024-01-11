@@ -235,10 +235,8 @@ import LikedPetPopup from "@/components/LikedPetPopup.vue"
 
 const shelterStore = useShelterStore();
 shelterStore.getShelterPets(shelterStore.shelterData.email)
+shelterStore.getShelterData(shelterStore.shelterData.email)
 
-async function showPet(pet){
-
-}
 
 var tab = ref(null)
 function reveal() {

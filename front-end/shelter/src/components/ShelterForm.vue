@@ -116,7 +116,7 @@
 
             <v-checkbox
               class="p"
-              v-model="lifeStyle"
+              v-model="lifestyle"
               label="Jaki tryb życia Pan(i) prowadzi? (Proszę zaznaczyć prawidłową
                 odpowiedź)"
             />
@@ -309,26 +309,26 @@ var postCode = ref(shelterStore.shelterData.postCode)
 var town = ref(shelterStore.shelterData.town)
 var adress = ref(shelterStore.shelterData.adress)
 var url = ref(shelterStore.shelterData.url)
-var incomeSource = ref(shelterStore.shelterData.questions.incomeSource)
-var lifeStyle = ref(shelterStore.shelterData.questions.lifeStyle)
-var housingType = ref(shelterStore.shelterData.questions.housingType)
-var houseOwner = ref(shelterStore.shelterData.questions.houseOwner)
-var hoursAlone = ref(shelterStore.shelterData.questions.hoursAlone)
-var floor = ref(shelterStore.shelterData.questions.floor)
-var elevator = ref(shelterStore.shelterData.questions.elevator)
-var walksNumber = ref(shelterStore.shelterData.questions.walksNumber)
-var walksTime = ref(shelterStore.shelterData.questions.walksTime)
-var fence = ref(shelterStore.shelterData.questions.fence)
-var fenceHeight = ref(shelterStore.shelterData.questions.fenceHeight)
-var propertySize = ref(shelterStore.shelterData.questions.propertySize)
-var petPlace = ref(shelterStore.shelterData.questions.petPlace)
-var petPlaceAlone = ref(shelterStore.shelterData.questions.petPlaceAlone)
-var careAlone = ref(shelterStore.shelterData.questions.careAlone)
-var houseMates = ref(shelterStore.shelterData.questions.houseMates)
-var animals = ref(shelterStore.shelterData.questions.animals)
-var animalsBefore = ref(shelterStore.shelterData.questions.animalsBefore)
-var animalsBeforeText = ref(shelterStore.shelterData.questions.animalsBeforeText)
-var text = ref(shelterStore.shelterData.questions.text)
+var incomeSource = ref(shelterStore.shelterData.incomeSource)
+var lifestyle = ref(shelterStore.shelterData.lifestyle)
+var housingType = ref(shelterStore.shelterData.housingType)
+var houseOwner = ref(shelterStore.shelterData.houseOwner)
+var hoursAlone = ref(shelterStore.shelterData.hoursAlone)
+var floor = ref(shelterStore.shelterData.floor)
+var elevator = ref(shelterStore.shelterData.elevator)
+var walksNumber = ref(shelterStore.shelterData.walksNumber)
+var walksTime = ref(shelterStore.shelterData.walksTime)
+var fence = ref(shelterStore.shelterData.fence)
+var fenceHeight = ref(shelterStore.shelterData.fenceHeight)
+var propertySize = ref(shelterStore.shelterData.propertySize)
+var petPlace = ref(shelterStore.shelterData.petPlace)
+var petPlaceAlone = ref(shelterStore.shelterData.petPlaceAlone)
+var careAlone = ref(shelterStore.shelterData.careAlone)
+var houseMates = ref(shelterStore.shelterData.houseMates)
+var animals = ref(shelterStore.shelterData.animals)
+var animalsBefore = ref(shelterStore.shelterData.animalsBefore)
+var animalsBeforeText = ref(shelterStore.shelterData.animalsBeforeText)
+var text = ref(shelterStore.shelterData.text)
 
 var shelterData = {
     name: name,
@@ -338,9 +338,8 @@ var shelterData = {
     town: town,
     adress: adress,
     url: url,
-    questions: {
         incomeSource: incomeSource,
-        lifeStyle: lifeStyle,
+        lifestyle: lifestyle,
         housingType: housingType,
         houseOwner: houseOwner,
         hoursAlone: hoursAlone,
@@ -359,7 +358,7 @@ var shelterData = {
         animalsBefore: animalsBefore,
         animalsBeforeText: animalsBeforeText,
         text: text
-    }
+    
 }
 
 
@@ -375,9 +374,8 @@ async function Submit(shelterData) {
     town: town.value,
     adress: adress.value,
     url: url.value,
-    questions: {
         incomeSource: incomeSource.value,
-        lifeStyle: lifeStyle.value,
+        lifestyle: lifestyle.value,
         housingType: housingType.value,
         houseOwner: houseOwner.value,
         hoursAlone: hoursAlone.value,
@@ -396,7 +394,7 @@ async function Submit(shelterData) {
         animalsBefore: animalsBefore.value,
         animalsBeforeText: animalsBeforeText.value,
         text: text.value
-    }
+    
   }
 
 const res = await shelterStore.postShelterForm(shelterForm)
@@ -412,7 +410,6 @@ if(res.status == 200){
 
     shelterStore.shelterData = shelterForm;
 }
-
 
 </script>
 

@@ -249,7 +249,7 @@ export default {
     //   town: town.value,
     //   adress: adress.value,
     //   incomeSource: incomeSource.value,
-    //   lifeStyle: lifeStyle.value,
+    //   lifestyle: lifestyle.value,
     //   housingType: housingType.value,
     //   houseOwner: houseOwner.value,
     //   hoursAlone: hoursAlone.value,
@@ -280,38 +280,7 @@ export default {
   });
   },
   async postShelterForm(data) {
-    //data
-    // {
-    //     name: name.value,
-    //     email: email.value,
-    //     phone: phone.value,
-    //     postCode: postCode.value,
-    //     town: town.value,
-    //     adress: adress.value,
-    //     url: url.value,
-    //     questions: {
-    //         incomeSource: incomeSource.value,
-    //         lifeStyle: lifeStyle.value,
-    //         housingType: housingType.value,
-    //         houseOwner: houseOwner.value,
-    //         hoursAlone: hoursAlone.value,
-    //         floor: floor.value,
-    //         elevator: elevator.value,
-    //         walksNumber: walksNumber.value,
-    //         walksTime: walksTime.value,
-    //         fence: fence.value,
-    //         fenceHeight: fenceHeight.value,
-    //         propertySize: propertySize.value,
-    //         petPlace: petPlace.value,
-    //         petPlaceAlone: petPlaceAlone.value,
-    //         careAlone: careAlone.value,
-    //         houseMates: houseMates.value,
-    //         animals: animals.value,
-    //         animalsBefore: animalsBefore.value,
-    //         animalsBeforeText: animalsBeforeText.value,
-    //         text: text.value
-    //     }
-    //   }
+   
     return await axios.post(baseURL + "/Shelter/DetailsForm", data).catch((error) => { 
       
       const notifStore = useNotificationsStore();

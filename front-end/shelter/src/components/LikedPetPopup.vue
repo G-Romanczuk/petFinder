@@ -83,13 +83,14 @@
                             <div style="width:100%; display: grid;  grid-template-columns:repeat(3, 33.3% [col-start]);  overflow-x: hidden; margin: auto; min-height: 600px; "
                                 >
                                 <div v-for="(user, i) in props.pet.likedBy"
-                                    style="width: 100%; height: 420px; padding: 10px;  " class="scale">
+                                    style="width: 100%; height: 420px; padding: 10px;  ">
                                     
-
+                                    <UserFormPDF :user="user" :pet="props.pet" >
+                            <template #activator>
 
                                             <div style="height: 10px;"></div>
-                                            <v-card class="mx-auto dontscale scrollbar" width="95%" style="overflow-y: scroll;  border: 1px solid rgb(143, 83, 122);" id="element-to-convert" >
-<center>
+                                            <v-card class="mx-auto dontscale scrollbar" width="95%" style="overflow-y: scroll;  border: 1px solid rgb(143, 83, 122);"  >
+
 
                                                 <v-card-title class="font">
 
@@ -106,56 +107,14 @@
 
                                                     Ulica z numerem: {{ user.adress }} <br /> <br>
 
-                                                    <div style="width: 90%; margin: auto;  height: 2px; background-color: rgb(175, 126, 158);"></div>
-
-                                                    <div style="text-align: center;">
-
-                                                    Główne źródło utrzymania: <br/> {{ user.incomeSource }} <br />
-
-                                                    Tryb życia: <br/> {{ user.lifestyle }} <br />
-
-                                                    Zamiszkały/a: <br/> {{ user.housingType }} <br />
-
-                                                    Właściciel: <br/> {{ user.houseOwner }} <br />
-
-                                                    Zwierze samo w domu maksymalnie: <br/> {{ user.hoursAlone }} godzin <br />
-
-                                                    Piętro zamieszkania: <br/> {{ user.floor }} <br />
-
-                                                    Winda: <br/> {{ user.elevator }} <br />
-
-                                                    Częstość spaceru: <br/> {{ user.walksNumber }} <br />
-
-                                                    Długi spacer: <br/> {{ user.walksTime }} min<br />
-
-                                                    Ogrodzone podwórko: <br/> {{ user.fence }} <br />
-
-                                                    Wysokośc ogrodzenia: <br/> {{ user.fenceHeight }} cm <br />
-
-                                                    Powierzchnia podwórka: <br/> {{ user.propertySize }} (m<sup>2</sup>) <br />
-
-                                                    Miejsca pobytu zwierzecia: <br/> {{ user.petPlace }} <br />
-
-                                                    Miejsca pobytu zwierzecia podczas nieobecności: <br/> {{ user.petPlaceAlone }}
-                                                    <br />
-
-                                                    Opieka zastępcza: <br/> {{ user.careAlone }} <br />
-
-                                                    Współlokatorzy: <br/> {{ user.houseMates }} <br />
-
-                                                    Inne zwierzęta: <br/> {{ user.animals }} <br />
-
-                                                    Poprzednie zwierzęta: <br/> {{ user.animalsBefore }} <br />
-
-                                                    Kilka słow: <br/> {{ user.text }} <br>
-                                                </div>
+                                                  
                                                 </v-card-subtitle>
-                                            </center>
+                                            
                                             </v-card>
 
-<v-btn @click="exportToPdf()">Click</v-btn>
                                      
-                                    
+</template>
+</UserFormPDF>
                                 </div>
                             </div>
                         </div>
@@ -183,7 +142,6 @@ import { useUserStore } from '@/store/user';
 import DeletePetPopup from './DeletePetPopup.vue';
 import UpdatePetForm from './UpdatePetForm.vue';
 import UserFormPDF from './UserFormPDF.vue';
-import html2pdf from 'html2pdf.js'
 const props = defineProps({
     pet: Object
 })
@@ -194,17 +152,7 @@ const userStore = useUserStore();
 var dialog = ref(false)
 
 
-function exportToPdf(){
-html2pdf(document.getElementById('element-to-convert'), {
-    margin:       1,
-  filename:     'myfile.pdf',
-  html2canvas:  { scale: 2 },
-  jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-});
 
-
-
-}
 </script>
 
 <style lang="css">
