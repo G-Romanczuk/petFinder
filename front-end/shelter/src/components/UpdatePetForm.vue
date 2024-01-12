@@ -84,7 +84,7 @@
                         <v-select v-model="gender" label="płeć" :items="['Żeńska', 'Męska']"></v-select>
 
                         <p class="p">Czy odbył(a) kastrację/sterylizację</p>
-                        <v-select v-model="castration" label="płeć" :items="['Tak', 'Nie']"></v-select>
+                        <v-select v-model="castration" label="sterylizacja" :items="['Tak', 'Nie']"></v-select>
 
                         <p class="p">Rasa</p>
                         <v-text-field v-model="breed" label="Rasa" :rules="[(v) => !!v || 'Wymagane']" />
@@ -93,7 +93,7 @@
                         <v-select v-model="size" label="Wielkość" :items="['Mała', 'Średnia', 'Duża']"></v-select>
 
                         <p class="p">Przybliżony wiek</p>
-                        <v-text-field v-model="age" label="m2" hide-details single-line type="number" />
+                        <v-text-field v-model="age" label="wiek" hide-details single-line type="number" />
 
                         <p class="p">Czy szczepiony(a)</p>
                         <v-select v-model="vaccination" label="szczepienia" :items="['Tak', 'Nie']"></v-select>
@@ -147,6 +147,7 @@ import { usePetStore } from '@/store/pet';
 import { useNotificationsStore } from '@/store/notifications';
 import { useShelterStore } from '@/store/shelter';
 import { FLATTENABLE_KEYS } from '@babel/types';
+import service from '@/services/service';
 const props = defineProps({
     pet: Object
 })
@@ -163,7 +164,7 @@ const isValid = ref(true)
 var show = ref(false)
 var urls = []
 var files = []
-var imagesForm = []
+var imagesForm = petStore.pet.images
 
 var id = ref(petStore.pet.id)
 var name = ref(petStore.pet.name)
@@ -191,6 +192,7 @@ const onFileChange =  (e)  => {
     urls = []
     files = [];
     files = e.target.files;
+    imagesForm = []
     forBase64(files);
 
     for (var i = 0; i < e.target.files.length; i++) {
@@ -252,7 +254,7 @@ async function Submit() {
         text: text.value,
     }
 
-    const res = await petStore.postPetFormUpdate(petForm)
+    const res = await service.postPetFormUpdate(petForm)
 
     if (res.status == 200) {
         const notification = {

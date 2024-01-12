@@ -61,19 +61,17 @@
                         <v-select v-model="gender" label="płeć" :items="['Żeńska', 'Męska']"></v-select>
 
                         <p class="p">Czy odbył(a) kastrację/sterylizację</p>
-                        <v-select v-model="castration" label="płeć" :items="['Tak', 'Nie']"></v-select>
+                        <v-select v-model="castration" label="sterylizacja" :items="['Tak', 'Nie']"></v-select>
 
                         <p class="p">Rasa</p>
                         <v-text-field v-model="breed" label="Rasa" :rules="[(v) => !!v || 'Wymagane']" />
 
-                        <p class="p">Wielkość</p>
-                        <v-select v-model="size" label="Wielkość" :items="['Mała', 'Średnia', 'Duża']"></v-select>
 
                         <p class="p">Wielkość</p>
                         <v-select v-model="size" label="Wielkość" :items="['Mała', 'Średnia', 'Duża']"></v-select>
 
                         <p class="p">Przybliżony wiek</p>
-                        <v-text-field v-model="age" label="m2" hide-details single-line type="number" />
+                        <v-text-field v-model="age" label="wiek" hide-details single-line type="number" />
 
                         <p class="p">Czy szczepiony(a)</p>
                         <v-select v-model="vaccination" label="szczepienia" :items="['Tak', 'Nie']"></v-select>
@@ -127,6 +125,7 @@ import { usePetStore } from '@/store/pet';
 import { useNotificationsStore } from '@/store/notifications';
 import { useShelterStore } from '@/store/shelter';
 import { file } from '@babel/types';
+import service from '@/services/service';
 const shelterStore = useShelterStore();
 const notifStore = useNotificationsStore();
 const isValid = ref(true)
@@ -223,7 +222,7 @@ async function Submit() {
         text: text.value,
     }
 
-    const res = await petStore.postPetForm(petForm)
+    const res = await service.postPetForm(petForm)
 
     if (res.status == 200) {
         const notification = {

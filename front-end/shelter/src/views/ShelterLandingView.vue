@@ -1,5 +1,30 @@
 <template>
   <v-parallax src="@/assets/spaniel-background.jpg" style=" width: 100vw; height: 100vh;">
+
+
+
+    <div style="width: 100vw; height: 100vh;  background-color: rgba(0, 0, 0, 0.842); margin: auto;" v-if="shelterForm">
+      <div style="height: 30vh;"></div>
+
+      <div style="padding: 10px; margin: auto; width: fit-content; text-align: center;">
+                <h3 style="
+                    color: white;
+                    text-shadow: 2px 2px 4px #000000;
+                    font-size: xx-large;
+                  " class="font">
+                    Uwaga! <br> Aby korzystać z aplikacji konieczne jest wypełnienie poniższej ankiety ! <br> 
+
+                   
+                </h3>
+              </div>
+              <div style="width: fit-content; margin: 0 auto;">
+                <div style="height: 50px;"></div>
+    <ShelterForm />
+              </div>
+    </div>
+
+
+
     <v-row style="width: 100vw; background-color: rgb(255, 255, 255, 0);">
       <v-col style="width: 70vw; height: 100vh; background-color: rgb(255, 255, 255, 0);">
         <div class="d-flex align-center flex-column" style="width: 75vw; margin-left: auto; margin-right: auto;">
@@ -236,7 +261,16 @@ import LikedPetPopup from "@/components/LikedPetPopup.vue"
 const shelterStore = useShelterStore();
 shelterStore.getShelterPets(shelterStore.shelterData.email)
 shelterStore.getShelterData(shelterStore.shelterData.email)
+var shelterForm = ref(true)
 
+
+if(shelterStore.shelterData.floor != null) {
+console.log(shelterStore.shelterData.floor )
+
+shelterForm.value = false
+
+
+}
 
 var tab = ref(null)
 function reveal() {
