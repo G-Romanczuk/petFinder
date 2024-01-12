@@ -103,7 +103,7 @@
                   </v-window-item>
 
                   <v-window-item value="two">
-                    <v-row style="width: fit-content; margin: 0 auto; padding-bottom: 10px; height: 71vh;">
+                    <v-row style="width: fit-content; margin: 0 auto; padding-bottom: 10px; height: 71vh; overflow-y: scroll; " class="scrollbar">
 
                       <div v-for="(pet, i) in animalsStore.likedPets"
                           style="width: 300px; height: 370px; padding: 10p;" class="scale"  >

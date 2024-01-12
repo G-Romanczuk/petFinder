@@ -290,11 +290,15 @@
                                     <div style="height: 10px;"></div>
 
                                   <br>
+                                  <br>
+                                  <br>
+                                  <br>
+                                  <br>
                                     <div id="page2el"
-                                        style="width: 100%; text-align: center; border-bottom: 2px solid darkgray ; border-radius: 2px;">
+                                        style="width: 100%; text-align: center; border-bottom: 2px solid darkgray ; border-radius: 2px; text-wrap:pretty ; ">
                                         Kilka słow o mnie:
                                     </div>
-                                    <div style="width: 100%;   min-height: 100px;"> <br> {{ props.user.text
+                                    <div style="width: 100%;   min-height: 100px; text-wrap:pretty ; "> <br> {{ props.user.text
                                     }}<br> <br></div>
 
                                     <br> <br>
@@ -344,7 +348,7 @@ const animalsStore = useAnimalsStore();
 const userStore = useUserStore();
 var dialog = ref(false)
 
-
+var filename = "ankieta_adopcyjna_" + props.pet.name + "_" + props.user.name + "_" + props.user.lname
 
 function exportToPdf(){
 
@@ -352,7 +356,7 @@ function exportToPdf(){
 
 html2pdf(document.getElementById('element-to-convert'), {
     margin:       [0.1, 1],
-  filename:     'test.pdf',
+  filename:     filename,
 }).set({
   pagebreak: { mode: 'avoid-all', before: '#page2el' }
 });
